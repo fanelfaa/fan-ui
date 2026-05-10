@@ -7,8 +7,8 @@ const selectVariants = tv({
   slots: {
     root: 'grid gap-1.5 w-full',
     label: 'text-sm font-medium text-ui-foreground',
-    control: 'flex h-10 w-full items-center justify-between rounded-md border border-ui-input bg-ui-background px-3 py-2 text-sm ring-offset-ui-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ui-ring focus-within:ring-offset-2',
-    trigger: 'flex items-center justify-center size-4 [&[data-state=open]>svg]:rotate-180',
+    control: 'flex h-8 w-full items-center justify-between rounded-md border border-ui-input bg-ui-background px-2.5 py-1.5 text-sm ring-offset-ui-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ui-ring focus-within:ring-offset-2',
+    trigger: 'flex flex-1 items-center justify-start size-4 [&[data-state=open]>svg]:rotate-180',
     valueText: 'text-sm data-[placeholder-shown]:text-ui-muted-foreground',
     indicator: 'size-4 transition-transform text-ui-muted-foreground',
     positioner: 'z-50',

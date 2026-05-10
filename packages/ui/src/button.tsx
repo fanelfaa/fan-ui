@@ -13,10 +13,10 @@ const buttonVariants = tv({
       link: 'text-ui-primary underline-offset-4 hover:underline',
     },
     size: {
-      sm: 'h-9 rounded-md px-3 text-xs',
-      md: 'h-10 px-4 py-2',
-      lg: 'h-11 rounded-md px-8',
-      icon: 'size-10',
+      sm: 'h-8 rounded-md px-2.5 text-xs',
+      md: 'h-9 px-3 py-1.5',
+      lg: 'h-10 rounded-md px-6',
+      icon: 'size-9',
     },
   },
   defaultVariants: {
