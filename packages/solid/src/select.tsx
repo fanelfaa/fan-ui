@@ -1,15 +1,16 @@
 import { Select as ArkSelect, createListCollection, type ListCollection } from '@ark-ui/solid/select'
 import { Portal } from 'solid-js/web'
-import { Index, splitProps, type Component, type JSX } from 'solid-js'
+import { Index, createMemo, splitProps, type Component, type JSX } from 'solid-js'
 import { selectVariants } from '@ui/core'
 
 type SelectRootProps = ArkSelect.RootProps<{ label: string; value: string }> & { class?: string; error?: boolean }
 
 const SelectRoot: Component<SelectRootProps> = (props) => {
   const [local, others] = splitProps(props, ['class', 'error'])
-  const styles = selectVariants({ error: !!local.error })
+  const styles = createMemo(() => selectVariants({ error: !!local.error }))
+  const rootClass = createMemo(() => styles().root({ class: local.class }))
   return (
-    <ArkSelect.Root class={styles.root()} {...others} />
+    <ArkSelect.Root class={rootClass()} {...others} />
   )
 }
 
@@ -21,8 +22,9 @@ const SelectLabel: Component<ArkSelect.LabelProps> = (props) => {
 const SelectControl: Component<ArkSelect.ControlProps & { class?: string; children?: JSX.Element }> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children'])
   const styles = selectVariants()
+  const controlClass = createMemo(() => styles.control({ class: local.class }))
   return (
-    <ArkSelect.Control class={styles.control({ class: local.class })} {...others}>
+    <ArkSelect.Control class={controlClass()} {...others}>
       {local.children}
       <ArkSelect.Indicator class={styles.indicator()}>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="m6 9 6 6 6-6"/></svg>
@@ -49,10 +51,11 @@ type SelectContentProps = ArkSelect.ContentProps & {
 const SelectContent: Component<SelectContentProps> = (props) => {
   const [local, others] = splitProps(props, ['class', 'items'])
   const styles = selectVariants()
+  const contentClass = createMemo(() => styles.content({ class: local.class }))
   return (
     <Portal>
       <ArkSelect.Positioner class={styles.positioner()}>
-        <ArkSelect.Content class={styles.content({ class: local.class })} {...others}>
+        <ArkSelect.Content class={contentClass()} {...others}>
           <Index each={local.items}>
             {(item) => (
               <ArkSelect.Item class={styles.item()} item={item()}>
