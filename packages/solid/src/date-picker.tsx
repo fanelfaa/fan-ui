@@ -15,7 +15,16 @@ const DatePickerTableHead = DatePickerPrimitive.TableHead
 const DatePickerTableBody = DatePickerPrimitive.TableBody
 const DatePickerTableRow = DatePickerPrimitive.TableRow
 const DatePickerTableHeader = DatePickerPrimitive.TableHeader
-const DatePickerTableCellTrigger = DatePickerPrimitive.TableCellTrigger
+const DatePickerTableCellTrigger: Component<DatePickerPrimitive.TableCellTriggerProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const styles = datePickerVariants()
+  const tableCellTriggerClass = createMemo(() =>
+    buttonVariants({ variant: 'ghost', class: styles.tableCellTrigger({ class: local.class }) })
+  )
+  return (
+    <DatePickerPrimitive.TableCellTrigger class={tableCellTriggerClass()} {...others} />
+  )
+}
 
 type DatePickerControlProps = DatePickerPrimitive.ControlProps & { error?: boolean }
 
