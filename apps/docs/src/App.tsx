@@ -29,6 +29,23 @@ import {
   TabsTrigger,
   TabsContent,
 } from '@ui/solid'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemTrigger,
+  AccordionItemContent,
+  AccordionItemIndicator,
+} from '@ui/solid'
+import {
+  RadioGroup,
+  RadioGroupLabel,
+  RadioGroupItem,
+  RadioGroupItemControl,
+  RadioGroupItemText,
+  RadioGroupItemHiddenInput,
+} from '@ui/solid'
+import { Tooltip, TooltipTrigger, TooltipPositioner, TooltipContent } from '@ui/solid'
+import { Portal } from 'solid-js/web'
 import { createToaster, Toaster } from '@ui/solid'
 
 const frameworks = createListCollection({
@@ -395,7 +412,7 @@ const App: Component = () => {
           </div>
         </section>
 
-        {/* ════════════════════ Tabs ════════════════════ */}
+          {/* ════════════════════ Tabs ════════════════════ */}
         <section id="tabs">
           <div class="mb-8">
             <h2 class="text-2xl font-semibold">Tabs</h2>
@@ -445,6 +462,227 @@ const App: Component = () => {
                 </div>
               </TabsContent>
             </Tabs>
+          </div>
+        </section>
+
+        {/* ════════════════════ Accordion ════════════════════ */}
+        <section id="accordion">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Accordion</h2>
+            <p class="mt-1 text-ui-muted-foreground">
+              Expandable sections with animated open/close.
+            </p>
+          </div>
+
+          <div class="max-w-lg">
+            <Accordion defaultValue={['what-is-ark-ui']}>
+              <AccordionItem value="what-is-ark-ui">
+                <AccordionItemTrigger>
+                  What is Ark UI?
+                  <AccordionItemIndicator>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </AccordionItemIndicator>
+                </AccordionItemTrigger>
+                <AccordionItemContent>
+                  <div class="pb-4 text-sm text-ui-foreground">
+                    Ark UI is a headless component library for building accessible web apps with any framework.
+                  </div>
+                </AccordionItemContent>
+              </AccordionItem>
+              <AccordionItem value="how-to-get-started">
+                <AccordionItemTrigger>
+                  How to get started?
+                  <AccordionItemIndicator>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </AccordionItemIndicator>
+                </AccordionItemTrigger>
+                <AccordionItemContent>
+                  <div class="pb-4 text-sm text-ui-foreground">
+                    Install the package and import the components you need. No additional setup required.
+                  </div>
+                </AccordionItemContent>
+              </AccordionItem>
+              <AccordionItem value="who-maintains">
+                <AccordionItemTrigger>
+                  Who maintains this project?
+                  <AccordionItemIndicator>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </AccordionItemIndicator>
+                </AccordionItemTrigger>
+                <AccordionItemContent>
+                  <div class="pb-4 text-sm text-ui-foreground">
+                    Ark UI is maintained by the Chakra UI team and a growing community of contributors.
+                  </div>
+                </AccordionItemContent>
+              </AccordionItem>
+              <AccordionItem value="disabled-item" disabled>
+                <AccordionItemTrigger>
+                  Disabled Item
+                  <AccordionItemIndicator>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </AccordionItemIndicator>
+                </AccordionItemTrigger>
+                <AccordionItemContent>
+                  <div class="pb-4 text-sm text-ui-foreground">
+                    This content is not accessible.
+                  </div>
+                </AccordionItemContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </section>
+
+        {/* ════════════════════ RadioGroup ════════════════════ */}
+        <section id="radio-group">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">RadioGroup</h2>
+            <p class="mt-1 text-ui-muted-foreground">
+              Radio button group for single selection.
+            </p>
+          </div>
+
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-xs font-medium text-ui-muted-foreground mb-3 uppercase tracking-widest">
+                Basic
+              </h3>
+              <RadioGroup defaultValue="react">
+                <RadioGroupLabel>Framework</RadioGroupLabel>
+                <RadioGroupItem value="react">
+                  <RadioGroupItemControl />
+                  <RadioGroupItemText>React</RadioGroupItemText>
+                  <RadioGroupItemHiddenInput />
+                </RadioGroupItem>
+                <RadioGroupItem value="solid">
+                  <RadioGroupItemControl />
+                  <RadioGroupItemText>Solid</RadioGroupItemText>
+                  <RadioGroupItemHiddenInput />
+                </RadioGroupItem>
+                <RadioGroupItem value="vue">
+                  <RadioGroupItemControl />
+                  <RadioGroupItemText>Vue</RadioGroupItemText>
+                  <RadioGroupItemHiddenInput />
+                </RadioGroupItem>
+              </RadioGroup>
+            </div>
+
+            <div>
+              <h3 class="text-xs font-medium text-ui-muted-foreground mb-3 uppercase tracking-widest">
+                Disabled
+              </h3>
+              <RadioGroup defaultValue="react" disabled>
+                <RadioGroupLabel>Framework (Disabled)</RadioGroupLabel>
+                <RadioGroupItem value="react">
+                  <RadioGroupItemControl />
+                  <RadioGroupItemText>React</RadioGroupItemText>
+                  <RadioGroupItemHiddenInput />
+                </RadioGroupItem>
+                <RadioGroupItem value="solid">
+                  <RadioGroupItemControl />
+                  <RadioGroupItemText>Solid</RadioGroupItemText>
+                  <RadioGroupItemHiddenInput />
+                </RadioGroupItem>
+              </RadioGroup>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════ Tooltip ════════════════════ */}
+        <section id="tooltip">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Tooltip</h2>
+            <p class="mt-1 text-ui-muted-foreground">
+              Floating content on hover with positioning.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-4">
+            <Tooltip>
+              <TooltipTrigger class="inline-flex items-center justify-center rounded-md border border-ui-input bg-transparent px-4 py-2 text-sm font-medium text-ui-foreground ring-offset-ui-background transition-colors hover:bg-ui-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ui-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                Hover Me
+              </TooltipTrigger>
+              <Portal>
+                <TooltipPositioner>
+                  <TooltipContent class="z-50 overflow-hidden rounded-md border border-ui-border bg-ui-popover px-3 py-1.5 text-xs text-ui-popover-foreground shadow-md">
+                    Simple tooltip
+                  </TooltipContent>
+                </TooltipPositioner>
+              </Portal>
+            </Tooltip>
+
+            <Tooltip positioning={{ placement: 'top' }}>
+              <TooltipTrigger class="inline-flex items-center justify-center rounded-md border border-ui-input bg-transparent px-4 py-2 text-sm font-medium text-ui-foreground ring-offset-ui-background transition-colors hover:bg-ui-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ui-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                Top Tooltip
+              </TooltipTrigger>
+              <Portal>
+                <TooltipPositioner>
+                  <TooltipContent class="z-50 overflow-hidden rounded-md border border-ui-border bg-ui-popover px-3 py-1.5 text-xs text-ui-popover-foreground shadow-md">
+                    Tooltip on top
+                  </TooltipContent>
+                </TooltipPositioner>
+              </Portal>
+            </Tooltip>
+
+            <Tooltip closeDelay={0} openDelay={0}>
+              <TooltipTrigger class="inline-flex items-center justify-center rounded-md border border-ui-input bg-transparent px-4 py-2 text-sm font-medium text-ui-foreground ring-offset-ui-background transition-colors hover:bg-ui-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ui-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                Fast Tooltip
+              </TooltipTrigger>
+              <Portal>
+                <TooltipPositioner>
+                  <TooltipContent class="z-50 overflow-hidden rounded-md border border-ui-border bg-ui-popover px-3 py-1.5 text-xs text-ui-popover-foreground shadow-md">
+                    No delay
+                  </TooltipContent>
+                </TooltipPositioner>
+              </Portal>
+            </Tooltip>
           </div>
         </section>
 

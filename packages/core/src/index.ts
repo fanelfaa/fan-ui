@@ -25,3 +25,12 @@ export type { CheckboxVariants } from './recipes/checkbox'
 
 export { tabsVariants } from './recipes/tabs'
 export type { TabsVariants } from './recipes/tabs'
+
+export { accordionVariants } from './recipes/accordion'
+export type { AccordionVariants } from './recipes/accordion'
+
+export { radioGroupVariants } from './recipes/radio-group'
+export type { RadioGroupVariants } from './recipes/radio-group'
+
+export { tooltipVariants } from './recipes/tooltip'
+export type { TooltipVariants } from './recipes/tooltip'
