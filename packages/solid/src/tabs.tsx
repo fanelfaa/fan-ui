@@ -1,0 +1,40 @@
+import { Tabs as ArkTabs } from '@ark-ui/solid/tabs'
+import { createMemo, splitProps, type Component } from 'solid-js'
+import { tabsVariants } from '@ui/core'
+
+const TabsRoot: Component<ArkTabs.RootProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const styles = tabsVariants()
+  const rootClass = createMemo(() => styles.root({ class: local.class }))
+  return <ArkTabs.Root class={rootClass()} {...others} />
+}
+
+const TabsList: Component<ArkTabs.ListProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const styles = tabsVariants()
+  const listClass = createMemo(() => styles.list({ class: local.class }))
+  return <ArkTabs.List class={listClass()} {...others} />
+}
+
+const TabsTrigger: Component<ArkTabs.TriggerProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const styles = tabsVariants()
+  const triggerClass = createMemo(() => styles.trigger({ class: local.class }))
+  return <ArkTabs.Trigger class={triggerClass()} {...others} />
+}
+
+const TabsContent: Component<ArkTabs.ContentProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const styles = tabsVariants()
+  const contentClass = createMemo(() => styles.content({ class: local.class }))
+  return <ArkTabs.Content class={contentClass()} {...others} />
+}
+
+const TabsIndicator: Component<ArkTabs.IndicatorProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const styles = tabsVariants()
+  const indicatorClass = createMemo(() => styles.indicator({ class: local.class }))
+  return <ArkTabs.Indicator class={indicatorClass()} {...others} />
+}
+
+export { TabsRoot as Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator, tabsVariants }
