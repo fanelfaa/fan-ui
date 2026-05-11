@@ -19,6 +19,16 @@ import {
   SelectContent,
   createListCollection,
 } from '@ui/solid'
+import {
+  Switch,
+  SwitchLabel,
+  Checkbox,
+  CheckboxLabel,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@ui/solid'
 import { createToaster, Toaster } from '@ui/solid'
 
 const frameworks = createListCollection({
@@ -273,6 +283,169 @@ const App: Component = () => {
             </Button>
           </div>
           <Toaster toaster={toaster} />
+        </section>
+
+        {/* ════════════════════ Switch ════════════════════ */}
+        <section id="switch">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Switch</h2>
+            <p class="mt-1 text-ui-muted-foreground">
+              Toggle control with label and disabled state.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            {/* Basic */}
+            <div>
+              <h3 class="text-xs font-medium text-ui-muted-foreground mb-3 uppercase tracking-widest">
+                Basic
+              </h3>
+              <Switch />
+            </div>
+
+            {/* With Label */}
+            <div>
+              <h3 class="text-xs font-medium text-ui-muted-foreground mb-3 uppercase tracking-widest">
+                With Label
+              </h3>
+              <Switch>
+                <SwitchLabel>Airplane Mode</SwitchLabel>
+              </Switch>
+            </div>
+
+            {/* Default Checked */}
+            <div>
+              <h3 class="text-xs font-medium text-ui-muted-foreground mb-3 uppercase tracking-widest">
+                Default Checked
+              </h3>
+              <Switch defaultChecked>
+                <SwitchLabel>Notifications</SwitchLabel>
+              </Switch>
+            </div>
+
+            {/* Disabled */}
+            <div>
+              <h3 class="text-xs font-medium text-ui-muted-foreground mb-3 uppercase tracking-widest">
+                Disabled
+              </h3>
+              <div class="flex items-start gap-6">
+                <Switch disabled>
+                  <SwitchLabel>Disabled</SwitchLabel>
+                </Switch>
+                <Switch disabled defaultChecked>
+                  <SwitchLabel>Disabled (On)</SwitchLabel>
+                </Switch>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════ Checkbox ════════════════════ */}
+        <section id="checkbox">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Checkbox</h2>
+            <p class="mt-1 text-ui-muted-foreground">
+              Checkbox with label, disabled, and indeterminate state.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            {/* Basic */}
+            <div>
+              <h3 class="text-xs font-medium text-ui-muted-foreground mb-3 uppercase tracking-widest">
+                Basic
+              </h3>
+              <Checkbox />
+            </div>
+
+            {/* With Label */}
+            <div>
+              <h3 class="text-xs font-medium text-ui-muted-foreground mb-3 uppercase tracking-widest">
+                With Label
+              </h3>
+              <Checkbox>
+                <CheckboxLabel>Accept terms and conditions</CheckboxLabel>
+              </Checkbox>
+            </div>
+
+            {/* Default Checked */}
+            <div>
+              <h3 class="text-xs font-medium text-ui-muted-foreground mb-3 uppercase tracking-widest">
+                Default Checked
+              </h3>
+              <Checkbox defaultChecked>
+                <CheckboxLabel>Subscribe to newsletter</CheckboxLabel>
+              </Checkbox>
+            </div>
+
+            {/* Disabled */}
+            <div>
+              <h3 class="text-xs font-medium text-ui-muted-foreground mb-3 uppercase tracking-widest">
+                Disabled
+              </h3>
+              <div class="flex items-start gap-6">
+                <Checkbox disabled>
+                  <CheckboxLabel>Disabled</CheckboxLabel>
+                </Checkbox>
+                <Checkbox disabled defaultChecked>
+                  <CheckboxLabel>Disabled (Checked)</CheckboxLabel>
+                </Checkbox>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════ Tabs ════════════════════ */}
+        <section id="tabs">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Tabs</h2>
+            <p class="mt-1 text-ui-muted-foreground">
+              Tabbed interface with animated indicator.
+            </p>
+          </div>
+
+          <div class="max-w-xl">
+            <Tabs defaultValue="overview">
+              <TabsList>
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="features">Features</TabsTrigger>
+                <TabsTrigger value="pricing">Pricing</TabsTrigger>
+                <TabsTrigger value="faq">FAQ</TabsTrigger>
+              </TabsList>
+              <TabsContent value="overview">
+                <div class="rounded-lg border border-ui-border p-6">
+                  <h3 class="text-lg font-medium mb-2">Overview</h3>
+                  <p class="text-sm text-ui-muted-foreground">
+                    This is the overview tab content. It contains a brief introduction to the product.
+                  </p>
+                </div>
+              </TabsContent>
+              <TabsContent value="features">
+                <div class="rounded-lg border border-ui-border p-6">
+                  <h3 class="text-lg font-medium mb-2">Features</h3>
+                  <p class="text-sm text-ui-muted-foreground">
+                    This is the features tab content. It highlights the key capabilities of the product.
+                  </p>
+                </div>
+              </TabsContent>
+              <TabsContent value="pricing">
+                <div class="rounded-lg border border-ui-border p-6">
+                  <h3 class="text-lg font-medium mb-2">Pricing</h3>
+                  <p class="text-sm text-ui-muted-foreground">
+                    This is the pricing tab content. It shows the available plans and pricing options.
+                  </p>
+                </div>
+              </TabsContent>
+              <TabsContent value="faq">
+                <div class="rounded-lg border border-ui-border p-6">
+                  <h3 class="text-lg font-medium mb-2">FAQ</h3>
+                  <p class="text-sm text-ui-muted-foreground">
+                    This is the FAQ tab content. It answers common questions about the product.
+                  </p>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
         </section>
 
       </main>
