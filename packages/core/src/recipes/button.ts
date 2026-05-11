@@ -1,7 +1,7 @@
-import { splitProps, type Component, type JSX } from 'solid-js'
-import { tv, type VariantProps } from './tv'
+import { tv } from '../tv'
+import type { VariantProps } from 'tailwind-variants'
 
-const buttonVariants = tv({
+export const buttonVariants = tv({
   base: 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ui-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   variants: {
     variant: {
@@ -25,17 +25,4 @@ const buttonVariants = tv({
   },
 })
 
-type ButtonProps = JSX.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants>
-
-const Button: Component<ButtonProps> = (props) => {
-  const [local, others] = splitProps(props, ['class', 'variant', 'size'])
-  return (
-    <button
-      class={buttonVariants({ variant: local.variant, size: local.size, class: local.class })}
-      {...others}
-    />
-  )
-}
-
-export { Button, buttonVariants }
+export type ButtonVariants = VariantProps<typeof buttonVariants>

@@ -10,9 +10,10 @@ program
   .command('add')
   .argument('<component>', 'Component name to add')
   .option('-o, --output <path>', 'Output directory', './src/components/ui')
+  .option('-f, --framework <type>', 'Framework type (solid|react)', 'solid')
   .action(async (component, options) => {
     const { addComponent } = await import('./commands/add')
-    await addComponent(component, options.output)
+    await addComponent(component, options.output, options.framework)
   })
 
 program.parse()

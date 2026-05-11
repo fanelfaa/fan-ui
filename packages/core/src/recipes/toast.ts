@@ -1,8 +1,7 @@
-import { Toast, Toaster as ArkToaster, createToaster, type CreateToasterReturn } from '@ark-ui/solid/toast'
-import { splitProps, type Component } from 'solid-js'
-import { tv } from './tv'
+import { tv } from '../tv'
+import type { VariantProps } from 'tailwind-variants'
 
-const toastVariants = tv({
+export const toastVariants = tv({
   slots: {
     root: 'group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-ui-border p-6 pr-8 shadow-lg transition-all data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out',
     title: 'text-sm font-semibold',
@@ -27,32 +26,4 @@ const toastVariants = tv({
   defaultVariants: { variant: 'default' },
 })
 
-type ToasterProps = {
-  toaster: CreateToasterReturn
-  class?: string
-}
-
-const Toaster: Component<ToasterProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
-  return (
-    <ArkToaster class={local.class} {...others}>
-      {(toast) => {
-        const styles = toastVariants({ variant: (toast().type as any) || 'default' })
-        return (
-          <Toast.Root class={styles.root()}>
-            <div class="grid gap-1">
-              {toast().title && <Toast.Title class={styles.title()}>{toast().title}</Toast.Title>}
-              {toast().description && <Toast.Description class={styles.description()}>{toast().description}</Toast.Description>}
-            </div>
-            <Toast.CloseTrigger class={styles.closeTrigger()}>✕</Toast.CloseTrigger>
-            {toast().action && <Toast.ActionTrigger class={styles.actionTrigger()}>{toast().action?.label}</Toast.ActionTrigger>}
-          </Toast.Root>
-        )
-      }}
-    </ArkToaster>
-  )
-}
-
-export { createToaster }
-export { Toaster }
-export { toastVariants }
+export type ToastVariants = VariantProps<typeof toastVariants>

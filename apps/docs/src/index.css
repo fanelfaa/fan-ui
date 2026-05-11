@@ -2,4 +2,5 @@
 @import 'tw-animate-css';
 @import '@ui/solid/src/theme.css';
 
-@source '../../../packages/ui/src/'
+@source '../../../packages/solid/src/**/*.{ts,tsx}';
+@source '../../../packages/core/src/**/*.{ts,tsx}';

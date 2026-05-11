@@ -1,20 +1,7 @@
 import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
 import { Portal } from 'solid-js/web'
 import { splitProps, type Component, type JSX } from 'solid-js'
-import { tv, type VariantProps } from './tv'
-
-const dialogVariants = tv({
-  slots: {
-    backdrop: 'fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
-    positioner: 'fixed inset-0 z-50 flex items-center justify-center',
-    content: 'relative z-50 grid w-full max-w-lg gap-4 border border-ui-border bg-ui-background p-6 shadow-lg rounded-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
-    header: 'flex flex-col space-y-1.5 text-center sm:text-left',
-    footer: 'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
-    title: 'text-lg font-semibold leading-none tracking-tight',
-    description: 'text-sm text-ui-muted-foreground',
-    closeTrigger: 'absolute right-4 top-4 rounded-sm opacity-70 ring-offset-ui-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ui-ring focus:ring-offset-2',
-  },
-})
+import { dialogVariants } from '@ui/core'
 
 export const DialogRoot = ArkDialog.Root
 export const DialogTrigger = ArkDialog.Trigger
