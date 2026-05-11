@@ -17,3 +17,11 @@ export type { SelectVariants } from './recipes/select'
 
 export { toastVariants } from './recipes/toast'
 export type { ToastVariants } from './recipes/toast'
+export { switchVariants } from './recipes/switch'
+export type { SwitchVariants } from './recipes/switch'
+
+export { checkboxVariants } from './recipes/checkbox'
+export type { CheckboxVariants } from './recipes/checkbox'
+
+export { tabsVariants } from './recipes/tabs'
+export type { TabsVariants } from './recipes/tabs'
