@@ -4,5 +4,12 @@
     "outDir": "./dist",
     "types": []
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "../core"
+    }
+  ]
 }

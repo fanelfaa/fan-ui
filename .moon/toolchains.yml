@@ -7,7 +7,7 @@ javascript:
   packageManager: "pnpm"
 
 node:
-  version: "18.0.0"
+  version: ">=23"
   packageManager: "pnpm"
 
 pnpm:
