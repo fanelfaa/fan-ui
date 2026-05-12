@@ -1,0 +1,21 @@
+{
+  "active_plan": "/home/fandi/Lab/Js/ui/.sisyphus/plans/datepicker-month-year-views.md",
+  "started_at": "2026-05-12T01:30:01.577Z",
+  "session_ids": [
+    "ses_1e631d828ffe4KKUFAGSYM3Nzr"
+  ],
+  "plan_name": "datepicker-month-year-views",
+  "session_origins": {
+    "ses_1e631d828ffe4KKUFAGSYM3Nzr": "direct"
+  },
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "Update DatePickerContent with shared ViewControl + 3 view blocks",
+      "session_id": "ses_1e62f88ddffernvfTI6o7X1okY",
+      "agent": "librarian",
+      "updated_at": "2026-05-12T02:01:42.867Z"
+    }
+  }
+}

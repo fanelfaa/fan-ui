@@ -1,0 +1,99 @@
+# Solid UI Components Status
+
+## Implemented (11/52)
+
+| Component | Status |
+|-----------|--------|
+| [x] accordion | ✅ Done |
+| [x] checkbox | ✅ Done |
+| [x] dialog | ✅ Done |
+| [x] radio-group | ✅ Done |
+| [x] select | ✅ Done |
+| [x] switch | ✅ Done |
+| [x] tabs | ✅ Done |
+| [x] toast | ✅ Done |
+| [x] tooltip | ✅ Done |
+| [x] button | ✅ Done |
+| [x] input | ✅ Done |
+| [x] date-picker | ✅ Done |
+
+## Not Implemented (41/52)
+
+### High Priority
+
+| Component | Status |
+|-----------|--------|
+| [ ] combobox | ⬜ Not started |
+| [x] date-picker | ✅ Done |
+| [ ] drawer | ⬜ Not started |
+| [ ] menu | ⬜ Not started |
+| [ ] popover | ⬜ Not started |
+| [ ] slider | ⬜ Not started |
+| [ ] tabs (already done, but check for variants) | ⬜ Review needed |
+| [ ] carousel | ⬜ Not started |
+
+### Medium Priority
+
+| Component | Status |
+|-----------|--------|
+| [ ] avatar | ⬜ Not started |
+| [ ] collapsible | ⬜ Not started |
+| [ ] field | ⬜ Not started |
+| [ ] fieldset | ⬜ Not started |
+| [ ] number-input | ⬜ Not started |
+| [ ] password-input | ⬜ Not started |
+| [ ] pin-input | ⬜ Not started |
+| [ ] progress | ⬜ Not started |
+| [ ] rating-group | ⬜ Not started |
+| [ ] scroll-area | ⬜ Not started |
+| [ ] segment-group | ⬜ Not started |
+| [ ] tags-input | ⬜ Not started |
+| [ ] toggle-group | ⬜ Not started |
+| [ ] toggle | ⬜ Not started |
+| [ ] hover-card | ⬜ Not started |
+| [ ] listbox | ⬜ Not started |
+
+### Low Priority
+
+| Component | Status |
+|-----------|--------|
+| [ ] angle-slider | ⬜ Not started |
+| [ ] clipboard | ⬜ Not started |
+| [ ] color-picker | ⬜ Not started |
+| [ ] download-trigger | ⬜ Not started |
+| [ ] editable | ⬜ Not started |
+| [ ] file-upload | ⬜ Not started |
+| [ ] highlight | ⬜ Not started |
+| [ ] image-cropper | ⬜ Not started |
+| [ ] json-tree-view | ⬜ Not started |
+| [ ] marquee | ⬜ Not started |
+| [ ] navigation-menu | ⬜ Not started |
+| [ ] pagination | ⬜ Not started |
+| [ ] qr-code | ⬜ Not started |
+| [ ] signature-pad | ⬜ Not started |
+| [ ] splitter | ⬜ Not started |
+| [ ] steps | ⬜ Not started |
+| [ ] swap | ⬜ Not started |
+| [ ] time-picker | ⬜ Not started |
+| [ ] timer | ⬜ Not started |
+| [ ] tour | ⬜ Not started |
+| [ ] tree-view | ⬜ Not started |
+
+### Utilities (May not need implementation)
+
+| Component | Status |
+|-----------|--------|
+| [ ] client-only | ⬜ Not started |
+| [ ] collection | ⬜ Not started |
+| [ ] environment | ⬜ Not started |
+| [ ] floating-panel | ⬜ Not started |
+| [ ] focus-trap | ⬜ Not started |
+| [ ] format | ⬜ Not started |
+| [ ] frame | ⬜ Not started |
+| [ ] locale | ⬜ Not started |
+| [ ] presence | ⬜ Not started |
+| [ ] portal | ⬜ Not started |
+
+---
+
+**Progress: 23% (12 of 52 components implemented)**
