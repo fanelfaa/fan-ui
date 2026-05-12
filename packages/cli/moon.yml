@@ -1,0 +1,20 @@
+language: typescript
+layer: tool
+stack: backend
+
+tasks:
+  build:
+    command: tsup
+    inputs:
+      - src/**/*
+    outputs:
+      - dist/**/*
+
+  dev:
+    command: tsup --watch
+
+  typecheck:
+    command: tsc --noEmit
+    inputs:
+      - src/**/*
+      - tsconfig.json

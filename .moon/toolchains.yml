@@ -1,0 +1,18 @@
+# Configures language and toolchain settings for this workspace.
+# @see https://moonrepo.github.io/website-v1/docs/config/toolchain
+
+$schema: "https://moonrepo.dev/schemas/toolchain.json"
+
+javascript:
+  packageManager: "pnpm"
+
+node:
+  version: "18.0.0"
+  packageManager: "pnpm"
+
+pnpm:
+  version: "9.0.0"
+
+typescript:
+  createMissingConfig: false
+  syncProjectReferences: true

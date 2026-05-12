@@ -1,5 +1,8 @@
 node_modules
 dist
+.moon/cache/
+.moon/docker/
+.moon/hooks/
 .turbo
 .env
 .env.local
@@ -12,3 +15,7 @@ coverage
 *.tsbuildinfo
 
 .playwright-mcp
+# moon
+.moon/cache
+.moon/docker
+.moon/hooks

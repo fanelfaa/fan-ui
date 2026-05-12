@@ -1,0 +1,22 @@
+language: typescript
+layer: library
+stack: frontend
+dependsOn:
+  - core
+
+tasks:
+  build:
+    command: 'tsup'
+    deps:
+      - 'core:build'
+    inputs:
+      - 'src/**'
+      - 'tsup.config.ts'
+    outputs:
+      - 'dist/**'
+  dev:
+    command: 'tsup --watch'
+    deps:
+      - 'core:dev'
+  typecheck:
+    command: 'tsc --noEmit'

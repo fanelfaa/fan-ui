@@ -1,0 +1,20 @@
+language: typescript
+layer: library
+stack: frontend
+
+dependsOn:
+  - 'core'
+
+tasks:
+  build:
+    command: tsup
+    deps:
+      - 'core:build'
+
+  dev:
+    command: tsup --watch
+    deps:
+      - 'core:dev'
+
+  typecheck:
+    command: tsc --noEmit

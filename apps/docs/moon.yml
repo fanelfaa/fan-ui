@@ -1,0 +1,26 @@
+language: typescript
+layer: application
+stack: frontend
+dependsOn:
+  - solid
+  - core
+
+tasks:
+  dev:
+    command: 'vite'
+    deps:
+      - 'solid:dev'
+      - 'core:dev'
+  build:
+    command: 'vite build'
+    deps:
+      - 'solid:build'
+      - 'core:build'
+    inputs:
+      - 'src/**/*'
+      - 'index.html'
+      - 'vite.config.ts'
+    outputs:
+      - 'dist'
+  preview:
+    command: 'vite preview'
