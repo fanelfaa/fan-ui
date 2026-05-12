@@ -45,6 +45,8 @@ import {
   RadioGroupItemHiddenInput,
 } from '@ui/solid'
 import { Tooltip, TooltipTrigger, TooltipPositioner, TooltipContent } from '@ui/solid'
+import { DatePicker, DatePickerContent, DatePickerContext, DatePickerControl, DatePickerInput, DatePickerNextTrigger, DatePickerPositioner, DatePickerPrevTrigger, DatePickerRangeText, DatePickerTable, DatePickerTableBody, DatePickerTableCell, DatePickerTableCellTrigger, DatePickerTableHead, DatePickerTableHeader, DatePickerTableRow, DatePickerTrigger, DatePickerView, DatePickerViewControl, DatePickerViewTrigger } from '@ui/solid'
+import { Index } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import { createToaster, Toaster } from '@ui/solid'
 
@@ -683,6 +685,114 @@ const App: Component = () => {
                 </TooltipPositioner>
               </Portal>
             </Tooltip>
+          </div>
+        </section>
+
+        {/* ════════════════════ DatePicker ════════════════════ */}
+        <section id="date-picker">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">DatePicker</h2>
+            <p class="mt-1 text-ui-muted-foreground">
+              Calendar date picker with day, month, and year views.
+            </p>
+          </div>
+
+          <div class="max-w-xs">
+            <DatePicker selectionMode="single" startOfWeek={1}>
+              <DatePickerControl>
+                <DatePickerInput placeholder="Pick a date" />
+                <DatePickerTrigger />
+              </DatePickerControl>
+              <Portal>
+                <DatePickerPositioner>
+                  <DatePickerContent>
+                    <DatePickerViewControl>
+                      <DatePickerPrevTrigger />
+                      <DatePickerViewTrigger>
+                        <DatePickerRangeText />
+                      </DatePickerViewTrigger>
+                      <DatePickerNextTrigger />
+                    </DatePickerViewControl>
+                    <DatePickerView view="day">
+                      <DatePickerContext>
+                        {(api) => (
+                          <DatePickerTable>
+                            <DatePickerTableHead>
+                              <DatePickerTableRow>
+                                <Index each={api().weekDays}>
+                                  {(weekDay) => <DatePickerTableHeader>{weekDay().short}</DatePickerTableHeader>}
+                                </Index>
+                              </DatePickerTableRow>
+                            </DatePickerTableHead>
+                            <DatePickerTableBody>
+                              <Index each={api().weeks}>
+                                {(week) => (
+                                  <DatePickerTableRow>
+                                    <Index each={week()}>
+                                      {(day) => (
+                                        <DatePickerTableCell value={day()}>
+                                          <DatePickerTableCellTrigger>{day().day}</DatePickerTableCellTrigger>
+                                        </DatePickerTableCell>
+                                      )}
+                                    </Index>
+                                  </DatePickerTableRow>
+                                )}
+                              </Index>
+                            </DatePickerTableBody>
+                          </DatePickerTable>
+                        )}
+                      </DatePickerContext>
+                    </DatePickerView>
+                    <DatePickerView view="month">
+                      <DatePickerContext>
+                        {(api) => (
+                          <DatePickerTable>
+                            <DatePickerTableBody>
+                              <Index each={api().getMonthsGrid({ columns: 4, format: 'short' })}>
+                                {(month) => (
+                                  <DatePickerTableRow>
+                                    <Index each={month()}>
+                                      {(cell) => (
+                                        <DatePickerTableCell value={cell().value}>
+                                          <DatePickerTableCellTrigger>{cell().label}</DatePickerTableCellTrigger>
+                                        </DatePickerTableCell>
+                                      )}
+                                    </Index>
+                                  </DatePickerTableRow>
+                                )}
+                              </Index>
+                            </DatePickerTableBody>
+                          </DatePickerTable>
+                        )}
+                      </DatePickerContext>
+                    </DatePickerView>
+                    <DatePickerView view="year">
+                      <DatePickerContext>
+                        {(api) => (
+                          <DatePickerTable>
+                            <DatePickerTableBody>
+                              <Index each={api().getYearsGrid({ columns: 4 })}>
+                                {(year) => (
+                                  <DatePickerTableRow>
+                                    <Index each={year()}>
+                                      {(cell) => (
+                                        <DatePickerTableCell value={cell().value}>
+                                          <DatePickerTableCellTrigger>{cell().label}</DatePickerTableCellTrigger>
+                                        </DatePickerTableCell>
+                                      )}
+                                    </Index>
+                                  </DatePickerTableRow>
+                                )}
+                              </Index>
+                            </DatePickerTableBody>
+                          </DatePickerTable>
+                        )}
+                      </DatePickerContext>
+                    </DatePickerView>
+                  </DatePickerContent>
+                </DatePickerPositioner>
+              </Portal>
+            </DatePicker>
           </div>
         </section>
 

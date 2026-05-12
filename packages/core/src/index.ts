@@ -34,3 +34,6 @@ export type { RadioGroupVariants } from './recipes/radio-group'
 
 export { tooltipVariants } from './recipes/tooltip'
 export type { TooltipVariants } from './recipes/tooltip'
+
+export { datePickerVariants } from './recipes/date-picker'
+export type { DatePickerVariants } from './recipes/date-picker'
