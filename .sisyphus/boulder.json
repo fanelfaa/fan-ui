@@ -1,0 +1,32 @@
+{
+  "active_plan": "/home/fandi/Lab/Js/ui/.sisyphus/plans/imigrasi-dep-pattern.md",
+  "started_at": "2026-05-13T00:04:25.189Z",
+  "session_ids": [
+    "ses_1e1608d0effexSSgCMBhibVZXH"
+  ],
+  "session_origins": {
+    "ses_1e1608d0effexSSgCMBhibVZXH": "direct"
+  },
+  "plan_name": "imigrasi-dep-pattern",
+  "agent": "atlas",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "Add `composite: true` to core/tsconfig.json",
+      "session_id": "ses_1e1587afbffeTjvO0zpJie6wmF",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-05-13T00:07:07.518Z"
+    },
+    "todo:5": {
+      "task_key": "todo:5",
+      "task_label": "5",
+      "task_title": "Add `vite-tsconfig-paths` plugin and `optimizeDeps.exclude` to docs/vite.config.ts",
+      "session_id": "ses_1e156cfb9ffe9IShrKwtiLTdik",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-05-13T00:08:20.445Z"
+    }
+  }
+}

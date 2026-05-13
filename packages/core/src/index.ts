@@ -1,7 +1,3 @@
-// Re-export tv
-export { tv } from './tv'
-export type { VariantProps } from 'tailwind-variants'
-
 // Re-export recipes
 export { buttonVariants } from './recipes/button'
 export type { ButtonVariants } from './recipes/button'
@@ -37,3 +33,9 @@ export type { TooltipVariants } from './recipes/tooltip'
 
 export { datePickerVariants } from './recipes/date-picker'
 export type { DatePickerVariants } from './recipes/date-picker'
+
+export { popoverVariants } from './recipes/popover'
+export type { PopoverVariants } from './recipes/popover'
+
+export { sliderVariants } from './recipes/slider'
+export type { SliderVariants } from './recipes/slider'

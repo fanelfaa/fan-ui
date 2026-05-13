@@ -12,7 +12,7 @@ program
   .option('-o, --output <path>', 'Output directory', './src/components/ui')
   .option('-f, --framework <type>', 'Framework type (solid|react)', 'solid')
   .action(async (component, options) => {
-    const { addComponent } = await import('./commands/add')
+    const { addComponent } = await import('./commands/add.js')
     await addComponent(component, options.output, options.framework)
   })
 

@@ -1,5 +1,4 @@
-import { tv } from '../tv'
-import type { VariantProps } from 'tailwind-variants'
+import { tv, type VariantProps } from 'tailwind-variants'
 
 export const checkboxVariants = tv({
   slots: {

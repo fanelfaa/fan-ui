@@ -15,4 +15,4 @@ pnpm:
 
 typescript:
   createMissingConfig: false
-  syncProjectReferences: true
+  syncProjectReferences: false
