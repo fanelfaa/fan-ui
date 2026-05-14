@@ -13,38 +13,6 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./recipes/button": {
-      "types": "./dist/recipes/button.d.ts",
-      "import": "./dist/recipes/button.js"
-    },
-    "./recipes/input": {
-      "types": "./dist/recipes/input.d.ts",
-      "import": "./dist/recipes/input.js"
-    },
-    "./recipes/dialog": {
-      "types": "./dist/recipes/dialog.d.ts",
-      "import": "./dist/recipes/dialog.js"
-    },
-    "./recipes/select": {
-      "types": "./dist/recipes/select.d.ts",
-      "import": "./dist/recipes/select.js"
-    },
-    "./recipes/toast": {
-      "types": "./dist/recipes/toast.d.ts",
-      "import": "./dist/recipes/toast.js"
-    },
-    "./recipes/collapsible": {
-      "types": "./dist/recipes/collapsible.d.ts",
-      "import": "./dist/recipes/collapsible.js"
-    },
-    "./recipes/drawer": {
-      "types": "./dist/recipes/drawer.d.ts",
-      "import": "./dist/recipes/drawer.js"
-    },
-    "./recipes/menu": {
-      "types": "./dist/recipes/menu.d.ts",
-      "import": "./dist/recipes/menu.js"
-    },
     "./src/theme.css": "./src/theme.css"
   },
   "files": [

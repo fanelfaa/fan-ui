@@ -1,95 +1,98 @@
-import { Component, createSignal } from 'solid-js'
-import { Button, RadioGroupIndicator } from '@ui/solid'
-import { Input, NumberInput } from '@ui/solid'
-import {
-  DialogRoot,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-} from '@ui/solid'
-import {
-  SelectRoot,
-  SelectLabel,
-  SelectControl,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  createListCollection,
-} from '@ui/solid'
-import {
-  Switch,
-  SwitchLabel,
-  Checkbox,
-  CheckboxLabel,
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from '@ui/solid'
+import { Component, createSignal, Index } from 'solid-js'
+import { Portal } from 'solid-js/web'
 import {
   Accordion,
   AccordionItem,
-  AccordionItemTrigger,
   AccordionItemContent,
   AccordionItemIndicator,
-} from '@ui/solid'
-import {
-  RadioGroup,
-  RadioGroupLabel,
-  RadioGroupItem,
-  RadioGroupItemControl,
-  RadioGroupItemText,
-  RadioGroupItemHiddenInput,
-} from '@ui/solid'
-import { Tooltip, TooltipTrigger, TooltipPositioner, TooltipContent } from '@ui/solid'
-import {
-  PopoverRoot,
-  PopoverTrigger,
-  PopoverPositioner,
-  PopoverContent,
-  PopoverTitle,
-  PopoverDescription,
-  PopoverCloseTrigger,
-} from '@ui/solid'
-import { DatePicker, DatePickerContent, DatePickerContext, DatePickerControl, DatePickerInput, DatePickerNextTrigger, DatePickerPositioner, DatePickerPrevTrigger, DatePickerRangeText, DatePickerTable, DatePickerTableBody, DatePickerTableCell, DatePickerTableCellTrigger, DatePickerTableHead, DatePickerTableHeader, DatePickerTableRow, DatePickerTrigger, DatePickerView, DatePickerViewControl, DatePickerViewTrigger } from '@ui/solid'
-import {
-  DrawerRoot,
-  DrawerTrigger,
-  DrawerBackdrop,
-  DrawerPositioner,
-  DrawerContent,
-  DrawerTitle,
-  DrawerDescription,
+  AccordionItemTrigger,
+  Button,
+  Checkbox,
+  CheckboxLabel,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleIndicator,
+  CollapsibleTrigger,
+  createListCollection,
+  createToaster,
+  DatePicker,
+  DatePickerContent,
+  DatePickerContext,
+  DatePickerControl,
+  DatePickerInput,
+  DatePickerNextTrigger,
+  DatePickerPositioner,
+  DatePickerPrevTrigger,
+  DatePickerRangeText,
+  DatePickerTable,
+  DatePickerTableBody,
+  DatePickerTableCell,
+  DatePickerTableCellTrigger,
+  DatePickerTableHead,
+  DatePickerTableHeader,
+  DatePickerTableRow,
+  DatePickerTrigger,
+  DatePickerView,
+  DatePickerViewControl,
+  DatePickerViewTrigger,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
   DrawerCloseTrigger,
-} from '@ui/solid'
-import { Index } from 'solid-js'
-import { Portal } from 'solid-js/web'
-import { createToaster, Toaster } from '@ui/solid'
-import {
-  SliderRoot,
-  SliderLabel,
-  SliderControl,
-  SliderTrack,
-  SliderRange,
-  SliderThumb,
-  SliderValueText,
-} from '@ui/solid'
-import {
-  MenuRoot,
-  MenuTrigger,
+  DrawerContent,
+  DrawerDescription,
+  DrawerGrabber,
+  DrawerRoot,
+  DrawerTitle,
+  DrawerTrigger,
+  Input,
   MenuContent,
   MenuItem,
   MenuItemText,
+  MenuRoot,
   MenuSeparator,
-} from '@ui/solid'
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-  CollapsibleIndicator,
+  MenuTrigger,
+  NumberInput,
+  PopoverCloseTrigger,
+  PopoverContent,
+  PopoverDescription,
+  PopoverRoot,
+  PopoverTitle,
+  PopoverTrigger,
+  RadioGroup,
+  RadioGroupItem,
+  RadioGroupItemControl,
+  RadioGroupItemHiddenInput,
+  RadioGroupItemText,
+  RadioGroupLabel,
+  SelectContent,
+  SelectControl,
+  SelectLabel,
+  SelectRoot,
+  SelectTrigger,
+  SelectValue,
+  SliderControl,
+  SliderLabel,
+  SliderRange,
+  SliderRoot,
+  SliderThumb,
+  SliderTrack,
+  SliderValueText,
+  Switch,
+  SwitchLabel,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+  Toaster,
+  Tooltip,
+  TooltipContent,
+  TooltipPositioner,
+  TooltipTrigger,
 } from '@ui/solid'
 
 const frameworks = createListCollection({
@@ -906,39 +909,14 @@ const App: Component = () => {
               <h3 class="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-widest">
                 With Min/Max
               </h3>
-              <NumberInput min={0} max={100} defaultValue={50} label="Age" />
+              <NumberInput min={0} max={100} defaultValue="50" label="Age" />
             </div>
 
             <div>
               <h3 class="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-widest">
                 Disabled
               </h3>
-              <NumberInput disabled defaultValue={25} label="Amount" />
-            </div>
-
-            <div>
-              <h3 class="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-widest">
-                With Min/Max
-              </h3>
-              <NumberInput min={0} max={100} defaultValue={50}>
-                <NumberInputLabel>Age</NumberInputLabel>
-                <NumberInputRoot>
-                  <NumberInputControl>
-                    <NumberInputTrigger type="decrement">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14" />
-                      </svg>
-                    </NumberInputTrigger>
-                    <NumberInputValueText />
-                    <NumberInputIncrementTrigger>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14" />
-                        <path d="M12 5v14" />
-                      </svg>
-                    </NumberInputIncrementTrigger>
-                  </NumberInputControl>
-                </NumberInputRoot>
-              </NumberInput>
+              <NumberInput disabled defaultValue="25" label="Amount" />
             </div>
           </div>
         </section>
@@ -1070,7 +1048,7 @@ const App: Component = () => {
           <div class="max-w-xs">
             <MenuRoot>
               <MenuTrigger>
-                <Button>Actions</Button>
+                Actions
               </MenuTrigger>
               <MenuContent>
                 <MenuItem value="copy">
@@ -1104,40 +1082,20 @@ const App: Component = () => {
             <DrawerTrigger>
               <Button>Open Drawer</Button>
             </DrawerTrigger>
-            <Portal>
-              <DrawerBackdrop class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" />
-              <DrawerPositioner class="fixed inset-0 z-50 flex items-end justify-center">
-                <DrawerContent class="bg-background border-t border-border rounded-t-xl w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col">
-                  <div class="flex items-center justify-between px-6 py-4 border-b border-border">
-                    <DrawerTitle class="text-lg font-semibold">Drawer Title</DrawerTitle>
-                    <DrawerCloseTrigger class="flex items-center justify-center h-8 w-8">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M18 6 6 18" />
-                        <path d="m6 6 12 12" />
-                      </svg>
-                    </DrawerCloseTrigger>
-                  </div>
-                  <DrawerDescription class="px-6 py-3 text-sm text-muted-foreground">
-                    This is a drawer panel that slides in from the bottom of the screen.
-                  </DrawerDescription>
-                  <div class="flex-1 overflow-y-auto px-6 py-4">
-                    <p class="text-sm text-foreground">
-                      Drawer content goes here. You can place any content including forms, lists, or other components.
-                    </p>
-                  </div>
-                </DrawerContent>
-              </DrawerPositioner>
-            </Portal>
+            <DrawerContent class="bg-background border-t border-border rounded-t-xl w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col">
+              <DrawerGrabber/>
+              <div class="flex items-center justify-between px-6 py-4 border-b border-border">
+                <DrawerTitle class="text-lg font-semibold">Drawer Title</DrawerTitle>
+              </div>
+              <DrawerDescription class="px-6 py-3 text-sm text-muted-foreground">
+                This is a drawer panel that slides in from the bottom of the screen.
+              </DrawerDescription>
+              <div class="flex-1 overflow-y-auto px-6 py-4">
+                <p class="text-sm text-foreground">
+                  Drawer content goes here. You can place any content including forms, lists, or other components.
+                </p>
+              </div>
+            </DrawerContent>
           </DrawerRoot>
         </section>
 

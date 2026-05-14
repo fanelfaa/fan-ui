@@ -3,19 +3,16 @@ layer: application
 stack: frontend
 dependsOn:
   - solid
-  - core
 
 tasks:
   dev:
     command: 'vite'
     deps:
-      - 'solid:dev'
-      - 'core:dev'
+      - 'solid:build'
   build:
     command: 'vite build'
     deps:
       - 'solid:build'
-      - 'core:build'
     inputs:
       - 'src/**/*'
       - 'index.html'

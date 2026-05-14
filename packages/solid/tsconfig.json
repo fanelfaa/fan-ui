@@ -3,8 +3,16 @@
   "compilerOptions": {
     "outDir": "./dist",
     "types": [],
+    "composite": true,
+    "declaration": true,
+    "declarationDir": "dist",
+    "declarationMap": true,
+    "rootDir": "src",
+    "baseUrl": ".",
     "jsx": "preserve",
     "jsxImportSource": "solid-js"
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*"
+  ]
 }

@@ -1,6 +1,7 @@
 import { Menu as ArkMenu } from '@ark-ui/solid/menu'
 import { createMemo, splitProps, type Component, type JSX } from 'solid-js'
-import { menuVariants } from '@ui/core'
+import { ButtonVariants, buttonVariants, menuVariants } from '@ui/core'
+import { Portal } from 'solid-js/web'
 
 export const MenuRoot = ArkMenu.Root
 export const MenuIndicator = ArkMenu.Indicator
@@ -12,10 +13,10 @@ export const MenuContextTrigger = ArkMenu.ContextTrigger
 export const MenuTriggerItem = ArkMenu.TriggerItem
 export const MenuRadioItemGroup = ArkMenu.RadioItemGroup
 
-const MenuTrigger: Component<ArkMenu.TriggerProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
+const MenuTrigger: Component<ArkMenu.TriggerProps & ButtonVariants> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'variant', 'size'])
   const styles = menuVariants()
-  const triggerClass = createMemo(() => styles.trigger({ class: local.class }))
+  const triggerClass = createMemo(() => buttonVariants({ class: local.class, variant: local.variant || 'outline', size: local.size }))
   return (
     <ArkMenu.Trigger class={triggerClass()} {...others}>
       {props.children}
@@ -33,11 +34,13 @@ const MenuContent: Component<MenuContentProps> = (props) => {
   const styles = menuVariants()
   const contentClass = createMemo(() => styles.content({ class: local.class }))
   return (
-    <ArkMenu.Positioner class={styles.positioner()}>
+    <Portal>
+      <ArkMenu.Positioner class={styles.positioner()}>
       <ArkMenu.Content class={contentClass()} {...others}>
         {local.children}
       </ArkMenu.Content>
     </ArkMenu.Positioner>
+    </Portal>
   )
 }
 

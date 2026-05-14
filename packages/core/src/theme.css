@@ -1,6 +1,7 @@
 @theme {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
+  --color-popover: hsl(var(--background));
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
   --color-secondary: hsl(var(--secondary));
@@ -32,7 +33,17 @@
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
   --ring: 222.2 84% 4.9%;
-  --radius: 0.5rem;
+
+  /* Radius */
+  --radius: 0.625rem;
+  --radius-xs: .125rem;
+  --radius-sm: calc(var(--radius)*.6);
+  --radius-md: calc(var(--radius)*.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius)*1.4);
+  --radius-2xl: calc(var(--radius)*1.8);
+  --radius-3xl: calc(var(--radius)*2.2);
+  --radius-4xl: calc(var(--radius)*2.6);
 }
 
 [data-scope=toast][data-part=root] {

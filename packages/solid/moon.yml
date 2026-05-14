@@ -6,17 +6,16 @@ dependsOn:
 
 tasks:
   build:
-    command: 'tsup'
+    command: 'pnpm run build'
     deps:
       - 'core:build'
     inputs:
       - 'src/**'
-      - 'tsup.config.ts'
     outputs:
       - 'dist/**'
   dev:
-    command: 'tsup --watch'
+    command: 'pnpm run dev'
     deps:
-      - 'core:dev'
+      - 'core:build'
   typecheck:
     command: 'tsc --noEmit'

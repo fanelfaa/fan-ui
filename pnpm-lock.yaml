@@ -132,12 +132,15 @@ importers:
         specifier: ^4.0.0
         version: 4.3.0
     devDependencies:
-      tsup:
-        specifier: ^8.0.0
-        version: 8.5.1(jiti@2.7.0)(postcss@8.5.14)(typescript@5.9.3)
       typescript:
         specifier: ^5.0.0
         version: 5.9.3
+      vite:
+        specifier: ^6.0.0
+        version: 6.4.2(@types/node@25.6.2)(jiti@2.7.0)(lightningcss@1.32.0)
+      vite-plugin-solid:
+        specifier: ^2.0.0
+        version: 2.11.12(solid-js@1.9.12)(vite@6.4.2(@types/node@25.6.2)(jiti@2.7.0)(lightningcss@1.32.0))
 
 packages:
 
