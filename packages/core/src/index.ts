@@ -39,3 +39,6 @@ export type { PopoverVariants } from './recipes/popover'
 
 export { sliderVariants } from './recipes/slider'
 export type { SliderVariants } from './recipes/slider'
+
+export { numberInputVariants } from './recipes/number-input'
+export type { NumberInputVariants } from './recipes/number-input'

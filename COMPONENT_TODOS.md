@@ -1,6 +1,6 @@
 # Solid UI Components Status
 
-## Implemented (11/52)
+## Implemented (14/52)
 
 | Component | Status |
 |-----------|--------|
@@ -16,20 +16,18 @@
 | [x] button | ✅ Done |
 | [x] input | ✅ Done |
 | [x] date-picker | ✅ Done |
+| [x] popover | ✅ Done |
+| [x] slider | ✅ Done |
 
-## Not Implemented (41/52)
+## Not Implemented (38/52)
 
 ### High Priority
 
 | Component | Status |
 |-----------|--------|
 | [ ] combobox | ⬜ Not started |
-| [x] date-picker | ✅ Done |
 | [ ] drawer | ⬜ Not started |
 | [ ] menu | ⬜ Not started |
-| [ ] popover | ⬜ Not started |
-| [ ] slider | ⬜ Not started |
-| [ ] tabs (already done, but check for variants) | ⬜ Review needed |
 | [ ] carousel | ⬜ Not started |
 
 ### Medium Priority
@@ -40,7 +38,7 @@
 | [ ] collapsible | ⬜ Not started |
 | [ ] field | ⬜ Not started |
 | [ ] fieldset | ⬜ Not started |
-| [ ] number-input | ⬜ Not started |
+| [x] number-input | ✅ Done |
 | [ ] password-input | ⬜ Not started |
 | [ ] pin-input | ⬜ Not started |
 | [ ] progress | ⬜ Not started |
@@ -96,4 +94,4 @@
 
 ---
 
-**Progress: 23% (12 of 52 components implemented)**
+**Progress: 27% (14 of 52 components implemented)**
