@@ -6,23 +6,15 @@ import { popoverVariants } from '@ui/core'
 export const PopoverRoot = ArkPopover.Root
 export const PopoverTrigger = ArkPopover.Trigger
 
-const PopoverPositioner: Component<ArkPopover.PositionerProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
-  const styles = popoverVariants()
-  const positionerClass = createMemo(() => styles.positioner({ class: local.class }))
-  return <ArkPopover.Positioner class={positionerClass()} {...others} />
-}
-
 type PopoverContentProps = ArkPopover.ContentProps & { class?: string; children?: JSX.Element }
 
 const PopoverContent: Component<PopoverContentProps> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children'])
   const styles = popoverVariants()
   const contentClass = createMemo(() => styles.content({ class: local.class }))
-  const positionerClass = createMemo(() => styles.positioner({ class: local.class }))
   return (
     <Portal>
-      <ArkPopover.Positioner class={positionerClass()}>
+      <ArkPopover.Positioner class={styles.positioner()}>
         <ArkPopover.Content class={contentClass()} {...others}>
           {local.children}
         </ArkPopover.Content>
@@ -82,7 +74,6 @@ const PopoverIndicator: Component<ArkPopover.IndicatorProps> = (props) => {
 }
 
 export {
-  PopoverPositioner,
   PopoverContent,
   PopoverTitle,
   PopoverDescription,
