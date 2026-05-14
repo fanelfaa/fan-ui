@@ -26,8 +26,8 @@
 | Component | Status |
 |-----------|--------|
 | [ ] combobox | ⬜ Not started |
-| [ ] drawer | ⬜ Not started |
-| [ ] menu | ⬜ Not started |
+| [x] drawer | ✅ Done |
+| [x] menu | ✅ Done |
 | [ ] carousel | ⬜ Not started |
 
 ### Medium Priority
@@ -35,7 +35,7 @@
 | Component | Status |
 |-----------|--------|
 | [ ] avatar | ⬜ Not started |
-| [ ] collapsible | ⬜ Not started |
+| [x] collapsible | ✅ Done |
 | [ ] field | ⬜ Not started |
 | [ ] fieldset | ⬜ Not started |
 | [x] number-input | ✅ Done |

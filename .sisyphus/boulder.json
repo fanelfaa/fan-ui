@@ -1,0 +1,176 @@
+{
+  "schema_version": 2,
+  "active_work_id": "solid-components-wave-2-c886097a",
+  "works": {
+    "solid-components-wave-2-c17c95bf": {
+      "work_id": "solid-components-wave-2-c17c95bf",
+      "active_plan": "/home/fandi/Lab/Js/ui/.sisyphus/plans/solid-components-wave-2.md",
+      "plan_name": "solid-components-wave-2",
+      "status": "active",
+      "started_at": "2026-05-14T09:18:07.447Z",
+      "updated_at": "2026-05-14T09:18:07.447Z",
+      "session_ids": [
+        "ses_1da391ee0ffezSMnjuDN1UIrpm"
+      ],
+      "session_origins": {
+        "ses_1da391ee0ffezSMnjuDN1UIrpm": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {}
+    },
+    "solid-components-wave-2-f6af4cc0": {
+      "work_id": "solid-components-wave-2-f6af4cc0",
+      "active_plan": "/home/fandi/Lab/Js/ui/.sisyphus/plans/solid-components-wave-2.md",
+      "plan_name": "solid-components-wave-2",
+      "status": "active",
+      "started_at": "2026-05-14T09:18:16.958Z",
+      "updated_at": "2026-05-14T09:18:16.958Z",
+      "session_ids": [
+        "ses_1da391ee0ffezSMnjuDN1UIrpm"
+      ],
+      "session_origins": {
+        "ses_1da391ee0ffezSMnjuDN1UIrpm": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {}
+    },
+    "solid-components-wave-2-0dd7f076": {
+      "work_id": "solid-components-wave-2-0dd7f076",
+      "active_plan": "/home/fandi/Lab/Js/ui/.sisyphus/plans/solid-components-wave-2.md",
+      "plan_name": "solid-components-wave-2",
+      "status": "completed",
+      "started_at": "2026-05-14T09:18:46.894Z",
+      "updated_at": "2026-05-14T11:37:53.154Z",
+      "session_ids": [
+        "ses_1da391ee0ffezSMnjuDN1UIrpm"
+      ],
+      "session_origins": {
+        "ses_1da391ee0ffezSMnjuDN1UIrpm": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "Start: `cd /home/fandi/Lab/Js/ui/apps/docs && pnpm dev &` wait for port 5173",
+          "session_id": "ses_1d9ce598dffebo3jxhfNXKWWPH",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "started_at": "2026-05-14T09:23:29.096Z",
+          "ended_at": "2026-05-14T11:37:53.154Z",
+          "elapsed_ms": 8064058,
+          "status": "completed",
+          "updated_at": "2026-05-14T11:37:53.154Z"
+        },
+        "todo:5": {
+          "task_key": "todo:5",
+          "task_label": "5",
+          "task_title": "Solid wrapper — collapsible.tsx",
+          "session_id": "ses_1da24312effeSuj3py7yntBKry",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "started_at": "2026-05-14T09:41:11.831Z",
+          "status": "completed",
+          "updated_at": "2026-05-14T09:46:17.148Z",
+          "ended_at": "2026-05-14T09:46:17.148Z",
+          "elapsed_ms": 305317
+        },
+        "todo:13": {
+          "task_key": "todo:13",
+          "task_label": "13",
+          "task_title": "Docs — add Collapsible section (new component)",
+          "session_id": "ses_1da1719edffeYgfNg0J2cngDu8",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "started_at": "2026-05-14T09:51:02.769Z",
+          "ended_at": "2026-05-14T10:01:04.831Z",
+          "elapsed_ms": 602062,
+          "status": "completed",
+          "updated_at": "2026-05-14T10:01:04.831Z"
+        },
+        "todo:16": {
+          "task_key": "todo:16",
+          "task_label": "16",
+          "task_title": "Build + typecheck + QA verification",
+          "session_id": "ses_1da12c324ffe17HxDeeOviA3D5",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-05-14T10:00:11.023Z",
+          "started_at": "2026-05-14T09:59:59.458Z",
+          "status": "completed",
+          "ended_at": "2026-05-14T10:00:11.023Z",
+          "elapsed_ms": 11565
+        },
+        "final-wave:f1": {
+          "task_key": "final-wave:f1",
+          "task_label": "F1",
+          "task_title": "**Plan Compliance Audit** — `oracle`",
+          "session_id": "ses_1d9eb4e5bffefWXqflDKXQVyft",
+          "agent": "oracle",
+          "started_at": "2026-05-14T10:14:03.642Z",
+          "status": "completed",
+          "updated_at": "2026-05-14T10:47:46.755Z",
+          "ended_at": "2026-05-14T10:47:46.755Z",
+          "elapsed_ms": 2023113
+        },
+        "final-wave:f2": {
+          "task_key": "final-wave:f2",
+          "task_label": "F2",
+          "task_title": "**Code Quality Review** — `unspecified-high`",
+          "session_id": "ses_1d9e60794ffeM7q7osGznEZfcS",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-05-14T10:59:28.267Z",
+          "started_at": "2026-05-14T10:55:18.496Z",
+          "status": "completed",
+          "ended_at": "2026-05-14T10:59:28.267Z",
+          "elapsed_ms": 249771
+        },
+        "final-wave:f3": {
+          "task_key": "final-wave:f3",
+          "task_label": "F3",
+          "task_title": "**Real Manual QA** — `unspecified-high` (+ `playwright` skill)",
+          "session_id": "ses_1d9db5e36ffeF78Eu6C1KNXcgh",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-05-14T11:25:10.740Z",
+          "started_at": "2026-05-14T11:25:10.740Z",
+          "status": "completed",
+          "ended_at": "2026-05-14T11:25:10.740Z",
+          "elapsed_ms": 0
+        }
+      },
+      "ended_at": "2026-05-14T11:25:45.711Z",
+      "elapsed_ms": 7618817
+    },
+    "solid-components-wave-2-c886097a": {
+      "work_id": "solid-components-wave-2-c886097a",
+      "active_plan": "/home/fandi/Lab/Js/ui/.sisyphus/plans/solid-components-wave-2.md",
+      "plan_name": "solid-components-wave-2",
+      "status": "active",
+      "started_at": "2026-05-14T09:19:26.993Z",
+      "updated_at": "2026-05-14T09:19:26.993Z",
+      "session_ids": [
+        "ses_1da375b08ffez4w6krZJysOkEb"
+      ],
+      "session_origins": {
+        "ses_1da375b08ffez4w6krZJysOkEb": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {}
+    }
+  },
+  "active_plan": "/home/fandi/Lab/Js/ui/.sisyphus/plans/solid-components-wave-2.md",
+  "started_at": "2026-05-14T09:19:26.993Z",
+  "status": "active",
+  "updated_at": "2026-05-14T09:19:26.993Z",
+  "session_ids": [
+    "ses_1da375b08ffez4w6krZJysOkEb"
+  ],
+  "session_origins": {
+    "ses_1da375b08ffez4w6krZJysOkEb": "direct"
+  },
+  "plan_name": "solid-components-wave-2",
+  "task_sessions": {},
+  "agent": "atlas"
+}

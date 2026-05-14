@@ -25,6 +25,9 @@ export type { TabsVariants } from './recipes/tabs'
 export { accordionVariants } from './recipes/accordion'
 export type { AccordionVariants } from './recipes/accordion'
 
+export { collapsibleVariants } from './recipes/collapsible'
+export type { CollapsibleVariants } from './recipes/collapsible'
+
 export { radioGroupVariants } from './recipes/radio-group'
 export type { RadioGroupVariants } from './recipes/radio-group'
 
@@ -42,3 +45,9 @@ export type { SliderVariants } from './recipes/slider'
 
 export { numberInputVariants } from './recipes/number-input'
 export type { NumberInputVariants } from './recipes/number-input'
+
+export { drawerVariants } from './recipes/drawer'
+export type { DrawerVariants } from './recipes/drawer'
+
+export { menuVariants } from './recipes/menu'
+export type { MenuVariants } from './recipes/menu'

@@ -1,6 +1,6 @@
 import { Component, createSignal } from 'solid-js'
 import { Button, RadioGroupIndicator } from '@ui/solid'
-import { Input } from '@ui/solid'
+import { Input, NumberInput } from '@ui/solid'
 import {
   DialogRoot,
   DialogTrigger,
@@ -45,10 +45,52 @@ import {
   RadioGroupItemHiddenInput,
 } from '@ui/solid'
 import { Tooltip, TooltipTrigger, TooltipPositioner, TooltipContent } from '@ui/solid'
+import {
+  PopoverRoot,
+  PopoverTrigger,
+  PopoverPositioner,
+  PopoverContent,
+  PopoverTitle,
+  PopoverDescription,
+  PopoverCloseTrigger,
+} from '@ui/solid'
 import { DatePicker, DatePickerContent, DatePickerContext, DatePickerControl, DatePickerInput, DatePickerNextTrigger, DatePickerPositioner, DatePickerPrevTrigger, DatePickerRangeText, DatePickerTable, DatePickerTableBody, DatePickerTableCell, DatePickerTableCellTrigger, DatePickerTableHead, DatePickerTableHeader, DatePickerTableRow, DatePickerTrigger, DatePickerView, DatePickerViewControl, DatePickerViewTrigger } from '@ui/solid'
+import {
+  DrawerRoot,
+  DrawerTrigger,
+  DrawerBackdrop,
+  DrawerPositioner,
+  DrawerContent,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerCloseTrigger,
+} from '@ui/solid'
 import { Index } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import { createToaster, Toaster } from '@ui/solid'
+import {
+  SliderRoot,
+  SliderLabel,
+  SliderControl,
+  SliderTrack,
+  SliderRange,
+  SliderThumb,
+  SliderValueText,
+} from '@ui/solid'
+import {
+  MenuRoot,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+  MenuItemText,
+  MenuSeparator,
+} from '@ui/solid'
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+  CollapsibleIndicator,
+} from '@ui/solid'
 
 const frameworks = createListCollection({
   items: [
@@ -63,6 +105,10 @@ const frameworks = createListCollection({
 const App: Component = () => {
   const [dialogOpen, setDialogOpen] = createSignal(false)
   const [selectedValue, setSelectedValue] = createSignal<string[]>([])
+  const [sliderValue, setSliderValue] = createSignal<number[]>([50])
+  const [collapsibleOpen, setCollapsibleOpen] = createSignal(false)
+  const [drawerOpen, setDrawerOpen] = createSignal(false)
+  const [popoverOpen, setPopoverOpen] = createSignal(false)
   const toaster = createToaster({ placement: 'bottom-end' })
 
   return (
@@ -837,6 +883,262 @@ const App: Component = () => {
       </Portal>
     </DatePicker>
           </div>
+        </section>
+
+        {/* ════════════════════ NumberInput ════════════════════ */}
+        <section id="number-input">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Number Input</h2>
+            <p class="mt-1 text-muted-foreground">
+              Numeric input with increment and decrement controls.
+            </p>
+          </div>
+
+          <div class="max-w-xs space-y-8">
+<div>
+              <h3 class="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-widest">
+                Basic
+              </h3>
+              <NumberInput label="Quantity" />
+            </div>
+
+            <div>
+              <h3 class="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-widest">
+                With Min/Max
+              </h3>
+              <NumberInput min={0} max={100} defaultValue={50} label="Age" />
+            </div>
+
+            <div>
+              <h3 class="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-widest">
+                Disabled
+              </h3>
+              <NumberInput disabled defaultValue={25} label="Amount" />
+            </div>
+
+            <div>
+              <h3 class="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-widest">
+                With Min/Max
+              </h3>
+              <NumberInput min={0} max={100} defaultValue={50}>
+                <NumberInputLabel>Age</NumberInputLabel>
+                <NumberInputRoot>
+                  <NumberInputControl>
+                    <NumberInputTrigger type="decrement">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                      </svg>
+                    </NumberInputTrigger>
+                    <NumberInputValueText />
+                    <NumberInputIncrementTrigger>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="M12 5v14" />
+                      </svg>
+                    </NumberInputIncrementTrigger>
+                  </NumberInputControl>
+                </NumberInputRoot>
+              </NumberInput>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════ Popover ════════════════════ */}
+        <section id="popover">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Popover</h2>
+            <p class="mt-1 text-muted-foreground">
+              Floating card on click with arrow.
+            </p>
+          </div>
+
+          <PopoverRoot
+            open={popoverOpen()}
+            onOpenChange={({ open }) => setPopoverOpen(open)}
+          >
+            <PopoverTrigger>
+              <Button>Open Popover</Button>
+            </PopoverTrigger>
+              <PopoverContent class="z-50 w-72 rounded-lg border border-border bg-popover p-4 shadow-md">
+                <PopoverTitle class="text-sm font-semibold">Popover Title</PopoverTitle>
+                <PopoverDescription class="mt-1 text-xs text-muted-foreground">
+                  This is a popover with some useful information. Click the button to dismiss.
+                </PopoverDescription>
+                <PopoverCloseTrigger class="absolute right-2 top-2">
+                  <Button size="icon" variant="ghost" class="h-6 w-6">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg>
+                  </Button>
+                </PopoverCloseTrigger>
+              </PopoverContent>
+          </PopoverRoot>
+        </section>
+
+{/* ════════════════════ Slider ════════════════════ */}
+        <section id="slider">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Slider</h2>
+            <p class="mt-1 text-muted-foreground">
+              Range slider with label and value display.
+            </p>
+          </div>
+
+          <div class="max-w-md">
+            <SliderRoot
+              value={sliderValue()}
+              onValueChange={(details) => setSliderValue(details.value)}
+            >
+              <div class="flex justify-between items-center mb-3">
+                <SliderLabel>Volume</SliderLabel>
+                <SliderValueText>{sliderValue()[0]}</SliderValueText>
+              </div>
+              <SliderControl>
+                <SliderTrack>
+                  <SliderRange />
+                </SliderTrack>
+                <SliderThumb index={0} />
+              </SliderControl>
+            </SliderRoot>
+          </div>
+        </section>
+
+        {/* ════════════════════ Collapsible ════════════════════ */}
+        <section id="collapsible">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Collapsible</h2>
+            <p class="mt-1 text-muted-foreground">
+              Expandable section with animated open/close.
+            </p>
+          </div>
+
+          <div class="max-w-lg">
+            <Collapsible
+              open={collapsibleOpen()}
+              onOpenChange={(details) => setCollapsibleOpen(details.open)}
+            >
+              <CollapsibleTrigger class="flex items-center justify-between w-full px-4 py-3 text-left rounded-lg hover:bg-muted/80 transition-colors">
+                <span class="font-medium">Click to expand</span>
+                <CollapsibleIndicator class="text-muted-foreground">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="transition-transform duration-200 data-enter:rotate-180"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </CollapsibleIndicator>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div class="mt-3 p-4 border border-border rounded-lg">
+                  <p class="text-sm text-muted-foreground">
+                    This is the collapsible content. It can contain any elements like text, images, or interactive components.
+                  </p>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
+        </section>
+
+        {/* ════════════════════ Menu ════════════════════ */}
+        <section id="menu">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Menu</h2>
+            <p class="mt-1 text-muted-foreground">
+              Dropdown menu with items and separator.
+            </p>
+          </div>
+
+          <div class="max-w-xs">
+            <MenuRoot>
+              <MenuTrigger>
+                <Button>Actions</Button>
+              </MenuTrigger>
+              <MenuContent>
+                <MenuItem value="copy">
+                  <MenuItemText>Copy</MenuItemText>
+                </MenuItem>
+                <MenuItem value="cut">
+                  <MenuItemText>Cut</MenuItemText>
+                </MenuItem>
+                <MenuSeparator />
+                <MenuItem value="paste">
+                  <MenuItemText>Paste</MenuItemText>
+                </MenuItem>
+              </MenuContent>
+            </MenuRoot>
+          </div>
+        </section>
+
+        {/* ════════════════════ Drawer ════════════════════ */}
+        <section id="drawer">
+          <div class="mb-8">
+            <h2 class="text-2xl font-semibold">Drawer</h2>
+            <p class="mt-1 text-muted-foreground">
+              Slide-in panel from the bottom.
+            </p>
+          </div>
+
+          <DrawerRoot
+            open={drawerOpen()}
+            onOpenChange={({ open }) => setDrawerOpen(open)}
+          >
+            <DrawerTrigger>
+              <Button>Open Drawer</Button>
+            </DrawerTrigger>
+            <Portal>
+              <DrawerBackdrop class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" />
+              <DrawerPositioner class="fixed inset-0 z-50 flex items-end justify-center">
+                <DrawerContent class="bg-background border-t border-border rounded-t-xl w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col">
+                  <div class="flex items-center justify-between px-6 py-4 border-b border-border">
+                    <DrawerTitle class="text-lg font-semibold">Drawer Title</DrawerTitle>
+                    <DrawerCloseTrigger class="flex items-center justify-center h-8 w-8">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                      </svg>
+                    </DrawerCloseTrigger>
+                  </div>
+                  <DrawerDescription class="px-6 py-3 text-sm text-muted-foreground">
+                    This is a drawer panel that slides in from the bottom of the screen.
+                  </DrawerDescription>
+                  <div class="flex-1 overflow-y-auto px-6 py-4">
+                    <p class="text-sm text-foreground">
+                      Drawer content goes here. You can place any content including forms, lists, or other components.
+                    </p>
+                  </div>
+                </DrawerContent>
+              </DrawerPositioner>
+            </Portal>
+          </DrawerRoot>
         </section>
 
       </main>
