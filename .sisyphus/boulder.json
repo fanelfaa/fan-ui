@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "active_work_id": "solid-components-wave-2-c886097a",
+  "active_work_id": "tanstack-router-init-21d98df6",
   "works": {
     "solid-components-wave-2-c17c95bf": {
       "work_id": "solid-components-wave-2-c17c95bf",
@@ -158,19 +158,221 @@
       },
       "agent": "atlas",
       "task_sessions": {}
+    },
+    "tanstack-router-init-21d98df6": {
+      "work_id": "tanstack-router-init-21d98df6",
+      "active_plan": "/home/fandi/Lab/Js/ui/.sisyphus/plans/tanstack-router-init.md",
+      "plan_name": "tanstack-router-init",
+      "status": "completed",
+      "started_at": "2026-05-15T00:22:55.752Z",
+      "updated_at": "2026-05-15T01:17:43.237Z",
+      "session_ids": [
+        "ses_1d6fcaf31ffe7ExnD8zplE2djT"
+      ],
+      "session_origins": {
+        "ses_1d6fcaf31ffe7ExnD8zplE2djT": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "Install TanStack Router dependencies",
+          "session_id": "ses_1d6fbbe37ffeOrXJx1wJrEWziO",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-05-15T00:25:07.652Z",
+          "started_at": "2026-05-15T00:24:53.112Z",
+          "status": "completed",
+          "ended_at": "2026-05-15T00:25:07.652Z",
+          "elapsed_ms": 14540
+        },
+        "todo:5": {
+          "task_key": "todo:5",
+          "task_label": "5",
+          "task_title": "Create src/routes/__root.tsx",
+          "session_id": "ses_1d6f9b46cffeGLLlNDCuDD3He4",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-05-15T00:28:34.273Z",
+          "started_at": "2026-05-15T00:26:28.447Z",
+          "status": "completed",
+          "ended_at": "2026-05-15T00:28:34.273Z",
+          "elapsed_ms": 125826
+        },
+        "todo:8": {
+          "task_key": "todo:8",
+          "task_label": "8",
+          "task_title": "Delete src/App.tsx + final verification",
+          "session_id": "ses_1d6ee8204ffexPrLl7QakmHufA",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "started_at": "2026-05-15T00:35:45.655Z",
+          "status": "completed",
+          "updated_at": "2026-05-15T00:39:08.821Z",
+          "ended_at": "2026-05-15T00:39:08.820Z",
+          "elapsed_ms": 203165
+        },
+        "final-wave:f2": {
+          "task_key": "final-wave:f2",
+          "task_label": "F2",
+          "task_title": "Code Quality Review — Run `tsc --noEmit` + build. Review all changed files for: `as any`/`@ts-ignore`, empty catches, console.log in prod, commented-out code, unused imports. Check AI slop: excessive comments, over-abstraction, generic names.",
+          "session_id": "ses_1d6ed1bfdffeC6eLNvzf6Jjndj",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-05-15T01:17:10.988Z",
+          "started_at": "2026-05-15T00:40:50.251Z",
+          "status": "completed",
+          "ended_at": "2026-05-15T01:17:10.988Z",
+          "elapsed_ms": 2180737
+        },
+        "final-wave:f3": {
+          "task_key": "final-wave:f3",
+          "task_label": "F3",
+          "task_title": "Real Manual QA — Start from clean state. Execute EVERY QA scenario from EVERY task — follow exact steps, capture evidence. Test cross-task integration (dev server starts, page renders all demos). Test edge cases: routeTree.gen.ts gitignored, no leftover App.tsx, build succeeds. Save to `.sisyphus/evidence/final-qa/`.",
+          "session_id": "ses_1d6ed0f7fffe0tx7CahwUcfstG",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-05-15T01:17:14.943Z",
+          "started_at": "2026-05-15T00:45:24.783Z",
+          "status": "completed",
+          "ended_at": "2026-05-15T01:17:14.943Z",
+          "elapsed_ms": 1910160
+        },
+        "final-wave:f4": {
+          "task_key": "final-wave:f4",
+          "task_label": "F4",
+          "task_title": "Scope Fidelity Check — Verify every task's implementation matches its \"What to do\" and \"Must NOT do\" exactly. Check no scope creep, no contamination outside apps/docs/. Output structured verdict.",
+          "session_id": "ses_1d6d2c3cdffeniomviPFtg4Bw1",
+          "agent": "Sisyphus-Junior",
+          "category": "deep",
+          "started_at": "2026-05-15T00:52:53.359Z",
+          "status": "completed",
+          "updated_at": "2026-05-15T01:17:18.454Z",
+          "ended_at": "2026-05-15T01:17:18.454Z",
+          "elapsed_ms": 1465095
+        },
+        "final-wave:f1": {
+          "task_key": "final-wave:f1",
+          "task_label": "F1",
+          "task_title": "Plan Compliance Audit — Read the full plan at `.sisyphus/plans/tanstack-router-init.md`. Verify every \"Must Have\" is implemented. Check every \"Must NOT Have\" has no violations. Read evidence files. Output structured verdict.",
+          "session_id": "ses_1d6d2d9a4ffeCrF3hk12igQ321",
+          "agent": "oracle",
+          "started_at": "2026-05-15T01:07:35.208Z",
+          "status": "completed",
+          "updated_at": "2026-05-15T01:17:07.136Z",
+          "ended_at": "2026-05-15T01:17:07.136Z",
+          "elapsed_ms": 571928
+        }
+      },
+      "ended_at": "2026-05-15T01:17:43.237Z",
+      "elapsed_ms": 3287485
     }
   },
-  "active_plan": "/home/fandi/Lab/Js/ui/.sisyphus/plans/solid-components-wave-2.md",
-  "started_at": "2026-05-14T09:19:26.993Z",
-  "status": "active",
-  "updated_at": "2026-05-14T09:19:26.993Z",
+  "active_plan": "/home/fandi/Lab/Js/ui/.sisyphus/plans/tanstack-router-init.md",
+  "started_at": "2026-05-15T00:22:55.752Z",
+  "status": "completed",
+  "updated_at": "2026-05-15T01:17:43.237Z",
   "session_ids": [
-    "ses_1da375b08ffez4w6krZJysOkEb"
+    "ses_1d6fcaf31ffe7ExnD8zplE2djT"
   ],
   "session_origins": {
-    "ses_1da375b08ffez4w6krZJysOkEb": "direct"
+    "ses_1d6fcaf31ffe7ExnD8zplE2djT": "direct"
   },
-  "plan_name": "solid-components-wave-2",
-  "task_sessions": {},
-  "agent": "atlas"
+  "plan_name": "tanstack-router-init",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "Install TanStack Router dependencies",
+      "session_id": "ses_1d6fbbe37ffeOrXJx1wJrEWziO",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-05-15T00:25:07.652Z",
+      "started_at": "2026-05-15T00:24:53.112Z",
+      "status": "completed",
+      "ended_at": "2026-05-15T00:25:07.652Z",
+      "elapsed_ms": 14540
+    },
+    "todo:5": {
+      "task_key": "todo:5",
+      "task_label": "5",
+      "task_title": "Create src/routes/__root.tsx",
+      "session_id": "ses_1d6f9b46cffeGLLlNDCuDD3He4",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-05-15T00:28:34.273Z",
+      "started_at": "2026-05-15T00:26:28.447Z",
+      "status": "completed",
+      "ended_at": "2026-05-15T00:28:34.273Z",
+      "elapsed_ms": 125826
+    },
+    "todo:8": {
+      "task_key": "todo:8",
+      "task_label": "8",
+      "task_title": "Delete src/App.tsx + final verification",
+      "session_id": "ses_1d6ee8204ffexPrLl7QakmHufA",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "started_at": "2026-05-15T00:35:45.655Z",
+      "status": "completed",
+      "updated_at": "2026-05-15T00:39:08.821Z",
+      "ended_at": "2026-05-15T00:39:08.820Z",
+      "elapsed_ms": 203165
+    },
+    "final-wave:f2": {
+      "task_key": "final-wave:f2",
+      "task_label": "F2",
+      "task_title": "Code Quality Review — Run `tsc --noEmit` + build. Review all changed files for: `as any`/`@ts-ignore`, empty catches, console.log in prod, commented-out code, unused imports. Check AI slop: excessive comments, over-abstraction, generic names.",
+      "session_id": "ses_1d6ed1bfdffeC6eLNvzf6Jjndj",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-05-15T01:17:10.988Z",
+      "started_at": "2026-05-15T00:40:50.251Z",
+      "status": "completed",
+      "ended_at": "2026-05-15T01:17:10.988Z",
+      "elapsed_ms": 2180737
+    },
+    "final-wave:f3": {
+      "task_key": "final-wave:f3",
+      "task_label": "F3",
+      "task_title": "Real Manual QA — Start from clean state. Execute EVERY QA scenario from EVERY task — follow exact steps, capture evidence. Test cross-task integration (dev server starts, page renders all demos). Test edge cases: routeTree.gen.ts gitignored, no leftover App.tsx, build succeeds. Save to `.sisyphus/evidence/final-qa/`.",
+      "session_id": "ses_1d6ed0f7fffe0tx7CahwUcfstG",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-05-15T01:17:14.943Z",
+      "started_at": "2026-05-15T00:45:24.783Z",
+      "status": "completed",
+      "ended_at": "2026-05-15T01:17:14.943Z",
+      "elapsed_ms": 1910160
+    },
+    "final-wave:f4": {
+      "task_key": "final-wave:f4",
+      "task_label": "F4",
+      "task_title": "Scope Fidelity Check — Verify every task's implementation matches its \"What to do\" and \"Must NOT do\" exactly. Check no scope creep, no contamination outside apps/docs/. Output structured verdict.",
+      "session_id": "ses_1d6d2c3cdffeniomviPFtg4Bw1",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "started_at": "2026-05-15T00:52:53.359Z",
+      "status": "completed",
+      "updated_at": "2026-05-15T01:17:18.454Z",
+      "ended_at": "2026-05-15T01:17:18.454Z",
+      "elapsed_ms": 1465095
+    },
+    "final-wave:f1": {
+      "task_key": "final-wave:f1",
+      "task_label": "F1",
+      "task_title": "Plan Compliance Audit — Read the full plan at `.sisyphus/plans/tanstack-router-init.md`. Verify every \"Must Have\" is implemented. Check every \"Must NOT Have\" has no violations. Read evidence files. Output structured verdict.",
+      "session_id": "ses_1d6d2d9a4ffeCrF3hk12igQ321",
+      "agent": "oracle",
+      "started_at": "2026-05-15T01:07:35.208Z",
+      "status": "completed",
+      "updated_at": "2026-05-15T01:17:07.136Z",
+      "ended_at": "2026-05-15T01:17:07.136Z",
+      "elapsed_ms": 571928
+    }
+  },
+  "agent": "atlas",
+  "ended_at": "2026-05-15T01:17:43.237Z",
+  "elapsed_ms": 3287485
 }
