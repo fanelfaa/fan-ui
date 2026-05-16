@@ -1,0 +1,193 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Solid UI Docs</title>
+	</head>
+	<body>
+		<!-- Header -->
+		<header
+			class="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60"
+		>
+			<div class="mx-auto flex h-14 max-w-7xl items-center gap-4 px-6">
+				<a
+					href="/"
+					class="text-lg font-bold hover:text-muted-foreground transition-colors"
+					>Solid UI</a
+				>
+				<nav class="flex items-center gap-4 text-sm ml-6">
+					<a
+						href="/docs"
+						class="text-muted-foreground hover:text-foreground transition-colors"
+						>Docs</a
+					>
+					<a
+						href="/docs/components/button"
+						class="text-foreground font-medium hover:text-foreground transition-colors"
+						>Components</a
+					>
+				</nav>
+			</div>
+		</header>
+
+		<div class="mx-auto max-w-7xl flex">
+			<!-- Sidebar -->
+			<aside class="hidden lg:block w-64 shrink-0 border-r border-border">
+				<nav
+					class="sticky top-14 p-4 overflow-y-auto max-h-[calc(100vh-3.5rem)]"
+				>
+					<div class="mb-6">
+						<h4
+							class="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2 px-3"
+						>
+							UI
+						</h4>
+						<ul class="space-y-0.5">
+							<li>
+								<a
+									href="/docs/components/accordion"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Accordion</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/button"
+									class="block rounded-md px-3 py-1.5 text-sm text-foreground font-medium bg-muted/60"
+									>Button</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/checkbox"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Checkbox</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/collapsible"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Collapsible</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/date-picker"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Date Picker</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/dialog"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Dialog</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/drawer"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Drawer</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/input"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Input</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/menu"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Menu</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/number-input"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Number Input</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/popover"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Popover</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/radio-group"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Radio Group</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/select"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Select</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/slider"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Slider</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/switch"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Switch</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/tabs"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Tabs</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/toast"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Toast</a
+								>
+							</li>
+							<li>
+								<a
+									href="/docs/components/tooltip"
+									class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+									>Tooltip</a
+								>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</aside>
+
+			<!-- Main content -->
+			<main class="flex-1 min-w-0">
+				<div class="max-w-4xl mx-auto px-6 py-10 prose">
+					<slot />
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

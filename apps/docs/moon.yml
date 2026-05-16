@@ -6,18 +6,17 @@ dependsOn:
 
 tasks:
   dev:
-    command: 'vite'
+    command: 'pnpm dev'
     deps:
       - 'solid:build'
   build:
-    command: 'vite build'
+    command: 'pnpm build'
     deps:
       - 'solid:build'
     inputs:
       - 'src/**/*'
-      - 'index.html'
-      - 'vite.config.ts'
+      - 'astro.config.mjs'
     outputs:
       - 'dist'
   preview:
-    command: 'vite preview'
+    command: 'pnpm preview'

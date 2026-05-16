@@ -1,6 +1,0 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@import '@ui/core/src/theme.css';
-
-@source '../../../packages/solid/src/**/*.{ts,tsx}';
-@source '../../../packages/core/src/**/*.{ts,tsx}';

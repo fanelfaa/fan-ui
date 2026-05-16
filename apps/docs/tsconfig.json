@@ -1,19 +1,24 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
   "compilerOptions": {
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "types": [
-      "vite/client"
-    ],
-    "noImplicitAny": false
-  },
-  "include": [
-    "src"
-  ],
-  "references": [
-    {
-      "path": "../../packages/solid"
+    "strictNullChecks": true,
+    "allowJs": true,
+    "paths": {
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@layouts/*": [
+        "./src/layouts/*"
+      ]
     }
-  ]
+  }
 }
