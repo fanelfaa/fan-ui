@@ -18,15 +18,15 @@ Component docs follow this section order. Sections marked (optional) are include
 
 ```
 1. Frontmatter (title, description, category, updatedDate)          [required]
-2. Import statement + H1 title                                      [required]
+2. Import statement(s) + H1 title                                   [required]
 3. External link to Ark UI docs                                     [required]
 4. Live demo block (interactive preview)                            [required]
 5. Installation (CLI + Manual)                                      [required]
 6. Usage (import + code examples)                                   [required]
 7. Variants section                                                 [optional — if variant prop exists]
 8. Sizes section                                                    [optional — if size prop exists]
-9. Additional sections (Disabled, Loading, etc.)                    [optional — component-specific]
-10. API Reference table                                             [required]
+9. Additional sections (Disabled, Loading, Multiple, etc.)          [optional — component-specific]
+10. API Reference table(s)                                          [required]
 ```
 
 ## MDX Sections — Required vs Optional
@@ -34,7 +34,7 @@ Component docs follow this section order. Sections marked (optional) are include
 | Section | Required? |
 |---|---|
 | Frontmatter | Yes |
-| Import + H1 | Yes |
+| Import(s) + H1 | Yes |
 | Ark UI external link | Yes |
 | Live demo block | Yes |
 | Installation (CLI + Manual) | Yes |
@@ -57,28 +57,127 @@ updatedDate: YYYY-MM-DD
 
 ## Import Statements
 
-### Doc Preview Import (line 8)
+### Two Import Domains
 
-Used by the docs site to render live interactive demos. Imports from the monorepo package:
+There are **two distinct import domains** that must never be mixed:
+
+| Domain | Import Path | Used In |
+|---|---|---|
+| **Live demo** | `@ui/solid` | Top-level MDX import for inline JSX, or inside demo wrapper `.tsx` files |
+| **Code blocks** | `~/components/<component>` | All fenced code blocks (````tsx ... ````) shown to the user |
+
+**DO NOT** use `@ui/solid` inside any fenced code block. It is only for the docs site's own rendering.
+
+### Live Demo Import — Two Strategies
+
+Choose one based on whether the component relies on Solid.js context (Ark UI compound components).
+
+#### Strategy A: Inline JSX (no context dependency)
+
+For simple components like Button, Checkbox, Switch — components that render without needing a parent provider context:
 
 ```tsx
-import { Component } from '@ui/solid'
+import { Button } from '@ui/solid'
 ```
 
-### Manual Installation / Usage Code Blocks
+Then use JSX directly in the MDX:
 
-Used in code examples shown to the end user. Imports from a local alias path:
+```mdx
+<div class="rounded-lg border border-border p-6">
+  <div class="flex flex-wrap gap-4">
+    <Button>Default</Button>
+    <Button variant="secondary">Secondary</Button>
+  </div>
+```tsx
+// code block follows...
+```
+</div>
+```
+
+#### Strategy B: Client-side wrapper (context dependency)
+
+For compound components like Accordion, Dialog, Select, Menu — components where Ark UI sub-components (`Item`, `ItemTrigger`, `ItemContent`, etc.) rely on Solid.js context and **crash during Astro SSR** with `ContextError: useXxxContext returned undefined`:
+
+1. Create demo wrapper files at `apps/docs/src/components/<component>-demo/<DemoName>.tsx`:
 
 ```tsx
-import { Component } from "~/components/<component>"
+// apps/docs/src/components/accordion-demo/AccordionBasicDemo.tsx
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemTrigger,
+  AccordionItemContent,
+  AccordionItemIndicator,
+} from '@ui/solid'
+
+export default function AccordionBasicDemo() {
+  return (
+    <div class="rounded-lg border border-border p-6">
+      <Accordion defaultValue={['item-1']}>
+        <AccordionItem value="item-1">
+          <AccordionItemTrigger>
+            Is it accessible?
+            <AccordionItemIndicator>
+              <ChevronDownIcon />
+            </AccordionItemIndicator>
+          </AccordionItemTrigger>
+          <AccordionItemContent>
+            <div class="pb-4 text-sm text-foreground">Yes. It adheres to the WAI-ARIA design pattern.</div>
+          </AccordionItemContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
+  )
+}
+```
+
+2. Import and render in MDX with `client:load`:
+
+```tsx
+import AccordionBasicDemo from '@components/accordion-demo/AccordionBasicDemo.tsx'
+import AccordionMultipleDemo from '@components/accordion-demo/AccordionMultipleDemo.tsx'
+```
+
+```mdx
+<AccordionBasicDemo client:load />
+
+```tsx
+// code block with ~/components/accordion import...
+```
+```
+
+**Demo wrapper rules:**
+- **Only create `<component>-demo/` when the component needs Solid.js context** — i.e. compound components like Accordion, Select, Dialog, Menu, Tabs, Radio Group, Combobox, Date Picker, etc. where sub-components (`Item`, `ItemTrigger`, `ItemContent`, etc.) rely on a parent provider and crash during Astro SSR with `ContextError: useXxxContext returned undefined`.
+- **DO NOT create `<component>-demo/` for simple components** — single-element components like Button, Checkbox, Switch, Slider, Input, Tooltip, Toast, etc. that render fine with inline JSX (Strategy A).
+- File location: `apps/docs/src/components/<component>-demo/<DemoName>.tsx`
+- Import from `@ui/solid` (the monorepo package)
+- Default export a function component
+- Wrap content in `<div class="rounded-lg border border-border p-6">` for visual consistency
+- Each distinct demo (basic, multiple, collapsible, disabled, etc.) gets its own file
+- Render in MDX with `client:load` directive (not `client:only`)
+
+### Code Block Imports
+
+All fenced code blocks use the `~/components/...` alias:
+
+```tsx
+import { Button } from "~/components/button"
+```
+
+```tsx
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemTrigger,
+  AccordionItemContent,
+  AccordionItemIndicator,
+} from "~/components/accordion"
 ```
 
 **This alias import (`~/components/...`) MUST be used in:**
-- All fenced code blocks (```tsx ... ```) under Installation → Manual
+- All fenced code blocks under Installation → Manual
 - All fenced code blocks under Usage
-- All fenced code blocks under Variants, Sizes, and other sections that contain code examples
-
-**DO NOT** use `@ui/solid` in any code block — only in the top-level import for the live demo.
+- All fenced code blocks under Variants, Sizes, and additional sections
 
 ## Installation Section
 
@@ -94,7 +193,7 @@ npx solidui-cli@latest add <component>
 
 ### Manual
 
-The manual section contains **two code blocks**, each wrapped in `<div class="space-y-3">`:
+The manual section contains **two or three code blocks**, each wrapped in `<div class="space-y-3">`:
 
 1. **Dependency install** (if needed):
    ```bash
@@ -103,14 +202,14 @@ The manual section contains **two code blocks**, each wrapped in `<div class="sp
 
 2. **Recipe file** — copy from `packages/core/src/recipes/<component>.ts`:
    - File path: `src/components/recipes/<component>.ts`
-   - Import: `import { tv } from 'tailwind-variants'`
+   - Import: `import { tv } from 'tailwind-variants'` (or `import { tv, type VariantProps }`)
    - Paste the full recipe content verbatim
 
 3. **Component file** — copy from `packages/solid/src/<component>.tsx`:
    - File path: `src/components/<component>.tsx`
    - **Import changes required:**
      - `import { ... } from '@ui/core'` → `import { ... } from '../recipes/<component>'`
-     - Ark UI factory imports (`@ark-ui/solid/factory`) remain unchanged
+     - Ark UI imports (`@ark-ui/solid/<component>` or `@ark-ui/solid/factory`) remain unchanged
    - Paste the adapted component content
 
 4. **Theme variables note** (if recipe uses CSS variables like `--primary`, `--ring`):
@@ -146,11 +245,9 @@ Each usage example is a standalone fenced code block with a short descriptive he
 
 ## Variants / Sizes / Additional Sections
 
-Each section follows the same pattern:
+### Simple components (inline JSX)
 
-1. Brief description of the prop
-2. Live demo block (interactive, using `@ui/solid` import)
-3. No code block needed if the demo is self-explanatory
+For components that support Strategy A (no context dependency):
 
 ```markdown
 ## Variants
@@ -163,9 +260,35 @@ Use the `variant` prop to change the visual style.
 </div>
 ```
 
+### Compound components (client:load wrappers)
+
+For components that require Strategy B (context dependency), each additional section gets:
+
+1. Brief description of the prop/feature
+2. Live demo via `<DemoName client:load />`
+3. Follow-up code block showing the usage pattern
+
+```markdown
+## Multiple
+
+Use the `multiple` prop to allow more than one item to be expanded at the same time.
+
+<AccordionMultipleDemo client:load />
+
+```tsx
+<Accordion multiple defaultValue={["item-1", "item-2"]}>
+  <AccordionItem value="item-1">
+    ...
+  </AccordionItem>
+</Accordion>
+```
+```
+
 ## API Reference
 
 Table at the bottom listing all props:
+
+### Simple components — single table
 
 ```markdown
 ## API Reference
@@ -173,6 +296,34 @@ Table at the bottom listing all props:
 | Prop | Type | Default |
 |------|------|---------|
 | propName | type | default |
+```
+
+### Compound components — multiple sub-tables
+
+For compound components with multiple sub-components, create a sub-table for each:
+
+```markdown
+## API Reference
+
+### Accordion (Root)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| defaultValue | `string[]` | `[]` | Initial expanded items. |
+| multiple | `boolean` | `false` | Allow multiple items expanded. |
+
+### AccordionItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | `string` | — | Unique identifier. **Required.** |
+| disabled | `boolean` | `false` | Whether this item is disabled. |
+
+### AccordionItemTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| class | `string` | — | Custom CSS class. |
 ```
 
 Include only props explicitly defined or meaningfully overridden by the component. Do NOT list every inherited HTML attribute. Document whatever props the component actually exposes — variant/size props, boolean flags, `class` overrides, `asChild`, or anything else.
@@ -194,7 +345,9 @@ When copying component code into the Manual installation section:
    - import { componentVariants } from '@ui/core'
    + import { componentVariants } from '../recipes/<component>'
    ```
-2. **Keep Ark UI imports** unchanged (e.g., `@ark-ui/solid/factory`)
+2. **Keep Ark UI imports** unchanged — whether they use:
+   - Named import: `import { Component } from '@ark-ui/solid/<component>'`
+   - Factory import: `import { ark } from '@ark-ui/solid/factory'`
 3. **Keep all Solid.js imports** unchanged (`solid-js`, `tailwind-variants` types)
 4. **File path** in the doc must match: `src/components/<component>.tsx`
 5. **Export** must include both component and variants: `export { Component, componentVariants }`
@@ -204,10 +357,10 @@ When copying component code into the Manual installation section:
 Every component doc includes a link to the official Ark UI documentation:
 
 ```markdown
-<a href="https://ark-ui.com/<relevant-path>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors">
-  <svg ...>...</svg>
+<a href="https://ark-ui.com/docs/components/<component>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
   Docs
 </a>
 ```
 
-Use the appropriate Ark UI docs URL for the component.
+Use the appropriate Ark UI docs URL for the component. For non-component pages (e.g. composition guide), use the relevant path.
