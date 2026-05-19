@@ -41,8 +41,12 @@ export default function CodeBlock(props: ParentProps<Pick<HTMLPreElement, 'class
         classList={{ "cursor-pointer": overflowing() && !expanded()}}
         style={{
           ...local.style as any,
-          "max-height": overflowing() && !expanded() ? `${MAX_HEIGHT}px` : undefined,
-          "overflow-y": overflowing() && !expanded() ? "hidden" : "auto",
+          "max-height": expanded() ? "10000px" : `${MAX_HEIGHT}px`,
+          "overflow-y": expanded() ? "auto" : "hidden",
+          "overflow-x": "hidden",
+          "white-space": "pre-wrap",
+          "word-break": "break-word",
+          "transition": "max-height 0.3s ease",
         }}
         {...rest}
       />
