@@ -1,7 +1,11 @@
 import { Menu as ArkMenu } from '@ark-ui/solid/menu'
+import { Menu as ArkMenu } from '@ark-ui/solid/menu'
+import { Portal } from 'solid-js/web'
 import { createMemo, splitProps, type Component, type JSX } from 'solid-js'
 import { ButtonVariants, buttonVariants, menuVariants } from '@ui/core'
-import { Portal } from 'solid-js/web'
+
+// Global variant instance (no params)
+const styles = menuVariants()
 
 export const MenuRoot = ArkMenu.Root
 export const MenuIndicator = ArkMenu.Indicator
@@ -15,7 +19,6 @@ export const MenuRadioItemGroup = ArkMenu.RadioItemGroup
 
 const MenuTrigger: Component<ArkMenu.TriggerProps & ButtonVariants> = (props) => {
   const [local, others] = splitProps(props, ['class', 'variant', 'size'])
-  const styles = menuVariants()
   const triggerClass = createMemo(() => buttonVariants({ class: local.class, variant: local.variant || 'outline', size: local.size }))
   return (
     <ArkMenu.Trigger class={triggerClass()} {...others}>
@@ -31,7 +34,6 @@ type MenuContentProps = ArkMenu.ContentProps & { class?: string; children?: JSX.
 
 const MenuContent: Component<MenuContentProps> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children'])
-  const styles = menuVariants()
   const contentClass = createMemo(() => styles.content({ class: local.class }))
   return (
     <Portal>
@@ -46,21 +48,18 @@ const MenuContent: Component<MenuContentProps> = (props) => {
 
 const MenuItem: Component<ArkMenu.ItemProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = menuVariants()
   const itemClass = createMemo(() => styles.item({ class: local.class }))
   return <ArkMenu.Item class={itemClass()} {...others} />
 }
 
 const MenuItemText: Component<ArkMenu.ItemTextProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = menuVariants()
   const itemTextClass = createMemo(() => styles.itemText({ class: local.class }))
   return <ArkMenu.ItemText class={itemTextClass()} {...others} />
 }
 
 const MenuItemIndicator: Component<ArkMenu.ItemIndicatorProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = menuVariants()
   const itemIndicatorClass = createMemo(() => styles.itemIndicator({ class: local.class }))
   return (
     <ArkMenu.ItemIndicator class={itemIndicatorClass()} {...others}>
@@ -71,28 +70,24 @@ const MenuItemIndicator: Component<ArkMenu.ItemIndicatorProps> = (props) => {
 
 const MenuCheckboxItem: Component<ArkMenu.CheckboxItemProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = menuVariants()
   const checkboxItemClass = createMemo(() => styles.checkboxItem({ class: local.class }))
   return <ArkMenu.CheckboxItem class={checkboxItemClass()} {...others} />
 }
 
 const MenuRadioItem: Component<ArkMenu.RadioItemProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = menuVariants()
   const radioItemClass = createMemo(() => styles.radioItem({ class: local.class }))
   return <ArkMenu.RadioItem class={radioItemClass()} {...others} />
 }
 
 const MenuItemGroup: Component<ArkMenu.ItemGroupProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = menuVariants()
   const itemGroupClass = createMemo(() => styles.itemGroup({ class: local.class }))
   return <ArkMenu.ItemGroup class={itemGroupClass()} {...others} />
 }
 
 const MenuItemGroupLabel: Component<ArkMenu.ItemGroupLabelProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = menuVariants()
   const itemGroupLabelClass = createMemo(() => styles.itemGroupLabel({ class: local.class }))
   return <ArkMenu.ItemGroupLabel class={itemGroupLabelClass()} {...others} />
 }

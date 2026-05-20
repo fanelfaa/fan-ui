@@ -3,6 +3,8 @@ import { Portal } from 'solid-js/web'
 import { createMemo, splitProps, type Component, type JSX } from 'solid-js'
 import { dialogVariants } from '@ui/core'
 
+const styles = dialogVariants()
+
 export const DialogRoot = ArkDialog.Root
 export const DialogTrigger = ArkDialog.Trigger
 
@@ -10,7 +12,6 @@ type DialogContentProps = { class?: string; children?: JSX.Element }
 
 const DialogContent: Component<DialogContentProps> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children'])
-  const styles = dialogVariants()
   const contentClass = createMemo(() => styles.content({ class: local.class }))
   return (
     <Portal>
@@ -29,28 +30,24 @@ const DialogContent: Component<DialogContentProps> = (props) => {
 
 const DialogHeader: Component<{ class?: string; children?: JSX.Element }> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children'])
-  const styles = dialogVariants()
   const headerClass = createMemo(() => styles.header({ class: local.class }))
   return <div class={headerClass()} {...others}>{local.children}</div>
 }
 
 const DialogFooter: Component<{ class?: string; children?: JSX.Element }> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children'])
-  const styles = dialogVariants()
   const footerClass = createMemo(() => styles.footer({ class: local.class }))
   return <div class={footerClass()} {...others}>{local.children}</div>
 }
 
 const DialogTitle: Component<ArkDialog.TitleProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = dialogVariants()
   const titleClass = createMemo(() => styles.title({ class: local.class }))
   return <ArkDialog.Title class={titleClass()} {...others} />
 }
 
 const DialogDescription: Component<ArkDialog.DescriptionProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = dialogVariants()
   const descriptionClass = createMemo(() => styles.description({ class: local.class }))
   return <ArkDialog.Description class={descriptionClass()} {...others} />
 }

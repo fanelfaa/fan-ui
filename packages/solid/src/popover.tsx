@@ -3,6 +3,9 @@ import { Portal } from 'solid-js/web'
 import { createMemo, splitProps, type Component, type JSX } from 'solid-js'
 import { popoverVariants } from '@ui/core'
 
+// Global variant instance (no params consumed)
+const styles = popoverVariants()
+
 export const PopoverRoot = ArkPopover.Root
 export const PopoverTrigger = ArkPopover.Trigger
 
@@ -10,7 +13,7 @@ type PopoverContentProps = ArkPopover.ContentProps & { class?: string; children?
 
 const PopoverContent: Component<PopoverContentProps> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children'])
-  const styles = popoverVariants()
+  // uses global `styles`
   const contentClass = createMemo(() => styles.content({ class: local.class }))
   return (
     <Portal>
@@ -25,21 +28,18 @@ const PopoverContent: Component<PopoverContentProps> = (props) => {
 
 const PopoverTitle: Component<ArkPopover.TitleProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = popoverVariants()
   const titleClass = createMemo(() => styles.title({ class: local.class }))
   return <ArkPopover.Title class={titleClass()} {...others} />
 }
 
 const PopoverDescription: Component<ArkPopover.DescriptionProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = popoverVariants()
   const descriptionClass = createMemo(() => styles.description({ class: local.class }))
   return <ArkPopover.Description class={descriptionClass()} {...others} />
 }
 
 const PopoverCloseTrigger: Component<ArkPopover.CloseTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = popoverVariants()
   const closeClass = createMemo(() => styles.closeTrigger({ class: local.class }))
   return (
     <ArkPopover.CloseTrigger class={closeClass()} {...others}>
@@ -50,21 +50,18 @@ const PopoverCloseTrigger: Component<ArkPopover.CloseTriggerProps> = (props) => 
 
 const PopoverArrow: Component<ArkPopover.ArrowProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = popoverVariants()
   const arrowClass = createMemo(() => styles.arrow({ class: local.class }))
   return <ArkPopover.Arrow class={arrowClass()} {...others} />
 }
 
 const PopoverArrowTip: Component<ArkPopover.ArrowTipProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = popoverVariants()
   const arrowTipClass = createMemo(() => styles.arrowTip({ class: local.class }))
   return <ArkPopover.ArrowTip class={arrowTipClass()} {...others} />
 }
 
 const PopoverIndicator: Component<ArkPopover.IndicatorProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
-  const styles = popoverVariants()
   const indicatorClass = createMemo(() => styles.indicator({ class: local.class }))
   return (
     <ArkPopover.Indicator class={indicatorClass()} {...others}>
