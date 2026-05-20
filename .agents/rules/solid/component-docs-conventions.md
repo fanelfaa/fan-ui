@@ -10,7 +10,17 @@ Applies when creating or editing documentation for UI components under `apps/doc
 |---|---|
 | Recipe (styling primitives) | `packages/core/src/recipes/<component>.ts` |
 | Component (Solid.js wrapper) | `packages/solid/src/<component>.tsx` |
+| Demo wrappers (context-dependent) | `apps/docs/src/components/<component>-demo/<DemoName>.tsx` |
 | Documentation | `apps/docs/src/content/docs/components/<component>.mdx` |
+
+## Docs Site Architecture
+
+The docs site uses **Astro with Solid.js islands**. Key implications:
+- Solid.js components render client-side via `client:load` directive
+- Inline JSX in MDX works for simple components (Strategy A)
+- Compound components need `.tsx` demo wrappers rendered with `client:load` (Strategy B)
+- Global styles via `apps/docs/src/styles/global.css` (Tailwind v4 + `@ui/core` theme)
+- Path aliases: `@components/*` → `src/components/*`, `@layouts/*` → `src/layouts/*`
 
 ## MDX Structure
 
@@ -155,6 +165,7 @@ import AccordionMultipleDemo from '@components/accordion-demo/AccordionMultipleD
 - Wrap content in `<div class="rounded-lg border border-border p-6">` for visual consistency
 - Each distinct demo (basic, multiple, collapsible, disabled, etc.) gets its own file
 - Render in MDX with `client:load` directive (not `client:only`)
+- Import in MDX via the `@components/*` alias: `import DemoName from '@components/<component>-demo/<DemoName>.tsx'`
 
 ### Code Block Imports
 
@@ -191,6 +202,16 @@ npx solidui-cli@latest add <component>
 ```
 ```
 
+The CLI command performs **five operations** automatically:
+1. Copies component file from `packages/solid/src/<component>.tsx` → `src/components/<component>.tsx`
+2. Rewrites `@ui/core` imports to `../recipes` in the copied component
+3. Copies recipe file from `packages/core/src/recipes/<component>.ts` → `src/recipes/<component>.ts`
+4. Updates (or creates) `src/components/index.ts` with the new export
+5. Updates (or creates) `src/recipes/index.ts` with the new export
+6. Copies `theme.css` to `src/components/` if not already present
+
+Available components: `accordion`, `button`, `checkbox`, `collapsible`, `date-picker`, `dialog`, `drawer`, `input`, `menu`, `number-input`, `popover`, `radio-group`, `select`, `slider`, `switch`, `tabs`, `toast`, `tooltip`.
+
 ### Manual
 
 The manual section contains **two or three code blocks**, each wrapped in `<div class="space-y-3">`:
@@ -204,12 +225,16 @@ The manual section contains **two or three code blocks**, each wrapped in `<div 
    - File path: `src/components/recipes/<component>.ts`
    - Import: `import { tv } from 'tailwind-variants'` (or `import { tv, type VariantProps }`)
    - Paste the full recipe content verbatim
+   - Recipe files may export a type: `export type ComponentVariants = VariantProps<typeof componentVariants>`
 
 3. **Component file** — copy from `packages/solid/src/<component>.tsx`:
    - File path: `src/components/<component>.tsx`
    - **Import changes required:**
      - `import { ... } from '@ui/core'` → `import { ... } from '../recipes/<component>'`
-     - Ark UI imports (`@ark-ui/solid/<component>` or `@ark-ui/solid/factory`) remain unchanged
+     - Ark UI imports may use **two patterns**:
+       - Named import: `import { Component } from '@ark-ui/solid/<component>'`
+       - Factory import: `import { ark, HTMLArkProps } from '@ark-ui/solid/factory'`
+     - Both remain unchanged in the manual copy
    - Paste the adapted component content
 
 4. **Theme variables note** (if recipe uses CSS variables like `--primary`, `--ring`):
@@ -259,6 +284,21 @@ Use the `variant` prop to change the visual style.
   ...
 </div>
 ```
+
+### Additional feature sections
+
+Components may expose additional features beyond variants and sizes. Document each with:
+1. Brief description of the prop/feature
+2. Live demo (inline JSX for Strategy A, or `<DemoName client:load />` for Strategy B)
+3. Follow-up code block showing the usage pattern
+
+Common additional sections:
+- **Loading** — spinner overlay, auto-disables interaction (e.g. Button with `loading` prop)
+- **Disabled** — interaction disabled on component or sub-component
+- **Multiple** — multiple selection/expansion allowed
+- **Collapsible** — can be closed after being opened
+- **Controlled** — using `value`/`onValueChange` for programmatic control
+- **Link / asChild** — rendering as different element while keeping styles
 
 ### Compound components (client:load wrappers)
 
@@ -345,9 +385,11 @@ When copying component code into the Manual installation section:
    - import { componentVariants } from '@ui/core'
    + import { componentVariants } from '../recipes/<component>'
    ```
-2. **Keep Ark UI imports** unchanged — whether they use:
-   - Named import: `import { Component } from '@ark-ui/solid/<component>'`
-   - Factory import: `import { ark } from '@ark-ui/solid/factory'`
+2. **Keep Ark UI imports** unchanged — components use **two patterns**:
+   - **Named import**: `import { Component } from '@ark-ui/solid/<component>'`
+   - **Factory import**: `import { ark, HTMLArkProps } from '@ark-ui/solid/factory'`
+     - When using factory, the component renders `<ark.element>` instead of `<Component>`
+     - Props type changes from `JSX.ElementHTMLAttributes` to `HTMLArkProps<'element'>`
 3. **Keep all Solid.js imports** unchanged (`solid-js`, `tailwind-variants` types)
 4. **File path** in the doc must match: `src/components/<component>.tsx`
 5. **Export** must include both component and variants: `export { Component, componentVariants }`

@@ -9,6 +9,10 @@ tasks:
     command: 'pnpm dev'
     deps:
       - 'solid:build'
+  typecheck:
+    command: 'pnpm typecheck'
+    deps:
+      - 'solid:build'
   build:
     command: 'pnpm build'
     deps:
@@ -20,3 +24,5 @@ tasks:
       - 'dist'
   preview:
     command: 'pnpm preview'
+    deps:
+      - 'build'
