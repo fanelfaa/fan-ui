@@ -1,0 +1,165 @@
+---
+title: Input
+description: A text input component with built-in label, description, and error state support.
+category: Form & Input
+updatedDate: 2026-05-18
+---
+
+import { Input } from '@ui/solid'
+
+# Input
+
+A text input component with support for labels, descriptions, and error states.
+
+<a href="https://ark-ui.com/docs/components/field" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+  Docs
+</a>
+
+<div class="rounded-lg border border-border p-6">
+  <div class="flex flex-col gap-4">
+    <Input placeholder="Basic input" />
+    <Input label="Email" placeholder="Enter your email" />
+    <Input label="With Description" description="We'll never share your email." placeholder="email@example.com" />
+    <Input label="Error State" error="This field is required" placeholder="Enter value" />
+  </div>
+```tsx
+import { Input } from "~/components/input"
+
+export function InputDemo() {
+  return (
+    <div class="flex flex-col gap-4">
+      <Input placeholder="Basic input" />
+      <Input label="Email" placeholder="Enter your email" />
+      <Input label="With Description" description="We'll never share your email." placeholder="email@example.com" />
+      <Input label="Error State" error="This field is required" placeholder="Enter value" />
+    </div>
+  )
+}
+```
+</div>
+
+
+## Installation
+
+### CLI
+Run the following command to add the component to your project:
+```bash
+npx solidui-cli@latest add input
+```
+
+### Manual
+<div class="space-y-3">
+Install the dependency:
+```bash
+npm install tailwind-variants
+```
+</div>
+<div class="space-y-3">
+Create the recipe file at `src/components/recipes/input.ts`:
+```tsx
+import { tv, type VariantProps } from 'tailwind-variants'
+
+export const inputVariants = tv({
+  slots: {
+    root: 'grid gap-1.5',
+    label: 'text-sm font-medium text-foreground',
+    input:
+      'flex h-8 w-full rounded-md border border-input bg-background px-2.5 py-1.5 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+    description: 'text-sm text-muted-foreground',
+    error: 'text-sm text-destructive',
+  },
+  variants: {
+    error: {
+      true: {
+        input: 'border-destructive focus-visible:ring-destructive',
+      },
+    },
+  },
+  defaultVariants: {
+    error: false,
+  },
+})
+
+export type InputVariants = VariantProps<typeof inputVariants>
+```
+</div>
+<div class="space-y-3">
+Create the component file at `src/components/input.tsx`:
+```tsx
+import { Field } from '@ark-ui/solid/field'
+import { createMemo, splitProps, type Component, type JSX } from 'solid-js'
+import { inputVariants } from '../recipes/input'
+
+// Global variant instance (no params)
+const styles = inputVariants()
+
+type InputProps = {
+  label?: string
+  description?: string
+  error?: string
+  class?: string
+} & JSX.IntrinsicElements['input']
+
+const Input: Component<InputProps> = (props) => {
+  const [local, others] = splitProps(props, ['label', 'description', 'error', 'class'])
+  const rootClass = createMemo(() => styles.root({ class: local.class, error: !!local.error }))
+  return (
+    <Field.Root class={rootClass()} invalid={!!local.error}>
+      {local.label && <Field.Label class={styles.label()}>{local.label}</Field.Label>}
+      <Field.Input class={styles.input()} {...others} />
+      {local.description && !local.error && (
+        <Field.HelperText class={styles.description()}>{local.description}</Field.HelperText>
+      )}
+      <Field.ErrorText class={styles.error()}>{local.error}</Field.ErrorText>
+    </Field.Root>
+  )
+}
+
+export { Input, inputVariants }
+```
+</div>
+
+
+## Usage
+
+Import the component:
+
+```tsx
+import { Input } from "~/components/input"
+```
+
+Basic input:
+
+```tsx
+<Input placeholder="Enter text..." />
+```
+
+With label:
+
+```tsx
+<Input label="Username" placeholder="Enter username" />
+```
+
+With description:
+
+```tsx
+<Input label="Email" description="We'll never share your email." placeholder="email@example.com" />
+```
+
+With error state:
+
+```tsx
+<Input label="Password" error="Password is required" type="password" />
+```
+
+
+## API Reference
+
+| Prop | Type | Default |
+|------|------|---------|
+| label | string | — |
+| description | string | — |
+| error | string | — |
+| class | string | — |
+| (HTML input attrs) | — | — |
