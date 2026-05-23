@@ -11,6 +11,12 @@ const CollapsibleRoot: Component<ArkCollapsible.RootProps> = (props) => {
   return <ArkCollapsible.Root class={rootClass()} {...others} />;
 };
 
+const CollapsibleRootProvider: Component<ArkCollapsible.RootProviderProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const rootClass = createMemo(() => styles.root({ class: local.class }))
+  return <ArkCollapsible.RootProvider class={rootClass()} {...others} />
+}
+
 const CollapsibleTrigger: Component<ArkCollapsible.TriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   const triggerClass = createMemo(() => styles.trigger({ class: local.class }));
@@ -31,6 +37,7 @@ const CollapsibleIndicator: Component<ArkCollapsible.IndicatorProps> = (props) =
 
 export {
   CollapsibleRoot as Collapsible,
+  CollapsibleRootProvider,
   CollapsibleTrigger,
   CollapsibleContent,
   CollapsibleIndicator,

@@ -5,7 +5,8 @@ category: Navigation
 updatedDate: 2026-05-18
 ---
 
-import CollapsibleBasicDemo from "@components/collapsible-demo/CollapsibleBasicDemo.tsx";
+import CollapsibleBasicDemo from '@components/collapsible-demo/CollapsibleBasicDemo.tsx'
+import CollapsibleRootProviderDemo from '@components/collapsible-demo/CollapsibleRootProviderDemo.tsx'
 
 # Collapsible
 
@@ -38,12 +39,7 @@ A component that allows users to expand or collapse content sections.
 <CollapsibleBasicDemo client:load />
 
 ```tsx
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-  CollapsibleIndicator,
-} from "~/components/collapsible";
+import { Collapsible, CollapsibleRootProvider, CollapsibleTrigger, CollapsibleContent, CollapsibleIndicator } from "~/components/collapsible"
 
 export function CollapsibleDemo() {
   return (
@@ -115,6 +111,12 @@ const rootClass = createMemo(() => styles.root({ class: local.class }))
 return <ArkCollapsible.Root class={rootClass()} {...others} />
 }
 
+const CollapsibleRootProvider: Component<ArkCollapsible.RootProviderProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const rootClass = createMemo(() => styles.root({ class: local.class }))
+  return <ArkCollapsible.RootProvider class={rootClass()} {...others} />
+}
+
 const CollapsibleTrigger: Component<ArkCollapsible.TriggerProps> = (props) => {
 const [local, others] = splitProps(props, ['class'])
 const triggerClass = createMemo(() => styles.trigger({ class: local.class }))
@@ -135,6 +137,7 @@ return <ArkCollapsible.Indicator class={indicatorClass()} {...others} />
 
 export {
   CollapsibleRoot as Collapsible,
+  CollapsibleRootProvider,
   CollapsibleTrigger,
   CollapsibleContent,
   CollapsibleIndicator,
@@ -149,12 +152,7 @@ export {
 Import the components:
 
 ```tsx
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-  CollapsibleIndicator,
-} from "~/components/collapsible";
+import { Collapsible, CollapsibleRootProvider, CollapsibleTrigger, CollapsibleContent, CollapsibleIndicator } from "~/components/collapsible"
 ```
 
 Basic usage:
@@ -191,6 +189,43 @@ The indicator rotates when the content is expanded. Use the `data-[state=open]` 
 </Collapsible>
 ```
 
+## Root Provider
+
+Use `CollapsibleRootProvider` when you need to access the collapsible state outside of the component tree. This pattern uses the `useCollapsible` hook from Ark UI to create a shared context that both the component and external elements can reference.
+
+<CollapsibleRootProviderDemo client:load />
+
+```tsx
+import { useCollapsible } from "@ark-ui/solid/collapsible"
+import { CollapsibleTrigger, CollapsibleContent, CollapsibleIndicator, CollapsibleRootProvider } from "~/components/collapsible"
+
+export function ExternalControlExample() {
+  const collapsible = useCollapsible({ defaultOpen: true })
+
+  return (
+    <div>
+      <output>Open: {JSON.stringify(collapsible().open)}</output>
+
+      <CollapsibleRootProvider value={collapsible}>
+        <CollapsibleTrigger>
+          Click to expand
+          <CollapsibleIndicator>
+            <ChevronDownIcon />
+          </CollapsibleIndicator>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <div class="pt-4 text-sm">Content goes here.</div>
+        </CollapsibleContent>
+      </CollapsibleRootProvider>
+    </div>
+  )
+}
+```
+
+The key difference:
+- **`Collapsible` (Root)** — manages its own state internally. Use for simple, self-contained usage.
+- **`CollapsibleRootProvider`** — accepts a pre-created context via `useCollapsible`. Use when you need to read or control the collapsible state from outside the component tree.
+
 ## API Reference
 
 ### Collapsible (Root)
@@ -216,6 +251,13 @@ The indicator rotates when the content is expanded. Use the `data-[state=open]` 
 
 ### CollapsibleIndicator
 
-| Prop  | Type     | Default | Description       |
-| ----- | -------- | ------- | ----------------- |
-| class | `string` | —       | Custom CSS class. |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| class | `string` | — | Custom CSS class. |
+
+### CollapsibleRootProvider
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | `UseCollapsibleReturn` | — | Context returned by `useCollapsible()`. **Required.** |
+| class | `string` | — | Custom CSS class. |
