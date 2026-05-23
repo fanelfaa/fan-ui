@@ -1,6 +1,22 @@
 export { Button, buttonVariants } from "./button";
 export type { ButtonProps } from "./button";
 
+export {
+  ComboboxRoot,
+  ComboboxRootProvider,
+  ComboboxLabel,
+  ComboboxControl,
+  ComboboxInput,
+  ComboboxTrigger,
+  ComboboxClearTrigger,
+  ComboboxContent,
+  ComboboxList,
+  ComboboxItem,
+  ComboboxItemText,
+  ComboboxItemIndicator,
+  comboboxVariants,
+} from "./combobox";
+
 export { Input, inputVariants } from "./input";
 export type { InputProps } from "./input";
 

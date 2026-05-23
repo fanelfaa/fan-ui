@@ -19,6 +19,7 @@ export default defineConfig({
     "src/recipes/slider.ts",
     "src/recipes/number-input.ts",
     "src/recipes/collapsible.ts",
+    "src/recipes/combobox.ts",
     "src/recipes/drawer.ts",
     "src/recipes/menu.ts",
     "src/recipes/password-input.ts",

@@ -1,11 +1,12 @@
 # Solid UI Components Status
 
-## Implemented (18/52)
+## Implemented (19/52)
 
 | Component       | Status  |
 | --------------- | ------- |
 | [x] accordion   | ✅ Done |
 | [x] checkbox    | ✅ Done |
+| [x] combobox    | ✅ Done |
 | [x] dialog      | ✅ Done |
 | [x] radio-group | ✅ Done |
 | [x] select      | ✅ Done |
@@ -23,13 +24,12 @@
 | [x] popover        | ✅ Done |
 | [x] slider         | ✅ Done |
 
-## Not Implemented (38/52)
+## Not Implemented (37/52)
 
 ### High Priority
 
 | Component    | Status         |
 | ------------ | -------------- |
-| [ ] combobox | ⬜ Not started |
 | [x] drawer   | ✅ Done        |
 | [x] menu     | ✅ Done        |
 | [ ] carousel | ⬜ Not started |
@@ -98,4 +98,4 @@
 
 ---
 
-**Progress: 35% (18 of 52 components implemented)**
+**Progress: 37% (19 of 52 components implemented)**

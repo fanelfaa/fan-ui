@@ -1,0 +1,394 @@
+---
+title: Combobox
+description: An autocomplete input component for filtering and selecting options from a list.
+category: Form & Input
+updatedDate: 2026-05-23
+---
+
+import DocsLink from "@components/DocsLink.astro";
+import ComboboxBasicDemo from "@components/combobox-demo/ComboboxBasicDemo.tsx";
+import ComboboxRootProviderDemo from "@components/combobox-demo/ComboboxRootProviderDemo.tsx";
+
+# Combobox
+
+An autocomplete input component that allows users to filter and select options from a list by typing.
+
+<DocsLink href="https://ark-ui.com/docs/components/combobox" />
+
+<ComboboxBasicDemo client:load />
+
+```tsx
+import { useFilter, useListCollection } from "@ark-ui/solid";
+import {
+  ComboboxRoot,
+  ComboboxLabel,
+  ComboboxControl,
+  ComboboxInput,
+  ComboboxTrigger,
+  ComboboxContent,
+} from "@ui/solid";
+
+const filterFn = useFilter({ sensitivity: "base" });
+const { collection, filter } = useListCollection({
+  initialItems: [
+    { label: "React", value: "react" },
+    { label: "Solid.js", value: "solid" },
+    { label: "Vue", value: "vue" },
+    { label: "Svelte", value: "svelte" },
+  ],
+  filter: filterFn().contains,
+});
+
+function ComboboxDemo() {
+  return (
+    <ComboboxRoot
+      collection={collection()}
+      onInputValueChange={(details) => filter(details.inputValue)}
+    >
+      <ComboboxLabel>Framework</ComboboxLabel>
+      <ComboboxControl>
+        <ComboboxInput placeholder="Search frameworks..." />
+        <ComboboxTrigger />
+      </ComboboxControl>
+      <ComboboxContent items={collection().items} />
+    </ComboboxRoot>
+  );
+}
+```
+
+## Installation
+
+### CLI
+
+Run the following command to add the component to your project:
+
+```bash
+npx solidui-cli@latest add combobox
+```
+
+### Manual
+
+<div class="space-y-3">
+Install the dependency:
+```bash
+npm install tailwind-variants
+```
+</div>
+<div class="space-y-3">
+Create the recipe file at `src/components/recipes/combobox.ts`:
+```tsx
+import { tv, type VariantProps } from 'tailwind-variants'
+
+export const comboboxVariants = tv({
+  slots: {
+    root: "grid gap-1.5 w-full",
+    label: "text-sm font-medium text-foreground",
+    control:
+      "flex h-8 w-full items-center justify-between rounded-md border border-input bg-background px-2.5 py-1 text-sm ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
+    input:
+      "flex flex-1 items-center justify-start bg-transparent text-sm placeholder:text-muted-foreground outline-none disabled:cursor-not-allowed disabled:opacity-50",
+    trigger:
+      "flex size-4 items-center justify-center text-muted-foreground [&[data-state=open]>svg]:rotate-180",
+    clearTrigger:
+      "flex size-4 items-center justify-center text-muted-foreground hover:text-foreground",
+    positioner: "z-50",
+    content:
+      "z-50 min-w-[8rem] max-h-60 overflow-y-auto rounded-md border border-border bg-background p-1 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+    list: "space-y-1",
+    item: "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground",
+    itemText: "flex-1",
+    itemIndicator: "absolute right-2 flex size-4 items-center justify-center",
+    empty: "py-2 text-center text-sm text-muted-foreground",
+  },
+  variants: {
+    error: {
+      true: {
+        control: "border-destructive focus-within:ring-destructive",
+        label: "text-destructive",
+      },
+    },
+  },
+  defaultVariants: {
+    error: false,
+  },
+});
+
+export type ComboboxVariants = VariantProps<typeof comboboxVariants>
+```
+</div>
+<div class="space-y-3">
+Create the component file at `src/components/combobox.tsx`:
+```tsx
+import {
+  Combobox as ArkCombobox,
+  createListCollection,
+  type ListCollection,
+} from '@ark-ui/solid/combobox'
+import { Portal } from 'solid-js/web'
+import { Index, createMemo, splitProps, type Component } from 'solid-js'
+import { comboboxVariants } from './recipes/combobox'
+
+const styles = comboboxVariants()
+
+type ComboboxRootProps = ArkCombobox.RootProps<{ label: string; value: string }> & { class?: string; error?: boolean }
+
+const ComboboxRoot: Component<ComboboxRootProps> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'error'])
+  const localStyles = comboboxVariants({ error: !!local.error })
+  const rootClass = createMemo(() => localStyles.root({ class: local.class }))
+  return <ArkCombobox.Root class={rootClass()} {...others} />
+}
+
+type ComboboxRootProviderProps = ArkCombobox.RootProviderProps<{ label: string; value: string }> & { class?: string }
+
+const ComboboxRootProvider: Component<ComboboxRootProviderProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const rootClass = createMemo(() => styles.root({ class: local.class }))
+  return <ArkCombobox.RootProvider class={rootClass()} {...others} />
+}
+
+const ComboboxLabel: Component<ArkCombobox.LabelProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const labelClass = createMemo(() => styles.label({ class: local.class }))
+  return <ArkCombobox.Label class={labelClass()} {...others} />
+}
+
+const ComboboxControl: Component<ArkCombobox.ControlProps & { class?: string; children?: import('solid-js').JSX.Element }> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'children'])
+  const controlClass = createMemo(() => styles.control({ class: local.class }))
+  return (
+    <ArkCombobox.Control class={controlClass()} {...others}>
+      {local.children}
+      <ArkCombobox.Trigger class={styles.trigger()}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="m6 9 6 6 6-6"/></svg>
+      </ArkCombobox.Trigger>
+    </ArkCombobox.Control>
+  )
+}
+
+const ComboboxInput: Component<ArkCombobox.InputProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const inputClass = createMemo(() => styles.input({ class: local.class }))
+  return <ArkCombobox.Input class={inputClass()} {...others} />
+}
+
+const ComboboxTrigger: Component<ArkCombobox.TriggerProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const triggerClass = createMemo(() => styles.trigger({ class: local.class }))
+  return <ArkCombobox.Trigger class={triggerClass()} {...others} />
+}
+
+const ComboboxClearTrigger: Component<ArkCombobox.ClearTriggerProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const clearTriggerClass = createMemo(() => styles.clearTrigger({ class: local.class }))
+  return (
+    <ArkCombobox.ClearTrigger class={clearTriggerClass()} {...others}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </ArkCombobox.ClearTrigger>
+  )
+}
+
+type ComboboxContentProps = ArkCombobox.ContentProps & {
+  class?: string
+  items: ListCollection<{ label: string; value: string }>['items']
+}
+
+const ComboboxContent: Component<ComboboxContentProps> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'items'])
+  const contentClass = createMemo(() => styles.content({ class: local.class }))
+  return (
+    <Portal>
+      <ArkCombobox.Positioner class={styles.positioner()}>
+        <ArkCombobox.Content class={contentClass()} {...others}>
+          <ArkCombobox.List class={styles.list()}>
+            <Index each={local.items}>
+              {(item) => (
+                <ArkCombobox.Item class={styles.item()} item={item()}>
+                  <ArkCombobox.ItemText class={styles.itemText()}>{item().label}</ArkCombobox.ItemText>
+                  <ArkCombobox.ItemIndicator class={styles.itemIndicator()}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M20 6 9 17l-5-5"/></svg>
+                  </ArkCombobox.ItemIndicator>
+                </ArkCombobox.Item>
+              )}
+            </Index>
+          </ArkCombobox.List>
+        </ArkCombobox.Content>
+      </ArkCombobox.Positioner>
+    </Portal>
+  )
+}
+
+const ComboboxItem: Component<ArkCombobox.ItemProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const itemClass = createMemo(() => styles.item({ class: local.class }))
+  return <ArkCombobox.Item class={itemClass()} {...others} />
+}
+
+const ComboboxItemText: Component<ArkCombobox.ItemTextProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const itemTextClass = createMemo(() => styles.itemText({ class: local.class }))
+  return <ArkCombobox.ItemText class={itemTextClass()} {...others} />
+}
+
+const ComboboxItemIndicator: Component<ArkCombobox.ItemIndicatorProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const itemIndicatorClass = createMemo(() => styles.itemIndicator({ class: local.class }))
+  return <ArkCombobox.ItemIndicator class={itemIndicatorClass()} {...others} />
+}
+
+const ComboboxEmpty: Component<ArkCombobox.EmptyProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const emptyClass = createMemo(() => styles.empty({ class: local.class }))
+  return <ArkCombobox.Empty class={emptyClass()} {...others} />
+}
+
+export { createListCollection }
+export { ComboboxRoot as Combobox, ComboboxRootProvider, ComboboxLabel, ComboboxControl, ComboboxInput, ComboboxTrigger, ComboboxClearTrigger, ComboboxContent, ComboboxItem, ComboboxItemText, ComboboxItemIndicator, ComboboxEmpty, comboboxVariants }
+```
+</div>
+> **Note:** Make sure your project has the Tailwind CSS theme variables set up (`--foreground`, `--input`, `--border`, etc.) or override the utility classes to match your design system.
+
+## Usage
+
+Import the components:
+
+```tsx
+import { useFilter, useListCollection } from "@ark-ui/solid";
+import {
+  ComboboxRoot,
+  ComboboxRootProvider,
+  ComboboxLabel,
+  ComboboxControl,
+  ComboboxInput,
+  ComboboxTrigger,
+  ComboboxContent,
+} from "@ui/solid";
+```
+
+Basic usage with client-side filtering:
+
+```tsx
+const filterFn = useFilter({ sensitivity: "base" });
+const { collection, filter } = useListCollection({
+  initialItems: [
+    { label: "React", value: "react" },
+    { label: "Solid.js", value: "solid" },
+  ],
+  filter: filterFn().contains,
+});
+
+<ComboboxRoot
+  collection={collection()}
+  onInputValueChange={(details) => filter(details.inputValue)}
+>
+  <ComboboxLabel>Framework</ComboboxLabel>
+  <ComboboxControl>
+    <ComboboxInput placeholder="Search..." />
+    <ComboboxTrigger />
+  </ComboboxControl>
+  <ComboboxContent items={collection().items} />
+</ComboboxRoot>
+```
+
+## With Label
+
+Add a label to describe the combobox field.
+
+```tsx
+<ComboboxRoot
+  collection={collection()}
+  onInputValueChange={(details) => filter(details.inputValue)}
+>
+  <ComboboxLabel>Choose your framework</ComboboxLabel>
+  <ComboboxControl>
+    <ComboboxInput placeholder="Search..." />
+    <ComboboxTrigger />
+  </ComboboxControl>
+  <ComboboxContent items={collection().items} />
+</ComboboxRoot>
+```
+
+## Root Provider
+
+Use `ComboboxRootProvider` when you need to access the combobox state outside of the component tree. This pattern uses the `useCombobox` hook from Ark UI to create a shared context that both the combobox and external elements can reference.
+
+<ComboboxRootProviderDemo client:load />
+
+```tsx
+import { useFilter } from "@ark-ui/solid";
+import { useCombobox, useListCollection } from "@ark-ui/solid/combobox";
+import {
+  ComboboxRootProvider,
+  ComboboxLabel,
+  ComboboxControl,
+  ComboboxInput,
+  ComboboxTrigger,
+  ComboboxContent,
+} from "@ui/solid";
+
+const filterFn = useFilter({ sensitivity: "base" });
+const { collection, filter } = useListCollection({
+  initialItems: [
+    { label: "React", value: "react" },
+    { label: "Solid.js", value: "solid" },
+    { label: "Vue", value: "vue" },
+    { label: "Svelte", value: "svelte" },
+  ],
+  filter: filterFn().contains,
+});
+
+function ComboboxWithExternalControl() {
+  const combobox = useCombobox({
+    get collection() {
+      return collection();
+    },
+    defaultValue: ["solid"],
+    onInputValueChange(details) {
+      filter(details.inputValue);
+    },
+  });
+
+  return (
+    <div>
+      <output>Value: {JSON.stringify(combobox().value)}</output>
+
+      <ComboboxRootProvider value={combobox}>
+        <ComboboxLabel>Framework</ComboboxLabel>
+        <ComboboxControl>
+          <ComboboxInput placeholder="Search frameworks..." />
+          <ComboboxTrigger />
+        </ComboboxControl>
+        <ComboboxContent items={collection().items} />
+      </ComboboxRootProvider>
+    </div>
+  );
+}
+```
+
+The key difference:
+
+- **`ComboboxRoot`** — manages its own state internally. Use for simple, self-contained comboboxes.
+- **`ComboboxRootProvider`** — accepts a pre-created combobox context via `useCombobox`. Use when you need to read or control the combobox state from outside the component tree.
+
+## Error State
+
+Use the `error` prop to show an error state.
+
+```tsx
+<ComboboxRoot
+  collection={collection()}
+  onInputValueChange={(details) => filter(details.inputValue)}
+  error
+>
+  <ComboboxLabel>Framework</ComboboxLabel>
+  <ComboboxControl>
+    <ComboboxInput placeholder="Search..." />
+    <ComboboxTrigger />
+  </ComboboxControl>
+  <ComboboxContent items={collection().items} />
+</ComboboxRoot>
+```
+
+## API Reference
+
+See the [Ark UI Combobox](https://ark-ui.com/docs/components/combobox) documentation.

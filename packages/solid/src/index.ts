@@ -1,6 +1,7 @@
 export * from "./accordion";
 export * from "./button";
 export * from "./checkbox";
+export * from "./combobox";
 export * from "./collapsible";
 export * from "./date-picker";
 export * from "./dialog";

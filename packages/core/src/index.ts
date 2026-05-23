@@ -28,6 +28,9 @@ export type { AccordionVariants } from "./recipes/accordion";
 export { collapsibleVariants } from "./recipes/collapsible";
 export type { CollapsibleVariants } from "./recipes/collapsible";
 
+export { comboboxVariants } from "./recipes/combobox";
+export type { ComboboxVariants } from "./recipes/combobox";
+
 export { radioGroupVariants } from "./recipes/radio-group";
 export type { RadioGroupVariants } from "./recipes/radio-group";
 
