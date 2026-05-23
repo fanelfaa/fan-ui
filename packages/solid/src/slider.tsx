@@ -4,9 +4,7 @@ import { sliderVariants } from "@ui/core";
 
 const styles = sliderVariants();
 
-type RootProps = ArkSlider.RootProps & { class?: string };
-
-const SliderRoot: Component<RootProps> = (props) => {
+const SliderRoot: Component<ArkSlider.RootProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   const rootClass = createMemo(() => styles.root({ class: local.class }));
   return <ArkSlider.Root class={rootClass()} {...others} />;
