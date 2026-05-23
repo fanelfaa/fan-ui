@@ -4,13 +4,13 @@
 
 ### Files Changed
 
-| File | Action | Purpose |
-|------|--------|---------|
-| `packages/solid/src/accordion.tsx` | Edited | Added `AccordionRootProvider` wrapper + export |
-| `apps/docs/src/components/accordion-demo/AccordionRootProviderDemo.tsx` | **Created** | Live demo using `useAccordion` + `AccordionRootProvider` |
-| `apps/docs/src/content/docs/components/accordion.mdx` | Edited | Added Root Provider section, imports, API ref |
-| `apps/docs/package.json` | Edited | Added `@ark-ui/solid` dep for `useAccordion` import in demos |
-| `pnpm-lock.yaml` | Auto | Lockfile update |
+| File                                                                    | Action      | Purpose                                                      |
+| ----------------------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
+| `packages/solid/src/accordion.tsx`                                      | Edited      | Added `AccordionRootProvider` wrapper + export               |
+| `apps/docs/src/components/accordion-demo/AccordionRootProviderDemo.tsx` | **Created** | Live demo using `useAccordion` + `AccordionRootProvider`     |
+| `apps/docs/src/content/docs/components/accordion.mdx`                   | Edited      | Added Root Provider section, imports, API ref                |
+| `apps/docs/package.json`                                                | Edited      | Added `@ark-ui/solid` dep for `useAccordion` import in demos |
+| `pnpm-lock.yaml`                                                        | Auto        | Lockfile update                                              |
 
 ### What Was Added
 
@@ -45,30 +45,33 @@ Ark UI components come in two root variants:
 In the component file (`packages/solid/src/<component>.tsx`), add a `RootProvider` wrapper next to the existing `Root` wrapper.
 
 **Before:**
+
 ```tsx
 const ComponentRoot: Component<ArkComponent.RootProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
-  const rootClass = createMemo(() => styles.root({ class: local.class }))
-  return <ArkComponent.Root class={rootClass()} {...others} />
-}
+  const [local, others] = splitProps(props, ["class"]);
+  const rootClass = createMemo(() => styles.root({ class: local.class }));
+  return <ArkComponent.Root class={rootClass()} {...others} />;
+};
 ```
 
 **After:**
+
 ```tsx
 const ComponentRoot: Component<ArkComponent.RootProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
-  const rootClass = createMemo(() => styles.root({ class: local.class }))
-  return <ArkComponent.Root class={rootClass()} {...others} />
-}
+  const [local, others] = splitProps(props, ["class"]);
+  const rootClass = createMemo(() => styles.root({ class: local.class }));
+  return <ArkComponent.Root class={rootClass()} {...others} />;
+};
 
 const ComponentRootProvider: Component<ArkComponent.RootProviderProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
-  const rootClass = createMemo(() => styles.root({ class: local.class }))
-  return <ArkComponent.RootProvider class={rootClass()} {...others} />
-}
+  const [local, others] = splitProps(props, ["class"]);
+  const rootClass = createMemo(() => styles.root({ class: local.class }));
+  return <ArkComponent.RootProvider class={rootClass()} {...others} />;
+};
 ```
 
 **Key differences from Root:**
+
 - Uses `RootProviderProps` instead of `RootProps`
 - Renders `ArkComponent.RootProvider` instead of `ArkComponent.Root`
 
@@ -77,22 +80,24 @@ const ComponentRootProvider: Component<ArkComponent.RootProviderProps> = (props)
 Add `ComponentRootProvider` to the export block.
 
 **Before:**
+
 ```tsx
 export {
   ComponentRoot as Component,
   ComponentItem,
   // ...
-}
+};
 ```
 
 **After:**
+
 ```tsx
 export {
   ComponentRoot as Component,
   ComponentRootProvider,
   ComponentItem,
   // ...
-}
+};
 ```
 
 ### Step 3: Update Docs — Import Statements
@@ -101,12 +106,12 @@ In `apps/docs/src/content/docs/components/<component>.mdx`, add `ComponentRootPr
 
 ```tsx
 import {
-  Component,        // ComponentRoot
-  ComponentRootProvider,  // ← add this
+  Component, // ComponentRoot
+  ComponentRootProvider, // ← add this
   ComponentItem,
   ComponentItemTrigger,
   ComponentItemContent,
-} from "~/components/<component>"
+} from "~/components/<component>";
 ```
 
 ### Step 4: Update Docs — Manual Installation Code
@@ -114,22 +119,24 @@ import {
 In the manual installation section of the mdx, add the `ComponentRootProvider` wrapper and export it.
 
 **Add the component wrapper:**
+
 ```tsx
 const ComponentRootProvider: Component<ArkComponent.RootProviderProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
-  const rootClass = createMemo(() => styles.root({ class: local.class }))
-  return <ArkComponent.RootProvider class={rootClass()} {...others} />
-}
+  const [local, others] = splitProps(props, ["class"]);
+  const rootClass = createMemo(() => styles.root({ class: local.class }));
+  return <ArkComponent.RootProvider class={rootClass()} {...others} />;
+};
 ```
 
 **Update the export:**
+
 ```tsx
 export {
   ComponentRoot as Component,
-  ComponentRootProvider,   // ← add this
+  ComponentRootProvider, // ← add this
   ComponentItem,
   // ...
-}
+};
 ```
 
 ### Step 5: Add Root Provider Docs Section
@@ -171,6 +178,7 @@ export function ExternalControlExample() {
 ```
 
 The key difference:
+
 - **`Component` (Root)** — manages its own state internally. Use for simple, self-contained usage.
 - **`ComponentRootProvider`** — accepts a pre-created context via `use<Component>`. Use when you need to read or control the component state from outside the component tree.
 ````
@@ -220,6 +228,7 @@ export default function ComponentRootProviderDemo() {
 ```
 
 **Pattern rules:**
+
 - `default export` function component
 - Wrap in `<div class="rounded-lg border border-border p-6">`
 - Import `@ui/solid` for components, `@ark-ui/solid/<component>` for the `use*` hook
@@ -231,7 +240,7 @@ export default function ComponentRootProviderDemo() {
 At the top of the mdx file, add the import:
 
 ```mdx
-import ComponentRootProviderDemo from '@components/<component>-demo/ComponentRootProviderDemo.tsx'
+import ComponentRootProviderDemo from "@components/<component>-demo/ComponentRootProviderDemo.tsx";
 ```
 
 ### Step 8: Add to API Reference
@@ -241,10 +250,10 @@ Add a new subsection in the API Reference:
 ```mdx
 ### ComponentRootProvider
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| value | `ComponentContext` | — | Context returned by `use<Component>()`. **Required.** |
-| class | `string` | — | Custom CSS class. |
+| Prop  | Type               | Default | Description                                           |
+| ----- | ------------------ | ------- | ----------------------------------------------------- |
+| value | `ComponentContext` | —       | Context returned by `use<Component>()`. **Required.** |
+| class | `string`           | —       | Custom CSS class.                                     |
 ```
 
 ### Step 9: Ensure Dependency (Docs)

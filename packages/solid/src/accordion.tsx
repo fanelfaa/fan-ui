@@ -12,10 +12,10 @@ const AccordionRoot: Component<ArkAccordion.RootProps> = (props) => {
 };
 
 const AccordionRootProvider: Component<ArkAccordion.RootProviderProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
-  const rootClass = createMemo(() => styles.root({ class: local.class }))
-  return <ArkAccordion.RootProvider class={rootClass()} {...others} />
-}
+  const [local, others] = splitProps(props, ["class"]);
+  const rootClass = createMemo(() => styles.root({ class: local.class }));
+  return <ArkAccordion.RootProvider class={rootClass()} {...others} />;
+};
 
 const AccordionItem: Component<ArkAccordion.ItemProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
