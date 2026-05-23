@@ -2,7 +2,6 @@ import { Accordion as ArkAccordion } from "@ark-ui/solid/accordion";
 import { createMemo, splitProps, type Component } from "solid-js";
 import { accordionVariants } from "@ui/core";
 
-// Global variant instance (no params)
 const styles = accordionVariants();
 
 const AccordionRoot: Component<ArkAccordion.RootProps> = (props) => {

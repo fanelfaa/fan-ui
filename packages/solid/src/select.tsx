@@ -129,7 +129,6 @@ const SelectItemIndicator: Component<ArkSelect.ItemIndicatorProps> = (props) => 
   return <ArkSelect.ItemIndicator class={itemIndicatorClass()} {...props} />;
 };
 
-
 export { createListCollection };
 export {
   SelectRoot,

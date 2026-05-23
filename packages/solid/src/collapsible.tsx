@@ -2,7 +2,6 @@ import { Collapsible as ArkCollapsible } from "@ark-ui/solid/collapsible";
 import { createMemo, splitProps, type Component } from "solid-js";
 import { collapsibleVariants } from "@ui/core";
 
-// Global variant instance (no params consumed)
 const styles = collapsibleVariants();
 
 const CollapsibleRoot: Component<ArkCollapsible.RootProps> = (props) => {
