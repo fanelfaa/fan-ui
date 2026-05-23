@@ -5,17 +5,23 @@ export const datePickerVariants = tv({
     root: 'w-full',
     control: "inline-flex items-center gap-1",
     input: [
-      "h-9 w-full rounded-md border border-border bg-background px-3 py-1 text-sm shadow-sm",
+      "h-8 w-full rounded-md border border-border bg-background px-3 py-1 text-sm shadow-sm",
       "transition-shadow placeholder:text-muted-foreground",
       "focus-visible:outline-none focus-visible:ring-[1.5px] focus-visible:ring-ring",
       "disabled:cursor-not-allowed disabled:opacity-50",
     ],
     trigger: [
-      "flex min-h-9 min-w-9 items-center justify-center rounded-md border border-border bg-background",
+      "flex min-h-8 min-w-8 items-center justify-center rounded-md border border-border bg-background",
       "transition-[box-shadow,background-color] hover:bg-accent/50",
       "focus-visible:outline-none focus-visible:ring-[1.5px] focus-visible:ring-ring",
       "disabled:cursor-not-allowed disabled:opacity-50",
       "[&>svg]:size-4",
+    ],
+    clearTrigger: [
+      "flex min-h-8 items-center justify-center rounded-md border border-border bg-background px-3 text-sm",
+      "transition-[box-shadow,background-color] hover:bg-accent/50",
+      "focus-visible:outline-none focus-visible:ring-[1.5px] focus-visible:ring-ring",
+      "disabled:cursor-not-allowed disabled:opacity-50",
     ],
     content: [
       "z-50 rounded-md border bg-background p-3 text-popover-foreground shadow-md outline-none",

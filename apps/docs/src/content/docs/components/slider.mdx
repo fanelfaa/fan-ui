@@ -1,0 +1,321 @@
+---
+title: Slider
+description: A range input component for selecting a value from a range.
+category: Form & Input
+updatedDate: 2026-05-18
+---
+
+import SliderBasicDemo from '@components/slider-demo/SliderBasicDemo.tsx'
+
+# Slider
+
+A range input component that allows users to select a value from a predefined range by dragging a thumb.
+
+<a href="https://ark-ui.com/docs/components/slider" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+  Docs
+</a>
+
+<SliderBasicDemo client:load />
+
+```tsx
+import {
+  Slider,
+  SliderLabel,
+  SliderValueText,
+  SliderControl,
+  SliderTrack,
+  SliderRange,
+  SliderThumb,
+} from "~/components/slider"
+
+export function SliderDemo() {
+  return (
+    <Slider defaultValue={[50]} min={0} max={100}>
+      <div class="flex items-center justify-between gap-4">
+        <SliderLabel>Volume</SliderLabel>
+        <SliderValueText />
+      </div>
+      <SliderControl>
+        <SliderTrack>
+          <SliderRange />
+        </SliderTrack>
+        <SliderThumb index={0} />
+      </SliderControl>
+    </Slider>
+  )
+}
+```
+
+## Installation
+
+### CLI
+Run the following command to add the component to your project:
+```bash
+npx solidui-cli@latest add slider
+```
+
+### Manual
+<div class="space-y-3">
+Install the dependency:
+```bash
+npm install tailwind-variants
+```
+</div>
+<div class="space-y-3">
+Create the recipe file at `src/components/recipes/slider.ts`:
+```tsx
+import { tv, type VariantProps } from 'tailwind-variants'
+
+export const sliderVariants = tv({
+  slots: {
+    root: 'flex flex-col gap-1.5 w-full',
+    label: 'text-sm font-medium text-foreground',
+    valueText: 'text-sm font-medium',
+    control: 'relative flex items-center w-full h-5',
+    track: 'h-1.5 w-full rounded-full bg-muted overflow-hidden',
+    range: 'h-full rounded-full bg-primary',
+    thumb: 'size-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+    draggingIndicator: 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+    markerGroup: 'flex justify-between w-full px-0.5',
+    marker: 'text-xs text-muted-foreground',
+    hiddenInput: 'sr-only',
+  },
+  variants: {
+    disabled: {
+      true: {
+        thumb: 'disabled:pointer-events-none disabled:opacity-50',
+      },
+    },
+  },
+  defaultVariants: {
+    disabled: false,
+  },
+})
+
+export type SliderVariants = VariantProps<typeof sliderVariants>
+```
+</div>
+<div class="space-y-3">
+Create the component file at `src/components/slider.tsx`:
+```tsx
+import { Slider as ArkSlider } from '@ark-ui/solid/slider'
+import { createMemo, splitProps, type Component, type JSX } from 'solid-js'
+import { sliderVariants } from './recipes/slider'
+
+// Global variant instance (no params)
+const styles = sliderVariants()
+
+type RootProps = ArkSlider.RootProps & { class?: string }
+
+const SliderRoot: Component<RootProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const rootClass = createMemo(() => styles.root({ class: local.class }))
+  return <ArkSlider.Root class={rootClass()} {...others} />
+}
+
+const SliderLabel: Component<ArkSlider.LabelProps> = (props) => {
+  const labelClass = createMemo(() => styles.label({ class: props.class }))
+  return <ArkSlider.Label class={labelClass()} {...props} />
+}
+
+const SliderValueText: Component<ArkSlider.ValueTextProps> = (props) => {
+  const valueTextClass = createMemo(() => styles.valueText({ class: props.class }))
+  return <ArkSlider.ValueText class={valueTextClass()} {...props} />
+}
+
+type ControlProps = ArkSlider.ControlProps & { class?: string; children?: JSX.Element }
+
+const SliderControl: Component<ControlProps> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'children'])
+  const controlClass = createMemo(() => styles.control({ class: local.class }))
+  return (
+    <ArkSlider.Control class={controlClass()} {...others}>
+      {local.children}
+    </ArkSlider.Control>
+  )
+}
+
+type TrackProps = ArkSlider.TrackProps & { class?: string; children?: JSX.Element }
+
+const SliderTrack: Component<TrackProps> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'children'])
+  const trackClass = createMemo(() => styles.track({ class: local.class }))
+  return (
+    <ArkSlider.Track class={trackClass()} {...others}>
+      {local.children}
+    </ArkSlider.Track>
+  )
+}
+
+const SliderRange: Component<ArkSlider.RangeProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const rangeClass = createMemo(() => styles.range({ class: local.class }))
+  return <ArkSlider.Range class={rangeClass()} {...others} />
+}
+
+type ThumbProps = ArkSlider.ThumbProps & { class?: string; index: number }
+
+const SliderThumb: Component<ThumbProps> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'index'])
+  const thumbClass = createMemo(() => styles.thumb({ class: local.class }))
+  return <ArkSlider.Thumb class={thumbClass()} index={local.index} {...others} />
+}
+
+const SliderHiddenInput: Component<ArkSlider.HiddenInputProps> = (props) => {
+  return <ArkSlider.HiddenInput {...props} />
+}
+
+const SliderDraggingIndicator: Component<ArkSlider.DraggingIndicatorProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const draggingIndicatorClass = createMemo(() => styles.draggingIndicator({ class: local.class }))
+  return <ArkSlider.DraggingIndicator class={draggingIndicatorClass()} {...others} />
+}
+
+const SliderMarkerGroup: Component<ArkSlider.MarkerGroupProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  const markerGroupClass = createMemo(() => styles.markerGroup({ class: local.class }))
+  return <ArkSlider.MarkerGroup class={markerGroupClass()} {...others} />
+}
+
+type MarkerProps = ArkSlider.MarkerProps & { class?: string; value: number }
+
+const SliderMarker: Component<MarkerProps> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'value'])
+  const markerClass = createMemo(() => styles.marker({ class: local.class }))
+  return <ArkSlider.Marker class={markerClass()} value={local.value} {...others} />
+}
+
+export {
+  SliderRoot,
+  SliderLabel,
+  SliderValueText,
+  SliderControl,
+  SliderTrack,
+  SliderRange,
+  SliderThumb,
+  SliderHiddenInput,
+  SliderDraggingIndicator,
+  SliderMarkerGroup,
+  SliderMarker,
+  sliderVariants,
+}
+```
+</div>
+> **Note:** Make sure your project has the Tailwind CSS theme variables set up (`--primary`, `--ring`, `--border`, etc.) or override the utility classes to match your design system.
+
+## Usage
+
+Import the components:
+
+```tsx
+import {
+  Slider,
+  SliderLabel,
+  SliderValueText,
+  SliderControl,
+  SliderTrack,
+  SliderRange,
+  SliderThumb,
+} from "~/components/slider"
+```
+
+Basic usage:
+
+```tsx
+<Slider defaultValue={[50]} min={0} max={100}>
+  <div class="flex items-center justify-between gap-4">
+    <SliderLabel>Volume</SliderLabel>
+    <SliderValueText />
+  </div>
+  <SliderControl>
+    <SliderTrack>
+      <SliderRange />
+    </SliderTrack>
+    <SliderThumb index={0} />
+  </SliderControl>
+</Slider>
+```
+
+## Disabled
+
+Use the `disabled` prop to disable the slider.
+
+```tsx
+<Slider defaultValue={[50]} disabled>
+  <SliderLabel>Disabled Slider</SliderLabel>
+  <SliderControl>
+    <SliderTrack>
+      <SliderRange />
+    </SliderTrack>
+    <SliderThumb index={0} />
+  </SliderControl>
+</Slider>
+```
+
+## API Reference
+
+### Slider (Root)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| defaultValue | `number[]` | `[]` | Initial value of the slider. Use when uncontrolled. |
+| value | `number[]` | — | Controlled value of the slider. |
+| onValueChange | `(details: { value: number[] }) => void` | — | Callback when value changes. |
+| min | `number` | `0` | Minimum value. |
+| max | `number` | `100` | Maximum value. |
+| step | `number` | `1` | Step value. |
+| disabled | `boolean` | `false` | Whether the slider is disabled. |
+| readonly | `boolean` | `false` | Whether the slider is read-only. |
+| orientation | `"horizontal"` \| `"vertical"` | `"horizontal"` | Orientation of the slider. |
+| class | `string` | — | Custom CSS class. |
+
+### SliderLabel
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| class | `string` | — | Custom CSS class. |
+
+### SliderValueText
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| class | `string` | — | Custom CSS class. |
+
+### SliderControl
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| class | `string` | — | Custom CSS class. |
+
+### SliderTrack
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| class | `string` | — | Custom CSS class. |
+
+### SliderRange
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| class | `string` | — | Custom CSS class. |
+
+### SliderThumb
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| index | `number` | — | Index of the thumb. **Required.** |
+| class | `string` | — | Custom CSS class. |
+
+### SliderMarkerGroup
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| class | `string` | — | Custom CSS class. |
+
+### SliderMarker
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | `number` | — | Value the marker represents. **Required.** |
+| class | `string` | — | Custom CSS class. |
