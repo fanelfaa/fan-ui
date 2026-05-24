@@ -38,6 +38,5 @@ packages/solid/
 
 ## ANTI-PATTERNS
 
-- Forgetting to add the new component to tsup.config.ts entry list
 - Not exporting the new component in src/index.ts
 - Over-complicating the wrapper; keep it minimal and delegate to Ark UI
