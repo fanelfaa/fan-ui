@@ -85,39 +85,91 @@ export type InputVariants = VariantProps<typeof inputVariants>
 ```
 </div>
 <div class="space-y-3">
-Create the component file at `src/components/input.tsx`:
-```tsx
-import { Field } from '@ark-ui/solid/field'
-import { createMemo, splitProps, type Component, type JSX } from 'solid-js'
-import { inputVariants } from '../recipes/input'
+Create the component directory and files:
 
-// Global variant instance (no params)
-const styles = inputVariants()
+`src/components/input/input.base.tsx`:
+```tsx
+import { Field as ArkField } from "@ark-ui/solid/field";
+import { splitProps, type Component } from "solid-js";
+import { inputVariants } from "../recipes/input";
+
+const styles = inputVariants();
+
+export const InputRoot: Component<ArkField.RootProps> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
+  return <ArkField.Root class={styles.root({ class: local.class })} {...others} />;
+};
+
+export const InputLabel: Component<ArkField.LabelProps> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
+  return <ArkField.Label class={styles.label({ class: local.class })} {...others} />;
+};
+
+export const InputField: Component<ArkField.InputProps & { error?: boolean }> = (props) => {
+  const [local, others] = splitProps(props, ["class", "error"]);
+  return (
+    <ArkField.Input
+      class={styles.input({ class: local.class, error: local.error })}
+      {...others}
+    />
+  );
+};
+
+export const InputDescription: Component<ArkField.HelperTextProps> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
+  return <ArkField.HelperText class={styles.description({ class: local.class })} {...others} />;
+};
+
+export const InputErrorText: Component<ArkField.ErrorTextProps> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
+  return <ArkField.ErrorText class={styles.error({ class: local.class })} {...others} />;
+};
+```
+
+`src/components/input/index.tsx`:
+```tsx
+import { Field as ArkField } from "@ark-ui/solid/field";
+import { splitProps, type Component } from "solid-js";
+import {
+  InputRoot,
+  InputLabel,
+  InputField,
+  InputDescription,
+  InputErrorText,
+} from "./input.base";
 
 type InputProps = {
-label?: string
-description?: string
-error?: string
-class?: string
-} & JSX.IntrinsicElements['input']
+  label?: string;
+  description?: string;
+  error?: string;
+  class?: string;
+  children?: any;
+} & ArkField.InputProps;
 
-const Input: Component<InputProps> = (props) => {
-const [local, others] = splitProps(props, ['label', 'description', 'error', 'class'])
-const rootClass = createMemo(() => styles.root({ class: local.class, error: !!local.error }))
-return (
+export const Input: Component<InputProps> = (props) => {
+  const [local, others] = splitProps(props, [
+    "class",
+    "label",
+    "description",
+    "error",
+    "children",
+  ]);
+  return (
+    <InputRoot class={local.class} invalid={!!local.error}>
+      {local.label && <InputLabel>{local.label}</InputLabel>}
+      <InputField error={!!local.error} {...others} />
+      {local.description && !local.error && (
+        <InputDescription>{local.description}</InputDescription>
+      )}
+      {local.error && <InputErrorText>{local.error}</InputErrorText>}
+      {local.children}
+    </InputRoot>
+  );
+};
 
-<Field.Root class={rootClass()} invalid={!!local.error}>
-{local.label && <Field.Label class={styles.label()}>{local.label}</Field.Label>}
-<Field.Input class={styles.input()} {...others} />
-{local.description && !local.error && (
-<Field.HelperText class={styles.description()}>{local.description}</Field.HelperText>
-)}
-<Field.ErrorText class={styles.error()}>{local.error}</Field.ErrorText>
-</Field.Root>
-)
-}
+export * from "./input.base";
 
-export { Input, inputVariants }
+export { inputVariants, type InputVariants } from "../recipes/input";
 ```
 </div>
 
