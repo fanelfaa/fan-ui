@@ -18,3 +18,5 @@ coverage
 .moon/cache
 .moon/docker
 .moon/hooks
+.omo
+.sisyphus
