@@ -1,15 +1,14 @@
 import { Field as ArkField } from "@ark-ui/solid/field";
-import { splitProps, type Component, type JSX } from "solid-js";
+import { splitProps, type Component } from "solid-js";
 import { InputRoot, InputLabel, InputField, InputDescription, InputErrorText } from "./input.base";
 import { InputVariants } from "@ui/core";
 
 type InputProps = {
   label?: string;
   description?: string;
-  class?: string;
-  children?: JSX.Element;
+  error?: string;
 } & ArkField.InputProps &
-  InputVariants;
+  Omit<InputVariants, "error">;
 
 export const Input: Component<InputProps> = (props) => {
   const [local, others] = splitProps(props, ["class", "label", "description", "error", "children"]);
@@ -21,7 +20,6 @@ export const Input: Component<InputProps> = (props) => {
         <InputDescription>{local.description}</InputDescription>
       )}
       {local.error && <InputErrorText>{local.error}</InputErrorText>}
-      {local.children}
     </InputRoot>
   );
 };
