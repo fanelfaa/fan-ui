@@ -25,3 +25,4 @@ export * from "./toggle-group";
 export * from "./badge";
 export * from "./card";
 export * from "./skeleton";
+export * from "./avatar";

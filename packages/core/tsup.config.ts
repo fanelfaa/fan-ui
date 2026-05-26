@@ -30,6 +30,7 @@ export default defineConfig({
     "src/recipes/card.ts",
     "src/recipes/skeleton.ts",
     "src/recipes/carousel.ts",
+    "src/recipes/avatar.ts",
   ],
   format: ["esm", "cjs"],
   dts: true,

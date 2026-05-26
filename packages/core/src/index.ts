@@ -78,3 +78,7 @@ export type { SkeletonVariants } from "./recipes/skeleton";
 
 export { carouselVariants } from "./recipes/carousel";
 export type { CarouselVariants } from "./recipes/carousel";
+
+export { avatarVariants } from "./recipes/avatar";
+export type { AvatarVariants } from "./recipes/avatar";
+
