@@ -31,14 +31,14 @@
 | [x] toggle         | ✅ Done |
 | [x] toggle-group   | ✅ Done |
 | [x] tooltip        | ✅ Done |
+| [x] carousel        | ✅ Done |
 
-## Not Implemented (65) — 23 Ark UI + 42 shadcn parity
+## Not Implemented (64) — 22 Ark UI + 42 shadcn parity
 
 ### High Priority
 
 | Component            | Status         |
 | -------------------- | -------------- |
-| [ ] carousel         | ⬜ Not started |
 | [x] Badge (shadcn)   | ✅ Done |
 | [x] Card (shadcn)    | ✅ Done |
 | [x] Skeleton (shadcn)| ✅ Done |
@@ -132,4 +132,4 @@
 
 ---
 
-**Progress: 24 of 88 tracked components implemented (27%)**
+**Progress: 25 of 88 tracked components implemented (28%)**

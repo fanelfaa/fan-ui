@@ -75,3 +75,6 @@ export type { CardVariants } from "./recipes/card";
 
 export { skeletonVariants } from "./recipes/skeleton";
 export type { SkeletonVariants } from "./recipes/skeleton";
+
+export { carouselVariants } from "./recipes/carousel";
+export type { CarouselVariants } from "./recipes/carousel";
