@@ -47,7 +47,7 @@
 
 | Component                | Status         |
 | ------------------------ | -------------- |
-| [ ] avatar               | ⬜ Not started |
+| [x] avatar               | ✅ Done |
 | [ ] Alert (shadcn)       | ⬜ Not started |
 | [ ] Alert Dialog (shadcn)| ⬜ Not started |
 | [ ] Aspect Ratio (shadcn)| ⬜ Not started |
@@ -61,7 +61,7 @@
 | [ ] Kbd (shadcn)         | ⬜ Not started |
 | [ ] Label (shadcn)       | ⬜ Not started |
 | [ ] listbox              | ⬜ Not started |
-| [ ] progress             | ⬜ Not started |
+| [x] progress             | ✅ Done |
 | [ ] rating-group         | ⬜ Not started |
 | [ ] scroll-area          | ⬜ Not started |
 | [ ] segment-group        | ⬜ Not started |
@@ -132,4 +132,4 @@
 
 ---
 
-**Progress: 25 of 88 tracked components implemented (28%)**
+**Progress: 27 of 88 tracked components implemented (31%)**
