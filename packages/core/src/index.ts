@@ -66,3 +66,6 @@ export type { ToggleVariants } from "./recipes/toggle";
 
 export { toggleGroupVariants } from "./recipes/toggle-group";
 export type { ToggleGroupVariants } from "./recipes/toggle-group";
+
+export { badgeVariants } from "./recipes/badge";
+export type { BadgeVariants } from "./recipes/badge";

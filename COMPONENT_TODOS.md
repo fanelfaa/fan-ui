@@ -39,7 +39,7 @@
 | Component            | Status         |
 | -------------------- | -------------- |
 | [ ] carousel         | ⬜ Not started |
-| [ ] Badge (shadcn)   | ⬜ Not started |
+| [x] Badge (shadcn)   | ✅ Done |
 | [ ] Card (shadcn)    | ⬜ Not started |
 | [ ] Skeleton (shadcn)| ⬜ Not started |
 

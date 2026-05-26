@@ -26,6 +26,7 @@ export default defineConfig({
     "src/recipes/pin-input.ts",
     "src/recipes/toggle.ts",
     "src/recipes/toggle-group.ts",
+    "src/recipes/badge.ts",
   ],
   format: ["esm", "cjs"],
   dts: true,
