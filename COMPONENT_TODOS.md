@@ -4,7 +4,7 @@
 - **No marker** = Ark UI component (wraps `@ark-ui/solid/*`)
 - **`(shadcn)`** = Pure HTML/CSS component for shadcn parity (no Ark UI equivalent)
 
-## Implemented (23/88)
+## Implemented (24/88)
 
 | Component       | Status  |
 | --------------- | ------- |
@@ -40,8 +40,8 @@
 | -------------------- | -------------- |
 | [ ] carousel         | ⬜ Not started |
 | [x] Badge (shadcn)   | ✅ Done |
-| [ ] Card (shadcn)    | ⬜ Not started |
-| [ ] Skeleton (shadcn)| ⬜ Not started |
+| [x] Card (shadcn)    | ✅ Done |
+| [x] Skeleton (shadcn)| ✅ Done |
 
 ### Medium Priority
 
@@ -132,4 +132,4 @@
 
 ---
 
-**Progress: 23 of 88 tracked components implemented (26%)**
+**Progress: 24 of 88 tracked components implemented (27%)**

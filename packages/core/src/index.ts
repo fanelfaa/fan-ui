@@ -69,3 +69,9 @@ export type { ToggleGroupVariants } from "./recipes/toggle-group";
 
 export { badgeVariants } from "./recipes/badge";
 export type { BadgeVariants } from "./recipes/badge";
+
+export { cardVariants } from "./recipes/card";
+export type { CardVariants } from "./recipes/card";
+
+export { skeletonVariants } from "./recipes/skeleton";
+export type { SkeletonVariants } from "./recipes/skeleton";

@@ -27,6 +27,8 @@ export default defineConfig({
     "src/recipes/toggle.ts",
     "src/recipes/toggle-group.ts",
     "src/recipes/badge.ts",
+    "src/recipes/card.ts",
+    "src/recipes/skeleton.ts",
   ],
   format: ["esm", "cjs"],
   dts: true,

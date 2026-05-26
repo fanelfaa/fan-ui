@@ -46,3 +46,6 @@ export {
 } from "./select";
 
 export { createToaster, Toaster, toastVariants } from "./toast";
+
+export { Skeleton, skeletonVariants } from "./skeleton";
+export type { SkeletonProps } from "./skeleton";
