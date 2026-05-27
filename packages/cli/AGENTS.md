@@ -1,7 +1,7 @@
 # PROJECT KNOWLEDGE BASE
 
-**Generated:** 2026-05-14 05:04:27 UTC
-**Commit:** 3fcc19f
+**Generated:** 2026-05-27 02:47:19 UTC
+**Commit:** f3d6548f
 **Branch:** main
 
 ## OVERVIEW
@@ -20,13 +20,9 @@ CLI for component generation
 - Not exporting the new command in src/index.ts
 - Making the command too complex; keep it focused and reusable
 
-## COMMONS
+## COMMANDS
 
 ```bash
-# Standard commands (if applicable)
+pnpm --filter create-ui build
+pnpm --filter create-ui dev
 ```
-
-## NOTES
-
-- This directory is part of the monorepo structure.
-- See the root AGENTS.md for project-wide information.
