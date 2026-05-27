@@ -1,0 +1,141 @@
+---
+title: Label
+description: A form label element used to improve accessibility when pairing with form controls.
+category: Forms
+updatedDate: 2026-05-27
+---
+
+import DocsLink from "@components/DocsLink.astro";
+import { Label, Input } from "@ui/solid";
+import LabelBasicDemo from "@components/label-demo/LabelBasicDemo.tsx";
+
+# Label
+
+A form label element used to improve accessibility when pairing with form controls. Wraps a native `<label>` element with proper styling.
+
+<DocsLink href="https://ui.shadcn.com/docs/components/label" />
+
+<LabelBasicDemo client:load />
+
+```tsx
+import { Label } from "~/components/label";
+import { Input } from "~/components/input";
+
+export function LabelDemo() {
+  return (
+    <div class="grid w-full max-w-sm items-center gap-1.5">
+      <Label for="name">Name</Label>
+      <Input placeholder="Enter your name" />
+    </div>
+  );
+}
+```
+
+## Installation
+
+### CLI
+
+Run the following command to add the component to your project:
+
+```bash
+npx solidui-cli@latest add label
+```
+
+### Manual
+
+<div class="space-y-3">
+Install the dependency:
+
+```bash
+npm install tailwind-variants
+```
+</div>
+
+<div class="space-y-3">
+Create the recipe file at `src/components/recipes/label.ts`:
+
+```tsx
+import { tv, type VariantProps } from 'tailwind-variants'
+
+export const labelVariants = tv({
+  base: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+})
+
+export type LabelVariants = VariantProps<typeof labelVariants>
+```
+</div>
+
+<div class="space-y-3">
+Create the component file at `src/components/label.tsx`:
+
+```tsx
+import { splitProps, type Component } from 'solid-js'
+import { labelVariants } from '../recipes/label'
+import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
+
+const Label: Component<HTMLArkProps<"label">> = (props) => {
+  const [local, others] = splitProps(props, ["class"])
+  return <ark.label class={labelVariants({ class: local.class })} {...others} />
+}
+
+export { Label, labelVariants }
+```
+</div>
+
+## Usage
+
+Import the component:
+
+```tsx
+import { Label } from "@ui/solid";
+```
+
+Basic:
+
+```tsx
+<Label for="email">Email</Label>
+```
+
+## Examples
+
+### With Input
+
+<div class="rounded-lg border border-border p-6">
+  <div class="grid w-full max-w-sm items-center gap-1.5">
+    <Label for="demo-email">Email</Label>
+    <Input type="email" placeholder="your@email.com" />
+  </div>
+</div>
+
+```tsx
+<div class="grid w-full max-w-sm items-center gap-1.5">
+  <Label for="email">Email</Label>
+  <Input type="email" placeholder="your@email.com" />
+</div>
+```
+
+### Checkbox Label
+
+<div class="rounded-lg border border-border p-6">
+  <div class="flex items-center gap-2">
+    <input type="checkbox" id="terms" class="size-4 accent-foreground" />
+    <Label for="terms">Accept terms and conditions</Label>
+  </div>
+</div>
+
+```tsx
+<div class="flex items-center gap-2">
+  <input type="checkbox" id="terms" />
+  <Label for="terms">Accept terms and conditions</Label>
+</div>
+```
+
+## API Reference
+
+| Prop | Type | Default |
+|------|------|---------|
+| class | `string` | — |
+| children | `any` | — |
+| for | `string` | — |
+
+All native `<label>` attributes are supported via the `asChild` pattern.
