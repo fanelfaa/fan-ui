@@ -5,34 +5,48 @@
 - **No marker** = Ark UI component (wraps `@ark-ui/solid/*`)
 - **`(shadcn)`** = Pure HTML/CSS component for shadcn parity (no Ark UI equivalent)
 
-## Implemented (28/88)
+## Implemented (31/88)
 
-| Component          | Status  |
-| ------------------ | ------- |
-| [x] accordion      | ✅ Done |
-| [x] button         | ✅ Done |
-| [x] checkbox       | ✅ Done |
-| [x] collapsible    | ✅ Done |
-| [x] combobox       | ✅ Done |
-| [x] date-picker    | ✅ Done |
-| [x] dialog         | ✅ Done |
-| [x] drawer         | ✅ Done |
-| [x] input          | ✅ Done |
-| [x] menu           | ✅ Done |
-| [x] number-input   | ✅ Done |
-| [x] password-input | ✅ Done |
-| [x] pin-input      | ✅ Done |
-| [x] popover        | ✅ Done |
-| [x] radio-group    | ✅ Done |
-| [x] select         | ✅ Done |
-| [x] slider         | ✅ Done |
-| [x] switch         | ✅ Done |
-| [x] tabs           | ✅ Done |
-| [x] toast          | ✅ Done |
-| [x] toggle         | ✅ Done |
-| [x] toggle-group   | ✅ Done |
-| [x] tooltip        | ✅ Done |
-| [x] carousel       | ✅ Done |
+| Component     | Status  |
+| ------------- | ------- |
+| [x] accordion | ✅ Done |
+
+# <<<<<<< HEAD
+
+| [x] alert | ✅ Done |
+| [x] alert-dialog | ✅ Done |
+| [x] aspect-ratio | ✅ Done |
+
+> > > > > > > dcbb159a (docs: update COMPONENT_TODOS with Alert, AlertDialog, AspectRatio)
+> > > > > > > | [x] button | ✅ Done |
+> > > > > > > | [x] checkbox | ✅ Done |
+> > > > > > > | [x] collapsible | ✅ Done |
+> > > > > > > | [x] combobox | ✅ Done |
+
+# <<<<<<< HEAD
+
+| [x] carousel | ✅ Done |
+
+> > > > > > > dcbb159a (docs: update COMPONENT_TODOS with Alert, AlertDialog, AspectRatio)
+> > > > > > > | [x] date-picker | ✅ Done |
+> > > > > > > | [x] dialog | ✅ Done |
+> > > > > > > | [x] drawer | ✅ Done |
+> > > > > > > | [x] input | ✅ Done |
+> > > > > > > | [x] menu | ✅ Done |
+> > > > > > > | [x] number-input | ✅ Done |
+> > > > > > > | [x] password-input | ✅ Done |
+> > > > > > > | [x] pin-input | ✅ Done |
+> > > > > > > | [x] popover | ✅ Done |
+> > > > > > > | [x] radio-group | ✅ Done |
+> > > > > > > | [x] select | ✅ Done |
+> > > > > > > | [x] slider | ✅ Done |
+> > > > > > > | [x] switch | ✅ Done |
+> > > > > > > | [x] tabs | ✅ Done |
+> > > > > > > | [x] toast | ✅ Done |
+> > > > > > > | [x] toggle | ✅ Done |
+> > > > > > > | [x] toggle-group | ✅ Done |
+> > > > > > > | [x] tooltip | ✅ Done |
+> > > > > > > | [x] carousel | ✅ Done |
 
 ## Not Implemented (64) — 22 Ark UI + 42 shadcn parity
 
@@ -46,34 +60,34 @@
 
 ### Medium Priority
 
-| Component                                 | Status         |
-| ----------------------------------------- | -------------- |
-| [x] avatar                                | ✅ Done        |
-| [ ] Alert (shadcn)                        | ⬜ Not started |
-| [ ] Alert Dialog (shadcn + ark ui dialog) | ⬜ Not started |
-| [ ] Aspect Ratio (shadcn)                 | ⬜ Not started |
-| [ ] Breadcrumb (shadcn)                   | ⬜ Not started |
-| [ ] Button Group (shadcn)                 | ⬜ Not started |
-| [ ] Empty (shadcn)                        | ⬜ Not started |
-| [ ] field                                 | ⬜ Not started |
-| [ ] fieldset                              | ⬜ Not started |
-| [ ] hover-card                            | ⬜ Not started |
-| [ ] Input Group (shadcn)                  | ⬜ Not started |
-| [ ] Kbd (shadcn)                          | ⬜ Not started |
-| [ ] Label (shadcn)                        | ⬜ Not started |
-| [ ] listbox                               | ⬜ Not started |
-| [x] progress                              | ✅ Done        |
-| [x] separator                             | ✅ Done        |
-| [x] spinner                               | ✅ Done        |
-| [ ] rating-group                          | ⬜ Not started |
-| [ ] scroll-area                           | ⬜ Not started |
-| [ ] segment-group                         | ⬜ Not started |
-| [x] Separator (shadcn)                    | ✅ Done        |
-| [x] Spinner (shadcn)                      | ✅ Done        |
-| [ ] Table (shadcn)                        | ⬜ Not started |
-| [ ] tags-input                            | ⬜ Not started |
-| [x] textarea                              | ✅ Done        |
-| [x] typography                            | ✅ Done        |
+| Component                 | Status         |
+| ------------------------- | -------------- |
+| [x] avatar                | ✅ Done        |
+| [x] Alert (shadcn)        | ✅ Done        |
+| [x] Alert Dialog (shadcn) | ✅ Done        |
+| [x] Aspect Ratio (shadcn) | ✅ Done        |
+| [ ] Breadcrumb (shadcn)   | ⬜ Not started |
+| [ ] Button Group (shadcn) | ⬜ Not started |
+| [ ] Empty (shadcn)        | ⬜ Not started |
+| [ ] field                 | ⬜ Not started |
+| [ ] fieldset              | ⬜ Not started |
+| [ ] hover-card            | ⬜ Not started |
+| [ ] Input Group (shadcn)  | ⬜ Not started |
+| [ ] Kbd (shadcn)          | ⬜ Not started |
+| [ ] Label (shadcn)        | ⬜ Not started |
+| [ ] listbox               | ⬜ Not started |
+| [x] progress              | ✅ Done        |
+| [x] separator             | ✅ Done        |
+| [x] spinner               | ✅ Done        |
+| [ ] rating-group          | ⬜ Not started |
+| [ ] scroll-area           | ⬜ Not started |
+| [ ] segment-group         | ⬜ Not started |
+| [x] Separator (shadcn)    | ✅ Done        |
+| [x] Spinner (shadcn)      | ✅ Done        |
+| [ ] Table (shadcn)        | ⬜ Not started |
+| [ ] tags-input            | ⬜ Not started |
+| [x] textarea              | ✅ Done        |
+| [x] typography            | ✅ Done        |
 
 ### Low Priority
 
@@ -135,4 +149,4 @@
 
 ---
 
-**Progress: 31 of 88 tracked components implemented (35%)**
+**Progress: 34 of 88 tracked components implemented (39%)**
