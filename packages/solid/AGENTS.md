@@ -1,7 +1,7 @@
 # Packages/Solid Knowledge
 
-**Generated:** 2026-05-14 04:58:13 UTC
-**Commit:** 3fcc19f
+**Generated:** 2026-05-27 02:47:19 UTC
+**Commit:** f3d6548f
 **Branch:** main
 
 ## OVERVIEW
@@ -17,7 +17,8 @@ packages/solid/
 ├── vite.config.ts
 ├── dist/          # Compiled JS
 └── src/           # Source components
-    └── *.tsx      # Individual Solid.js components
+    ├── <component>/  # Directory-based components (index.tsx + <component>.base.tsx)
+    └── *.tsx         # Flat components (combobox, select, drawer)
 ```
 
 ## WHERE TO LOOK
