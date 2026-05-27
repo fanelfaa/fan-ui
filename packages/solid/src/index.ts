@@ -27,3 +27,7 @@ export * from "./card";
 export * from "./skeleton";
 export * from "./avatar";
 export * from "./progress";
+export * from "./separator";
+export * from "./spinner";
+export * from "./textarea";
+export * from "./typography";

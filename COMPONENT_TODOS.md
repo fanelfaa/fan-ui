@@ -4,7 +4,7 @@
 - **No marker** = Ark UI component (wraps `@ark-ui/solid/*`)
 - **`(shadcn)`** = Pure HTML/CSS component for shadcn parity (no Ark UI equivalent)
 
-## Implemented (24/88)
+## Implemented (28/88)
 
 | Component       | Status  |
 | --------------- | ------- |
@@ -62,15 +62,17 @@
 | [ ] Label (shadcn)       | ⬜ Not started |
 | [ ] listbox              | ⬜ Not started |
 | [x] progress             | ✅ Done |
+| [x] separator            | ✅ Done |
+| [x] spinner              | ✅ Done |
 | [ ] rating-group         | ⬜ Not started |
 | [ ] scroll-area          | ⬜ Not started |
 | [ ] segment-group        | ⬜ Not started |
-| [ ] Separator (shadcn)   | ⬜ Not started |
-| [ ] Spinner (shadcn)     | ⬜ Not started |
+| [x] Separator (shadcn)   | ✅ Done |
+| [x] Spinner (shadcn)     | ✅ Done |
 | [ ] Table (shadcn)       | ⬜ Not started |
 | [ ] tags-input           | ⬜ Not started |
-| [ ] Textarea (shadcn)    | ⬜ Not started |
-| [ ] Typography (shadcn)  | ⬜ Not started |
+| [x] textarea             | ✅ Done |
+| [x] typography           | ✅ Done |
 
 ### Low Priority
 
@@ -132,4 +134,4 @@
 
 ---
 
-**Progress: 27 of 88 tracked components implemented (31%)**
+**Progress: 31 of 88 tracked components implemented (35%)**

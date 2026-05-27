@@ -84,3 +84,15 @@ export type { AvatarVariants } from "./recipes/avatar";
 
 export { progressVariants } from "./recipes/progress";
 export type { ProgressVariants } from "./recipes/progress";
+
+export { separatorVariants } from "./recipes/separator";
+export type { SeparatorVariants } from "./recipes/separator";
+
+export { spinnerVariants } from "./recipes/spinner";
+export type { SpinnerVariants } from "./recipes/spinner";
+
+export { textareaVariants } from "./recipes/textarea";
+export type { TextareaVariants } from "./recipes/textarea";
+
+export { typographyVariants } from "./recipes/typography";
+export type { TypographyVariants } from "./recipes/typography";
