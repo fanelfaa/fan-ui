@@ -5,48 +5,38 @@
 - **No marker** = Ark UI component (wraps `@ark-ui/solid/*`)
 - **`(shadcn)`** = Pure HTML/CSS component for shadcn parity (no Ark UI equivalent)
 
-## Implemented (31/88)
+## Implemented (32/88)
 
-| Component     | Status  |
-| ------------- | ------- |
-| [x] accordion | ✅ Done |
-
-# <<<<<<< HEAD
-
-| [x] alert | ✅ Done |
-| [x] alert-dialog | ✅ Done |
-| [x] aspect-ratio | ✅ Done |
-
-> > > > > > > dcbb159a (docs: update COMPONENT_TODOS with Alert, AlertDialog, AspectRatio)
-> > > > > > > | [x] button | ✅ Done |
-> > > > > > > | [x] checkbox | ✅ Done |
-> > > > > > > | [x] collapsible | ✅ Done |
-> > > > > > > | [x] combobox | ✅ Done |
-
-# <<<<<<< HEAD
-
-| [x] carousel | ✅ Done |
-
-> > > > > > > dcbb159a (docs: update COMPONENT_TODOS with Alert, AlertDialog, AspectRatio)
-> > > > > > > | [x] date-picker | ✅ Done |
-> > > > > > > | [x] dialog | ✅ Done |
-> > > > > > > | [x] drawer | ✅ Done |
-> > > > > > > | [x] input | ✅ Done |
-> > > > > > > | [x] menu | ✅ Done |
-> > > > > > > | [x] number-input | ✅ Done |
-> > > > > > > | [x] password-input | ✅ Done |
-> > > > > > > | [x] pin-input | ✅ Done |
-> > > > > > > | [x] popover | ✅ Done |
-> > > > > > > | [x] radio-group | ✅ Done |
-> > > > > > > | [x] select | ✅ Done |
-> > > > > > > | [x] slider | ✅ Done |
-> > > > > > > | [x] switch | ✅ Done |
-> > > > > > > | [x] tabs | ✅ Done |
-> > > > > > > | [x] toast | ✅ Done |
-> > > > > > > | [x] toggle | ✅ Done |
-> > > > > > > | [x] toggle-group | ✅ Done |
-> > > > > > > | [x] tooltip | ✅ Done |
-> > > > > > > | [x] carousel | ✅ Done |
+| Component          | Status  |
+| ------------------ | ------- |
+| [x] accordion      | ✅ Done |
+| [x] alert          | ✅ Done |
+| [x] alert-dialog   | ✅ Done |
+| [x] aspect-ratio   | ✅ Done |
+| [x] button         | ✅ Done |
+| [x] checkbox       | ✅ Done |
+| [x] collapsible    | ✅ Done |
+| [x] combobox       | ✅ Done |
+| [x] carousel       | ✅ Done |
+| [x] date-picker    | ✅ Done |
+| [x] dialog         | ✅ Done |
+| [x] drawer         | ✅ Done |
+| [x] input          | ✅ Done |
+| [x] label          | ✅ Done |
+| [x] menu           | ✅ Done |
+| [x] number-input   | ✅ Done |
+| [x] password-input | ✅ Done |
+| [x] pin-input      | ✅ Done |
+| [x] popover        | ✅ Done |
+| [x] radio-group    | ✅ Done |
+| [x] select         | ✅ Done |
+| [x] slider         | ✅ Done |
+| [x] switch         | ✅ Done |
+| [x] tabs           | ✅ Done |
+| [x] toast          | ✅ Done |
+| [x] toggle         | ✅ Done |
+| [x] toggle-group   | ✅ Done |
+| [x] tooltip        | ✅ Done |
 
 ## Not Implemented (64) — 22 Ark UI + 42 shadcn parity
 
@@ -74,7 +64,7 @@
 | [ ] hover-card            | ⬜ Not started |
 | [ ] Input Group (shadcn)  | ⬜ Not started |
 | [ ] Kbd (shadcn)          | ⬜ Not started |
-| [ ] Label (shadcn)        | ⬜ Not started |
+| [x] Label (shadcn)        | ✅ Done        |
 | [ ] listbox               | ⬜ Not started |
 | [x] progress              | ✅ Done        |
 | [x] separator             | ✅ Done        |
@@ -149,4 +139,4 @@
 
 ---
 
-**Progress: 34 of 88 tracked components implemented (39%)**
+**Progress: 35 of 88 tracked components implemented (40%)**
