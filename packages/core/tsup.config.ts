@@ -36,6 +36,7 @@ export default defineConfig({
     "src/recipes/spinner.ts",
     "src/recipes/textarea.ts",
     "src/recipes/typography.ts",
+    "src/recipes/label.ts",
     "src/recipes/alert.ts",
     "src/recipes/alert-dialog.ts",
     "src/recipes/aspect-ratio.ts",

@@ -97,6 +97,9 @@ export type { TextareaVariants } from "./recipes/textarea";
 export { typographyVariants } from "./recipes/typography";
 export type { TypographyVariants } from "./recipes/typography";
 
+export { labelVariants } from "./recipes/label";
+export type { LabelVariants } from "./recipes/label";
+
 export { alertVariants } from "./recipes/alert";
 export type { AlertVariants } from "./recipes/alert";
 
