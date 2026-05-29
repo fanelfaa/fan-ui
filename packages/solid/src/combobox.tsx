@@ -1,6 +1,6 @@
 import { Combobox as ArkCombobox, type ListCollection } from "@ark-ui/solid/combobox";
 import { Portal } from "solid-js/web";
-import { Index, createMemo, splitProps, type Component } from "solid-js";
+import { Index, splitProps, type Component } from "solid-js";
 import { comboboxVariants } from "@ui/core";
 
 const styles = comboboxVariants();
@@ -11,32 +11,28 @@ type ComboboxRootProps = ArkCombobox.RootProps<{ label: string; value: string }>
 
 const ComboboxRoot: Component<ComboboxRootProps> = (props) => {
   const [local, others] = splitProps(props, ["class", "error"]);
-  const localStyles = comboboxVariants({ error: !!local.error });
-  const rootClass = createMemo(() => localStyles.root({ class: local.class }));
-  return <ArkCombobox.Root class={rootClass()} {...others} />;
+  const localStyles = () => comboboxVariants({ error: !!local.error });
+  return <ArkCombobox.Root class={localStyles().root({ class: local.class })} {...others} />;
 };
 
 type ComboboxRootProviderProps = ArkCombobox.RootProviderProps<{ label: string; value: string }>;
 
 const ComboboxRootProvider: Component<ComboboxRootProviderProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const rootClass = createMemo(() => styles.root({ class: local.class }));
-  return <ArkCombobox.RootProvider class={rootClass()} {...others} />;
+  return <ArkCombobox.RootProvider class={styles.root({ class: local.class })} {...others} />;
 };
 
 const ComboboxLabel: Component<ArkCombobox.LabelProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const labelClass = createMemo(() => styles.label({ class: local.class }));
-  return <ArkCombobox.Label class={labelClass()} {...others} />;
+  return <ArkCombobox.Label class={styles.label({ class: local.class })} {...others} />;
 };
 
 const ComboboxControl: Component<
   ArkCombobox.ControlProps & { class?: string; children?: import("solid-js").JSX.Element }
 > = (props) => {
   const [local, others] = splitProps(props, ["class", "children"]);
-  const controlClass = createMemo(() => styles.control({ class: local.class }));
   return (
-    <ArkCombobox.Control class={controlClass()} {...others}>
+    <ArkCombobox.Control class={styles.control({ class: local.class })} {...others}>
       {local.children}
       <ArkCombobox.Trigger class={styles.trigger()}>
         <svg
@@ -60,21 +56,18 @@ const ComboboxControl: Component<
 
 const ComboboxInput: Component<ArkCombobox.InputProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const inputClass = createMemo(() => styles.input({ class: local.class }));
-  return <ArkCombobox.Input class={inputClass()} {...others} />;
+  return <ArkCombobox.Input class={styles.input({ class: local.class })} {...others} />;
 };
 
 const ComboboxTrigger: Component<ArkCombobox.TriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const triggerClass = createMemo(() => styles.trigger({ class: local.class }));
-  return <ArkCombobox.Trigger class={triggerClass()} {...others} />;
+  return <ArkCombobox.Trigger class={styles.trigger({ class: local.class })} {...others} />;
 };
 
 const ComboboxClearTrigger: Component<ArkCombobox.ClearTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const clearTriggerClass = createMemo(() => styles.clearTrigger({ class: local.class }));
   return (
-    <ArkCombobox.ClearTrigger class={clearTriggerClass()} {...others}>
+    <ArkCombobox.ClearTrigger class={styles.clearTrigger({ class: local.class })} {...others}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -101,11 +94,10 @@ type ComboboxContentProps = ArkCombobox.ContentProps & {
 
 const ComboboxContent: Component<ComboboxContentProps> = (props) => {
   const [local, others] = splitProps(props, ["class", "items"]);
-  const contentClass = createMemo(() => styles.content({ class: local.class }));
   return (
     <Portal>
       <ArkCombobox.Positioner class={styles.positioner()}>
-        <ArkCombobox.Content class={contentClass()} {...others}>
+        <ArkCombobox.Content class={styles.content({ class: local.class })} {...others}>
           <ArkCombobox.List class={styles.list()}>
             <Index each={local.items}>
               {(item) => (
@@ -141,26 +133,24 @@ const ComboboxContent: Component<ComboboxContentProps> = (props) => {
 
 const ComboboxItem: Component<ArkCombobox.ItemProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const itemClass = createMemo(() => styles.item({ class: local.class }));
-  return <ArkCombobox.Item class={itemClass()} {...others} />;
+  return <ArkCombobox.Item class={styles.item({ class: local.class })} {...others} />;
 };
 
 const ComboboxItemText: Component<ArkCombobox.ItemTextProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const itemTextClass = createMemo(() => styles.itemText({ class: local.class }));
-  return <ArkCombobox.ItemText class={itemTextClass()} {...others} />;
+  return <ArkCombobox.ItemText class={styles.itemText({ class: local.class })} {...others} />;
 };
 
 const ComboboxItemIndicator: Component<ArkCombobox.ItemIndicatorProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const itemIndicatorClass = createMemo(() => styles.itemIndicator({ class: local.class }));
-  return <ArkCombobox.ItemIndicator class={itemIndicatorClass()} {...others} />;
+  return (
+    <ArkCombobox.ItemIndicator class={styles.itemIndicator({ class: local.class })} {...others} />
+  );
 };
 
 const ComboboxEmpty: Component<ArkCombobox.EmptyProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const emptyClass = createMemo(() => styles.empty({ class: local.class }));
-  return <ArkCombobox.Empty class={emptyClass()} {...others} />;
+  return <ArkCombobox.Empty class={styles.empty({ class: local.class })} {...others} />;
 };
 
 export {

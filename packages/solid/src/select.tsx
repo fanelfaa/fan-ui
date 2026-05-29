@@ -4,7 +4,7 @@ import {
   type ListCollection,
 } from "@ark-ui/solid/select";
 import { Portal } from "solid-js/web";
-import { Index, createMemo, splitProps, type Component, type JSX } from "solid-js";
+import { Index, splitProps, type Component, type JSX } from "solid-js";
 import { selectVariants } from "@ui/core";
 
 const styles = selectVariants();
@@ -16,32 +16,28 @@ type SelectRootProps = ArkSelect.RootProps<{ label: string; value: string }> & {
 const SelectRoot: Component<SelectRootProps> = (props) => {
   const [local, others] = splitProps(props, ["class", "error"]);
   // If error param needed, create local styles with params
-  const localStyles = selectVariants({ error: !!local.error });
-  const rootClass = createMemo(() => localStyles.root({ class: local.class }));
-  return <ArkSelect.Root class={rootClass()} {...others} />;
+  const localStyles = () => selectVariants({ error: !!local.error });
+  return <ArkSelect.Root class={localStyles().root({ class: local.class })} {...others} />;
 };
 
 type SelectRootProviderProps = ArkSelect.RootProviderProps<{ label: string; value: string }>;
 
 const SelectRootProvider: Component<SelectRootProviderProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const rootClass = createMemo(() => styles.root({ class: local.class }));
-  return <ArkSelect.RootProvider class={rootClass()} {...others} />;
+  return <ArkSelect.RootProvider class={styles.root({ class: local.class })} {...others} />;
 };
 
 const SelectLabel: Component<ArkSelect.LabelProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const labelClass = createMemo(() => styles.label({ class: local.class }));
-  return <ArkSelect.Label class={labelClass()} {...others} />;
+  return <ArkSelect.Label class={styles.label({ class: local.class })} {...others} />;
 };
 
 const SelectControl: Component<
   ArkSelect.ControlProps & { class?: string; children?: JSX.Element }
 > = (props) => {
   const [local, others] = splitProps(props, ["class", "children"]);
-  const controlClass = createMemo(() => styles.control({ class: local.class }));
   return (
-    <ArkSelect.Control class={controlClass()} {...others}>
+    <ArkSelect.Control class={styles.control({ class: local.class })} {...others}>
       {local.children}
       <ArkSelect.Indicator class={styles.indicator()}>
         <svg
@@ -64,13 +60,11 @@ const SelectControl: Component<
 };
 
 const SelectTrigger: Component<ArkSelect.TriggerProps> = (props) => {
-  const triggerClass = createMemo(() => styles.trigger({ class: props.class }));
-  return <ArkSelect.Trigger class={triggerClass()} {...props} />;
+  return <ArkSelect.Trigger class={styles.trigger({ class: props.class })} {...props} />;
 };
 
 const SelectValue: Component<ArkSelect.ValueTextProps> = (props) => {
-  const valueTextClass = createMemo(() => styles.valueText({ class: props.class }));
-  return <ArkSelect.ValueText class={valueTextClass()} {...props} />;
+  return <ArkSelect.ValueText class={styles.valueText({ class: props.class })} {...props} />;
 };
 
 type SelectContentProps = ArkSelect.ContentProps & {
@@ -80,11 +74,10 @@ type SelectContentProps = ArkSelect.ContentProps & {
 
 const SelectContent: Component<SelectContentProps> = (props) => {
   const [local, others] = splitProps(props, ["class", "items"]);
-  const contentClass = createMemo(() => styles.content({ class: local.class }));
   return (
     <Portal>
       <ArkSelect.Positioner class={styles.positioner()}>
-        <ArkSelect.Content class={contentClass()} {...others}>
+        <ArkSelect.Content class={styles.content({ class: local.class })} {...others}>
           <Index each={local.items}>
             {(item) => (
               <ArkSelect.Item class={styles.item()} item={item()}>
@@ -115,18 +108,17 @@ const SelectContent: Component<SelectContentProps> = (props) => {
 };
 
 const SelectItem: Component<ArkSelect.ItemProps> = (props) => {
-  const itemClass = createMemo(() => styles.item({ class: props.class }));
-  return <ArkSelect.Item class={itemClass()} {...props} />;
+  return <ArkSelect.Item class={styles.item({ class: props.class })} {...props} />;
 };
 
 const SelectItemText: Component<ArkSelect.ItemTextProps> = (props) => {
-  const itemTextClass = createMemo(() => styles.itemText({ class: props.class }));
-  return <ArkSelect.ItemText class={itemTextClass()} {...props} />;
+  return <ArkSelect.ItemText class={styles.itemText({ class: props.class })} {...props} />;
 };
 
 const SelectItemIndicator: Component<ArkSelect.ItemIndicatorProps> = (props) => {
-  const itemIndicatorClass = createMemo(() => styles.itemIndicator({ class: props.class }));
-  return <ArkSelect.ItemIndicator class={itemIndicatorClass()} {...props} />;
+  return (
+    <ArkSelect.ItemIndicator class={styles.itemIndicator({ class: props.class })} {...props} />
+  );
 };
 
 export { createListCollection };
