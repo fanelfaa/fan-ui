@@ -13,6 +13,7 @@ export * from "./number-input";
 export * from "./popover";
 export * from "./radio-group";
 export * from "./scroll-area";
+export * from "./segment-group";
 export * from "./select";
 export * from "./slider";
 export * from "./switch";
