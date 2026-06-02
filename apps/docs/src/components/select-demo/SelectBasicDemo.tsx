@@ -1,11 +1,11 @@
+import { createListCollection } from "@ark-ui/solid";
+import { Index } from "solid-js";
 import {
-  SelectRoot,
+  Select,
   SelectLabel,
-  SelectControl,
   SelectTrigger,
-  SelectValue,
   SelectContent,
-  createListCollection,
+  SelectItem,
 } from "@ui/solid";
 
 const frameworks = createListCollection({
@@ -20,15 +20,15 @@ const frameworks = createListCollection({
 export default function SelectBasicDemo() {
   return (
     <div class="rounded-lg border border-border p-6">
-      <SelectRoot collection={frameworks}>
+      <Select collection={frameworks}>
         <SelectLabel>Framework</SelectLabel>
-        <SelectControl>
-          <SelectTrigger>
-            <SelectValue placeholder="Select a framework" />
-          </SelectTrigger>
-        </SelectControl>
-        <SelectContent items={frameworks.items} />
-      </SelectRoot>
+        <SelectTrigger placeholder="Select a framework" />
+        <SelectContent>
+          <Index each={frameworks.items}>
+            {(item) => <SelectItem item={item()}>{item().label}</SelectItem>}
+          </Index>
+        </SelectContent>
+      </Select>
     </div>
   );
 }

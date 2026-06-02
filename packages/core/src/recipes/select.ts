@@ -9,9 +9,13 @@ export const selectVariants = tv({
     trigger: "flex flex-1 items-center justify-start size-4 [&[data-state=open]>svg]:rotate-180",
     valueText: "text-sm data-[placeholder-shown]:text-muted-foreground",
     indicator: "size-4 transition-transform text-muted-foreground",
+    clearTrigger:
+      "size-4 text-muted-foreground hover:text-foreground transition-colors pointer-events-auto",
+    searchInput:
+      "mx-1 mb-1.5 flex h-8 items-center rounded-md border border-input bg-background px-2.5 py-1.5 text-sm outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-ring",
     positioner: "z-50",
     content:
-      "z-50 min-w-[8rem] max-h-60 overflow-y-auto rounded-md border border-border bg-background p-1 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "z-50 min-w-[8rem] rounded-md border border-border bg-background p-1 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
     item: "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground",
     itemText: "flex-1",
     itemIndicator: "absolute right-2 flex size-4 items-center justify-center",
