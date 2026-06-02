@@ -1,10 +1,10 @@
 import { Toast as ArkToast } from "@ark-ui/solid/toast";
 import { splitProps, type Component } from "solid-js";
-import { ToastVariants, toastVariants } from "@ui/core";
+import { type ToastVariants, toastVariants } from "@ui/core";
 
 const styles = toastVariants();
 
-export const ToastRoot: Component<ArkToast.RootProps & ToastVariants> = (props) => {
+const Root: Component<ArkToast.RootProps & ToastVariants> = (props) => {
   const [local, others] = splitProps(props, ["class", "variant"]);
   return (
     <ArkToast.Root
@@ -14,24 +14,26 @@ export const ToastRoot: Component<ArkToast.RootProps & ToastVariants> = (props) 
   );
 };
 
-export const ToastTitle: Component<ArkToast.TitleProps> = (props) => {
+const Title: Component<ArkToast.TitleProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <ArkToast.Title class={styles.title({ class: local.class })} {...others} />;
 };
 
-export const ToastDescription: Component<ArkToast.DescriptionProps> = (props) => {
+const Description: Component<ArkToast.DescriptionProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <ArkToast.Description class={styles.description({ class: local.class })} {...others} />;
 };
 
-export const ToastCloseTrigger: Component<ArkToast.CloseTriggerProps> = (props) => {
+const CloseTrigger: Component<ArkToast.CloseTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <ArkToast.CloseTrigger class={styles.closeTrigger({ class: local.class })} {...others} />;
 };
 
-export const ToastActionTrigger: Component<ArkToast.ActionTriggerProps> = (props) => {
+const ActionTrigger: Component<ArkToast.ActionTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
     <ArkToast.ActionTrigger class={styles.actionTrigger({ class: local.class })} {...others} />
   );
 };
+
+export const Toast = { Root, Title, Description, CloseTrigger, ActionTrigger };

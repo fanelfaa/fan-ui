@@ -99,37 +99,39 @@ import { toastVariants } from "../recipes/toast";
 
 const styles = toastVariants();
 
-export const ToastRoot: Component<ArkToast.RootProps> = (props) => {
+const Root: Component<ArkToast.RootProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <ArkToast.Root class={styles.root({ class: local.class })} {...others} />;
 };
 
-export const ToastTitle: Component<ArkToast.TitleProps> = (props) => {
+const Title: Component<ArkToast.TitleProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <ArkToast.Title class={styles.title({ class: local.class })} {...others} />;
 };
 
-export const ToastDescription: Component<ArkToast.DescriptionProps> = (props) => {
+const Description: Component<ArkToast.DescriptionProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <ArkToast.Description class={styles.description({ class: local.class })} {...others} />;
 };
 
-export const ToastCloseTrigger: Component<ArkToast.CloseTriggerProps> = (props) => {
+const CloseTrigger: Component<ArkToast.CloseTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <ArkToast.CloseTrigger class={styles.closeTrigger({ class: local.class })} {...others} />;
 };
 
-export const ToastActionTrigger: Component<ArkToast.ActionTriggerProps> = (props) => {
+const ActionTrigger: Component<ArkToast.ActionTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <ArkToast.ActionTrigger class={styles.actionTrigger({ class: local.class })} {...others} />;
 };
+
+export const Toast = { Root, Title, Description, CloseTrigger, ActionTrigger };
 ```
 
 `index.tsx`:
 ```tsx
 import { Toaster as ArkToaster, createToaster, type CreateToasterReturn } from "@ark-ui/solid/toast";
 import { splitProps, type Component } from "solid-js";
-import { ToastRoot, ToastTitle, ToastDescription, ToastCloseTrigger, ToastActionTrigger } from "./toast.base";
+import { Toast as ToastBase } from "./toast.base";
 import { toastVariants, type ToastVariants } from "../recipes/toast";
 
 type ToasterProps = {
@@ -145,28 +147,29 @@ const Toaster: Component<ToasterProps> = (props) => {
         const variant = (toast().type as ToastVariants["variant"]) || "default";
         const styles = toastVariants({ variant });
         return (
-          <ToastRoot class={styles.root()}>
+          <ToastBase.Root class={styles.root()}>
             <div class="grid gap-1">
-              {toast().title && <ToastTitle class={styles.title()}>{toast().title}</ToastTitle>}
+              {toast().title && <ToastBase.Title class={styles.title()}>{toast().title}</ToastBase.Title>}
               {toast().description && (
-                <ToastDescription class={styles.description()}>{toast().description}</ToastDescription>
+                <ToastBase.Description class={styles.description()}>{toast().description}</ToastBase.Description>
               )}
             </div>
-            <ToastCloseTrigger class={styles.closeTrigger()}>✕</ToastCloseTrigger>
+            <ToastBase.CloseTrigger class={styles.closeTrigger()}>✕</ToastBase.CloseTrigger>
             {toast().action && (
-              <ToastActionTrigger class={styles.actionTrigger()}>{toast().action?.label}</ToastActionTrigger>
+              <ToastBase.ActionTrigger class={styles.actionTrigger()}>{toast().action?.label}</ToastBase.ActionTrigger>
             )}
-          </ToastRoot>
+          </ToastBase.Root>
         );
       }}
     </ArkToaster>
   );
 };
 
-export { Toaster, createToaster };
+export { Toaster, createToaster, ToastBase };
 export { toastVariants, type ToastVariants } from "../recipes/toast";
 ```
 </div>
+
 > **Note:** Make sure your project has the Tailwind CSS theme variables set up (`--primary`, `--ring`, `--border`, etc.) or override the utility classes to match your design system.
 
 ## Usage
@@ -212,6 +215,20 @@ toaster.create({ title: "Info toast", type: "info" });
 toaster.create({ title: "Success toast", type: "success" });
 toaster.create({ title: "Warning toast", type: "warning" });
 toaster.create({ title: "Error toast", type: "error" });
+```
+
+## Advanced Usage
+
+When you need more control, import raw primitive parts directly from the base file:
+
+```tsx
+import { Toast } from "~/components/toast/toast.base";
+```
+
+Or import `ToastBase` (the raw parts namespace) from the composite entry point:
+
+```tsx
+import { ToastBase } from "~/components/toast";
 ```
 
 ## API Reference
