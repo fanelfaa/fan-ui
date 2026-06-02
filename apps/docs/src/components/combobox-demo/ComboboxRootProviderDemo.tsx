@@ -1,12 +1,12 @@
 import { useFilter } from "@ark-ui/solid";
 import { useCombobox, useListCollection } from "@ark-ui/solid/combobox";
+import { Index } from "solid-js";
 import {
   ComboboxRootProvider,
   ComboboxLabel,
-  ComboboxControl,
-  ComboboxInput,
-  ComboboxTrigger,
+  ComboboxInputTrigger,
   ComboboxContent,
+  ComboboxItem,
 } from "@ui/solid";
 
 export default function ComboboxRootProviderDemo() {
@@ -39,11 +39,12 @@ export default function ComboboxRootProviderDemo() {
 
       <ComboboxRootProvider value={combobox}>
         <ComboboxLabel>Framework</ComboboxLabel>
-        <ComboboxControl>
-          <ComboboxInput placeholder="Search frameworks..." />
-          <ComboboxTrigger />
-        </ComboboxControl>
-        <ComboboxContent items={collection().items} />
+        <ComboboxInputTrigger placeholder="Search frameworks..." />
+        <ComboboxContent>
+          <Index each={collection().items}>
+            {(item) => <ComboboxItem item={item()}>{item().label}</ComboboxItem>}
+          </Index>
+        </ComboboxContent>
       </ComboboxRootProvider>
     </div>
   );

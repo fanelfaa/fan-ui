@@ -1,11 +1,11 @@
 import { type ComboboxInputValueChangeDetails, useFilter, useListCollection } from "@ark-ui/solid";
+import { Index } from "solid-js";
 import {
-  ComboboxRoot,
+  Combobox,
   ComboboxLabel,
-  ComboboxControl,
-  ComboboxInput,
-  ComboboxTrigger,
+  ComboboxInputTrigger,
   ComboboxContent,
+  ComboboxItem,
 } from "@ui/solid";
 
 export default function ComboboxBasicDemo() {
@@ -26,14 +26,15 @@ export default function ComboboxBasicDemo() {
 
   return (
     <div class="rounded-lg border border-border p-6">
-      <ComboboxRoot collection={collection()} onInputValueChange={handleInputChange}>
+      <Combobox collection={collection()} onInputValueChange={handleInputChange}>
         <ComboboxLabel>Framework</ComboboxLabel>
-        <ComboboxControl>
-          <ComboboxInput placeholder="Search frameworks..." />
-          <ComboboxTrigger />
-        </ComboboxControl>
-        <ComboboxContent items={collection().items} />
-      </ComboboxRoot>
+        <ComboboxInputTrigger placeholder="Search frameworks..." />
+        <ComboboxContent>
+          <Index each={collection().items}>
+            {(item) => <ComboboxItem item={item()}>{item().label}</ComboboxItem>}
+          </Index>
+        </ComboboxContent>
+      </Combobox>
     </div>
   );
 }
