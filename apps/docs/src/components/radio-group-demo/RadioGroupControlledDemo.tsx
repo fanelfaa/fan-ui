@@ -1,4 +1,4 @@
-import { Index } from "solid-js";
+import { Index, createSignal } from "solid-js";
 import { RadioGroup, RadioGroupItem } from "@ui/solid";
 
 const paymentMethods = [
@@ -7,10 +7,13 @@ const paymentMethods = [
   { value: "3", label: "Debit" },
 ];
 
-export default function RadioGroupBasicDemo() {
+export default function RadioGroupControlledDemo() {
+  const [value, setValue] = createSignal("1");
+
   return (
-    <div class="rounded-lg border border-border p-6">
-      <RadioGroup defaultValue="1" orientation="horizontal">
+    <div class="rounded-lg border border-border p-6 space-y-4">
+      <p class="text-sm text-muted-foreground">Selected: {value()}</p>
+      <RadioGroup value={value()} onValueChange={(e) => setValue(e.value || "1")} orientation="horizontal">
         <Index each={paymentMethods}>
           {(method) => (
             <RadioGroupItem value={method().value}>{method().label}</RadioGroupItem>

@@ -1,7 +1,29 @@
-import { RadioGroupRoot } from "./radio-group.base";
+import { splitProps, type Component } from "solid-js";
+import { RadioGroup as RadioGroupBase } from "./radio-group.base";
+import { RadioGroup as ArkRadioGroup } from "@ark-ui/solid/radio-group";
+import type { RadioGroupVariants } from "@ui/core";
 
-export const RadioGroup = RadioGroupRoot;
+const RadioGroup: Component<ArkRadioGroup.RootProps & RadioGroupVariants> = (props) => {
+  const [local, others] = splitProps(props, ["class", "orientation", "children"]);
+  return (
+    <RadioGroupBase.Root orientation={local.orientation} {...others}>
+      <RadioGroupBase.Indicator />
+      {local.children}
+    </RadioGroupBase.Root>
+  );
+};
 
-export * from "./radio-group.base";
+const RadioGroupItem: Component<ArkRadioGroup.ItemProps> = (props) => {
+  const [local, others] = splitProps(props, ["children"]);
+  return (
+    <RadioGroupBase.Item {...others}>
+      <RadioGroupBase.ItemText>{local.children}</RadioGroupBase.ItemText>
+      <RadioGroupBase.ItemControl />
+      <RadioGroupBase.ItemHiddenInput />
+    </RadioGroupBase.Item>
+  );
+};
+
+export { RadioGroup, RadioGroupItem, RadioGroupBase };
 
 export { radioGroupVariants, type RadioGroupVariants } from "@ui/core";
