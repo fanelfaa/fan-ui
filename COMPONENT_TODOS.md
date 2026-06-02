@@ -10,45 +10,34 @@
 | Component     | Status  |
 | ------------- | ------- |
 | [x] accordion | ✅ Done |
-
-# <<<<<<< HEAD
-
 | [x] alert | ✅ Done |
 | [x] alert-dialog | ✅ Done |
 | [x] aspect-ratio | ✅ Done |
-
-> > > > > > > dcbb159a (docs: update COMPONENT_TODOS with Alert, AlertDialog, AspectRatio)
-> > > > > > > | [x] button | ✅ Done |
-> > > > > > > | [x] checkbox | ✅ Done |
-> > > > > > > | [x] collapsible | ✅ Done |
-> > > > > > > | [x] combobox | ✅ Done |
-
-# <<<<<<< HEAD
-
+| [x] button | ✅ Done |
 | [x] carousel | ✅ Done |
+| [x] checkbox | ✅ Done |
+| [x] collapsible | ✅ Done |
+| [x] combobox | ✅ Done |
+| [x] date-picker | ✅ Done |
+| [x] dialog | ✅ Done |
+| [x] drawer | ✅ Done |
+| [x] input | ✅ Done |
+| [x] menu | ✅ Done |
+| [x] number-input | ✅ Done |
+| [x] password-input | ✅ Done |
+| [x] pin-input | ✅ Done |
+| [x] popover | ✅ Done |
+| [x] radio-group | ✅ Done |
+| [x] select | ✅ Done |
+| [x] slider | ✅ Done |
+| [x] switch | ✅ Done |
+| [x] tabs | ✅ Done |
+| [x] toast | ✅ Done |
+| [x] toggle | ✅ Done |
+| [x] toggle-group | ✅ Done |
+| [x] tooltip | ✅ Done |
 
-> > > > > > > dcbb159a (docs: update COMPONENT_TODOS with Alert, AlertDialog, AspectRatio)
-> > > > > > > | [x] date-picker | ✅ Done |
-> > > > > > > | [x] dialog | ✅ Done |
-> > > > > > > | [x] drawer | ✅ Done |
-> > > > > > > | [x] input | ✅ Done |
-> > > > > > > | [x] menu | ✅ Done |
-> > > > > > > | [x] number-input | ✅ Done |
-> > > > > > > | [x] password-input | ✅ Done |
-> > > > > > > | [x] pin-input | ✅ Done |
-> > > > > > > | [x] popover | ✅ Done |
-> > > > > > > | [x] radio-group | ✅ Done |
-> > > > > > > | [x] select | ✅ Done |
-> > > > > > > | [x] slider | ✅ Done |
-> > > > > > > | [x] switch | ✅ Done |
-> > > > > > > | [x] tabs | ✅ Done |
-> > > > > > > | [x] toast | ✅ Done |
-> > > > > > > | [x] toggle | ✅ Done |
-> > > > > > > | [x] toggle-group | ✅ Done |
-> > > > > > > | [x] tooltip | ✅ Done |
-> > > > > > > | [x] carousel | ✅ Done |
-
-## Not Implemented (64) — 22 Ark UI + 42 shadcn parity
+## Not Implemented (62) — 20 Ark UI + 42 shadcn parity
 
 ### High Priority
 
@@ -80,8 +69,8 @@
 | [x] separator             | ✅ Done        |
 | [x] spinner               | ✅ Done        |
 | [ ] rating-group          | ⬜ Not started |
-| [ ] scroll-area           | ⬜ Not started |
-| [ ] segment-group         | ⬜ Not started |
+| [x] scroll-area           | ✅ Done        |
+| [x] segment-group         | ✅ Done        |
 | [x] Separator (shadcn)    | ✅ Done        |
 | [x] Spinner (shadcn)      | ✅ Done        |
 | [ ] Table (shadcn)        | ⬜ Not started |
@@ -149,4 +138,4 @@
 
 ---
 
-**Progress: 34 of 88 tracked components implemented (39%)**
+**Progress: 36 of 88 tracked components implemented (41%)**
