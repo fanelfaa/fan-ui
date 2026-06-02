@@ -1,7 +1,7 @@
-import { ToggleGroupRoot } from "./toggle-group.base";
+import { ToggleGroup as ToggleGroupBase } from "./toggle-group.base";
 
-export const ToggleGroup = ToggleGroupRoot;
-
-export * from "./toggle-group.base";
+const ToggleGroup = ToggleGroupBase.Root;
+const ToggleGroupItem = ToggleGroupBase.Item;
+export { ToggleGroup, ToggleGroupItem, ToggleGroupBase };
 
 export { toggleGroupVariants, type ToggleGroupVariants } from "@ui/core";

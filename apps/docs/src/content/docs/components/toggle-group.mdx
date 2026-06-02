@@ -2,12 +2,13 @@
 title: Toggle Group
 description: A group of toggle buttons for selecting one or multiple options from a set.
 category: Form & Input
-updatedDate: 2026-05-23
+updatedDate: 2026-06-03
 ---
 
 import DocsLink from "@components/DocsLink.astro";
 import ToggleGroupBasicDemo from "@components/toggle-group-demo/ToggleGroupBasicDemo.tsx";
 import ToggleGroupSizesDemo from "@components/toggle-group-demo/ToggleGroupSizesDemo.tsx";
+import ToggleGroupRootProviderDemo from "@components/toggle-group-demo/ToggleGroupRootProviderDemo.tsx";
 
 # Toggle Group
 
@@ -99,15 +100,18 @@ npx solidui-cli@latest add toggle-group
 
 <div class="space-y-3">
 Install the dependency:
+
 ```bash
 npm install tailwind-variants
 ```
+
 </div>
 
 <div class="space-y-3">
 Create the recipe file at `src/components/recipes/toggle-group.ts`:
+
 ```tsx
-import { tv, type VariantProps } from 'tailwind-variants'
+import { tv, type VariantProps } from "tailwind-variants";
 
 export const toggleGroupVariants = tv({
   slots: {
@@ -126,44 +130,75 @@ export const toggleGroupVariants = tv({
   },
 });
 
-export type ToggleGroupVariants = VariantProps<typeof toggleGroupVariants>
+export type ToggleGroupVariants = VariantProps<typeof toggleGroupVariants>;
 ```
+
 </div>
 
 <div class="space-y-3">
-Create the component file at `src/components/toggle-group.tsx`:
+Create the component file at `src/components/toggle-group/toggle-group.base.tsx`:
+
 ```tsx
-import { ToggleGroup as ArkToggleGroup } from '@ark-ui/solid/toggle-group'
-import { createMemo, splitProps, type Component } from 'solid-js'
-import { ToggleGroupVariants, toggleGroupVariants } from '../recipes/toggle-group'
+import { ToggleGroup as ArkToggleGroup } from "@ark-ui/solid/toggle-group";
+import { splitProps, type Component } from "solid-js";
+import { toggleGroupVariants, type ToggleGroupVariants } from "../recipes/toggle-group";
 
-const styles = toggleGroupVariants()
+const styles = toggleGroupVariants();
 
-const ToggleGroupRoot: Component<ArkToggleGroup.RootProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
-  const rootClass = createMemo(() => styles.root({ class: local.class }))
-  return <ArkToggleGroup.Root class={rootClass()} {...others} />
-}
+const Root: Component<ArkToggleGroup.RootProps> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
+  return <ArkToggleGroup.Root class={styles.root({ class: local.class })} {...others} />;
+};
 
-const ToggleGroupRootProvider: Component<ArkToggleGroup.RootProviderProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
-  const rootClass = createMemo(() => styles.root({ class: local.class }))
-  return <ArkToggleGroup.RootProvider class={rootClass()} {...others} />
-}
+const RootProvider: Component<ArkToggleGroup.RootProviderProps> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
+  return <ArkToggleGroup.RootProvider class={styles.root({ class: local.class })} {...others} />;
+};
 
-const ToggleGroupItem: Component<ArkToggleGroup.ItemProps & ToggleGroupVariants> = (props) => {
-  const [local, others] = splitProps(props, ['class', 'size'])
-  const itemClass = createMemo(() => styles.item({ class: local.class, size: local.size }))
-  return <ArkToggleGroup.Item class={itemClass()} {...others} />
-}
+const Item: Component<ArkToggleGroup.ItemProps & ToggleGroupVariants> = (props) => {
+  const [local, others] = splitProps(props, ["class", "size"]);
+  return <ArkToggleGroup.Item class={styles.item({ class: local.class, size: local.size })} {...others} />;
+};
 
-export {
-  ToggleGroupRoot as ToggleGroup,
-  ToggleGroupRootProvider,
-  ToggleGroupItem,
-  toggleGroupVariants,
-}
+export const ToggleGroup = { Root, RootProvider, Item };
 ```
+
+</div>
+
+<div class="space-y-3">
+Create the component file at `src/components/toggle-group/index.tsx`:
+
+```tsx
+import { splitProps, type Component } from "solid-js";
+import { ToggleGroup as ToggleGroupBase } from "./toggle-group.base";
+import { ToggleGroup as ArkToggleGroup } from "@ark-ui/solid/toggle-group";
+import type { ToggleGroupVariants } from "../recipes/toggle-group";
+
+type ToggleGroupProps = ArkToggleGroup.RootProps & ToggleGroupVariants;
+
+const ToggleGroup: Component<ToggleGroupProps> = (props) => {
+  const [local, others] = splitProps(props, ["children"]);
+  return (
+    <ToggleGroupBase.Root {...others}>
+      {local.children}
+    </ToggleGroupBase.Root>
+  );
+};
+
+export { ToggleGroup, ToggleGroupBase };
+
+export const ToggleGroupItem: Component<ArkToggleGroup.ItemProps & ToggleGroupVariants> = (props) => {
+  const [local, others] = splitProps(props, ["class", "size"]);
+  return (
+    <ToggleGroupBase.Item size={local.size} {...others}>
+      {props.children}
+    </ToggleGroupBase.Item>
+  );
+};
+
+export { toggleGroupVariants, type ToggleGroupVariants } from "@ui/core";
+```
+
 </div>
 
 ## Usage
@@ -195,19 +230,21 @@ Multiple selection:
 
 ## Root Provider
 
-Use `ToggleGroupRootProvider` when you need to control the toggle group state externally.
+Use `ToggleGroupBase.RootProvider` when you need to control the toggle group state externally.
+
+<ToggleGroupRootProviderDemo client:load />
 
 ```tsx
 import { useToggleGroup } from "@ark-ui/solid/toggle-group";
-import { ToggleGroupRootProvider, ToggleGroupItem } from "~/components/toggle-group";
+import { ToggleGroupBase, ToggleGroupItem } from "~/components/toggle-group";
 
 const tg = useToggleGroup({ defaultValue: ["left"] });
 
-<ToggleGroupRootProvider value={tg}>
+<ToggleGroupBase.RootProvider value={tg}>
   <ToggleGroupItem value="left"><AlignLeftIcon /></ToggleGroupItem>
   <ToggleGroupItem value="center"><AlignCenterIcon /></ToggleGroupItem>
   <ToggleGroupItem value="right"><AlignRightIcon /></ToggleGroupItem>
-</ToggleGroupRootProvider>
+</ToggleGroupBase.RootProvider>
 ```
 
 ## API Reference
