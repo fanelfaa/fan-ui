@@ -1,4 +1,4 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator } from "@ui/solid";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@ui/solid";
 
 export default function TabsBasicDemo() {
   return (
@@ -7,7 +7,6 @@ export default function TabsBasicDemo() {
         <TabsList>
           <TabsTrigger value="account">Account</TabsTrigger>
           <TabsTrigger value="password">Password</TabsTrigger>
-          <TabsIndicator />
         </TabsList>
         <TabsContent value="account">
           <div class="text-sm text-foreground">

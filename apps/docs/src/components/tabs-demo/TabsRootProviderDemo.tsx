@@ -1,32 +1,35 @@
+import { Index, createMemo } from "solid-js";
+import { TabsBase, TabsList, TabsTrigger, TabsContent } from "@ui/solid";
 import { useTabs } from "@ark-ui/solid/tabs";
-import { TabsList, TabsTrigger, TabsContent, TabsIndicator, TabsRootProvider } from "@ui/solid";
+
+const tabData = [
+  { value: "overview", label: "Overview", content: "Tabs organize content into separate views where only one view is visible at a time." },
+  { value: "usage", label: "Usage", content: "Use Tabs to switch between different sections of content without navigating away." },
+];
 
 export default function TabsRootProviderDemo() {
   const tabs = useTabs({ defaultValue: "overview" });
+  const value = createMemo(() => tabs().value);
 
   return (
     <div class="rounded-lg border border-border p-6 space-y-4">
       <output class="block text-sm text-muted-foreground">
-        Value: {JSON.stringify(tabs().value)}
+        Value: {JSON.stringify(value())}
       </output>
-
-      <TabsRootProvider value={tabs}>
+      <TabsBase.RootProvider value={tabs}>
         <TabsList>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="usage">Usage</TabsTrigger>
-          <TabsIndicator />
+          <Index each={tabData}>
+            {(tab) => (
+              <TabsTrigger value={tab().value}>{tab().label}</TabsTrigger>
+            )}
+          </Index>
         </TabsList>
-        <TabsContent value="overview">
-          <div class="text-sm text-foreground">
-            Tabs organize content into separate views where only one view is visible at a time.
-          </div>
-        </TabsContent>
-        <TabsContent value="usage">
-          <div class="text-sm text-foreground">
-            Use Tabs to switch between different sections of content without navigating away.
-          </div>
-        </TabsContent>
-      </TabsRootProvider>
+        <Index each={tabData}>
+          {(tab) => (
+            <TabsContent value={tab().value}>{tab().content}</TabsContent>
+          )}
+        </Index>
+      </TabsBase.RootProvider>
     </div>
   );
 }

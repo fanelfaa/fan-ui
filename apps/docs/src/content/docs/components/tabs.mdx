@@ -2,12 +2,13 @@
 title: Tabs
 description: A set of tab panels that share the same container and are switched by tab triggers.
 category: Navigation
-updatedDate: 2026-05-18
+updatedDate: 2026-06-03
 ---
 
 import DocsLink from "@components/DocsLink.astro";
 import TabsBasicDemo from "@components/tabs-demo/TabsBasicDemo.tsx";
 import TabsRootProviderDemo from "@components/tabs-demo/TabsRootProviderDemo.tsx";
+import TabsDisabledDemo from "@components/tabs-demo/TabsDisabledDemo.tsx";
 
 # Tabs
 
@@ -18,7 +19,7 @@ A navigable component that organizes content into separate views where only one 
 <TabsBasicDemo client:load />
 
 ```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator, TabsRootProvider } from "~/components/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/components/tabs";
 
 export function TabsDemo() {
   return (
@@ -26,7 +27,6 @@ export function TabsDemo() {
       <TabsList>
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
-        <TabsIndicator />
       </TabsList>
       <TabsContent value="account">
         <div class="text-sm text-foreground">Make changes to your account here.</div>
@@ -53,12 +53,16 @@ npx solidui-cli@latest add tabs
 
 <div class="space-y-3">
 Install the dependency:
+
 ```bash
 npm install tailwind-variants
 ```
+
 </div>
+
 <div class="space-y-3">
 Create the recipe file at `src/components/recipes/tabs.ts`:
+
 ```tsx
 import { tv, type VariantProps } from 'tailwind-variants'
 
@@ -77,56 +81,101 @@ export const tabsVariants = tv({
 
 export type TabsVariants = VariantProps<typeof tabsVariants>
 ```
+
 </div>
+
 <div class="space-y-3">
-Create the component file at `src/components/tabs.tsx`:
+Create the base component file at `src/components/tabs/tabs.base.tsx`:
+
 ```tsx
 import { Tabs as ArkTabs } from '@ark-ui/solid/tabs'
-import { createMemo, splitProps, type Component } from 'solid-js'
-import { tabsVariants } from './recipes/tabs'
+import { splitProps, type Component } from 'solid-js'
+import { tabsVariants } from '../recipes/tabs'
 
-// Global variant instance (no params)
 const styles = tabsVariants()
 
-const TabsRoot: Component<ArkTabs.RootProps> = (props) => {
-const [local, others] = splitProps(props, ['class'])
-const rootClass = createMemo(() => styles.root({ class: local.class }))
-return <ArkTabs.Root class={rootClass()} {...others} />
+const Root: Component<ArkTabs.RootProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  return <ArkTabs.Root class={styles.root({ class: local.class })} {...others} />
 }
 
-const TabsList: Component<ArkTabs.ListProps> = (props) => {
-const [local, others] = splitProps(props, ['class'])
-const listClass = createMemo(() => styles.list({ class: local.class }))
-return <ArkTabs.List class={listClass()} {...others} />
+const List: Component<ArkTabs.ListProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  return <ArkTabs.List class={styles.list({ class: local.class })} {...others} />
 }
+
+const Trigger: Component<ArkTabs.TriggerProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  return <ArkTabs.Trigger class={styles.trigger({ class: local.class })} {...others} />
+}
+
+const Content: Component<ArkTabs.ContentProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  return <ArkTabs.Content class={styles.content({ class: local.class })} {...others} />
+}
+
+const Indicator: Component<ArkTabs.IndicatorProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  return <ArkTabs.Indicator class={styles.indicator({ class: local.class })} {...others} />
+}
+
+const RootProvider: Component<ArkTabs.RootProviderProps> = (props) => {
+  const [local, others] = splitProps(props, ['class'])
+  return <ArkTabs.RootProvider class={styles.root({ class: local.class })} {...others} />
+}
+
+const TabsBase = {
+  Root,
+  RootProvider,
+  List,
+  Trigger,
+  Content,
+  Indicator,
+}
+
+export { TabsBase, tabsVariants }
+```
+
+</div>
+
+<div class="space-y-3">
+Create the component file at `src/components/tabs/index.tsx`:
+
+```tsx
+import { splitProps, type Component } from "solid-js";
+import { Tabs as TabsBase } from "./tabs.base";
+import { Tabs as ArkTabs } from "@ark-ui/solid/tabs";
+
+type TabsProps = ArkTabs.RootProps;
+
+const Tabs: Component<TabsProps> = (props) => {
+  const [local, others] = splitProps(props, ["children"]);
+  return <TabsBase.Root {...others}>{local.children}</TabsBase.Root>;
+};
+
+export const TabsList: Component<ArkTabs.ListProps> = (props) => {
+  const [local, others] = splitProps(props, ["class", "children"]);
+  return (
+    <TabsBase.List class={local.class} {...others}>
+      <TabsBase.Indicator />
+      {local.children}
+    </TabsBase.List>
+  );
+};
 
 const TabsTrigger: Component<ArkTabs.TriggerProps> = (props) => {
-const [local, others] = splitProps(props, ['class'])
-const triggerClass = createMemo(() => styles.trigger({ class: local.class }))
-return <ArkTabs.Trigger class={triggerClass()} {...others} />
-}
+  return <TabsBase.Trigger {...props} />;
+};
 
 const TabsContent: Component<ArkTabs.ContentProps> = (props) => {
-const [local, others] = splitProps(props, ['class'])
-const contentClass = createMemo(() => styles.content({ class: local.class }))
-return <ArkTabs.Content class={contentClass()} {...others} />
-}
+  return <TabsBase.Content {...props} />;
+};
 
-const TabsIndicator: Component<ArkTabs.IndicatorProps> = (props) => {
-const [local, others] = splitProps(props, ['class'])
-const indicatorClass = createMemo(() => styles.indicator({ class: local.class }))
-return <ArkTabs.Indicator class={indicatorClass()} {...others} />
-}
-
-const TabsRootProvider: Component<ArkTabs.RootProviderProps> = (props) => {
-const [local, others] = splitProps(props, ['class'])
-const rootClass = createMemo(() => styles.root({ class: local.class }))
-return <ArkTabs.RootProvider class={rootClass()} {...others} />
-}
-
-export { TabsRoot as Tabs, TabsRootProvider, TabsList, TabsTrigger, TabsContent, TabsIndicator, tabsVariants }
+export { Tabs, TabsContent, TabsTrigger, TabsBase, TabsList, tabsVariants };
 ```
+
 </div>
+
 > **Note:** Make sure your project has the Tailwind CSS theme variables set up (`--foreground`, `--muted`, `--background`, etc.) or override the utility classes to match your design system.
 
 ## Usage
@@ -134,7 +183,7 @@ export { TabsRoot as Tabs, TabsRootProvider, TabsList, TabsTrigger, TabsContent,
 Import the components:
 
 ```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator, TabsRootProvider } from "~/components/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/components/tabs";
 ```
 
 Basic usage:
@@ -144,7 +193,6 @@ Basic usage:
   <TabsList>
     <TabsTrigger value="tab-1">Tab One</TabsTrigger>
     <TabsTrigger value="tab-2">Tab Two</TabsTrigger>
-    <TabsIndicator />
   </TabsList>
   <TabsContent value="tab-1">
     <div class="text-sm">Content for tab one</div>
@@ -155,81 +203,96 @@ Basic usage:
 </Tabs>
 ```
 
-## With Indicator
+## Advanced Usage
 
-The indicator animates between selected tabs automatically when placed inside `TabsList`.
+When the composite `Tabs` doesn't provide enough control, import the raw primitive parts from `TabsBase`:
 
 ```tsx
-<Tabs defaultValue="account">
-  <TabsList>
-    <TabsTrigger value="account">Account</TabsTrigger>
-    <TabsTrigger value="settings">Settings</TabsTrigger>
-    <TabsIndicator />
-  </TabsList>
-  <TabsContent value="account">...</TabsContent>
-  <TabsContent value="settings">...</TabsContent>
-</Tabs>
+import { TabsBase, TabsTrigger, TabsContent } from "~/components/tabs";
+```
+
+### Access Raw Parts
+
+Access raw parts via `TabsBase.Root`, `TabsBase.RootProvider`, `TabsBase.List`, `TabsBase.Trigger`, `TabsBase.Content`, and `TabsBase.Indicator`:
+
+```tsx
+<TabsBase.Root defaultValue="account">
+  <TabsBase.List>
+    <TabsBase.Indicator />
+    <TabsBase.Trigger value="account">Account</TabsBase.Trigger>
+    <TabsBase.Trigger value="password">Password</TabsBase.Trigger>
+  </TabsBase.List>
+  <TabsBase.Content value="account">...</TabsBase.Content>
+  <TabsBase.Content value="password">...</TabsBase.Content>
+</TabsBase.Root>
 ```
 
 ## Disabled Tab
 
 Use the `disabled` prop on a `TabsTrigger` to disable that specific tab.
 
+<TabsDisabledDemo client:load />
+
 ```tsx
-<Tabs defaultValue="active">
-  <TabsList>
-    <TabsTrigger value="active">Active</TabsTrigger>
-    <TabsTrigger value="disabled" disabled>
-      Disabled
-    </TabsTrigger>
-  </TabsList>
-  <TabsContent value="active">...</TabsContent>
-  <TabsContent value="disabled">...</TabsContent>
-</Tabs>
+import { Index } from "solid-js";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/components/tabs";
+
+const tabs = [
+  { value: "active", label: "Active", content: "This tab is enabled and functional." },
+  { value: "settings", label: "Settings", content: "Configure your preferences here." },
+  { value: "disabled", label: "Disabled", content: "This content is not accessible.", disabled: true },
+];
+
+export function DisabledDemo() {
+  return (
+    <Tabs defaultValue="active">
+      <TabsList>
+        <Index each={tabs}>
+          {(tab) => (
+            <TabsTrigger value={tab().value} disabled={tab().disabled}>
+              {tab().label}
+            </TabsTrigger>
+          )}
+        </Index>
+      </TabsList>
+      <Index each={tabs}>
+        {(tab) => (
+          <TabsContent value={tab().value}>
+            <div class="text-sm text-foreground">{tab().content}</div>
+          </TabsContent>
+        )}
+      </Index>
+    </Tabs>
+  );
+}
 ```
 
 ## Root Provider
 
-Use `TabsRootProvider` when you need to access the tabs state outside of the tabs tree. This pattern uses the `useTabs` hook from Ark UI to create a shared context that both the tabs and external elements can reference.
+Use `TabsBase.RootProvider` when you need to access the tabs state outside of the tabs tree. This pattern uses the `useTabs` hook from Ark UI to create a shared context that both the tabs and external elements can reference.
 
 <TabsRootProviderDemo client:load />
 
 ```tsx
+import { TabsBase, TabsList, TabsTrigger, TabsContent } from "~/components/tabs";
 import { useTabs } from "@ark-ui/solid/tabs";
-import {
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-  TabsIndicator,
-  TabsRootProvider,
-} from "~/components/tabs";
 
-export function TabsWithExternalControl() {
-  const tabs = useTabs({ defaultValue: "overview" });
+const tabs = useTabs({ defaultValue: "overview" });
 
-  return (
-    <div>
-      {/* Access tabs state outside the tree */}
-      <output>Value: {JSON.stringify(tabs().value)}</output>
-
-      <TabsRootProvider value={tabs}>
-        <TabsList>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="usage">Usage</TabsTrigger>
-          <TabsIndicator />
-        </TabsList>
-        <TabsContent value="overview">...</TabsContent>
-        <TabsContent value="usage">...</TabsContent>
-      </TabsRootProvider>
-    </div>
-  );
-}
+<TabsBase.RootProvider value={tabs}>
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="usage">Usage</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">...</TabsContent>
+  <TabsContent value="usage">...</TabsContent>
+</TabsBase.RootProvider>
 ```
 
 The key difference:
 
 - **`Tabs` (Root)** — manages its own state internally. Use for simple, self-contained tabs.
-- **`TabsRootProvider`** — accepts a pre-created tabs context via `useTabs`. Use when you need to read or control the tabs state from outside the component tree.
+- **`TabsBase.RootProvider`** — accepts a pre-created tabs context via `useTabs`. Use when you need to read or control the tabs state from outside the component tree.
 
 ## API Reference
 
