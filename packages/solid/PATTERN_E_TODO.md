@@ -8,13 +8,13 @@
 
 | Status | Count |
 |--------|-------|
-| ✅ Done | 10 |
-| 🔜 Pending | 19 |
+| ✅ Done | 13 |
+| 🔜 Pending | 16 |
 | **Total** | **29** |
 
 ---
 
-## ✅ Already Pattern E (10)
+## ✅ Already Pattern E (13)
 
 | # | Component | Notes |
 |---|-----------|-------|
@@ -37,9 +37,9 @@
 
 Simple pass-throughs with few parts. Good candidates to start.
 
-- [ ] **accordion** — Pattern A. 6 base parts. No composite wrapping.
-- [ ] **avatar** — Pattern A. 4 base parts. No composite wrapping.
-- [ ] **collapsible** — Pattern A. 5 base parts. No composite wrapping.
+- [x] **accordion** — Pattern A → E. Composite ItemTrigger with auto Indicator.
+- [x] **avatar** — Pattern A → E. Simple alias composites.
+- [x] **collapsible** — Pattern A → E. CollapsibleIndicator composite with chevron.
 - [ ] **pin-input** — Pattern A. 5 base parts. No composite wrapping.
 - [ ] **progress** — Pattern A. 7 base parts. No composite wrapping.
 - [ ] **slider** — Pattern A. 11 base parts. No composite wrapping.
