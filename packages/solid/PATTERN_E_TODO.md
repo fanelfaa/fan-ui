@@ -8,8 +8,8 @@
 
 | Status | Count |
 |--------|-------|
-| ✅ Done | 17 |
-| 🔜 Pending | 12 |
+| ✅ Done | 23 |
+| 🔜 Pending | 6 |
 | **Total** | **29** |
 
 ---
@@ -56,12 +56,12 @@ Simple pass-throughs with few parts. Good candidates to start.
 
 Components with InnerComponent (SVG icons) or Field wrapper pattern.
 
-- [ ] **input** — Pattern A. Wraps Ark Field. 5 base parts.
-- [ ] **textarea** — Pattern A. Wraps Ark Field. 5 base parts.
-- [ ] **switch** — Pattern B. Has InnerComponent with SVG. 5 base parts.
-- [ ] **checkbox** — Pattern B. Has InnerComponent with SVG. 6 base parts.
-- [ ] **number-input** — Pattern B. Has InnerComponent with SVG. 10 base parts.
-- [ ] **password-input** — Pattern B. Has InnerComponent with SVG. 7 base parts.
+- [x] **input** — Pattern A → E. Wraps Ark Field. 5 base parts.
+- [x] **textarea** — Pattern A → E. Wraps Ark Field. 5 base parts.
+- [x] **switch** — Pattern B → E. Has InnerComponent with SVG. 5 base parts.
+- [x] **checkbox** — Pattern B → E. Has InnerComponent with SVG. 6 base parts.
+- [x] **number-input** — Pattern B → E. Has InnerComponent with SVG. 10 base parts.
+- [x] **password-input** — Pattern B → E. Has InnerComponent with SVG. 7 base parts.
 
 ### Tier 3 — High Complexity
 
