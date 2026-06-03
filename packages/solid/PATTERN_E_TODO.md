@@ -158,6 +158,9 @@ For each pending component, the refactoring involves:
 - [ ] RootProvider demo: `ComponentBase` IS allowed here (advanced use)
 - [ ] Update docs code blocks: basic examples show no `ComponentBase` import
 
+### Phase D — Verify
+- [ ] Run `moon run docs:build` — must exit 0
+
 ---
 
 ## Convention Reference
