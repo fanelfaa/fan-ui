@@ -8,13 +8,13 @@
 
 | Status | Count |
 |--------|-------|
-| ✅ Done | 13 |
-| 🔜 Pending | 16 |
+| ✅ Done | 17 |
+| 🔜 Pending | 12 |
 | **Total** | **29** |
 
 ---
 
-## ✅ Already Pattern E (13)
+## ✅ Already Pattern E (17)
 
 | # | Component | Notes |
 |---|-----------|-------|
@@ -28,10 +28,17 @@
 | 8 | combobox | Pure namespace |
 | 9 | select | Pure namespace, complex |
 | 10 | tooltip | Pure namespace |
+| 11 | accordion | Pattern A → E, composite ItemTrigger |
+| 12 | avatar | Pattern A → E, simple composites |
+| 13 | collapsible | Pattern A → E, composite Indicator |
+| 14 | pin-input | Pattern A → E, 5 parts |
+| 15 | progress | Pattern A → E, 7 parts |
+| 16 | slider | Pattern A → E, 11 parts |
+| 17 | toggle | Pattern A → E, 2 parts |
 
 ---
 
-## 🔜 Pending: Ark UI Wrappers Needing Pattern E (19)
+## 🔜 Pending: Ark UI Wrappers Needing Pattern E (15)
 
 ### Tier 1 — Low Complexity (easy wins)
 
@@ -40,10 +47,10 @@ Simple pass-throughs with few parts. Good candidates to start.
 - [x] **accordion** — Pattern A → E. Composite ItemTrigger with auto Indicator.
 - [x] **avatar** — Pattern A → E. Simple alias composites.
 - [x] **collapsible** — Pattern A → E. CollapsibleIndicator composite with chevron.
-- [ ] **pin-input** — Pattern A. 5 base parts. No composite wrapping.
-- [ ] **progress** — Pattern A. 7 base parts. No composite wrapping.
-- [ ] **slider** — Pattern A. 11 base parts. No composite wrapping.
-- [ ] **toggle** — Pattern A. 2 base parts. Simple.
+- [x] **pin-input** — Pattern A → E. 5 base parts. No composite wrapping.
+- [x] **progress** — Pattern A → E. 7 base parts. No composite wrapping.
+- [x] **slider** — Pattern A → E. 11 base parts. No composite wrapping.
+- [x] **toggle** — Pattern A → E. 2 base parts. Simple.
 
 ### Tier 2 — Medium Complexity
 
