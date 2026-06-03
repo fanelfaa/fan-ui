@@ -1,6 +1,6 @@
 import { Index } from "solid-js";
 import {
-  CarouselRoot as Carousel,
+  Carousel,
   CarouselControl,
   CarouselItemGroup,
   CarouselItem,
