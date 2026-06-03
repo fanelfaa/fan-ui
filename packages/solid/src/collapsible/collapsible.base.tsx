@@ -11,9 +11,7 @@ const Root: Component<ArkCollapsible.RootProps> = (props) => {
 
 const RootProvider: Component<ArkCollapsible.RootProviderProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return (
-    <ArkCollapsible.RootProvider class={styles.root({ class: local.class })} {...others} />
-  );
+  return <ArkCollapsible.RootProvider class={styles.root({ class: local.class })} {...others} />;
 };
 
 const Trigger: Component<ArkCollapsible.TriggerProps> = (props) => {

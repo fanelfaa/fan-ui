@@ -44,7 +44,9 @@ export const DatePickerTrigger: Component<ArkDatePicker.TriggerProps> = (props) 
 
 export const DatePickerClearTrigger: Component<ArkDatePicker.ClearTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkDatePicker.ClearTrigger class={styles.clearTrigger({ class: local.class })} {...others} />;
+  return (
+    <ArkDatePicker.ClearTrigger class={styles.clearTrigger({ class: local.class })} {...others} />
+  );
 };
 
 export const DatePickerPrevTrigger: Component<ArkDatePicker.PrevTriggerProps> = (props) => {
@@ -55,7 +57,9 @@ export const DatePickerPrevTrigger: Component<ArkDatePicker.PrevTriggerProps> = 
 
   return (
     <ArkDatePicker.PrevTrigger
-      class={styles.navTrigger({ class: [buttonVariants({ variant: "outline" }), local.class, "size-7"] })}
+      class={styles.navTrigger({
+        class: [buttonVariants({ variant: "outline" }), local.class, "size-7"],
+      })}
       {...others}
     >
       <Show when={!hasChildren()} fallback={resolvedChildren()}>
@@ -85,7 +89,9 @@ export const DatePickerNextTrigger: Component<ArkDatePicker.NextTriggerProps> = 
 
   return (
     <ArkDatePicker.NextTrigger
-      class={styles.navTrigger({ class: [buttonVariants({ variant: "outline" }), local.class, "size-7"] })}
+      class={styles.navTrigger({
+        class: [buttonVariants({ variant: "outline" }), local.class, "size-7"],
+      })}
       {...others}
     >
       <Show when={!hasChildren()} fallback={resolvedChildren()}>
@@ -123,7 +129,9 @@ export const DatePickerTableCellTrigger: Component<ArkDatePicker.TableCellTrigge
   const [local, others] = splitProps(props, ["class"]);
   return (
     <ArkDatePicker.TableCellTrigger
-      class={styles.tableCellTrigger({ class: [buttonVariants({ variant: "ghost" }), local.class] })}
+      class={styles.tableCellTrigger({
+        class: [buttonVariants({ variant: "ghost" }), local.class],
+      })}
       {...others}
     />
   );

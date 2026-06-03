@@ -31,12 +31,6 @@ const AccordionItemTrigger: Component<ArkAccordion.ItemTriggerProps> = (props) =
 
 const AccordionItemContent = AccordionBase.ItemContent;
 
-export {
-  Accordion,
-  AccordionItem,
-  AccordionItemTrigger,
-  AccordionItemContent,
-  AccordionBase,
-};
+export { Accordion, AccordionItem, AccordionItemTrigger, AccordionItemContent, AccordionBase };
 
 export { accordionVariants, type AccordionVariants } from "@ui/core";

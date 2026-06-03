@@ -76,4 +76,17 @@ const Marker: Component<ArkSlider.MarkerProps> = (props) => {
   );
 };
 
-export const Slider = { Root, RootProvider, Label, ValueText, Control, Track, Range, Thumb, HiddenInput, DraggingIndicator, MarkerGroup, Marker };
+export const Slider = {
+  Root,
+  RootProvider,
+  Label,
+  ValueText,
+  Control,
+  Track,
+  Range,
+  Thumb,
+  HiddenInput,
+  DraggingIndicator,
+  MarkerGroup,
+  Marker,
+};

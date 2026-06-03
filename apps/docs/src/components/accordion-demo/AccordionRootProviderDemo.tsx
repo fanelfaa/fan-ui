@@ -17,10 +17,7 @@ export default function AccordionRootProviderDemo() {
 
       <AccordionBase.RootProvider value={accordion}>
         <AccordionItem value="item-1">
-          <AccordionItemTrigger>
-            What is this demo showing?
-
-          </AccordionItemTrigger>
+          <AccordionItemTrigger>What is this demo showing?</AccordionItemTrigger>
           <AccordionItemContent>
             <div class="pb-4 text-sm text-foreground">
               The accordion state is managed externally via <code>useAccordion</code>. The{" "}
@@ -30,10 +27,7 @@ export default function AccordionRootProviderDemo() {
           </AccordionItemContent>
         </AccordionItem>
         <AccordionItem value="item-2">
-          <AccordionItemTrigger>
-            Why use RootProvider?
-
-          </AccordionItemTrigger>
+          <AccordionItemTrigger>Why use RootProvider?</AccordionItemTrigger>
           <AccordionItemContent>
             <div class="pb-4 text-sm text-foreground">
               It gives you access to the accordion context anywhere — not just inside children of

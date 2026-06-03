@@ -41,7 +41,9 @@ export const CarouselNextTrigger: Component<ArkCarousel.NextTriggerProps> = (pro
 
 export const CarouselIndicatorGroup: Component<ArkCarousel.IndicatorGroupProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkCarousel.IndicatorGroup class={styles.indicatorGroup({ class: local.class })} {...others} />;
+  return (
+    <ArkCarousel.IndicatorGroup class={styles.indicatorGroup({ class: local.class })} {...others} />
+  );
 };
 
 export const CarouselIndicator: Component<ArkCarousel.IndicatorProps> = (props) => {
@@ -51,10 +53,17 @@ export const CarouselIndicator: Component<ArkCarousel.IndicatorProps> = (props) 
 
 export const CarouselAutoplayTrigger: Component<ArkCarousel.AutoplayTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkCarousel.AutoplayTrigger class={styles.autoplayTrigger({ class: local.class })} {...others} />;
+  return (
+    <ArkCarousel.AutoplayTrigger
+      class={styles.autoplayTrigger({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 export const CarouselProgressText: Component<ArkCarousel.ProgressTextProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkCarousel.ProgressText class={styles.progressText({ class: local.class })} {...others} />;
+  return (
+    <ArkCarousel.ProgressText class={styles.progressText({ class: local.class })} {...others} />
+  );
 };

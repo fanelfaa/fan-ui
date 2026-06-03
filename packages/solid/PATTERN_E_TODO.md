@@ -6,35 +6,35 @@
 
 **Total Ark UI wrapper components**: 29
 
-| Status | Count |
-|--------|-------|
-| ✅ Done | 23 |
-| 🔜 Pending | 6 |
-| **Total** | **29** |
+| Status     | Count  |
+| ---------- | ------ |
+| ✅ Done    | 23     |
+| 🔜 Pending | 6      |
+| **Total**  | **29** |
 
 ---
 
 ## ✅ Already Pattern E (17)
 
-| # | Component | Notes |
-|---|-----------|-------|
-| 1 | segment-group | Reference |
-| 2 | radio-group | Reference |
-| 3 | dialog | Reference (stashed) |
-| 4 | popover | Reference (stashed) |
-| 5 | toggle-group | Pure namespace, simple |
-| 6 | toast | Pure namespace, simple |
-| 7 | tabs | Pure namespace |
-| 8 | combobox | Pure namespace |
-| 9 | select | Pure namespace, complex |
-| 10 | tooltip | Pure namespace |
-| 11 | accordion | Pattern A → E, composite ItemTrigger |
-| 12 | avatar | Pattern A → E, simple composites |
-| 13 | collapsible | Pattern A → E, composite Indicator |
-| 14 | pin-input | Pattern A → E, 5 parts |
-| 15 | progress | Pattern A → E, 7 parts |
-| 16 | slider | Pattern A → E, 11 parts |
-| 17 | toggle | Pattern A → E, 2 parts |
+| #   | Component     | Notes                                |
+| --- | ------------- | ------------------------------------ |
+| 1   | segment-group | Reference                            |
+| 2   | radio-group   | Reference                            |
+| 3   | dialog        | Reference (stashed)                  |
+| 4   | popover       | Reference (stashed)                  |
+| 5   | toggle-group  | Pure namespace, simple               |
+| 6   | toast         | Pure namespace, simple               |
+| 7   | tabs          | Pure namespace                       |
+| 8   | combobox      | Pure namespace                       |
+| 9   | select        | Pure namespace, complex              |
+| 10  | tooltip       | Pure namespace                       |
+| 11  | accordion     | Pattern A → E, composite ItemTrigger |
+| 12  | avatar        | Pattern A → E, simple composites     |
+| 13  | collapsible   | Pattern A → E, composite Indicator   |
+| 14  | pin-input     | Pattern A → E, 5 parts               |
+| 15  | progress      | Pattern A → E, 7 parts               |
+| 16  | slider        | Pattern A → E, 11 parts              |
+| 17  | toggle        | Pattern A → E, 2 parts               |
 
 ---
 
@@ -85,17 +85,17 @@ Large APIs, many composite sub-components, complex index logic.
 
 Simple HTML wrappers using `ark.*` factory — not Ark UI compound components.
 
-| Component | Reason |
-|-----------|--------|
-| alert | Single `ark.div`, no compound parts |
-| aspect-ratio | Single `ark.div`, no compound parts |
-| badge | Single `ark.span`, no compound parts |
-| button | Single `ark.button`, no compound parts |
-| card | Multiple `ark.*` but no Ark UI primitive |
-| separator | Single `ark.div`, no compound parts |
-| skeleton | Single `ark.div`, no compound parts |
-| spinner | Single `ark.span`, no compound parts |
-| typography | Multiple `ark.*` tags, not Ark UI compound |
+| Component    | Reason                                     |
+| ------------ | ------------------------------------------ |
+| alert        | Single `ark.div`, no compound parts        |
+| aspect-ratio | Single `ark.div`, no compound parts        |
+| badge        | Single `ark.span`, no compound parts       |
+| button       | Single `ark.button`, no compound parts     |
+| card         | Multiple `ark.*` but no Ark UI primitive   |
+| separator    | Single `ark.div`, no compound parts        |
+| skeleton     | Single `ark.div`, no compound parts        |
+| spinner      | Single `ark.span`, no compound parts       |
+| typography   | Multiple `ark.*` tags, not Ark UI compound |
 
 ---
 
@@ -116,6 +116,7 @@ import { SegmentGroup, SegmentGroupItem } from "@ui/solid";
 **How to satisfy this rule**: If the basic demo needs a part (e.g., Trigger, Header, Title, Description, Footer), `index.tsx` **must export a composite version** of that part — a named export that internally uses the base namespace. Never force the basic demo to reach for `ComponentBase.*`.
 
 **Example** — segment-group pattern:
+
 ```tsx
 // index.tsx — composite named exports for basic use
 const SegmentGroup: Component<...> = (props) => (
@@ -138,6 +139,7 @@ export { SegmentGroupBase }; // Only exported for advanced use (RootProvider)
 ```
 
 **When is `ComponentBase` allowed?**
+
 - Only in **RootProvider demos** (advanced usage)
 - Only for accessing base parts that don't have composite wrappers (rare)
 - Never in basic demo code blocks in docs
@@ -149,10 +151,12 @@ export { SegmentGroupBase }; // Only exported for advanced use (RootProvider)
 For each pending component, the refactoring involves:
 
 ### Phase A — Base file (`<component>.base.tsx`)
+
 - [ ] Change `export const PartA`, `export const PartB` → local `const PartA`, `const PartB`
 - [ ] Add single `export const ComponentName = { Root, PartA, PartB, ... }` at bottom
 
 ### Phase B — Index file (`index.tsx`)
+
 - [ ] Import namespace with alias: `import { X as XBase } from "./<component>.base"`
 - [ ] Remove `export * from "./<component>.base"`
 - [ ] Build composite component(s) using `XBase.Root`, `XBase.PartA`, etc.
@@ -161,11 +165,13 @@ For each pending component, the refactoring involves:
 - [ ] **Verify**: basic demo can be written without importing `XBase` or the `.base.tsx` file
 
 ### Phase C — Demos & Docs
+
 - [ ] Basic demo: import ONLY named composite exports from `index.tsx` barrel
 - [ ] RootProvider demo: `ComponentBase` IS allowed here (advanced use)
 - [ ] Update docs code blocks: basic examples show no `ComponentBase` import
 
 ### Phase D — Verify
+
 - [ ] Run `moon run docs:build` — must exit 0
 
 ---

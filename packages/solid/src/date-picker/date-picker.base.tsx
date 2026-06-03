@@ -39,7 +39,9 @@ export const DatePickerView: Component<ArkDatePicker.ViewProps> = (props) => {
 
 export const DatePickerViewControl: Component<ArkDatePicker.ViewControlProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkDatePicker.ViewControl class={styles.viewControl({ class: local.class })} {...others} />;
+  return (
+    <ArkDatePicker.ViewControl class={styles.viewControl({ class: local.class })} {...others} />
+  );
 };
 
 export const DatePickerRangeText: Component<ArkDatePicker.RangeTextProps> = (props) => {
@@ -59,7 +61,9 @@ export const DatePickerTableRow: Component<ArkDatePicker.TableRowProps> = (props
 
 export const DatePickerTableHeader: Component<ArkDatePicker.TableHeaderProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkDatePicker.TableHeader class={styles.tableHeader({ class: local.class })} {...others} />;
+  return (
+    <ArkDatePicker.TableHeader class={styles.tableHeader({ class: local.class })} {...others} />
+  );
 };
 
 export const DatePickerTableCell: Component<ArkDatePicker.TableCellProps> = (props) => {

@@ -18,9 +18,7 @@ const ScrollArea: Component<ScrollAreaProps> = (props) => {
   return (
     <ScrollAreaRoot {...others}>
       <ScrollAreaViewport>
-        <ScrollAreaContent>
-          {local.children}
-        </ScrollAreaContent>
+        <ScrollAreaContent>{local.children}</ScrollAreaContent>
       </ScrollAreaViewport>
       <ScrollAreaScrollbar orientation={local.orientation ?? "vertical"}>
         <ScrollAreaThumb />

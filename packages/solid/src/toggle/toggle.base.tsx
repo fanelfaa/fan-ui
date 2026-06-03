@@ -6,7 +6,9 @@ const styles = toggleVariants();
 
 const Root: Component<ArkToggle.RootProps & ToggleVariants> = (props) => {
   const [local, others] = splitProps(props, ["class", "size"]);
-  return <ArkToggle.Root class={styles.root({ class: local.class, size: local.size })} {...others} />;
+  return (
+    <ArkToggle.Root class={styles.root({ class: local.class, size: local.size })} {...others} />
+  );
 };
 
 const Indicator: Component<ArkToggle.IndicatorProps> = (props) => {

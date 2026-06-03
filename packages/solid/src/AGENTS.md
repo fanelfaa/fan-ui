@@ -10,12 +10,12 @@ Solid.js component library wrapping Ark UI primitives. Components follow a recip
 
 ## WHERE TO LOOK
 
-| Task                       | Location              | Notes                                              |
-| -------------------------- | --------------------- | -------------------------------------------------- |
-| Add new Solid.js component | src/<component>/      | Create directory with .base.tsx + index.tsx         |
-| Add recipe                 | ../core/src/recipes/  | Create \*.ts file with tv() slots and variants      |
-| Update component index     | index.ts              | Add `export * from "./<component>"`                 |
-| Update core index          | ../core/src/index.ts  | Export new recipe variants + types                  |
+| Task                       | Location             | Notes                                          |
+| -------------------------- | -------------------- | ---------------------------------------------- |
+| Add new Solid.js component | src/<component>/     | Create directory with .base.tsx + index.tsx    |
+| Add recipe                 | ../core/src/recipes/ | Create \*.ts file with tv() slots and variants |
+| Update component index     | index.ts             | Add `export * from "./<component>"`            |
+| Update core index          | ../core/src/index.ts | Export new recipe variants + types             |
 
 ## COMPONENT ARCHITECTURE
 
@@ -36,6 +36,7 @@ Use when the component just wraps the Ark UI Root and re-exports parts.
 **Example: pin-input, accordion, collapsible**
 
 `<component>.base.tsx`:
+
 ```tsx
 import { ComponentName as ArkComponentName } from "@ark-ui/solid/<package>";
 import { splitProps, type Component } from "solid-js";
@@ -50,6 +51,7 @@ export const ComponentPart: Component<ArkComponentName.PartProps> = (props) => {
 ```
 
 `index.tsx`:
+
 ```tsx
 import { ComponentRoot } from "./<component>.base";
 
@@ -69,6 +71,7 @@ Use when the component composes sub-parts into a fixed internal structure with i
 `<component>.base.tsx`: Same as Pattern A — wraps each Ark UI part individually.
 
 `index.tsx`:
+
 ```tsx
 import { ComponentName as ArkComponentName } from "@ark-ui/solid/<package>";
 import { splitProps, type Component } from "solid-js";
@@ -119,6 +122,7 @@ Use when component should work out-of-the-box without manual sub-part compositio
 **Example: scroll-area**
 
 `<component>.base.tsx`:
+
 ```tsx
 import { ComponentName as ArkComponentName } from "@ark-ui/solid/<package>";
 import { splitProps, type Component } from "solid-js";
@@ -141,6 +145,7 @@ export const ScrollAreaRoot: Component<ArkComponentName.RootProps> = (props) => 
 ```
 
 `index.tsx`:
+
 ```tsx
 import { splitProps, type Component } from "solid-js";
 import {
@@ -181,11 +186,15 @@ export { <component>Variants, type <component>Variants } from "@ui/core";
 ```
 
 Usage:
+
 ```tsx
-<ScrollArea class="h-[200px]" orientation="vertical">content</ScrollArea>
+<ScrollArea class="h-[200px]" orientation="vertical">
+  content
+</ScrollArea>
 ```
 
 For advanced use, import primitives:
+
 ```tsx
 import { ScrollAreaViewport, ScrollAreaScrollbar, ... } from "~/components/scroll-area";
 ```
@@ -197,6 +206,7 @@ Use when composite `index.tsx` should NOT expose raw base parts, keeping two cle
 **Example: segment-group**
 
 `<component>.base.tsx`:
+
 ```tsx
 import { ComponentName as ArkComponentName } from "@ark-ui/solid/<package>";
 import { createContext, useContext, splitProps, type Component } from "solid-js";
@@ -223,6 +233,7 @@ export { VariantContext, useVariant };
 ```
 
 `index.tsx`:
+
 ```tsx
 import { splitProps, type Component } from "solid-js";
 import { Component as ComponentBase } from "./<component>.base";
@@ -254,20 +265,22 @@ export { <component>Variants, type <component>Variants } from "@ui/core";
 
 **Key differences from Pattern A/B/C/D:**
 
-| Aspect | Patterns A-D | Pattern E |
-|--------|-------------|-----------|
-| Base exports | Individual named exports (`export const Part`) | Single namespace (`export { Component }`) |
-| Index re-exports | `export * from "./<component>.base"` | **NO** re-export from base |
-| Raw parts access | Via barrel: `~/components/<name>` | Only via base path: `~/components/<name>/<name>.base` |
-| Base namespace import | Not needed | Imported with alias: `import { Component as ComponentBase }` |
-| Context/hooks in barrel | Yes (via `export *`) | No — must import from base file directly |
+| Aspect                  | Patterns A-D                                   | Pattern E                                                    |
+| ----------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
+| Base exports            | Individual named exports (`export const Part`) | Single namespace (`export { Component }`)                    |
+| Index re-exports        | `export * from "./<component>.base"`           | **NO** re-export from base                                   |
+| Raw parts access        | Via barrel: `~/components/<name>`              | Only via base path: `~/components/<name>/<name>.base`        |
+| Base namespace import   | Not needed                                     | Imported with alias: `import { Component as ComponentBase }` |
+| Context/hooks in barrel | Yes (via `export *`)                           | No — must import from base file directly                     |
 
 **When to use Pattern E:**
+
 - Composite component has automatic parts wrapping (e.g., `SegmentGroupItem` auto-adds `ItemText`/`ItemControl`/`ItemHiddenInput`)
 - Exposing raw base parts through the barrel would be confusing (users might mix composite and raw parts)
 - The component has context providers that should stay internal to base
 
 **When NOT to use Pattern E:**
+
 - Component is a simple re-export (use Pattern A)
 - All users need is the composite component (use Pattern A)
 - Raw parts are commonly used alongside composite (use Pattern B/CD and keep `export *`)
@@ -287,7 +300,7 @@ apps/docs/
 
 ### MDX Page Layout
 
-```mdx
+````mdx
 ---
 title: ComponentName
 description: ...
@@ -315,6 +328,7 @@ Brief description.
 ```bash
 npx solidui-cli@latest add <name>
 ```
+````
 
 ### Manual
 
@@ -331,7 +345,8 @@ Link to Manual section for primitive parts.
 ## API Reference
 
 See the [Ark UI Name](https://ark-ui.com/docs/components/<name>) documentation.
-```
+
+````
 
 ### Imports Convention
 
@@ -379,7 +394,8 @@ See the [Ark UI Name](https://ark-ui.com/docs/components/<name>) documentation.
 When a component is refactored from flat file to directory, `packages/solid/src/index.ts` already has:
 ```ts
 export * from "./<component>";
-```
+````
+
 This resolves to `./<component>/index.tsx` automatically. No index.ts change needed.
 
 ## VARIANT HANDLING
@@ -391,15 +407,18 @@ When a recipe defines tv() variant overrides (e.g., `variants: { error: { true: 
 3. The composite component computes the variant value from its props and passes it down
 
 **Example** (input with error variant):
+
 ```tsx
 // base.tsx
 export const InputField: Component<ArkField.InputProps & { error?: boolean }> = (props) => {
   const [local, others] = splitProps(props, ["class", "error"]);
-  return <ArkField.Input class={styles.input({ class: local.class, error: local.error })} {...others} />;
+  return (
+    <ArkField.Input class={styles.input({ class: local.class, error: local.error })} {...others} />
+  );
 };
 
 // index.tsx
-<InputField error={!!local.error} {...others} />
+<InputField error={!!local.error} {...others} />;
 ```
 
 ## NOTES

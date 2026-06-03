@@ -38,7 +38,9 @@ export const MenuSeparator: Component<ArkMenu.SeparatorProps> = (props) => {
 
 export const MenuContextTrigger: Component<ArkMenu.ContextTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkMenu.ContextTrigger class={styles.contextTrigger({ class: local.class })} {...others} />;
+  return (
+    <ArkMenu.ContextTrigger class={styles.contextTrigger({ class: local.class })} {...others} />
+  );
 };
 
 export const MenuTriggerItem: Component<ArkMenu.TriggerItemProps> = (props) => {
@@ -83,5 +85,7 @@ export const MenuItemGroup: Component<ArkMenu.ItemGroupProps> = (props) => {
 
 export const MenuItemGroupLabel: Component<ArkMenu.ItemGroupLabelProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkMenu.ItemGroupLabel class={styles.itemGroupLabel({ class: local.class })} {...others} />;
+  return (
+    <ArkMenu.ItemGroupLabel class={styles.itemGroupLabel({ class: local.class })} {...others} />
+  );
 };

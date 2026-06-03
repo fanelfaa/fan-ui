@@ -1,9 +1,4 @@
-import {
-  Progress,
-  ProgressLabel,
-  ProgressTrack,
-  ProgressValueText,
-} from "@ui/solid";
+import { Progress, ProgressLabel, ProgressTrack, ProgressValueText } from "@ui/solid";
 
 export default function ProgressBasicDemo() {
   return (
