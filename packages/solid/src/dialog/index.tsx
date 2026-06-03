@@ -1,22 +1,17 @@
 import { Dialog as ArkDialog } from "@ark-ui/solid/dialog";
 import { Portal } from "solid-js/web";
 import { splitProps, type Component } from "solid-js";
-import {
-  DialogBackdrop,
-  DialogPositioner,
-  DialogCloseTrigger,
-  DialogContent as BaseDialogContent,
-} from "./dialog.base";
+import { Dialog as DialogBase } from "./dialog.base";
 
 const DialogContent: Component<ArkDialog.ContentProps> = (props) => {
   const [local, others] = splitProps(props, ["class", "children"]);
   return (
     <Portal>
-      <DialogBackdrop />
-      <DialogPositioner>
-        <BaseDialogContent class={local.class} {...others}>
+      <DialogBase.Backdrop />
+      <DialogBase.Positioner>
+        <DialogBase.Content class={local.class} {...others}>
           {local.children}
-          <DialogCloseTrigger>
+          <DialogBase.CloseTrigger>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -30,15 +25,20 @@ const DialogContent: Component<ArkDialog.ContentProps> = (props) => {
               <path d="M18 6L6 18" />
               <path d="M6 6l12 12" />
             </svg>
-          </DialogCloseTrigger>
-        </BaseDialogContent>
-      </DialogPositioner>
+          </DialogBase.CloseTrigger>
+        </DialogBase.Content>
+      </DialogBase.Positioner>
     </Portal>
   );
 };
 
-export { DialogContent };
+const Dialog = DialogBase.Root;
+const DialogTrigger = DialogBase.Trigger;
+const DialogHeader = DialogBase.Header;
+const DialogTitle = DialogBase.Title;
+const DialogDescription = DialogBase.Description;
+const DialogFooter = DialogBase.Footer;
 
-export * from "./dialog.base";
+export { Dialog, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogContent, DialogBase };
 
 export { dialogVariants, type DialogVariants } from "@ui/core";

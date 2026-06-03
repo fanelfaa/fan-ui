@@ -1,13 +1,5 @@
 import { useDialog } from "@ark-ui/solid/dialog";
-import {
-  DialogRootProvider,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-} from "@ui/solid";
+import { DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogBase } from "@ui/solid";
 import { Button } from "@ui/solid";
 
 export default function DialogRootProviderDemo() {
@@ -25,7 +17,7 @@ export default function DialogRootProviderDemo() {
         </Button>
       </div>
 
-      <DialogRootProvider value={dialog}>
+      <DialogBase.RootProvider value={dialog}>
         <DialogTrigger asChild={(props) => <Button {...props()} />}>Open Dialog</DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -42,7 +34,7 @@ export default function DialogRootProviderDemo() {
             <Button onClick={() => dialog().setOpen(false)}>Confirm</Button>
           </DialogFooter>
         </DialogContent>
-      </DialogRootProvider>
+      </DialogBase.RootProvider>
     </div>
   );
 }

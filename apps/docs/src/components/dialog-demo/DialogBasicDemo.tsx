@@ -1,22 +1,11 @@
 import { DialogCloseTrigger } from "@ark-ui/solid";
-import {
-  DialogRoot,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-  Input,
-  RadioGroupBase,
-  Separator,
-} from "@ui/solid";
-import { Button } from "@ui/solid";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@ui/solid";
+import { Button, Input, RadioGroup, RadioGroupItem, RadioGroupBase, Separator } from "@ui/solid";
 
 export default function DialogBasicDemo() {
   return (
     <div class="rounded-lg border border-border p-6">
-      <DialogRoot>
+      <Dialog>
         <DialogTrigger asChild={(props) => <Button {...props()} />}>Edit Profile</DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -37,21 +26,14 @@ export default function DialogBasicDemo() {
               placeholder="your@email.com"
               description="We'll never share your email."
             />
-            <RadioGroupBase.Root class="flex flex-col gap-2">
+            <RadioGroup>
               <RadioGroupBase.Label class="text-sm font-medium">Notification preferences</RadioGroupBase.Label>
-              <RadioGroupBase.Item value="all">
-                <RadioGroupBase.ItemControl />
-                <RadioGroupBase.ItemText>All notifications</RadioGroupBase.ItemText>
-              </RadioGroupBase.Item>
-              <RadioGroupBase.Item value="mentions">
-                <RadioGroupBase.ItemControl />
-                <RadioGroupBase.ItemText>Mentions only</RadioGroupBase.ItemText>
-              </RadioGroupBase.Item>
-              <RadioGroupBase.Item value="none">
-                <RadioGroupBase.ItemControl />
-                <RadioGroupBase.ItemText>No notifications</RadioGroupBase.ItemText>
-              </RadioGroupBase.Item>
-            </RadioGroupBase.Root>
+              <div class="flex flex-row gap-6">
+                <RadioGroupItem value="all">All notifications</RadioGroupItem>
+                <RadioGroupItem value="mentions">Mentions only</RadioGroupItem>
+                <RadioGroupItem value="none">No notifications</RadioGroupItem>
+              </div>
+            </RadioGroup>
           </div>
           <Separator />
           <DialogFooter>
@@ -61,7 +43,7 @@ export default function DialogBasicDemo() {
             <Button>Save Changes</Button>
           </DialogFooter>
         </DialogContent>
-      </DialogRoot>
+      </Dialog>
     </div>
   );
 }

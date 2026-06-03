@@ -20,27 +20,22 @@ A modal dialog that overlays the page content, typically used for important acti
 ```tsx
 import {
   Dialog,
-  DialogRootProvider,
   DialogTrigger,
   DialogContent,
   DialogHeader,
-  DialogFooter,
   DialogTitle,
   DialogDescription,
-  Input,
-  RadioGroup,
-  RadioGroupLabel,
-  RadioGroupItem,
-  RadioGroupItemControl,
-  RadioGroupItemText,
-  Separator,
+  DialogFooter,
 } from "~/components/dialog";
 import { Button } from "~/components/button";
+import { Input } from "~/components/input";
+import { RadioGroup, RadioGroupItem, RadioGroupBase } from "~/components/radio-group";
+import { Separator } from "~/components/separator";
 
 export function DialogDemo() {
   return (
     <Dialog>
-      <DialogTrigger as={(props) => <Button {...props()} />}>Edit Profile</DialogTrigger>
+      <DialogTrigger asChild={(props) => <Button {...props()} />}>Edit Profile</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit Profile</DialogTitle>
@@ -49,38 +44,20 @@ export function DialogDemo() {
           </DialogDescription>
         </DialogHeader>
         <div class="flex flex-col gap-4 py-4">
-          <Input
-            label="Name"
-            placeholder="Your name"
-            description="This will be displayed on your profile."
-          />
-          <Input
-            label="Email"
-            type="email"
-            placeholder="your@email.com"
-            description="We'll never share your email."
-          />
-          <RadioGroup class="flex flex-col gap-2">
-            <RadioGroupLabel class="text-sm font-medium">Notification preferences</RadioGroupLabel>
-            <RadioGroupItem value="all">
-              <RadioGroupItemControl />
-              <RadioGroupItemText>All notifications</RadioGroupItemText>
-            </RadioGroupItem>
-            <RadioGroupItem value="mentions">
-              <RadioGroupItemControl />
-              <RadioGroupItemText>Mentions only</RadioGroupItemText>
-            </RadioGroupItem>
-            <RadioGroupItem value="none">
-              <RadioGroupItemControl />
-              <RadioGroupItemText>No notifications</RadioGroupItemText>
-            </RadioGroupItem>
+          <Input label="Name" placeholder="Your name" />
+          <Input label="Email" type="email" placeholder="your@email.com" />
+          <RadioGroup>
+            <RadioGroupBase.Label class="text-sm font-medium">Notification preferences</RadioGroupBase.Label>
+            <div class="flex flex-row gap-6">
+              <RadioGroupItem value="all">All notifications</RadioGroupItem>
+              <RadioGroupItem value="mentions">Mentions only</RadioGroupItem>
+              <RadioGroupItem value="none">No notifications</RadioGroupItem>
+            </div>
           </RadioGroup>
         </div>
         <Separator />
         <DialogFooter>
-          <DialogCloseTrigger asChild={(props) => <Button variant="outline" {...props()} />}>
-            Cancel
-          </DialogCloseTrigger>
+          <Button variant="outline">Cancel</Button>
           <Button>Save Changes</Button>
         </DialogFooter>
       </DialogContent>
@@ -143,48 +120,62 @@ import { HTMLProps } from '@ark-ui/solid'
 
 const styles = dialogVariants()
 
-export const DialogRoot = ArkDialog.Root
-export const DialogRootProvider = ArkDialog.RootProvider
-export const DialogTrigger = ArkDialog.Trigger
+const Root = ArkDialog.Root
+const RootProvider = ArkDialog.RootProvider
+const Trigger = ArkDialog.Trigger
 
-export const DialogBackdrop: Component<ArkDialog.BackdropProps> = (props) => {
+const Backdrop: Component<ArkDialog.BackdropProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
   return <ArkDialog.Backdrop class={styles.backdrop({ class: local.class })} {...others} />
 }
 
-export const DialogPositioner: Component<ArkDialog.PositionerProps> = (props) => {
+const Positioner: Component<ArkDialog.PositionerProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
   return <ArkDialog.Positioner class={styles.positioner({ class: local.class })} {...others} />
 }
 
-export const DialogContent: Component<ArkDialog.ContentProps> = (props) => {
+const Content: Component<ArkDialog.ContentProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
   return <ArkDialog.Content class={styles.content({ class: local.class })} {...others} />
 }
 
-export const DialogCloseTrigger: Component<ArkDialog.CloseTriggerProps> = (props) => {
+const CloseTrigger: Component<ArkDialog.CloseTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
   return <ArkDialog.CloseTrigger class={styles.closeTrigger({ class: local.class })} {...others} />
 }
 
-export const DialogTitle: Component<ArkDialog.TitleProps> = (props) => {
+const Title: Component<ArkDialog.TitleProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
   return <ArkDialog.Title class={styles.title({ class: local.class })} {...others} />
 }
 
-export const DialogDescription: Component<ArkDialog.DescriptionProps> = (props) => {
+const Description: Component<ArkDialog.DescriptionProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])
   return <ArkDialog.Description class={styles.description({ class: local.class })} {...others} />
 }
 
-export const DialogHeader: Component<HTMLProps<'div'>> = (props) => {
+const Header: Component<HTMLProps<'div'>> = (props) => {
   const [local, others] = splitProps(props, ['class'])
   return <div class={styles.header({ class: local.class })} {...others} />
 }
 
-export const DialogFooter: Component<HTMLProps<'div'>> = (props) => {
+const Footer: Component<HTMLProps<'div'>> = (props) => {
   const [local, others] = splitProps(props, ['class'])
   return <div class={styles.footer({ class: local.class })} {...others} />
+}
+
+export const Dialog = {
+  Root,
+  RootProvider,
+  Trigger,
+  Backdrop,
+  Positioner,
+  Content,
+  CloseTrigger,
+  Title,
+  Description,
+  Header,
+  Footer,
 }
 ```
 
@@ -193,34 +184,33 @@ At `src/components/dialog/index.tsx`:
 import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
 import { Portal } from 'solid-js/web'
 import { splitProps, type Component } from 'solid-js'
-import {
-  DialogBackdrop,
-  DialogPositioner,
-  DialogCloseTrigger,
-  DialogContent as BaseDialogContent,
-} from './dialog.base'
+import { Dialog as DialogBase } from './dialog.base'
 
 const DialogContent: Component<ArkDialog.ContentProps> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children'])
   return (
     <Portal>
-      <DialogBackdrop />
-      <DialogPositioner>
-        <BaseDialogContent class={local.class} {...others}>
+      <DialogBase.Backdrop />
+      <DialogBase.Positioner>
+        <DialogBase.Content class={local.class} {...others}>
           {local.children}
-          <DialogCloseTrigger>
+          <DialogBase.CloseTrigger>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-4"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
-          </DialogCloseTrigger>
-        </BaseDialogContent>
-      </DialogPositioner>
+          </DialogBase.CloseTrigger>
+        </DialogBase.Content>
+      </DialogBase.Positioner>
     </Portal>
   )
 }
 
-export { DialogContent }
+const Dialog = DialogBase.Root
+const DialogTrigger = DialogBase.Trigger
+const DialogHeader = DialogBase.Header
+const DialogTitle = DialogBase.Title
+const DialogDescription = DialogBase.Description
+const DialogFooter = DialogBase.Footer
 
-export * from './dialog.base'
-
+export { Dialog, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogContent, DialogBase }
 export { dialogVariants, type DialogVariants } from './recipes/dialog'
 ```
 </div>
@@ -233,13 +223,12 @@ Import the components:
 ```tsx
 import {
   Dialog,
-  DialogRootProvider,
   DialogTrigger,
   DialogContent,
   DialogHeader,
-  DialogFooter,
   DialogTitle,
   DialogDescription,
+  DialogFooter,
 } from "~/components/dialog";
 ```
 
@@ -247,7 +236,7 @@ Basic usage:
 
 ```tsx
 <Dialog>
-  <DialogTrigger as={(props) => <Button {...props()} />}>Open Dialog</DialogTrigger>
+  <DialogTrigger asChild={(props) => <Button {...props()} />}>Open Dialog</DialogTrigger>
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Title</DialogTitle>
@@ -263,7 +252,7 @@ Add header and footer sections for structured dialog content.
 
 ```tsx
 <Dialog>
-  <DialogTrigger as={(props) => <Button {...props()} />}>Open</DialogTrigger>
+  <DialogTrigger asChild={(props) => <Button {...props()} />}>Open</DialogTrigger>
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Confirm Action</DialogTitle>
@@ -304,21 +293,13 @@ export function ControlledDialog() {
 
 ## Root Provider
 
-Use `DialogRootProvider` when you need to access the dialog state outside of the component tree. This pattern uses the `useDialog` hook from Ark UI to create a shared context that both the component and external elements can reference.
+Use `DialogBase.RootProvider` when you need to access the dialog state outside of the component tree. This pattern uses the `useDialog` hook from Ark UI to create a shared context that both the component and external elements can reference.
 
 <DialogRootProviderDemo client:load />
 
 ```tsx
 import { useDialog } from "@ark-ui/solid/dialog";
-import {
-  DialogRootProvider,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-} from "~/components/dialog";
+import { DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogBase } from "~/components/dialog";
 import { Button } from "~/components/button";
 
 export function ExternalControlExample() {
@@ -330,7 +311,7 @@ export function ExternalControlExample() {
 
       <Button onClick={() => dialog().setOpen(true)}>Open Dialog</Button>
 
-      <DialogRootProvider value={dialog}>
+      <DialogBase.RootProvider value={dialog}>
         <DialogTrigger asChild={(props) => <Button {...props()} style="display:none" />}>
           Hidden Trigger
         </DialogTrigger>
@@ -346,7 +327,7 @@ export function ExternalControlExample() {
             <Button onClick={() => dialog().setOpen(false)}>Confirm</Button>
           </DialogFooter>
         </DialogContent>
-      </DialogRootProvider>
+      </DialogBase.RootProvider>
     </div>
   );
 }
@@ -354,8 +335,8 @@ export function ExternalControlExample() {
 
 The key difference:
 
-- **`Dialog` (Root)** — manages its own state internally. Use for simple, self-contained usage.
-- **`DialogRootProvider`** — accepts a pre-created context via `useDialog`. Use when you need to read or control the dialog state from outside the component tree.
+- **`Dialog`** — manages its own state internally. Use for simple, self-contained usage.
+- **`DialogBase.RootProvider`** — accepts a pre-created context via `useDialog`. Use when you need to read or control the dialog state from outside the component tree.
 
 ## API Reference
 
