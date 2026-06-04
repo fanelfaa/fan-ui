@@ -138,9 +138,15 @@ const NestedMenuContent: Component<ArkMenu.ContentProps> = (props) => {
   );
 };
 
-
-
-
 export { Menu };
-export { MenuTrigger, MenuContent, MenuItemIndicator, MenuItem, MenuTriggerItem, MenuSeparator, NestedMenuContent, MenuBase };
+export {
+  MenuTrigger,
+  MenuContent,
+  MenuItemIndicator,
+  MenuItem,
+  MenuTriggerItem,
+  MenuSeparator,
+  NestedMenuContent,
+  MenuBase,
+};
 export { menuVariants, type MenuVariants } from "@ui/core";

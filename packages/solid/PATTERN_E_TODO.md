@@ -6,9 +6,10 @@
 
 **Total Ark UI wrapper components**: 29
 
-| Status     | Count  |
- | ✅ Done    | 27     |
- | 🔜 Pending | 2      |
+| Status | Count |
+| ✅ Done | 27 |
+| 🔜 Pending | 2 |
+
 ---
 
 ## ✅ Already Pattern E (17)

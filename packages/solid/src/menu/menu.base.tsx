@@ -90,7 +90,6 @@ const ItemGroupLabel: Component<ArkMenu.ItemGroupLabelProps> = (props) => {
   );
 };
 
-
 export const Menu = {
   Root,
   RootProvider,

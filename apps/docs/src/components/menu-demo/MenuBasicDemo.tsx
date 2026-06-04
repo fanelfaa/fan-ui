@@ -14,9 +14,7 @@ export default function MenuBasicDemo() {
         <MenuTrigger>Actions</MenuTrigger>
         <MenuContent>
           <For each={menuItems}>
-            {(item) => (
-              <MenuItem value={item.value}>{item.label}</MenuItem>
-            )}
+            {(item) => <MenuItem value={item.value}>{item.label}</MenuItem>}
           </For>
         </MenuContent>
       </Menu>

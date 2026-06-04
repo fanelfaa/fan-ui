@@ -1,4 +1,12 @@
-import { MenuTrigger, MenuContent, MenuTriggerItem, MenuItem, MenuSeparator, NestedMenuContent, Menu } from "@ui/solid";
+import {
+  MenuTrigger,
+  MenuContent,
+  MenuTriggerItem,
+  MenuItem,
+  MenuSeparator,
+  NestedMenuContent,
+  Menu,
+} from "@ui/solid";
 
 export default function MenuNestedDemo() {
   return (

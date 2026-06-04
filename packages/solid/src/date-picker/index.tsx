@@ -1,10 +1,4 @@
-import {
-  children,
-  Show,
-  splitProps,
-  type Component,
-  type JSX,
-} from "solid-js";
+import { children, Show, splitProps, type Component, type JSX } from "solid-js";
 import { DatePicker as ArkDatePicker } from "@ark-ui/solid/date-picker";
 import type { UseDatePickerContext } from "@ark-ui/solid/date-picker";
 import type { DateValue } from "@internationalized/date";
@@ -91,32 +85,22 @@ const DatePicker: Component<DatePickerProps> = (props) => {
                 {(ctx: UseDatePickerContext) => (
                   <>
                     <DatePickerBase.ViewControl>
-                      <DatePickerBase.PrevTrigger
-                        class={buttonVariants({ variant: "outline" })}
-                      >
+                      <DatePickerBase.PrevTrigger class={buttonVariants({ variant: "outline" })}>
                         <ChevronLeftIcon />
                       </DatePickerBase.PrevTrigger>
-                      <DatePickerBase.ViewTrigger
-                        class={buttonVariants({ variant: "ghost" })}
-                      >
+                      <DatePickerBase.ViewTrigger class={buttonVariants({ variant: "ghost" })}>
                         <DatePickerBase.RangeText />
                       </DatePickerBase.ViewTrigger>
-                      <DatePickerBase.NextTrigger
-                        class={buttonVariants({ variant: "outline" })}
-                      >
+                      <DatePickerBase.NextTrigger class={buttonVariants({ variant: "outline" })}>
                         <ChevronRightIcon />
                       </DatePickerBase.NextTrigger>
                     </DatePickerBase.ViewControl>
                     <DatePickerBase.Table>
                       <DatePickerBase.TableHead>
                         <DatePickerBase.TableRow>
-                          {ctx().weekDays.map(
-                            (weekDay: { short: string }) => (
-                              <DatePickerBase.TableHeader>
-                                {weekDay.short}
-                              </DatePickerBase.TableHeader>
-                            ),
-                          )}
+                          {ctx().weekDays.map((weekDay: { short: string }) => (
+                            <DatePickerBase.TableHeader>{weekDay.short}</DatePickerBase.TableHeader>
+                          ))}
                         </DatePickerBase.TableRow>
                       </DatePickerBase.TableHead>
                       <DatePickerBase.TableBody>
@@ -148,19 +132,13 @@ const DatePicker: Component<DatePickerProps> = (props) => {
                 {(ctx: UseDatePickerContext) => (
                   <>
                     <DatePickerBase.ViewControl>
-                      <DatePickerBase.PrevTrigger
-                        class={buttonVariants({ variant: "outline" })}
-                      >
+                      <DatePickerBase.PrevTrigger class={buttonVariants({ variant: "outline" })}>
                         <ChevronLeftIcon />
                       </DatePickerBase.PrevTrigger>
-                      <DatePickerBase.ViewTrigger
-                        class={buttonVariants({ variant: "ghost" })}
-                      >
+                      <DatePickerBase.ViewTrigger class={buttonVariants({ variant: "ghost" })}>
                         <DatePickerBase.RangeText />
                       </DatePickerBase.ViewTrigger>
-                      <DatePickerBase.NextTrigger
-                        class={buttonVariants({ variant: "outline" })}
-                      >
+                      <DatePickerBase.NextTrigger class={buttonVariants({ variant: "outline" })}>
                         <ChevronRightIcon />
                       </DatePickerBase.NextTrigger>
                     </DatePickerBase.ViewControl>
@@ -168,27 +146,21 @@ const DatePicker: Component<DatePickerProps> = (props) => {
                       <DatePickerBase.TableBody>
                         {ctx()
                           .getMonthsGrid({ columns: 4, format: "short" })
-                          .map(
-                            (
-                              months: { value: number; label: string }[],
-                            ) => (
-                              <DatePickerBase.TableRow>
-                                {months.map((month) => (
-                                  <DatePickerBase.TableCell
-                                    value={month.value}
+                          .map((months: { value: number; label: string }[]) => (
+                            <DatePickerBase.TableRow>
+                              {months.map((month) => (
+                                <DatePickerBase.TableCell value={month.value}>
+                                  <DatePickerBase.TableCellTrigger
+                                    class={buttonVariants({
+                                      variant: "ghost",
+                                    })}
                                   >
-                                    <DatePickerBase.TableCellTrigger
-                                      class={buttonVariants({
-                                        variant: "ghost",
-                                      })}
-                                    >
-                                      {month.label}
-                                    </DatePickerBase.TableCellTrigger>
-                                  </DatePickerBase.TableCell>
-                                ))}
-                              </DatePickerBase.TableRow>
-                            ),
-                          )}
+                                    {month.label}
+                                  </DatePickerBase.TableCellTrigger>
+                                </DatePickerBase.TableCell>
+                              ))}
+                            </DatePickerBase.TableRow>
+                          ))}
                       </DatePickerBase.TableBody>
                     </DatePickerBase.Table>
                   </>
@@ -202,19 +174,13 @@ const DatePicker: Component<DatePickerProps> = (props) => {
                 {(ctx: UseDatePickerContext) => (
                   <>
                     <DatePickerBase.ViewControl>
-                      <DatePickerBase.PrevTrigger
-                        class={buttonVariants({ variant: "outline" })}
-                      >
+                      <DatePickerBase.PrevTrigger class={buttonVariants({ variant: "outline" })}>
                         <ChevronLeftIcon />
                       </DatePickerBase.PrevTrigger>
-                      <DatePickerBase.ViewTrigger
-                        class={buttonVariants({ variant: "ghost" })}
-                      >
+                      <DatePickerBase.ViewTrigger class={buttonVariants({ variant: "ghost" })}>
                         <DatePickerBase.RangeText />
                       </DatePickerBase.ViewTrigger>
-                      <DatePickerBase.NextTrigger
-                        class={buttonVariants({ variant: "outline" })}
-                      >
+                      <DatePickerBase.NextTrigger class={buttonVariants({ variant: "outline" })}>
                         <ChevronRightIcon />
                       </DatePickerBase.NextTrigger>
                     </DatePickerBase.ViewControl>
@@ -222,27 +188,21 @@ const DatePicker: Component<DatePickerProps> = (props) => {
                       <DatePickerBase.TableBody>
                         {ctx()
                           .getYearsGrid({ columns: 4 })
-                          .map(
-                            (
-                              years: { value: number; label: string }[],
-                            ) => (
-                              <DatePickerBase.TableRow>
-                                {years.map((year) => (
-                                  <DatePickerBase.TableCell
-                                    value={year.value}
+                          .map((years: { value: number; label: string }[]) => (
+                            <DatePickerBase.TableRow>
+                              {years.map((year) => (
+                                <DatePickerBase.TableCell value={year.value}>
+                                  <DatePickerBase.TableCellTrigger
+                                    class={buttonVariants({
+                                      variant: "ghost",
+                                    })}
                                   >
-                                    <DatePickerBase.TableCellTrigger
-                                      class={buttonVariants({
-                                        variant: "ghost",
-                                      })}
-                                    >
-                                      {year.label}
-                                    </DatePickerBase.TableCellTrigger>
-                                  </DatePickerBase.TableCell>
-                                ))}
-                              </DatePickerBase.TableRow>
-                            ),
-                          )}
+                                    {year.label}
+                                  </DatePickerBase.TableCellTrigger>
+                                </DatePickerBase.TableCell>
+                              ))}
+                            </DatePickerBase.TableRow>
+                          ))}
                       </DatePickerBase.TableBody>
                     </DatePickerBase.Table>
                   </>
@@ -294,16 +254,12 @@ const DatePickerTrigger: Component<ArkDatePicker.TriggerProps> = (props) => {
   );
 };
 
-const DatePickerClearTrigger: Component<ArkDatePicker.ClearTriggerProps> = (
-  props,
-) => {
+const DatePickerClearTrigger: Component<ArkDatePicker.ClearTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <DatePickerBase.ClearTrigger class={local.class} {...others} />;
 };
 
-const DatePickerPrevTrigger: Component<ArkDatePicker.PrevTriggerProps> = (
-  props,
-) => {
+const DatePickerPrevTrigger: Component<ArkDatePicker.PrevTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class", "children"]);
 
   const resolvedChildren = children(() => local.children);
@@ -324,9 +280,7 @@ const DatePickerPrevTrigger: Component<ArkDatePicker.PrevTriggerProps> = (
   );
 };
 
-const DatePickerNextTrigger: Component<ArkDatePicker.NextTriggerProps> = (
-  props,
-) => {
+const DatePickerNextTrigger: Component<ArkDatePicker.NextTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class", "children"]);
 
   const resolvedChildren = children(() => local.children);
@@ -347,9 +301,7 @@ const DatePickerNextTrigger: Component<ArkDatePicker.NextTriggerProps> = (
   );
 };
 
-const DatePickerViewTrigger: Component<ArkDatePicker.ViewTriggerProps> = (
-  props,
-) => {
+const DatePickerViewTrigger: Component<ArkDatePicker.ViewTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
     <DatePickerBase.ViewTrigger
@@ -359,9 +311,7 @@ const DatePickerViewTrigger: Component<ArkDatePicker.ViewTriggerProps> = (
   );
 };
 
-const DatePickerTableCellTrigger: Component<ArkDatePicker.TableCellTriggerProps> = (
-  props,
-) => {
+const DatePickerTableCellTrigger: Component<ArkDatePicker.TableCellTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
     <DatePickerBase.TableCellTrigger

@@ -55,9 +55,7 @@ export default function AlertDialogDeleteDemo() {
         {deleted() ? "Account Deleted" : "Delete Account"}
       </Button>
 
-      {deleted() && (
-        <p class="text-sm text-destructive">Account has been deleted. (Demo only)</p>
-      )}
+      {deleted() && <p class="text-sm text-destructive">Account has been deleted. (Demo only)</p>}
 
       <DeleteAlertDialog
         dialog={dialog}
