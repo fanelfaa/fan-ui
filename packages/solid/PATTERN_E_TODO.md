@@ -75,7 +75,7 @@ Components with Portal wrapping, many parts, or custom composite logic.
 Large APIs, many composite sub-components, complex index logic.
 
 - [ ] **menu** — Pattern A. 16 base parts + Portal + composite items.
-- [ ] **date-picker** — Pattern A. 15 base parts + calendar views.
+- [x] **date-picker** — Pattern E. 15 base parts + calendar views. Composite DatePicker and DatePickerControl.
 - [ ] **drawer** — Flat file. Needs directory creation + base.tsx + index.tsx. Portal + composite content.
 
 ---
