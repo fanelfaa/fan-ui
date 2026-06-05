@@ -1,10 +1,12 @@
-import { Show, splitProps, type Component, type JSX } from "solid-js";
+import { For, Show, splitProps, type Component, type JSX } from "solid-js";
 import { DatePicker as ArkDatePicker } from "@ark-ui/solid/date-picker";
 import type { UseDatePickerContext } from "@ark-ui/solid/date-picker";
 import type { DateValue } from "@internationalized/date";
 import { Portal } from "solid-js/web";
-import { buttonVariants } from "@ui/core";
+import { buttonVariants, datePickerVariants } from "@ui/core";
 import { DatePickerBase } from "./date-picker.base";
+
+const styles = datePickerVariants();
 
 // ── SVG Icon Components ──────────────────────────────────────
 
@@ -61,6 +63,24 @@ const ChevronRightIcon: Component<JSX.SvgSVGAttributes<SVGSVGElement>> = (props)
   >
     <path d="M9 6l6 6l-6 6" />
     <title>Next</title>
+  </svg>
+);
+
+const XIcon: Component<JSX.SvgSVGAttributes<SVGSVGElement>> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="size-3"
+    {...props}
+  >
+    <path d="M18 6l-12 12" />
+    <path d="M6 6l12 12" />
+    <title>Remove</title>
   </svg>
 );
 
@@ -157,6 +177,94 @@ const CalendarGridView: Component<{ view: "day" | "month" | "year" }> = (props) 
   </DatePickerBase.View>
 );
 
+// ── Internal: SingleControl ──────────────────────────────────
+
+const SingleControl: Component<{
+  placeholder?: string;
+  clearLabel?: string | JSX.Element;
+  error?: boolean;
+}> = (props) => (
+  <>
+    <DatePickerBase.Input placeholder={props.placeholder} error={props.error} />
+    <DatePickerBase.Trigger>
+      <CalendarIcon />
+    </DatePickerBase.Trigger>
+    <DatePickerBase.ClearTrigger>{props.clearLabel ?? "Clear"}</DatePickerBase.ClearTrigger>
+  </>
+);
+
+// ── Internal: RangeControl ───────────────────────────────────
+
+const RangeControl: Component<{
+  placeholder?: string;
+  clearLabel?: string | JSX.Element;
+  error?: boolean;
+}> = (props) => (
+  <>
+    <DatePickerBase.Input placeholder={props.placeholder} error={props.error} index={0} />
+    <span class="text-sm text-muted-foreground select-none">—</span>
+    <DatePickerBase.Input placeholder={props.placeholder} error={props.error} index={1} />
+    <DatePickerBase.Trigger>
+      <CalendarIcon />
+    </DatePickerBase.Trigger>
+    <DatePickerBase.ClearTrigger>{props.clearLabel ?? "Clear"}</DatePickerBase.ClearTrigger>
+  </>
+);
+
+// ── Internal: MultipleControl ────────────────────────────────
+
+const MultipleControl: Component<{
+  placeholder?: string;
+  clearLabel?: string | JSX.Element;
+  error?: boolean;
+}> = (props) => (
+  <DatePickerBase.Context>
+    {(ctx: UseDatePickerContext) => (
+      <>
+        <div class={styles.selectedValue()}>
+          <Show
+            when={ctx().value.length > 0}
+            fallback={
+              <span class={styles.selectedValuePlaceholder()}>
+                {props.placeholder || "Select dates..."}
+              </span>
+            }
+          >
+            <For each={ctx().value}>
+              {(date: DateValue, index) => {
+                const fmt = (d: DateValue) =>
+                  d.toDate("UTC").toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  });
+                return (
+                  <span class={styles.selectedValueTag()}>
+                    {fmt(date)}
+                    <button
+                      class={styles.selectedValueRemove()}
+                      onClick={() =>
+                        ctx().setValue(ctx().value.filter((_, i) => i !== index()))
+                      }
+                      aria-label={`Remove ${fmt(date)}`}
+                    >
+                      <XIcon />
+                    </button>
+                  </span>
+                );
+              }}
+            </For>
+          </Show>
+        </div>
+        <DatePickerBase.Trigger>
+          <CalendarIcon />
+        </DatePickerBase.Trigger>
+        <DatePickerBase.ClearTrigger>{props.clearLabel ?? "Clear"}</DatePickerBase.ClearTrigger>
+      </>
+    )}
+  </DatePickerBase.Context>
+);
+
 // ── Composite: DatePicker ────────────────────────────────────
 
 type DatePickerProps = ArkDatePicker.RootProps & {
@@ -175,17 +283,35 @@ const DatePicker: Component<DatePickerProps> = (props) => {
     "error",
   ]);
 
+  const selectionMode = () => props.selectionMode ?? "single";
+
   return (
     <DatePickerBase.Root class={local.class} {...others}>
       {local.label && (
         <DatePickerBase.Label error={local.error}>{local.label}</DatePickerBase.Label>
       )}
       <DatePickerBase.Control error={local.error}>
-        <DatePickerBase.Input placeholder={local.placeholder} error={local.error} />
-        <DatePickerBase.Trigger>
-          <CalendarIcon />
-        </DatePickerBase.Trigger>
-        <DatePickerBase.ClearTrigger>{local.clearLabel ?? "Clear"}</DatePickerBase.ClearTrigger>
+        <Show when={selectionMode() === "single" || selectionMode() === undefined}>
+          <SingleControl
+            placeholder={local.placeholder}
+            clearLabel={local.clearLabel}
+            error={local.error}
+          />
+        </Show>
+        <Show when={selectionMode() === "range"}>
+          <RangeControl
+            placeholder={local.placeholder}
+            clearLabel={local.clearLabel}
+            error={local.error}
+          />
+        </Show>
+        <Show when={selectionMode() === "multiple"}>
+          <MultipleControl
+            placeholder={local.placeholder}
+            clearLabel={local.clearLabel}
+            error={local.error}
+          />
+        </Show>
       </DatePickerBase.Control>
       <Portal>
         <DatePickerBase.Positioner>
