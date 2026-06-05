@@ -7,8 +7,8 @@
 **Total Ark UI wrapper components**: 29
 
 | Status | Count |
-| ✅ Done | 27 |
-| 🔜 Pending | 2 |
+| ✅ Done | 28 |
+| 🔜 Pending | 1 |
 
 ---
 
@@ -75,7 +75,7 @@ Large APIs, many composite sub-components, complex index logic.
 
 - [x] **menu** — Pattern A → E. 16 base parts + Portal + composite items.
 - [x] **date-picker** — Pattern E. 15 base parts + calendar views. Composite DatePicker and DatePickerControl.
-- [ ] **drawer** — Flat file. Needs directory creation + base.tsx + index.tsx. Portal + composite content.
+- [x] **drawer** — Pattern → E. Flat file → directory + base.tsx + index.tsx. Portal + composite content. Demo + docs.
 
 ---
 
