@@ -1,13 +1,8 @@
 import { Checkbox as ArkCheckbox } from "@ark-ui/solid/checkbox";
 import { splitProps, type Component } from "solid-js";
 import { Checkbox as CheckboxBase } from "./checkbox.base";
-import { checkboxVariants } from "@ui/core";
 
-const styles = checkboxVariants();
-
-const CheckboxLabel: Component<ArkCheckbox.LabelProps> = (props) => (
-  <CheckboxBase.Label class={styles.label({ class: props.class })} {...props} />
-);
+const CheckboxLabel = CheckboxBase.Label;
 
 const CheckboxControl = () => (
   <>
