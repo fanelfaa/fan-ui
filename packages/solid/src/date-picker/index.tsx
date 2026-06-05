@@ -243,9 +243,7 @@ const MultipleControl: Component<{
                     {fmt(date)}
                     <button
                       class={styles.selectedValueRemove()}
-                      onClick={() =>
-                        ctx().setValue(ctx().value.filter((_, i) => i !== index()))
-                      }
+                      onClick={() => ctx().setValue(ctx().value.filter((_, i) => i !== index()))}
                       aria-label={`Remove ${fmt(date)}`}
                     >
                       <XIcon />

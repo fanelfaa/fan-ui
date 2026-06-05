@@ -49,7 +49,12 @@ const Grabber: Component<ArkDrawer.GrabberProps> = (props) => {
 
 const GrabberIndicator: Component<ArkDrawer.GrabberIndicatorProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkDrawer.GrabberIndicator class={styles.grabberIndicator({ class: local.class })} {...others} />;
+  return (
+    <ArkDrawer.GrabberIndicator
+      class={styles.grabberIndicator({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 export const Drawer = {

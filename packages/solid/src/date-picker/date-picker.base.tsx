@@ -11,7 +11,12 @@ const Root: Component<ArkDatePicker.RootProps> = (props) => {
 const RootProvider = ArkDatePicker.RootProvider;
 const Label: Component<ArkDatePicker.LabelProps & { error?: boolean }> = (props) => {
   const [local, others] = splitProps(props, ["class", "error"]);
-  return <ArkDatePicker.Label class={styles.label({ class: local.class, error: local.error })} {...others} />;
+  return (
+    <ArkDatePicker.Label
+      class={styles.label({ class: local.class, error: local.error })}
+      {...others}
+    />
+  );
 };
 const Context = ArkDatePicker.Context;
 const TableHead = ArkDatePicker.TableHead;
@@ -25,12 +30,22 @@ const Positioner = ArkDatePicker.Positioner;
 // Styled wrapper components (tv() recipe styling)
 const Control: Component<ArkDatePicker.ControlProps & { error?: boolean }> = (props) => {
   const [local, others] = splitProps(props, ["class", "error"]);
-  return <ArkDatePicker.Control class={styles.control({ class: local.class, error: local.error })} {...others} />;
+  return (
+    <ArkDatePicker.Control
+      class={styles.control({ class: local.class, error: local.error })}
+      {...others}
+    />
+  );
 };
 
 const Input: Component<ArkDatePicker.InputProps & { error?: boolean }> = (props) => {
   const [local, others] = splitProps(props, ["class", "error"]);
-  return <ArkDatePicker.Input class={styles.input({ class: local.class, error: local.error })} {...others} />;
+  return (
+    <ArkDatePicker.Input
+      class={styles.input({ class: local.class, error: local.error })}
+      {...others}
+    />
+  );
 };
 
 const Content: Component<ArkDatePicker.ContentProps> = (props) => {

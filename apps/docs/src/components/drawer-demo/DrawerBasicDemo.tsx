@@ -1,10 +1,4 @@
-import {
-  Drawer,
-  DrawerTrigger,
-  DrawerContent,
-  DrawerTitle,
-  DrawerDescription,
-} from "@ui/solid";
+import { Drawer, DrawerTrigger, DrawerContent, DrawerTitle, DrawerDescription } from "@ui/solid";
 import { Button, Input, Separator } from "@ui/solid";
 
 export default function DrawerBasicDemo() {
