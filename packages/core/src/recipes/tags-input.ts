@@ -40,17 +40,7 @@ export const tagsInputVariants = tv({
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
     ],
   },
-  variants: {
-    error: {
-      true: {
-        control:
-          "border-destructive focus-within:ring-destructive",
-      },
-    },
-  },
-  defaultVariants: {
-    error: false,
-  },
+
 });
 
 export type TagsInputVariants = VariantProps<typeof tagsInputVariants>;

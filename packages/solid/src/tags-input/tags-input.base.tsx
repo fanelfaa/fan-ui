@@ -2,7 +2,7 @@ import { TagsInput as ArkTagsInput } from "@ark-ui/solid/tags-input";
 import { createContext, useContext, splitProps, type Component } from "solid-js";
 import { tagsInputVariants, type TagsInputVariants } from "@ui/core";
 
-type TagsInputVariantContextValue = Pick<TagsInputVariants, "error"> & {
+type TagsInputVariantContextValue = {
   disabled?: boolean;
 };
 
@@ -12,14 +12,14 @@ const useTagsInputVariant = () => useContext(TagsInputVariantContext);
 
 const styles = tagsInputVariants();
 
-const Root: Component<ArkTagsInput.RootProps & TagsInputVariants> = (props) => {
-  const [local, others] = splitProps(props, ["class", "error", "disabled"]);
+const Root: Component<ArkTagsInput.RootProps> = (props) => {
+  const [local, others] = splitProps(props, ["class", "disabled"]);
   return (
     <TagsInputVariantContext.Provider
-      value={{ error: local.error, disabled: local.disabled }}
+      value={{ disabled: local.disabled }}
     >
       <ArkTagsInput.Root
-        class={styles.root({ class: local.class, error: local.error })}
+        class={styles.root({ class: local.class })}
         disabled={local.disabled}
         {...others}
       />
@@ -27,16 +27,14 @@ const Root: Component<ArkTagsInput.RootProps & TagsInputVariants> = (props) => {
   );
 };
 
-const RootProvider: Component<ArkTagsInput.RootProviderProps & TagsInputVariants> = (
+const RootProvider: Component<ArkTagsInput.RootProviderProps> = (
   props,
 ) => {
-  const [local, others] = splitProps(props, ["class", "error"]);
+  const [local, others] = splitProps(props, ["class"]);
   return (
-    <TagsInputVariantContext.Provider
-      value={{ error: local.error }}
-    >
+    <TagsInputVariantContext.Provider value={{}}>
       <ArkTagsInput.RootProvider
-        class={styles.root({ class: local.class, error: local.error })}
+        class={styles.root({ class: local.class })}
         {...others}
       />
     </TagsInputVariantContext.Provider>
@@ -48,15 +46,11 @@ const Label: Component<ArkTagsInput.LabelProps> = (props) => {
   return <ArkTagsInput.Label class={styles.label({ class: local.class })} {...others} />;
 };
 
-const Control: Component<ArkTagsInput.ControlProps & { error?: boolean }> = (props) => {
-  const ctx = useTagsInputVariant();
-  const [local, others] = splitProps(props, ["class", "error"]);
+const Control: Component<ArkTagsInput.ControlProps> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
   return (
     <ArkTagsInput.Control
-      class={styles.control({
-        class: local.class,
-        error: local.error ?? ctx?.error,
-      })}
+      class={styles.control({ class: local.class })}
       {...others}
     />
   );
@@ -74,9 +68,9 @@ const ClearTrigger: Component<ArkTagsInput.ClearTriggerProps> = (props) => {
   );
 };
 
-const Item: Component<ArkTagsInput.ItemProps & TagsInputVariants> = (props) => {
+const Item: Component<ArkTagsInput.ItemProps> = (props) => {
   const ctx = useTagsInputVariant();
-  const [local, others] = splitProps(props, ["class", "error", "disabled"]);
+  const [local, others] = splitProps(props, ["class", "disabled"]);
   return (
     <ArkTagsInput.Item
       class={styles.item({ class: local.class })}

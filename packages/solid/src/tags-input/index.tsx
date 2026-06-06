@@ -31,23 +31,20 @@ const TagsInputItem: Component<ArkTagsInput.ItemProps & TagsInputVariants> = (pr
   );
 };
 
-type TagsInputProps = ArkTagsInput.RootProps &
-  TagsInputVariants & {
-    label?: string;
-  };
+type TagsInputProps = ArkTagsInput.RootProps & {
+  label?: string;
+};
 
 const TagsInput: Component<TagsInputProps> = (props) => {
   const [local, others] = splitProps(props, [
     "class",
     "children",
-    "error",
     "disabled",
     "label",
   ]);
   return (
     <TagsInputBase.Root
       class={local.class}
-      error={local.error}
       disabled={local.disabled}
       {...others}
     >

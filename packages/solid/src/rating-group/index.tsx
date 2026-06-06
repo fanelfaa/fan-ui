@@ -6,7 +6,7 @@ import { ratingGroupVariants, type RatingGroupVariants } from "@ui/core";
 const styles = ratingGroupVariants();
 
 const RatingGroupItem: Component<ArkRatingGroup.ItemProps & RatingGroupVariants> = (props) => {
-  const [local, others] = splitProps(props, ["index", "class", "size", "orientation"]);
+  const [local, others] = splitProps(props, ["index", "class", "size"]);
   return (
     <RatingGroupBase.Item
       index={local.index}
