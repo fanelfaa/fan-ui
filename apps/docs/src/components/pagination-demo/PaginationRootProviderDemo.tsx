@@ -24,13 +24,13 @@ export default function PaginationRootProviderDemo() {
             </svg>
           </PaginationBase.PrevTrigger>
           <For each={pagination().pages}>
-            {(page, index) =>
+            {(page, _index) =>
               page.type === "page" ? (
                 <PaginationBase.Item type="page" value={page.value}>
                   {page.value}
                 </PaginationBase.Item>
               ) : (
-                <PaginationBase.Ellipsis index={index()}>...</PaginationBase.Ellipsis>
+                <PaginationBase.Ellipsis index={_index()}>...</PaginationBase.Ellipsis>
               )
             }
           </For>

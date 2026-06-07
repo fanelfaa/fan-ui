@@ -393,7 +393,14 @@ For inline rendering (no popover), use the `inline` prop:
 <ColorPickerInlineDemo client:load />
 
 ```tsx
-<ColorPicker inline label="Color" presets={["#ff0000", "#00ff00", "#0000ff"]} />
+import { parseColor } from "@ark-ui/solid/color-picker";
+
+<ColorPicker
+  inline
+  label="Inline Color Picker"
+  defaultValue={parseColor("#eb5e41")}
+  presets={["#ff0000", "#00ff00", "#0000ff"]}
+/>
 ```
 
 ### Controlled
@@ -401,14 +408,29 @@ For inline rendering (no popover), use the `inline` prop:
 <ColorPickerControlledDemo client:load />
 
 ```tsx
+import { createSignal } from "solid-js";
 import { parseColor } from "@ark-ui/solid/color-picker";
+import { ColorPicker } from "~/components/color-picker";
 
-<ColorPicker
-  label="Color"
-  defaultValue={parseColor("#eb5e41")}
-  presets={["#ff0000", "#00ff00", "#0000ff"]}
-/>
+export function ColorPickerControlled() {
+  const [color, setColor] = createSignal(parseColor("#eb5e41"));
+
+  return (
+    <div>
+      <ColorPicker
+        label="Color"
+        value={color()}
+        onValueChange={(e) => setColor(e.value)}
+        presets={["#ff0000", "#00ff00", "#0000ff"]}
+      />
+      <p class="text-sm text-muted-foreground mt-3">
+        Current color: <span class="font-mono">{color()}</span>
+      </p>
+    </div>
+  );
+}
 ```
+
 
 For fully controlled mode, use `value` and `onValueChange`:
 
