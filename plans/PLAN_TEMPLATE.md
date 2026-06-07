@@ -64,7 +64,10 @@
   - `{Name}RootProviderDemo.tsx` — machine-controlled via @ark-ui hooks
   - Other variants as needed
 
-### 8. Docs: `apps/docs/src/content/docs/components/<name>.mdx`
+### 8. Sidebar: `apps/docs/src/layouts/DocsLayout.astro`
+- [ ] Add `{ href: "/docs/components/<name>", label: "<Name>" }` to `sidebarLinks` array in alphabetical order
+
+### 9. Docs: `apps/docs/src/content/docs/components/<name>.mdx`
 - [ ] Create MDX page with title, description, category
 - [ ] Import ALL demo files at the top
 - [ ] Render `{Name}BasicDemo client:load` right after the description

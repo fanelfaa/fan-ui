@@ -16,6 +16,9 @@ export type { ToastVariants } from "./recipes/toast";
 export { switchVariants } from "./recipes/switch";
 export type { SwitchVariants } from "./recipes/switch";
 
+export { tableVariants } from "./recipes/table";
+export type { TableVariants } from "./recipes/table";
+
 export { checkboxVariants } from "./recipes/checkbox";
 export type { CheckboxVariants } from "./recipes/checkbox";
 
@@ -30,6 +33,9 @@ export type { CollapsibleVariants } from "./recipes/collapsible";
 
 export { comboboxVariants } from "./recipes/combobox";
 export type { ComboboxVariants } from "./recipes/combobox";
+
+export { colorPickerVariants } from "./recipes/color-picker";
+export type { ColorPickerVariants } from "./recipes/color-picker";
 
 export { radioGroupVariants } from "./recipes/radio-group";
 export type { RadioGroupVariants } from "./recipes/radio-group";
@@ -58,6 +64,9 @@ export type { DrawerVariants } from "./recipes/drawer";
 export { menuVariants } from "./recipes/menu";
 export type { MenuVariants } from "./recipes/menu";
 
+export { paginationVariants } from "./recipes/pagination";
+export type { PaginationVariants } from "./recipes/pagination";
+
 export { passwordInputVariants } from "./recipes/password-input";
 export type { PasswordInputVariants } from "./recipes/password-input";
 
@@ -85,6 +94,9 @@ export type { CarouselVariants } from "./recipes/carousel";
 export { avatarVariants } from "./recipes/avatar";
 export type { AvatarVariants } from "./recipes/avatar";
 
+export { breadcrumbVariants } from "./recipes/breadcrumb";
+export type { BreadcrumbVariants } from "./recipes/breadcrumb";
+
 export { progressVariants } from "./recipes/progress";
 export type { ProgressVariants } from "./recipes/progress";
 
@@ -96,6 +108,7 @@ export type { SpinnerVariants } from "./recipes/spinner";
 
 export { textareaVariants } from "./recipes/textarea";
 export type { TextareaVariants } from "./recipes/textarea";
+
 
 export { typographyVariants } from "./recipes/typography";
 export type { TypographyVariants } from "./recipes/typography";

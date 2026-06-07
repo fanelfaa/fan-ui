@@ -55,7 +55,7 @@
 | [x] Alert (shadcn)        | ✅ Done        |
 | [x] Alert Dialog (shadcn) | ✅ Done        |
 | [x] Aspect Ratio (shadcn) | ✅ Done        |
-| [ ] Breadcrumb (shadcn)   | ⬜ Not started |
+| [x] Breadcrumb (shadcn)   | ✅ Done     |
 | [ ] Button Group (shadcn) | ⬜ Not started |
 | [ ] Empty (shadcn)        | ⬜ Not started |
 | [ ] field                 | ⬜ Not started |
@@ -73,7 +73,7 @@
 | [x] segment-group         | ✅ Done        |
 | [x] Separator (shadcn)    | ✅ Done        |
 | [x] Spinner (shadcn)      | ✅ Done        |
-| [ ] Table (shadcn)        | ⬜ Not started |
+| [x] Table (shadcn)        | ✅ Done     |
 | [x] tags-input            | ✅ Done        |
 | [x] textarea              | ✅ Done        |
 | [x] typography            | ✅ Done        |
@@ -84,7 +84,7 @@
 | -------------------------- | -------------- |
 | [ ] angle-slider           | ⬜ Not started |
 | [ ] clipboard              | ⬜ Not started |
-| [ ] color-picker           | ⬜ Not started |
+| [x] color-picker           | ✅ Done     |
 | [ ] Command (shadcn)       | ⬜ Not started |
 | [ ] Context Menu (shadcn)  | ⬜ Not started |
 | [ ] download-trigger       | ⬜ Not started |
@@ -97,7 +97,7 @@
 | [ ] Menubar (shadcn)       | ⬜ Not started |
 | [ ] Native Select (shadcn) | ⬜ Not started |
 | [ ] navigation-menu        | ⬜ Not started |
-| [ ] pagination             | ⬜ Not started |
+| [x] pagination             | ✅ Done     |
 | [ ] qr-code                | ⬜ Not started |
 | [ ] Resizable (shadcn)     | ⬜ Not started |
 | [ ] signature-pad          | ⬜ Not started |
@@ -105,7 +105,6 @@
 | [ ] splitter               | ⬜ Not started |
 | [ ] steps                  | ⬜ Not started |
 | [ ] swap                   | ⬜ Not started |
-| [ ] time-picker            | ⬜ Not started |
 | [ ] timer                  | ⬜ Not started |
 | [ ] tour                   | ⬜ Not started |
 | [ ] tree-view              | ⬜ Not started |
@@ -138,4 +137,4 @@
 
 ---
 
-**Progress: 40 of 88 tracked components implemented (45%)**
+**Progress: 44 of 88 tracked components implemented (50%)**
