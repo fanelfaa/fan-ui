@@ -5,12 +5,12 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2213 nodes · 2432 edges · 191 communities (138 shown, 53 thin omitted)
+- 2213 nodes · 2432 edges · 192 communities (139 shown, 53 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 11 edges (avg confidence: 0.79)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `aa122727`
+- Built from commit: `ce57f8d1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -73,9 +73,10 @@
 - [[_COMMUNITY_Community 59|Community 59]]
 - [[_COMMUNITY_Community 60|Community 60]]
 - [[_COMMUNITY_Community 61|Community 61]]
+- [[_COMMUNITY_Community 62|Community 62]]
 - [[_COMMUNITY_Community 63|Community 63]]
 - [[_COMMUNITY_Community 64|Community 64]]
-- [[_COMMUNITY_Community 65|Community 65]]
+- [[_COMMUNITY_Community 66|Community 66]]
 - [[_COMMUNITY_Community 67|Community 67]]
 - [[_COMMUNITY_Community 68|Community 68]]
 - [[_COMMUNITY_Community 69|Community 69]]
@@ -99,8 +100,7 @@
 - [[_COMMUNITY_Community 99|Community 99]]
 - [[_COMMUNITY_Community 100|Community 100]]
 - [[_COMMUNITY_Community 113|Community 113]]
-- [[_COMMUNITY_Community 114|Community 114]]
-- [[_COMMUNITY_Community 116|Community 116]]
+- [[_COMMUNITY_Community 115|Community 115]]
 - [[_COMMUNITY_Community 117|Community 117]]
 - [[_COMMUNITY_Community 118|Community 118]]
 - [[_COMMUNITY_Community 119|Community 119]]
@@ -115,15 +115,15 @@
 - [[_COMMUNITY_Community 128|Community 128]]
 - [[_COMMUNITY_Community 129|Community 129]]
 - [[_COMMUNITY_Community 130|Community 130]]
-- [[_COMMUNITY_Community 133|Community 133]]
+- [[_COMMUNITY_Community 131|Community 131]]
 - [[_COMMUNITY_Community 134|Community 134]]
 - [[_COMMUNITY_Community 136|Community 136]]
 - [[_COMMUNITY_Community 137|Community 137]]
 - [[_COMMUNITY_Community 138|Community 138]]
+- [[_COMMUNITY_Community 139|Community 139]]
 - [[_COMMUNITY_Community 140|Community 140]]
 - [[_COMMUNITY_Community 141|Community 141]]
 - [[_COMMUNITY_Community 142|Community 142]]
-- [[_COMMUNITY_Community 143|Community 143]]
 - [[_COMMUNITY_Community 144|Community 144]]
 - [[_COMMUNITY_Community 145|Community 145]]
 - [[_COMMUNITY_Community 146|Community 146]]
@@ -138,11 +138,11 @@
 - [[_COMMUNITY_Community 155|Community 155]]
 - [[_COMMUNITY_Community 156|Community 156]]
 - [[_COMMUNITY_Community 157|Community 157]]
-- [[_COMMUNITY_Community 162|Community 162]]
 - [[_COMMUNITY_Community 163|Community 163]]
-- [[_COMMUNITY_Community 188|Community 188]]
+- [[_COMMUNITY_Community 164|Community 164]]
 - [[_COMMUNITY_Community 189|Community 189]]
 - [[_COMMUNITY_Community 190|Community 190]]
+- [[_COMMUNITY_Community 191|Community 191]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Solid.js` - 156 edges
@@ -175,19 +175,19 @@
 - **Build orchestration** — moonrepo, ui_core_package, ui_solid_package, ui_cli_package, ui_docs_package [EXTRACTED 1.00]
 - **Monorepo structure** — ui_monorepo, ui_core_package, ui_solid_package, ui_cli_package, ui_docs_package [EXTRACTED 1.00]
 
-## Communities (191 total, 53 thin omitted)
+## Communities (192 total, 53 thin omitted)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.05
-Nodes (7): ComboboxBasicDemo(), ListboxBasicDemo(), PaginationControlledDemo(), RadioGroupControlledDemo(), SegmentGroupBasicDemo(), SelectMultipleDemo(), Solid.js
+Nodes (8): ColorPickerControlledDemo(), ListboxHorizontalDemo(), MenuBasicDemo(), RadioGroupBasicDemo(), RatingGroupControlledDemo(), SegmentGroupRootProviderDemo(), SelectMultipleDemo(), Solid.js
 
 ### Community 2 - "Community 2"
-Cohesion: 0.09
-Nodes (6): CheckboxBasicDemo(), ArrowRightUp(), DocsLink(), DialogBasicDemo(), A(), TabsBasicDemo()
-
-### Community 3 - "Community 3"
 Cohesion: 0.06
 Nodes (34): Advanced Usage, API Reference, code:block1 (packages/solid/src/<component>/), code:tsx (import { splitProps, type Component } from "solid-js";), code:block11 (apps/docs/), code:`mdx (---), code:block13, code:` (+26 more)
+
+### Community 3 - "Community 3"
+Cohesion: 0.1
+Nodes (5): CheckboxBasicDemo(), ArrowRightUp(), DocsLink(), A(), TabsBasicDemo()
 
 ### Community 4 - "Community 4"
 Cohesion: 0.07
@@ -198,20 +198,20 @@ Cohesion: 0.06
 Nodes (29): Advanced Usage, API Reference, CLI, code:tsx (import { createListCollection } from "@ark-ui/solid";), code:tsx (import { useSelect, createListCollection } from "@ark-ui/sol), code:tsx (import { createListCollection } from "@ark-ui/solid";), code:tsx (import { useFilter, useListCollection } from "@ark-ui/solid"), code:tsx (<SelectBase.Root collection={items} error>) (+21 more)
 
 ### Community 6 - "Community 6"
-Cohesion: 0.09
-Nodes (6): InputBasicDemo(), Table(), SkeletonBasicDemo(), TableBasicDemo(), TextareaBasicDemo(), TypographyBasicDemo()
-
-### Community 7 - "Community 7"
 Cohesion: 0.07
 Nodes (23): AlertDialogDeleteDemo(), deleted(), API Reference, CLI, code:tsx (import {), code:tsx (import { createSignal } from "solid-js";), code:tsx (import { useDialog } from "@ark-ui/solid/dialog";), code:bash (npx solidui-cli@latest add dialog) (+15 more)
 
-### Community 8 - "Community 8"
+### Community 7 - "Community 7"
 Cohesion: 0.07
 Nodes (27): Advanced Usage, API Reference, CLI, code:tsx (import { HoverCard, HoverCardTrigger, HoverCardContent } fro), code:tsx (<HoverCard openDelay={200} closeDelay={100}>), code:tsx (<HoverCard positioning={{ placement: "right" }}>), code:tsx (import { HoverCardBase } from "~/components/hover-card";), code:tsx (import { HoverCard } from "~/components/hover-card/hover-car) (+19 more)
 
-### Community 9 - "Community 9"
+### Community 8 - "Community 8"
 Cohesion: 0.07
 Nodes (27): Advanced Usage, API Reference, CLI, code:tsx (import { TagsInput } from "~/components/tags-input";), code:tsx (import { TagsInput } from "~/components/tags-input";), code:tsx (import { TagsInput } from "~/components/tags-input";), code:tsx (import { TagsInput } from "~/components/tags-input/tags-inpu), code:tsx (import { TagsInputBase } from "~/components/tags-input";) (+19 more)
+
+### Community 9 - "Community 9"
+Cohesion: 0.09
+Nodes (6): InputBasicDemo(), Table(), SkeletonBasicDemo(), TableBasicDemo(), TextareaBasicDemo(), TypographyBasicDemo()
 
 ### Community 10 - "Community 10"
 Cohesion: 0.07
@@ -405,23 +405,23 @@ Nodes (16): 1. Recipe: `packages/core/src/recipes/listbox.ts`, 2. Core Index: `p
 Cohesion: 0.11
 Nodes (16): 1. Recipe: `packages/core/src/recipes/table.ts`, 2. Core Index: `packages/core/src/index.ts`, 3. Tsup Entry: `packages/core/tsup.config.ts`, 4. Solid Component: `packages/solid/src/table/index.tsx`, 5. Solid Barrel: `packages/solid/src/index.ts`, 6. Demo: `apps/docs/src/components/table-demo/TableBasicDemo.tsx`, 7. Docs: `apps/docs/src/content/docs/components/table.mdx`, Artifact Checklist (+8 more)
 
-### Community 63 - "Community 63"
+### Community 62 - "Community 62"
 Cohesion: 0.14
 Nodes (15): ANTI-PATTERNS (THIS PROJECT), CODE MAP, code:block1 (.), COMMANDS, CONVENTIONS, Development, graphify, Moonrepo (+7 more)
 
-### Community 64 - "Community 64"
+### Community 63 - "Community 63"
 Cohesion: 0.12
 Nodes (15): Anatomy, API Reference, CLI, code:tsx (import {), code:bash (npx solidui-cli@latest add table), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants'), code:tsx (import { splitProps, type Component } from 'solid-js') (+7 more)
 
-### Community 65 - "Community 65"
+### Community 64 - "Community 64"
 Cohesion: 0.12
 Nodes (15): API Reference, CLI, code:tsx (import { Spinner } from "~/components/spinner";), code:bash (npx solidui-cli@latest add spinner), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants'), code:tsx (import { splitProps, type Component } from 'solid-js'), code:tsx (import { Spinner } from "@ui/solid";) (+7 more)
 
-### Community 67 - "Community 67"
+### Community 66 - "Community 66"
 Cohesion: 0.12
 Nodes (14): API Reference, CLI, code:tsx (import { Separator } from "~/components/separator";), code:bash (npx solidui-cli@latest add separator), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants'), code:tsx (import { splitProps, type Component } from 'solid-js'), code:tsx (import { Separator } from "@ui/solid";) (+6 more)
 
-### Community 68 - "Community 68"
+### Community 67 - "Community 67"
 Cohesion: 0.12
 Nodes (14): API Reference, Aspect Ratio, CLI, code:tsx (import { AspectRatio } from "~/components/aspect-ratio";), code:bash (npx solidui-cli@latest add aspect-ratio), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants'), code:tsx (import { splitProps, type Component, children } from 'solid-) (+6 more)
 
@@ -485,7 +485,7 @@ Nodes (6): code:block1 (packages/core/src/recipes/), CONVENTIONS, OVERVIEW, Pack
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Solid.js` connect `Community 1` to `Community 2`, `Community 131`, `Community 4`, `Community 133`, `Community 6`, `Community 7`, `Community 135`, `Community 137`, `Community 138`, `Community 139`, `Community 140`, `Community 141`, `Community 142`, `Community 143`, `Community 144`, `Community 145`, `Community 146`, `Community 147`, `Community 148`, `Community 149`, `Community 150`, `Community 151`, `Community 152`, `Community 153`, `Community 154`, `Community 25`, `Community 26`, `Community 132`, `Community 158`, `Community 159`, `Community 134`, `Community 42`, `Community 54`, `Community 62`, `Community 66`, `Community 69`, `Community 71`, `Community 72`, `Community 73`, `Community 74`, `Community 75`, `Community 76`, `Community 77`, `Community 78`, `Community 81`, `Community 82`, `Community 16`, `Community 83`, `Community 84`, `Community 88`, `Community 89`, `Community 90`, `Community 96`, `Community 101`, `Community 102`, `Community 103`, `Community 104`, `Community 105`, `Community 106`, `Community 107`, `Community 108`, `Community 109`, `Community 110`, `Community 111`, `Community 112`, `Community 113`, `Community 115`?**
+- **Why does `Solid.js` connect `Community 1` to `Community 3`, `Community 4`, `Community 133`, `Community 6`, `Community 134`, `Community 136`, `Community 9`, `Community 138`, `Community 139`, `Community 140`, `Community 141`, `Community 142`, `Community 143`, `Community 144`, `Community 145`, `Community 146`, `Community 147`, `Community 148`, `Community 149`, `Community 150`, `Community 151`, `Community 152`, `Community 153`, `Community 154`, `Community 25`, `Community 26`, `Community 132`, `Community 158`, `Community 159`, `Community 160`, `Community 135`, `Community 42`, `Community 54`, `Community 65`, `Community 69`, `Community 71`, `Community 72`, `Community 73`, `Community 74`, `Community 75`, `Community 76`, `Community 77`, `Community 78`, `Community 81`, `Community 82`, `Community 16`, `Community 83`, `Community 84`, `Community 88`, `Community 89`, `Community 90`, `Community 96`, `Community 101`, `Community 102`, `Community 103`, `Community 104`, `Community 105`, `Community 106`, `Community 107`, `Community 108`, `Community 109`, `Community 110`, `Community 111`, `Community 112`, `Community 114`, `Community 115`, `Community 116`?**
   _High betweenness centrality (0.180) - this node is a cross-community bridge._
 - **Why does `@ui/solid` connect `Community 75` to `Community 1`?**
   _High betweenness centrality (0.033) - this node is a cross-community bridge._
@@ -498,4 +498,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
-  _Cohesion score 0.09 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06 - nodes in this community are weakly interconnected._
