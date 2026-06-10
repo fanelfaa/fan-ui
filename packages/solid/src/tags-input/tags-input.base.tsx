@@ -1,6 +1,6 @@
 import { TagsInput as ArkTagsInput } from "@ark-ui/solid/tags-input";
 import { createContext, useContext, splitProps, type Component } from "solid-js";
-import { tagsInputVariants, type TagsInputVariants } from "@ui/core";
+import { tagsInputVariants } from "@ui/core";
 
 type TagsInputVariantContextValue = {
   disabled?: boolean;
@@ -15,9 +15,7 @@ const styles = tagsInputVariants();
 const Root: Component<ArkTagsInput.RootProps> = (props) => {
   const [local, others] = splitProps(props, ["class", "disabled"]);
   return (
-    <TagsInputVariantContext.Provider
-      value={{ disabled: local.disabled }}
-    >
+    <TagsInputVariantContext.Provider value={{ disabled: local.disabled }}>
       <ArkTagsInput.Root
         class={styles.root({ class: local.class })}
         disabled={local.disabled}
@@ -27,16 +25,11 @@ const Root: Component<ArkTagsInput.RootProps> = (props) => {
   );
 };
 
-const RootProvider: Component<ArkTagsInput.RootProviderProps> = (
-  props,
-) => {
+const RootProvider: Component<ArkTagsInput.RootProviderProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
     <TagsInputVariantContext.Provider value={{}}>
-      <ArkTagsInput.RootProvider
-        class={styles.root({ class: local.class })}
-        {...others}
-      />
+      <ArkTagsInput.RootProvider class={styles.root({ class: local.class })} {...others} />
     </TagsInputVariantContext.Provider>
   );
 };
@@ -48,12 +41,7 @@ const Label: Component<ArkTagsInput.LabelProps> = (props) => {
 
 const Control: Component<ArkTagsInput.ControlProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return (
-    <ArkTagsInput.Control
-      class={styles.control({ class: local.class })}
-      {...others}
-    />
-  );
+  return <ArkTagsInput.Control class={styles.control({ class: local.class })} {...others} />;
 };
 
 const Input: Component<ArkTagsInput.InputProps> = (props) => {

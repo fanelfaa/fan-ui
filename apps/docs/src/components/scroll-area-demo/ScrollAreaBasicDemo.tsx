@@ -8,7 +8,7 @@ export default function ScrollAreaBasicDemo() {
         <ScrollArea class="h-[200px] w-full max-w-[400px]" orientation="vertical">
           <div class="space-y-4 p-4">
             {Array.from({ length: 20 }, (_, i) => (
-              <p key={i} class="text-sm text-foreground">
+              <p class="text-sm text-foreground">
                 Item {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>

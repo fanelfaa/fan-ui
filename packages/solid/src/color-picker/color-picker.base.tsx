@@ -59,7 +59,12 @@ const Area: Component<ArkColorPicker.AreaProps> = (props) => {
 
 const AreaBackground: Component<ArkColorPicker.AreaBackgroundProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.AreaBackground class={styles.areaBackground({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.AreaBackground
+      class={styles.areaBackground({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 // ── Area Thumb ───────────────────────────────────────────────
@@ -73,28 +78,48 @@ const AreaThumb: Component<ArkColorPicker.AreaThumbProps> = (props) => {
 
 const ChannelSlider: Component<ArkColorPicker.ChannelSliderProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.ChannelSlider class={styles.channelSlider({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.ChannelSlider
+      class={styles.channelSlider({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 // ── Channel Slider Track ─────────────────────────────────────
 
 const ChannelSliderTrack: Component<ArkColorPicker.ChannelSliderTrackProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.ChannelSliderTrack class={styles.channelSliderTrack({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.ChannelSliderTrack
+      class={styles.channelSliderTrack({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 // ── Channel Slider Thumb ─────────────────────────────────────
 
 const ChannelSliderThumb: Component<ArkColorPicker.ChannelSliderThumbProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.ChannelSliderThumb class={styles.channelSliderThumb({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.ChannelSliderThumb
+      class={styles.channelSliderThumb({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 // ── Channel Slider Label ─────────────────────────────────────
 
 const ChannelSliderLabel: Component<ArkColorPicker.ChannelSliderLabelProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.ChannelSliderLabel class={styles.channelSliderLabel({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.ChannelSliderLabel
+      class={styles.channelSliderLabel({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 // ── Channel Slider Value Text (pass-through) ────────────────
@@ -105,14 +130,18 @@ const ChannelSliderValueText = ArkColorPicker.ChannelSliderValueText;
 
 const ChannelInput: Component<ArkColorPicker.ChannelInputProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.ChannelInput class={styles.channelInput({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.ChannelInput class={styles.channelInput({ class: local.class })} {...others} />
+  );
 };
 
 // ── Value Swatch ─────────────────────────────────────────────
 
 const ValueSwatch: Component<ArkColorPicker.ValueSwatchProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.ValueSwatch class={styles.valueSwatch({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.ValueSwatch class={styles.valueSwatch({ class: local.class })} {...others} />
+  );
 };
 
 // ── Value Text (pass-through) ───────────────────────────────
@@ -123,28 +152,42 @@ const ValueText = ArkColorPicker.ValueText;
 
 const EyeDropperTrigger: Component<ArkColorPicker.EyeDropperTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.EyeDropperTrigger class={styles.eyeDropperTrigger({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.EyeDropperTrigger
+      class={styles.eyeDropperTrigger({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 // ── Format Select ────────────────────────────────────────────
 
 const FormatSelect: Component<ArkColorPicker.FormatSelectProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.FormatSelect class={styles.formatSelect({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.FormatSelect class={styles.formatSelect({ class: local.class })} {...others} />
+  );
 };
 
 // ── Format Trigger ───────────────────────────────────────────
 
 const FormatTrigger: Component<ArkColorPicker.FormatTriggerProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.FormatTrigger class={styles.formatTrigger({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.FormatTrigger
+      class={styles.formatTrigger({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 // ── Swatch Group ─────────────────────────────────────────────
 
 const SwatchGroup: Component<ArkColorPicker.SwatchGroupProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.SwatchGroup class={styles.swatchGroup({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.SwatchGroup class={styles.swatchGroup({ class: local.class })} {...others} />
+  );
 };
 
 // ── Swatch ───────────────────────────────────────────────────
@@ -158,7 +201,12 @@ const Swatch: Component<ArkColorPicker.SwatchProps> = (props) => {
 
 const SwatchIndicator: Component<ArkColorPicker.SwatchIndicatorProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.SwatchIndicator class={styles.swatchIndicator({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.SwatchIndicator
+      class={styles.swatchIndicator({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 // ── Swatch Trigger ───────────────────────────────────────────
@@ -172,7 +220,12 @@ const SwatchTrigger: Component<ArkColorPicker.SwatchTriggerProps> = (props) => {
 
 const TransparencyGrid: Component<ArkColorPicker.TransparencyGridProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <ArkColorPicker.TransparencyGrid class={styles.transparencyGrid({ class: local.class })} {...others} />;
+  return (
+    <ArkColorPicker.TransparencyGrid
+      class={styles.transparencyGrid({ class: local.class })}
+      {...others}
+    />
+  );
 };
 
 // ── View ─────────────────────────────────────────────────────

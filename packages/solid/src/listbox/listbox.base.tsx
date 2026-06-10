@@ -10,9 +10,7 @@ const useListboxVariant = () => useContext(ListboxVariantContext);
 
 const styles = listboxVariants();
 
-const Root = <T extends CollectionItem>(
-  props: ArkListbox.RootProps<T> & ListboxVariants,
-) => {
+const Root = <T extends CollectionItem>(props: ArkListbox.RootProps<T> & ListboxVariants) => {
   const [local, others] = splitProps(props, ["class", "orientation"] as const);
   return (
     <ListboxVariantContext.Provider value={{ orientation: local.orientation }}>
@@ -50,7 +48,10 @@ const Content: Component<ArkListbox.ContentProps & ListboxVariants> = (props) =>
   const [local, others] = splitProps(props, ["class", "orientation"] as const);
   return (
     <ArkListbox.Content
-      class={styles.content({ class: local.class, orientation: local.orientation ?? ctx?.orientation })}
+      class={styles.content({
+        class: local.class,
+        orientation: local.orientation ?? ctx?.orientation,
+      })}
       {...others}
     />
   );

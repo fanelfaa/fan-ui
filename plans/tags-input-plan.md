@@ -10,21 +10,21 @@ The Tags Input component allows entering multiple tags/values in a text input fi
 
 ### Ark UI Parts
 
-| Part | Has tv() variants? | Notes |
-|------|--------------------|-------|
-| Root | Yes | Main container, passes `orientation` from ark default (not a recipe variant) |
-| RootProvider | Yes | For machine-controlled usage |
-| Label | Yes | Label element for the input |
-| Control | Yes | Container for tags + input, handles data-invalid and data-disabled styling |
-| Input | Yes | Free-text input for adding new tags |
-| ClearTrigger | Yes | Button to clear all tags |
-| Item | Yes | Individual tag item wrapper, uses context for variant fallback |
-| ItemPreview | Yes | Preview wrapper for a tag (shows text + delete button) |
-| ItemText | Yes | Tag display text |
-| ItemInput | Yes | Edit-mode input for inline tag editing |
-| ItemDeleteTrigger | Yes | Delete button per tag |
-| Context | No | Ark UI render prop for accessing machine API — passthrough only |
-| HiddenInput | No | Hidden form input — passthrough only |
+| Part              | Has tv() variants? | Notes                                                                        |
+| ----------------- | ------------------ | ---------------------------------------------------------------------------- |
+| Root              | Yes                | Main container, passes `orientation` from ark default (not a recipe variant) |
+| RootProvider      | Yes                | For machine-controlled usage                                                 |
+| Label             | Yes                | Label element for the input                                                  |
+| Control           | Yes                | Container for tags + input, handles data-invalid and data-disabled styling   |
+| Input             | Yes                | Free-text input for adding new tags                                          |
+| ClearTrigger      | Yes                | Button to clear all tags                                                     |
+| Item              | Yes                | Individual tag item wrapper, uses context for variant fallback               |
+| ItemPreview       | Yes                | Preview wrapper for a tag (shows text + delete button)                       |
+| ItemText          | Yes                | Tag display text                                                             |
+| ItemInput         | Yes                | Edit-mode input for inline tag editing                                       |
+| ItemDeleteTrigger | Yes                | Delete button per tag                                                        |
+| Context           | No                 | Ark UI render prop for accessing machine API — passthrough only              |
+| HiddenInput       | No                 | Hidden form input — passthrough only                                         |
 
 ### Variants
 
@@ -34,12 +34,14 @@ The Tags Input component allows entering multiple tags/values in a text input fi
 ## Artifact Checklist
 
 ### 1. Recipe: `packages/core/src/recipes/tags-input.ts`
+
 - [ ] Create tv() with slots for each Ark UI part that needs styling
 - [ ] Define slots: `root`, `label`, `control`, `input`, `clearTrigger`, `item`, `itemPreview`, `itemText`, `itemInput`, `itemDeleteTrigger`
 - [ ] Define variants: `error` (true/false) applying border-destructive styling to `control`, `input`
 - [ ] Export `tagsInputVariants` + type `TagsInputVariants`
 
 Slots reference:
+
 - `root`: flex flex-col gap, based on existing component patterns
 - `label`: text-sm font-medium text-foreground
 - `control`: flex flex-wrap items-center gap-1, border, rounded, focus-within styling, data-[invalid] and data-[disabled] states
@@ -52,13 +54,16 @@ Slots reference:
 - `itemDeleteTrigger`: icon button, hover state
 
 ### 2. Core Index: `packages/core/src/index.ts`
+
 - [ ] Add `export { tagsInputVariants } from "./recipes/tags-input"`
 - [ ] Add `export type { TagsInputVariants } from "./recipes/tags-input"`
 
 ### 3. Tsup Entry: `packages/core/tsup.config.ts`
+
 - [ ] Add `"src/recipes/tags-input.ts"` to entry list (alphabetical order, after `"src/recipes/tabs.ts"`)
 
 ### 4. Base File: `packages/solid/src/tags-input/tags-input.base.tsx`
+
 - [ ] Import Ark UI parts from `@ark-ui/solid/tags-input`: `{ TagsInput as ArkTagsInput }`
 - [ ] Import `splitProps`, `type Component` from `solid-js`
 - [ ] Import `tagsInputVariants`, `type TagsInputVariants` from `@ui/core`
@@ -82,24 +87,35 @@ Slots reference:
 - [ ] Export context/hooks separately: `TagsInputVariantContext`, `useTagsInputVariant`
 
 ### 5. Index File: `packages/solid/src/tags-input/index.tsx`
+
 - [ ] Import namespace as `{ TagsInput as TagsInputBase }` from `./tags-input.base`
 - [ ] Import `ArkTagsInput` from `@ark-ui/solid/tags-input`
 - [ ] Import `splitProps`, `type Component`, `Index`, `createMemo` or inline from `solid-js`
 - [ ] Create composite `TagsInput` component:
   ```tsx
   const TagsInput: Component<ArkTagsInput.RootProps & TagsInputVariants> = (props) => {
-    const [local, others] = splitProps(props, ["variant", "orientation", "children", "error", "disabled"]);
+    const [local, others] = splitProps(props, [
+      "variant",
+      "orientation",
+      "children",
+      "error",
+      "disabled",
+    ]);
     return (
-      <TagsInputBase.Root variant={local.variant} orientation={local.orientation} error={local.error} disabled={local.disabled} {...others}>
+      <TagsInputBase.Root
+        variant={local.variant}
+        orientation={local.orientation}
+        error={local.error}
+        disabled={local.disabled}
+        {...others}
+      >
         <TagsInputBase.Context>
           {(api) => (
             <>
               {local.children}
               <TagsInputBase.Control>
                 <Index each={api().value}>
-                  {(value, index) => (
-                    <TagsInputItem index={index} value={value()} />
-                  )}
+                  {(value, index) => <TagsInputItem index={index} value={value()} />}
                 </Index>
                 <TagsInputBase.Input />
               </TagsInputBase.Control>
@@ -132,13 +148,16 @@ Slots reference:
 - [ ] Re-export variants from `@ui/core`: `export { tagsInputVariants, type TagsInputVariants } from "@ui/core"`
 
 ### 6. Solid Barrel: `packages/solid/src/index.ts`
+
 - [ ] Add `export * from "./tags-input"` (alphabetical order, after `"./tabs"` and before `"./toast"`)
 
 ### 7. Demo: `apps/docs/src/components/tags-input-demo/TagsInputBasicDemo.tsx`
+
 - [ ] Create directory: `tags-input-demo/`
 - [ ] Create BasicDemo importing only named composites from `@ui/solid`: `import { TagsInput, TagsInputItem } from "@ui/solid"`
 - [ ] Must NOT import `.base.tsx` or `TagsInputBase`
 - [ ] Basic demo structure:
+
   ```tsx
   import { Index } from "solid-js";
   import { TagsInput, TagsInputItem } from "@ui/solid";
@@ -156,6 +175,7 @@ Slots reference:
     );
   }
   ```
+
 - [ ] Add additional demos as needed:
   - `TagsInputControlledDemo.tsx` — controlled value via `value` + `onValueChange`
   - `TagsInputDisabledDemo.tsx` — disabled state
@@ -163,6 +183,7 @@ Slots reference:
   - `TagsInputRootProviderDemo.tsx` — RootProvider pattern with `useTagsInput`
 
 ### 8. Docs: `apps/docs/src/content/docs/components/tags-input.mdx`
+
 - [ ] Create MDX page with frontmatter: `title: Tags Input`, `description: ...`, `category: Form & Input`, `updatedDate: YYYY-MM-DD`
 - [ ] Import and render BasicDemo with `<TagsInputBasicDemo client:load />`
 - [ ] Usage code block showing import and basic usage:

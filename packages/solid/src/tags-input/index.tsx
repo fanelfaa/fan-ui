@@ -36,18 +36,9 @@ type TagsInputProps = ArkTagsInput.RootProps & {
 };
 
 const TagsInput: Component<TagsInputProps> = (props) => {
-  const [local, others] = splitProps(props, [
-    "class",
-    "children",
-    "disabled",
-    "label",
-  ]);
+  const [local, others] = splitProps(props, ["class", "children", "disabled", "label"]);
   return (
-    <TagsInputBase.Root
-      class={local.class}
-      disabled={local.disabled}
-      {...others}
-    >
+    <TagsInputBase.Root class={local.class} disabled={local.disabled} {...others}>
       <TagsInputBase.Context>
         {(api) => (
           <>

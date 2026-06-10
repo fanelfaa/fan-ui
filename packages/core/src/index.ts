@@ -109,7 +109,6 @@ export type { SpinnerVariants } from "./recipes/spinner";
 export { textareaVariants } from "./recipes/textarea";
 export type { TextareaVariants } from "./recipes/textarea";
 
-
 export { typographyVariants } from "./recipes/typography";
 export type { TypographyVariants } from "./recipes/typography";
 

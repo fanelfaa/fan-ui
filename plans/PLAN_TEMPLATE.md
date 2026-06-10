@@ -10,15 +10,16 @@
 
 ### Ark UI Parts
 
-| Part | Has tv() variants? | Notes |
-|------|--------------------|-------|
-| Root | Yes/No | Main container |
-| RootProvider | Yes/No | For machine-controlled usage |
-| ... | | |
+| Part         | Has tv() variants? | Notes                        |
+| ------------ | ------------------ | ---------------------------- |
+| Root         | Yes/No             | Main container               |
+| RootProvider | Yes/No             | For machine-controlled usage |
+| ...          |                    |                              |
 
 ### Variants
 
 <!-- List the variants this component's recipe defines -->
+
 - **variant**: types...
 - **orientation**: horizontal/vertical (if applicable)
 - **other**...
@@ -26,18 +27,22 @@
 ## Artifact Checklist
 
 ### 1. Recipe: `packages/core/src/recipes/<name>.ts`
+
 - [ ] Create tv() with slots for each Ark UI part
 - [ ] Define variants (variant, orientation, etc.)
 - [ ] Export `<name>Variants` + type
 
 ### 2. Core Index: `packages/core/src/index.ts`
+
 - [ ] Add `export { <name>Variants } from "./recipes/<name>"`
 - [ ] Add `export type { <name>Variants } from "./recipes/<name>"`
 
 ### 3. Tsup Entry: `packages/core/tsup.config.ts`
+
 - [ ] Add `"src/recipes/<name>.ts"` to entry list
 
 ### 4. Base File: `packages/solid/src/<name>/<name>.base.tsx`
+
 - [ ] Import Ark UI parts from `@ark-ui/solid/<name>`
 - [ ] Create variant context (if variants exist)
 - [ ] Wrap each part with tv() styling (splitProps `["class"]` or `["class", "variant", ...]`)
@@ -45,6 +50,7 @@
 - [ ] Export context/hooks separately
 
 ### 5. Index File: `packages/solid/src/<name>/index.tsx`
+
 - [ ] Import namespace as `{ <Name> as <Name>Base }`
 - [ ] Create composite named exports (e.g., `<Name>`, `<Name>Item`)
 - [ ] **No** `export *` from base (Pattern E rule)
@@ -52,9 +58,11 @@
 - [ ] Re-export variants from `@ui/core`
 
 ### 6. Solid Barrel: `packages/solid/src/index.ts`
+
 - [ ] Add `export * from "./<name>"` (alphabetical order)
 
 ### 7. Demos: `apps/docs/src/components/<name>-demo/`
+
 - [ ] Create `{Name}BasicDemo.tsx` — single basic example only (not multiple variants bundled)
 - [ ] Must import only named composites from `@ui/solid`, **never** `.base.tsx` or `<Name>Base`
 - [ ] Create ONE separate demo file per usage variant:
@@ -65,9 +73,11 @@
   - Other variants as needed
 
 ### 8. Sidebar: `apps/docs/src/layouts/DocsLayout.astro`
+
 - [ ] Add `{ href: "/docs/components/<name>", label: "<Name>" }` to `sidebarLinks` array in alphabetical order
 
 ### 9. Docs: `apps/docs/src/content/docs/components/<name>.mdx`
+
 - [ ] Create MDX page with title, description, category
 - [ ] Import ALL demo files at the top
 - [ ] Render `{Name}BasicDemo client:load` right after the description

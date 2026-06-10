@@ -1,0 +1,446 @@
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown";
+import { DocsLink } from "../../components/DocsLink";
+import RatingGroupBasicDemo from "@demos/rating-group-demo/RatingGroupBasicDemo.tsx";
+import RatingGroupControlledDemo from "@demos/rating-group-demo/RatingGroupControlledDemo.tsx";
+import RatingGroupHalfStarDemo from "@demos/rating-group-demo/RatingGroupHalfStarDemo.tsx";
+import RatingGroupDisabledDemo from "@demos/rating-group-demo/RatingGroupDisabledDemo.tsx";
+import RatingGroupRootProviderDemo from "@demos/rating-group-demo/RatingGroupRootProviderDemo.tsx";
+
+export const Route = createFileRoute("/components/rating-group")({ component: RatingGroupPage });
+
+function RatingGroupPage() {
+  return (
+    <>
+      <H1>Rating Group</H1>
+      <P>
+        Star-based rating input component supporting controlled/uncontrolled modes, half-star
+        ratings, and disabled/readonly states.
+      </P>
+      <DocsLink href="https://ark-ui.com/docs/components/rating-group" />
+      <RatingGroupBasicDemo />
+      <Pre>{`
+
+import { RatingGroup, RatingGroupLabel } from "~/components/rating-group";
+
+export default function RatingGroupBasicDemo() {
+  return (
+    <div class="rounded-lg border border-border p-6">
+      <p class="text-sm text-muted-foreground mb-2">Basic horizontal</p>
+      <RatingGroup count={5} defaultValue={3}>
+        <RatingGroupLabel>Rate this</RatingGroupLabel>
+      </RatingGroup>
+    </div>
+  );
+}
+      `}</Pre>
+      <H2>Installation</H2>
+      <H3>CLI</H3>
+      <P>Run the following command to add the component to your project:</P>
+      <Pre>{`
+
+npx solidui-cli@latest add rating-group
+      `}</Pre>
+      <H3>Manual</H3>
+      <div class="space-y-3">
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
+      </div>
+      <div class="space-y-3">
+        Create the recipe file at `src/components/recipes/rating-group.ts`:
+        <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
+
+export const ratingGroupVariants = tv({
+  slots: {
+    root: "flex items-center gap-2",
+    label: "text-sm font-medium text-foreground",
+    control: "flex items-center gap-0.5",
+    item: [
+      "group cursor-pointer transition-colors duration-150 ease-out",
+      "data-[disabled]:opacity-50 data-[disabled]:cursor-not-allowed",
+      "data-[readonly]:cursor-default",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm",
+    ],
+    itemIndicator: "relative inline-flex items-center justify-center",
+  },
+  variants: {
+    size: {
+      sm: {
+        label: "text-xs",
+        item: "size-4",
+      },
+      md: {
+        label: "text-sm",
+        item: "size-5",
+      },
+      lg: {
+        label: "text-base",
+        item: "size-6",
+      },
+    },
+    orientation: {
+      horizontal: {
+        root: "flex-row items-center gap-2",
+      },
+      vertical: {
+        root: "flex-col items-start gap-1",
+      },
+    },
+  },
+  defaultVariants: {
+    size: "md",
+    orientation: "horizontal",
+  },
+});
+
+export type RatingGroupVariants = VariantProps<typeof ratingGroupVariants>;`}</Pre>
+      </div>
+      <div class="space-y-3">
+        Create the base component file at `src/components/rating-group/rating-group.base.tsx`:
+        <Pre>{`import { RatingGroup as ArkRatingGroup } from "@ark-ui/solid/rating-group";
+import { createContext, useContext, splitProps, type Component } from "solid-js";
+import { ratingGroupVariants, type RatingGroupVariants } from "../recipes/rating-group";
+
+type RatingGroupVariantContextValue = Pick<RatingGroupVariants, "size" | "orientation">;
+
+const RatingGroupVariantContext = createContext<RatingGroupVariantContextValue>();
+
+const useRatingGroupVariant = () => useContext(RatingGroupVariantContext);
+
+const styles = ratingGroupVariants();
+
+const Root: Component<ArkRatingGroup.RootProps & RatingGroupVariants> = (props) => {
+  const [local, others] = splitProps(props, ["class", "size", "orientation"]);
+  return (
+    <RatingGroupVariantContext.Provider
+      value={{ size: local.size, orientation: local.orientation }}
+    >
+      <ArkRatingGroup.Root
+        class={styles.root({
+          class: local.class,
+          size: local.size,
+          orientation: local.orientation,
+        })}
+        {...others}
+      />
+    </RatingGroupVariantContext.Provider>
+  );
+};
+
+const RootProvider: Component<ArkRatingGroup.RootProviderProps & RatingGroupVariants> = (
+  props,
+) => {
+  const [local, others] = splitProps(props, ["class", "size", "orientation"]);
+  return (
+    <RatingGroupVariantContext.Provider
+      value={{ size: local.size, orientation: local.orientation }}
+    >
+      <ArkRatingGroup.RootProvider
+        class={styles.root({
+          class: local.class,
+          size: local.size,
+          orientation: local.orientation,
+        })}
+        {...others}
+      />
+    </RatingGroupVariantContext.Provider>
+  );
+};
+
+const Label: Component<ArkRatingGroup.LabelProps> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
+  return <ArkRatingGroup.Label class={styles.label({ class: local.class })} {...others} />;
+};
+
+const Control: Component<ArkRatingGroup.ControlProps> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
+  return <ArkRatingGroup.Control class={styles.control({ class: local.class })} {...others} />;
+};
+
+const Item: Component<ArkRatingGroup.ItemProps & RatingGroupVariants> = (props) => {
+  const ctx = useRatingGroupVariant();
+  const [local, others] = splitProps(props, ["class", "size", "orientation"]);
+  return (
+    <ArkRatingGroup.Item
+      class={styles.item({
+        class: local.class,
+        size: local.size ?? ctx?.size,
+        orientation: local.orientation ?? ctx?.orientation,
+      })}
+      {...others}
+    />
+  );
+};
+
+const ItemContext = ArkRatingGroup.ItemContext;
+const Context = ArkRatingGroup.Context;
+const HiddenInput = ArkRatingGroup.HiddenInput;
+
+const RatingGroup = {
+  Root,
+  RootProvider,
+  Label,
+  Control,
+  Item,
+  ItemContext,
+  Context,
+  HiddenInput,
+};
+
+export { RatingGroup };
+export { RatingGroupVariantContext, useRatingGroupVariant };`}</Pre>
+      </div>
+      <div class="space-y-3">
+        Create the component file at `src/components/rating-group/index.tsx`:
+        <Pre>{`import { Index, splitProps, type Component } from "solid-js";
+import { RatingGroup as RatingGroupBase } from "./rating-group.base";
+import { RatingGroup as ArkRatingGroup } from "@ark-ui/solid/rating-group";
+import { ratingGroupVariants, type RatingGroupVariants } from "../recipes/rating-group";
+
+const styles = ratingGroupVariants();
+
+const RatingGroupItem: Component<ArkRatingGroup.ItemProps & RatingGroupVariants> = (props) => {
+  const [local, others] = splitProps(props, ["index", "class", "size"]);
+  return (
+    <RatingGroupBase.Item
+      index={local.index}
+      class={styles.item({ class: local.class, size: local.size })}
+      {...others}
+    >
+      <RatingGroupBase.ItemContext>
+        {(context) => (
+          <span class={styles.itemIndicator()}>
+            {/* Background unfilled star */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="size-full"
+            >
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+            {/* Foreground filled star (hidden when not highlighted, clip-path for half) */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="absolute inset-0 size-full opacity-0 group-data-[highlighted]:opacity-100 group-data-[half]:[clip-path:inset(0_50%_0_0)]"
+            >
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+          </span>
+        )}
+      </RatingGroupBase.ItemContext>
+    </RatingGroupBase.Item>
+  );
+};
+
+const RatingGroup: Component<ArkRatingGroup.RootProps & RatingGroupVariants> = (props) => {
+  const [local, others] = splitProps(props, ["size", "orientation", "children"]);
+  return (
+    <RatingGroupBase.Root size={local.size} orientation={local.orientation} {...others}>
+      {local.children}
+      <RatingGroupBase.Context>
+        {(context) => (
+          <RatingGroupBase.Control>
+            <Index each={context().items}>
+              {(item) => <RatingGroupItem index={item()} />}
+            </Index>
+            <RatingGroupBase.HiddenInput />
+          </RatingGroupBase.Control>
+        )}
+      </RatingGroupBase.Context>
+    </RatingGroupBase.Root>
+  );
+};
+
+const RatingGroupLabel: Component<ArkRatingGroup.LabelProps> = (props) => {
+  return <RatingGroupBase.Label {...props} />;
+};
+
+const RatingGroupControl: Component<ArkRatingGroup.ControlProps> = (props) => {
+  return <RatingGroupBase.Control {...props} />;
+};
+
+const RatingGroupContext: Component<ArkRatingGroup.ContextProps> = (props) => {
+  return <RatingGroupBase.Context {...props} />;
+};
+
+const RatingGroupHiddenInput: Component<ArkRatingGroup.HiddenInputProps> = (props) => {
+  return <RatingGroupBase.HiddenInput {...props} />;
+};
+
+export {
+  RatingGroup,
+  RatingGroupItem,
+  RatingGroupLabel,
+  RatingGroupControl,
+  RatingGroupContext,
+  RatingGroupHiddenInput,
+  RatingGroupBase,
+};
+
+export { ratingGroupVariants, type RatingGroupVariants } from "../recipes/rating-group";`}</Pre>
+      </div>
+      <H2>Usage</H2>
+      <P>Import the component and use it inline:</P>
+      <Pre>{`
+
+import { RatingGroup, RatingGroupLabel } from "~/components/rating-group";
+      `}</Pre>
+      <P>Basic star rating with 5 stars:</P>
+      <Pre>{`
+
+<RatingGroup count={5} defaultValue={3}>
+  <RatingGroupLabel>Rate this</RatingGroupLabel>
+</RatingGroup>
+      `}</Pre>
+      <H3>Controlled</H3>
+      <RatingGroupControlledDemo />
+      <P>
+        Use <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode> to control the
+        rating value externally:
+      </P>
+      <Pre>{`
+
+import { createSignal } from "solid-js";
+import { RatingGroup } from "~/components/rating-group";
+
+export function ControlledDemo() {
+  const [value, setValue] = createSignal(3);
+  return (
+    <div>
+      <p class="text-sm text-muted-foreground mb-2">Value: {value()}</p>
+      <RatingGroup
+        count={5}
+        value={value()}
+        onValueChange={(e) => setValue(e.value)}
+      />
+    </div>
+  );
+}
+      `}</Pre>
+      <H3>Half Star</H3>
+      <RatingGroupHalfStarDemo />
+      <P>
+        Allow <InlineCode>0.5</InlineCode> value steps by setting the{" "}
+        <InlineCode>allowHalf</InlineCode> prop to <InlineCode>true</InlineCode>:
+      </P>
+      <Pre>{`
+
+<RatingGroup count={5} defaultValue={2.5} allowHalf>
+  <RatingGroupLabel>Rate this</RatingGroupLabel>
+</RatingGroup>
+      `}</Pre>
+      <H3>Disabled</H3>
+      <RatingGroupDisabledDemo />
+      <P>
+        To make the rating group disabled, set the <InlineCode>disabled</InlineCode> prop to{" "}
+        <InlineCode>true</InlineCode>:
+      </P>
+      <Pre>{`
+
+<RatingGroup count={5} defaultValue={4} disabled>
+  <RatingGroupLabel>Rate this</RatingGroupLabel>
+</RatingGroup>
+      `}</Pre>
+      <H2>Advanced Usage</H2>
+      <P>
+        When the composite <InlineCode>RatingGroup</InlineCode> doesn't provide enough control,
+        import the raw primitive parts from the base file directly:
+      </P>
+      <Pre>{`
+
+import { RatingGroup, useRatingGroupVariant } from "~/components/rating-group/rating-group.base";
+      `}</Pre>
+      <P>
+        Or import <InlineCode>RatingGroupBase</InlineCode> (the raw parts namespace) from the
+        composite entry point:
+      </P>
+      <Pre>{`
+
+import { RatingGroupBase } from "~/components/rating-group";
+      `}</Pre>
+      <H3>RootProvider Pattern</H3>
+      <RatingGroupRootProviderDemo />
+      <P>
+        For full control over the rating group machine, use <InlineCode>useRatingGroup</InlineCode>{" "}
+        with <InlineCode>RatingGroup.RootProvider</InlineCode>:
+      </P>
+      <Pre>{`
+
+import { useRatingGroup } from "@ark-ui/solid/rating-group";
+import { RatingGroup } from "~/components/rating-group/rating-group.base";
+
+export function RootProviderDemo() {
+  const ratingGroup = useRatingGroup({ count: 5, defaultValue: 3 });
+
+  return (
+    <div class="space-y-2">
+      <p class="text-sm text-muted-foreground">Value: {ratingGroup().value}</p>
+      <RatingGroup.RootProvider value={ratingGroup} size="md">
+        <RatingGroup.Label>Rate this</RatingGroup.Label>
+        <RatingGroup.Context>
+          {(context) => (
+            <RatingGroup.Control>
+              <Index each={context().items}>
+                {(item) => (
+                  <RatingGroup.Item index={item()}>
+                    <RatingGroup.ItemContext>
+                      {(ctx) => (
+                        <span class="relative inline-flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="size-5"
+                          >
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                          </svg>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="absolute inset-0 size-5 opacity-0 group-data-[highlighted]:opacity-100 group-data-[half]:[clip-path:inset(0_50%_0_0)]"
+                          >
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                          </svg>
+                        </span>
+                      )}
+                    </RatingGroup.ItemContext>
+                  </RatingGroup.Item>
+                )}
+              </Index>
+              <RatingGroup.HiddenInput />
+            </RatingGroup.Control>
+          )}
+        </RatingGroup.Context>
+      </RatingGroup.RootProvider>
+    </div>
+  );
+}
+      `}</Pre>
+      <H2>API Reference</H2>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/rating-group">Ark UI RatingGroup</A>{" "}
+        documentation.
+      </P>
+    </>
+  );
+}

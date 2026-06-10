@@ -10,36 +10,36 @@ A color selection component with saturation/brightness area, channel sliders, fo
 
 ### Ark UI Parts
 
-| Part | Has tv() variants? | Notes |
-|------|--------------------|-------|
-| Root | Yes (size, inline) | `<div>` main container |
-| RootProvider | No | For `useColorPicker()` machine-controlled |
-| Label | Yes (class only) | Label text |
-| Control | Yes (class only) | Trigger swatch + value text row |
-| Trigger | Yes (class only) | Button that opens the popover |
-| HiddenInput | No | Hidden form input |
-| Positioner | No | Positioning wrapper (pass-through) |
-| Content | Yes (class only) | Popover panel |
-| Area | Yes (class only) | Saturation/brightness area |
-| AreaBackground | No | CSS gradient background |
-| AreaThumb | Yes (class only) | Draggable thumb on area |
-| ChannelSlider | Yes (class only) | Single channel slider track container |
-| ChannelSliderTrack | Yes (class only) | Track background |
-| ChannelSliderThumb | Yes (class only) | Draggable thumb on slider |
-| ChannelSliderLabel | Yes (class only) | Label for slider |
-| ChannelSliderValueText | No | Value display for slider |
-| ChannelInput | Yes (class only) | Numeric input for color channel |
-| ValueSwatch | Yes (class only) | Current color preview swatch |
-| ValueText | No | Color value string display |
-| EyeDropperTrigger | Yes (class only) | Eye dropper button |
-| FormatSelect | Yes (class only) | `<select>` for color format |
-| FormatTrigger | Yes (class only) | Button to cycle format |
-| SwatchGroup | Yes (class only) | Container for swatches |
-| Swatch | Yes (class only) | Individual preset swatch |
-| SwatchIndicator | No | Check icon on selected swatch |
-| SwatchTrigger | Yes | Clickable swatch with value (has value prop) |
-| TransparencyGrid | Yes (class only) | Checkered background for alpha |
-| View | Yes (class only) | Content view by format (rgba/hsla/hsba) |
+| Part                   | Has tv() variants? | Notes                                        |
+| ---------------------- | ------------------ | -------------------------------------------- |
+| Root                   | Yes (size, inline) | `<div>` main container                       |
+| RootProvider           | No                 | For `useColorPicker()` machine-controlled    |
+| Label                  | Yes (class only)   | Label text                                   |
+| Control                | Yes (class only)   | Trigger swatch + value text row              |
+| Trigger                | Yes (class only)   | Button that opens the popover                |
+| HiddenInput            | No                 | Hidden form input                            |
+| Positioner             | No                 | Positioning wrapper (pass-through)           |
+| Content                | Yes (class only)   | Popover panel                                |
+| Area                   | Yes (class only)   | Saturation/brightness area                   |
+| AreaBackground         | No                 | CSS gradient background                      |
+| AreaThumb              | Yes (class only)   | Draggable thumb on area                      |
+| ChannelSlider          | Yes (class only)   | Single channel slider track container        |
+| ChannelSliderTrack     | Yes (class only)   | Track background                             |
+| ChannelSliderThumb     | Yes (class only)   | Draggable thumb on slider                    |
+| ChannelSliderLabel     | Yes (class only)   | Label for slider                             |
+| ChannelSliderValueText | No                 | Value display for slider                     |
+| ChannelInput           | Yes (class only)   | Numeric input for color channel              |
+| ValueSwatch            | Yes (class only)   | Current color preview swatch                 |
+| ValueText              | No                 | Color value string display                   |
+| EyeDropperTrigger      | Yes (class only)   | Eye dropper button                           |
+| FormatSelect           | Yes (class only)   | `<select>` for color format                  |
+| FormatTrigger          | Yes (class only)   | Button to cycle format                       |
+| SwatchGroup            | Yes (class only)   | Container for swatches                       |
+| Swatch                 | Yes (class only)   | Individual preset swatch                     |
+| SwatchIndicator        | No                 | Check icon on selected swatch                |
+| SwatchTrigger          | Yes                | Clickable swatch with value (has value prop) |
+| TransparencyGrid       | Yes (class only)   | Checkered background for alpha               |
+| View                   | Yes (class only)   | Content view by format (rgba/hsla/hsba)      |
 
 ### Variants
 
@@ -49,6 +49,7 @@ A color selection component with saturation/brightness area, channel sliders, fo
 ## Artifact Checklist
 
 ### 1. Recipe: `packages/core/src/recipes/color-picker.ts`
+
 - [ ] Create tv() with slots for each stylable part:
   - **root**: `"flex flex-col gap-1.5"` — vertical layout
   - **label**: standard label styles (same as date-picker/time-picker)
@@ -85,14 +86,17 @@ A color selection component with saturation/brightness area, channel sliders, fo
 - [ ] Export `colorPickerVariants` + type `ColorPickerVariants`
 
 ### 2. Core Index: `packages/core/src/index.ts`
+
 - [ ] Add `export { colorPickerVariants } from "./recipes/color-picker"`
 - [ ] Add `export type { ColorPickerVariants } from "./recipes/color-picker"`
 - [ ] Insert in alphabetical order (after `collapsible`/`combobox`, before `date-picker`)
 
 ### 3. Tsup Entry: `packages/core/tsup.config.ts`
+
 - [ ] Add `"src/recipes/color-picker.ts"` to entry list (alphabetical order)
 
 ### 4. Base File: `packages/solid/src/color-picker/color-picker.base.tsx`
+
 - [ ] Import Ark UI parts from `@ark-ui/solid/color-picker`
   ```tsx
   import { ColorPicker as ArkColorPicker } from "@ark-ui/solid/color-picker";
@@ -132,6 +136,7 @@ A color selection component with saturation/brightness area, channel sliders, fo
 - [ ] Export all individually
 
 ### 5. Index File: `packages/solid/src/color-picker/index.tsx`
+
 - [ ] Strategy: Follow date-picker composite pattern — composite `ColorPicker` that auto-renders:
   - Label (optional)
   - Control with ValueSwatch + ValueText + Trigger
@@ -145,6 +150,7 @@ A color selection component with saturation/brightness area, channel sliders, fo
 - [ ] Import base parts + `Portal` from `solid-js/web`
 - [ ] Import `For, Show, splitProps, type Component` from "solid-js"
 - [ ] Create color picker composite (simplified default layout):
+
   ```tsx
   type ColorPickerProps = ArkColorPicker.RootProps & {
     label?: string;
@@ -199,13 +205,21 @@ A color selection component with saturation/brightness area, channel sliders, fo
             <ChevronDownIcon />
           </ColorPickerBase.Trigger>
         </ColorPickerBase.Control>
-        <Show when={local.inline} fallback={<Portal><ColorPickerBase.Positioner>{pickerContent}</ColorPickerBase.Positioner></Portal>}>
+        <Show
+          when={local.inline}
+          fallback={
+            <Portal>
+              <ColorPickerBase.Positioner>{pickerContent}</ColorPickerBase.Positioner>
+            </Portal>
+          }
+        >
           {pickerContent}
         </Show>
       </ColorPickerBase.Root>
     );
   };
   ```
+
 - [ ] Create inline SVG icons: `ChevronDownIcon`, `CheckIcon` (for SwatchIndicator)
 - [ ] Export composite `ColorPicker`
 - [ ] Additional named exports for advanced composition:
@@ -214,9 +228,11 @@ A color selection component with saturation/brightness area, channel sliders, fo
 - [ ] Re-export variants: `export { colorPickerVariants, type ColorPickerVariants } from "@ui/core"`
 
 ### 6. Solid Barrel: `packages/solid/src/index.ts`
+
 - [ ] Add `export * from "./color-picker"` in alphabetical order (after `collapsible`/`combobox`, before `date-picker`)
 
 ### 7. Demo: `apps/docs/src/components/color-picker-demo/`
+
 - [ ] Create `ColorPickerBasicDemo.tsx` — basic color picker with presets
   - Imports: `import { ColorPicker } from "@ui/solid"`
   - Usage: `<ColorPicker label="Color" presets={["#ff0000", "#00ff00", "#0000ff"]} />`
@@ -226,6 +242,7 @@ A color selection component with saturation/brightness area, channel sliders, fo
 - [ ] All demos must only import named composites, never from `.base.tsx`
 
 ### 8. Docs: `apps/docs/src/content/docs/components/color-picker.mdx`
+
 - [ ] Create MDX page with frontmatter:
   ```yaml
   title: Color Picker

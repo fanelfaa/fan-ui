@@ -28,9 +28,7 @@ const Root: Component<ArkRatingGroup.RootProps & RatingGroupVariants> = (props) 
   );
 };
 
-const RootProvider: Component<ArkRatingGroup.RootProviderProps & RatingGroupVariants> = (
-  props,
-) => {
+const RootProvider: Component<ArkRatingGroup.RootProviderProps & RatingGroupVariants> = (props) => {
   const [local, others] = splitProps(props, ["class", "size", "orientation"]);
   return (
     <RatingGroupVariantContext.Provider
