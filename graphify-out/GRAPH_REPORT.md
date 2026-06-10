@@ -1,16 +1,16 @@
-# Graph Report - ui  (2026-06-10)
+# Graph Report - ui  (2026-06-11)
 
 ## Corpus Check
 - 453 files · ~134,185 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2213 nodes · 2526 edges · 166 communities (126 shown, 40 thin omitted)
+- 2213 nodes · 2526 edges · 169 communities (128 shown, 41 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 11 edges (avg confidence: 0.79)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b7fdaa32`
+- Built from commit: `b80b0417`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,8 +29,8 @@
 - [[_COMMUNITY_Community 11|Community 11]]
 - [[_COMMUNITY_Community 12|Community 12]]
 - [[_COMMUNITY_Community 13|Community 13]]
-- [[_COMMUNITY_Community 14|Community 14]]
 - [[_COMMUNITY_Community 15|Community 15]]
+- [[_COMMUNITY_Community 16|Community 16]]
 - [[_COMMUNITY_Community 17|Community 17]]
 - [[_COMMUNITY_Community 18|Community 18]]
 - [[_COMMUNITY_Community 19|Community 19]]
@@ -54,7 +54,7 @@
 - [[_COMMUNITY_Community 39|Community 39]]
 - [[_COMMUNITY_Community 40|Community 40]]
 - [[_COMMUNITY_Community 41|Community 41]]
-- [[_COMMUNITY_Community 42|Community 42]]
+- [[_COMMUNITY_Community 43|Community 43]]
 - [[_COMMUNITY_Community 44|Community 44]]
 - [[_COMMUNITY_Community 45|Community 45]]
 - [[_COMMUNITY_Community 46|Community 46]]
@@ -90,8 +90,8 @@
 - [[_COMMUNITY_Community 81|Community 81]]
 - [[_COMMUNITY_Community 82|Community 82]]
 - [[_COMMUNITY_Community 83|Community 83]]
-- [[_COMMUNITY_Community 85|Community 85]]
-- [[_COMMUNITY_Community 89|Community 89]]
+- [[_COMMUNITY_Community 84|Community 84]]
+- [[_COMMUNITY_Community 86|Community 86]]
 - [[_COMMUNITY_Community 90|Community 90]]
 - [[_COMMUNITY_Community 91|Community 91]]
 - [[_COMMUNITY_Community 92|Community 92]]
@@ -106,33 +106,34 @@
 - [[_COMMUNITY_Community 105|Community 105]]
 - [[_COMMUNITY_Community 106|Community 106]]
 - [[_COMMUNITY_Community 117|Community 117]]
+- [[_COMMUNITY_Community 120|Community 120]]
 - [[_COMMUNITY_Community 121|Community 121]]
 - [[_COMMUNITY_Community 122|Community 122]]
 - [[_COMMUNITY_Community 123|Community 123]]
 - [[_COMMUNITY_Community 124|Community 124]]
 - [[_COMMUNITY_Community 125|Community 125]]
-- [[_COMMUNITY_Community 126|Community 126]]
 - [[_COMMUNITY_Community 127|Community 127]]
 - [[_COMMUNITY_Community 128|Community 128]]
 - [[_COMMUNITY_Community 129|Community 129]]
 - [[_COMMUNITY_Community 130|Community 130]]
 - [[_COMMUNITY_Community 131|Community 131]]
+- [[_COMMUNITY_Community 132|Community 132]]
 - [[_COMMUNITY_Community 133|Community 133]]
 - [[_COMMUNITY_Community 134|Community 134]]
 - [[_COMMUNITY_Community 136|Community 136]]
-- [[_COMMUNITY_Community 139|Community 139]]
 - [[_COMMUNITY_Community 140|Community 140]]
 - [[_COMMUNITY_Community 141|Community 141]]
 - [[_COMMUNITY_Community 142|Community 142]]
-- [[_COMMUNITY_Community 143|Community 143]]
+- [[_COMMUNITY_Community 144|Community 144]]
 - [[_COMMUNITY_Community 145|Community 145]]
 - [[_COMMUNITY_Community 146|Community 146]]
 - [[_COMMUNITY_Community 147|Community 147]]
-- [[_COMMUNITY_Community 149|Community 149]]
-- [[_COMMUNITY_Community 150|Community 150]]
-- [[_COMMUNITY_Community 163|Community 163]]
-- [[_COMMUNITY_Community 164|Community 164]]
-- [[_COMMUNITY_Community 165|Community 165]]
+- [[_COMMUNITY_Community 148|Community 148]]
+- [[_COMMUNITY_Community 152|Community 152]]
+- [[_COMMUNITY_Community 153|Community 153]]
+- [[_COMMUNITY_Community 166|Community 166]]
+- [[_COMMUNITY_Community 167|Community 167]]
+- [[_COMMUNITY_Community 168|Community 168]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Solid.js` - 156 edges
@@ -165,11 +166,11 @@
 - **Build orchestration** — moonrepo, ui_core_package, ui_solid_package, ui_cli_package, ui_docs_package [EXTRACTED 1.00]
 - **Monorepo structure** — ui_monorepo, ui_core_package, ui_solid_package, ui_cli_package, ui_docs_package [EXTRACTED 1.00]
 
-## Communities (166 total, 40 thin omitted)
+## Communities (169 total, 41 thin omitted)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.05
-Nodes (10): ComboboxBasicDemo(), ComboboxRootProviderDemo(), ListboxHorizontalDemo(), ListboxMultipleDemo(), PaginationControlledDemo(), SelectMultipleDemo(), SelectSearchableDemo(), Solid.js (+2 more)
+Cohesion: 0.06
+Nodes (11): ColorPickerControlledDemo(), ComboboxRootProviderDemo(), ListboxBasicDemo(), ListboxMultipleDemo(), MenuBasicDemo(), PaginationControlledDemo(), PinInputRootProviderDemo(), SelectSearchableDemo() (+3 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.06
@@ -196,66 +197,62 @@ Cohesion: 0.07
 Nodes (27): Advanced Usage, API Reference, CLI, code:tsx (import { TagsInput } from "~/components/tags-input";), code:tsx (import { TagsInput } from "~/components/tags-input";), code:tsx (import { TagsInput } from "~/components/tags-input";), code:tsx (import { TagsInput } from "~/components/tags-input/tags-inpu), code:tsx (import { TagsInputBase } from "~/components/tags-input";) (+19 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.12
-Nodes (4): CheckboxBasicDemo(), DocsLink(), A(), TabsBasicDemo()
-
-### Community 9 - "Community 9"
 Cohesion: 0.07
 Nodes (26): Advanced Usage, API Reference, CLI, code:tsx (import { SegmentGroup, SegmentGroupItem } from "~/components), code:tsx (import { SegmentGroup, useSegmentGroupVariant } from "~/comp), code:tsx (import { SegmentGroupBase } from "~/components/segment-group), code:tsx (import { Index, createSignal } from "solid-js";), code:tsx (import { SegmentGroup } from "~/components/segment-group/seg) (+18 more)
 
-### Community 10 - "Community 10"
+### Community 9 - "Community 9"
 Cohesion: 0.07
 Nodes (25): Advanced Usage, API Reference, CLI, code:tsx (import { useFilter } from "@ark-ui/solid";), code:tsx (import { useFilter } from "@ark-ui/solid";), code:tsx (<ComboboxBase.Root), code:tsx (import { Combobox, ComboboxLabel, ComboboxInputTrigger, Comb), code:tsx (import { Combobox } from "~/components/combobox/combobox.bas) (+17 more)
 
-### Community 11 - "Community 11"
+### Community 10 - "Community 10"
 Cohesion: 0.07
 Nodes (25): Advanced Usage, API Reference, CLI, code:tsx (import { RatingGroup, RatingGroupLabel } from "~/components/), code:tsx (<RatingGroup count={5} defaultValue={2.5} allowHalf>), code:tsx (<RatingGroup count={5} defaultValue={4} disabled>), code:tsx (import { RatingGroup, useRatingGroupVariant } from "~/compon), code:tsx (import { RatingGroupBase } from "~/components/rating-group";) (+17 more)
 
-### Community 12 - "Community 12"
+### Community 11 - "Community 11"
 Cohesion: 0.07
 Nodes (25): Advanced Usage, API Reference, CLI, code:tsx (import { RadioGroup, RadioGroupItem } from "~/components/rad), code:tsx (import { RadioGroup } from "~/components/radio-group/radio-g), code:tsx (import { RadioGroupBase } from "~/components/radio-group";), code:tsx (import { Index, createSignal } from "solid-js";), code:tsx (import { RadioGroup } from "~/components/radio-group/radio-g) (+17 more)
 
-### Community 13 - "Community 13"
-Cohesion: 0.11
-Nodes (6): ArrowRightUp(), InputBasicDemo(), Table(), SkeletonBasicDemo(), SpinnerBasicDemo(), TextareaBasicDemo()
-
-### Community 14 - "Community 14"
+### Community 12 - "Community 12"
 Cohesion: 0.08
 Nodes (24): API Reference, CLI, code:tsx (import { DatePicker, DatePickerBase } from "~/components/dat), code:tsx (<DatePicker), code:tsx (<DatePicker), code:tsx (<DatePicker), code:tsx (import { createSignal } from "solid-js";), code:bash (npx solidui-cli@latest add date-picker) (+16 more)
 
-### Community 15 - "Community 15"
+### Community 13 - "Community 13"
 Cohesion: 0.08
 Nodes (24): API Reference, Button, CLI, code:tsx (import { Button } from "~/components/button"), code:tsx (<Button variant="outline" size="icon">), code:tsx (<Button class="w-full">Full Width Button</Button>), code:tsx (import { createSignal } from "solid-js";), code:tsx (import { buttonVariants } from "~/components/button";) (+16 more)
 
-### Community 17 - "Community 17"
+### Community 15 - "Community 15"
 Cohesion: 0.08
 Nodes (23): Advanced Usage, API Reference, CLI, code:tsx (import { createListCollection } from "@ark-ui/solid";), code:tsx (import { createListCollection } from "@ark-ui/solid";), code:tsx (import { Listbox } from "~/components/listbox/listbox.base";), code:tsx (import { ListboxBase } from "~/components/listbox";), code:tsx (import { ListboxBase, useListboxVariant } from "~/components) (+15 more)
 
-### Community 18 - "Community 18"
+### Community 16 - "Community 16"
 Cohesion: 0.08
 Nodes (23): Advanced Usage, API Reference, CLI, code:tsx (import { Tooltip, TooltipTrigger, TooltipContent } from "~/c), code:tsx (import { TooltipBase } from "~/components/tooltip";), code:tsx (import { Tooltip } from "~/components/tooltip/tooltip.base";), code:tsx (import { Tooltip, TooltipBase } from "~/components/tooltip";), code:tsx (import { createSignal } from "solid-js";) (+15 more)
 
-### Community 19 - "Community 19"
+### Community 17 - "Community 17"
 Cohesion: 0.08
 Nodes (23): Accordion, API Reference, CLI, code:tsx (import {), code:tsx (<Accordion multiple defaultValue={["item-1", "item-2"]}>), code:tsx (import { createSignal } from "solid-js";), code:tsx (import { useAccordion } from "@ark-ui/solid/accordion";), code:tsx (<Accordion>) (+15 more)
 
-### Community 20 - "Community 20"
+### Community 18 - "Community 18"
 Cohesion: 0.08
 Nodes (23): 1. Recipe: `packages/core/src/recipes/tags-input.ts`, 2. Core Index: `packages/core/src/index.ts`, 3. Tsup Entry: `packages/core/tsup.config.ts`, 4. Base File: `packages/solid/src/tags-input/tags-input.base.tsx`, 5. Index File: `packages/solid/src/tags-input/index.tsx`, 6. Solid Barrel: `packages/solid/src/index.ts`, 7. Demo: `apps/docs/src/components/tags-input-demo/TagsInputBasicDemo.tsx`, 8. Docs: `apps/docs/src/content/docs/components/tags-input.mdx` (+15 more)
 
-### Community 21 - "Community 21"
+### Community 19 - "Community 19"
+Cohesion: 0.12
+Nodes (6): BreadcrumbBasicDemo(), DocsLink(), InputBasicDemo(), Table(), TextareaBasicDemo(), TypographyBasicDemo()
+
+### Community 20 - "Community 20"
 Cohesion: 0.08
 Nodes (22): Access Raw Parts, Advanced Usage, API Reference, CLI, code:tsx (import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/), code:tsx (<TabsBase.Root defaultValue="account">), code:tsx (import { Index } from "solid-js";), code:tsx (import { TabsBase, TabsList, TabsTrigger, TabsContent } from) (+14 more)
 
-### Community 22 - "Community 22"
+### Community 21 - "Community 21"
 Cohesion: 0.08
 Nodes (22): API Reference, CLI, code:tsx (import { Toggle } from "~/components/toggle";), code:tsx (<Toggle>), code:tsx (<Toggle defaultPressed>), code:tsx (const [pressed, setPressed] = createSignal(false);), code:tsx (<Toggle disabled>), code:tsx (<Toggle>) (+14 more)
 
-### Community 23 - "Community 23"
+### Community 22 - "Community 22"
 Cohesion: 0.08
 Nodes (20): CheckboxRootProviderDemo(), API Reference, Checkbox, CLI, code:tsx (import { Checkbox, CheckboxLabel, CheckboxRootProvider } fro), code:tsx (<Checkbox disabled />), code:tsx (<Checkbox checked="indeterminate" />), code:tsx (import { useCheckbox } from "@ark-ui/solid/checkbox";) (+12 more)
 
-### Community 24 - "Community 24"
+### Community 23 - "Community 23"
 Cohesion: 0.08
 Nodes (22): 1. Recipe: `packages/core/src/recipes/pagination.ts`, 2. Core Index: `packages/core/src/index.ts`, 3. Tsup Entry: `packages/core/tsup.config.ts`, 4. Base File: `packages/solid/src/pagination/pagination.base.tsx`, 5. Index File: `packages/solid/src/pagination/index.tsx`, 6. Solid Barrel: `packages/solid/src/index.ts`, 7. Demo: `apps/docs/src/components/pagination-demo/`, 8. Docs: `apps/docs/src/content/docs/components/pagination.mdx` (+14 more)
 
@@ -287,131 +284,131 @@ Nodes (18): API Reference, CLI, code:tsx (import {), code:bash (npx solidui-cli@
 Cohesion: 0.09
 Nodes (20): API Reference, Avatar Placeholder, Card Skeleton, CLI, code:tsx (import { Skeleton } from "~/components/skeleton";), code:tsx ({/* Circle for avatars */}), code:bash (npx solidui-cli@latest add skeleton), code:bash (npm install tailwind-variants) (+12 more)
 
-### Community 35 - "Community 35"
+### Community 34 - "Community 34"
 Cohesion: 0.1
 Nodes (19): API Reference, CLI, code:tsx (import { ToggleGroup, ToggleGroupItem } from "~/components/t), code:tsx (<ToggleGroup defaultValue={["bold"]} multiple>), code:tsx (import { useToggleGroup } from "@ark-ui/solid/toggle-group";), code:tsx (import { ToggleGroup, ToggleGroupItem } from "~/components/t), code:bash (npx solidui-cli@latest add toggle-group), code:bash (npm install tailwind-variants) (+11 more)
 
-### Community 36 - "Community 36"
+### Community 35 - "Community 35"
 Cohesion: 0.1
 Nodes (19): 1. Recipe: `packages/core/src/recipes/color-picker.ts`, 2. Core Index: `packages/core/src/index.ts`, 3. Tsup Entry: `packages/core/tsup.config.ts`, 4. Base File: `packages/solid/src/color-picker/color-picker.base.tsx`, 5. Index File: `packages/solid/src/color-picker/index.tsx`, 6. Solid Barrel: `packages/solid/src/index.ts`, 7. Demo: `apps/docs/src/components/color-picker-demo/`, 8. Docs: `apps/docs/src/content/docs/components/color-picker.mdx` (+11 more)
 
-### Community 37 - "Community 37"
+### Community 36 - "Community 36"
 Cohesion: 0.12
 Nodes (18): Adding A Route, Adding Links, Building For Production, code:bash (pnpm install), code:bash (pnpm build), code:tsx (import { Link } from "@tanstack/solid-router";), code:tsx (<Link to="/about">About</Link>), code:tsx (import { createServerFn } from "@tanstack/solid-start";) (+10 more)
 
-### Community 38 - "Community 38"
+### Community 37 - "Community 37"
 Cohesion: 0.1
 Nodes (18): API Reference, Basic, CLI, code:tsx (import { Pagination, PaginationPageList, PaginationFirstTrig), code:tsx (import { createSignal } from "solid-js";), code:tsx (import { For } from "solid-js";), code:tsx (import { Pagination, PaginationPageList, PaginationFirstTrig), code:bash (npx solidui-cli@latest add pagination) (+10 more)
 
-### Community 39 - "Community 39"
+### Community 38 - "Community 38"
 Cohesion: 0.1
 Nodes (18): API Reference, CLI, code:tsx (import {), code:tsx (import { useDrawer } from "@ark-ui/solid/drawer";), code:bash (npx solidui-cli@latest add drawer), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants'), code:tsx (import { Drawer as ArkDrawer } from '@ark-ui/solid/drawer') (+10 more)
 
-### Community 40 - "Community 40"
+### Community 39 - "Community 39"
 Cohesion: 0.1
 Nodes (18): API Reference, Badge, CLI, code:tsx (import { Badge } from "~/components/badge";), code:tsx (import { Badge } from "@ui/solid";), code:bash (npx solidui-cli@latest add badge), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants') (+10 more)
 
-### Community 41 - "Community 41"
+### Community 40 - "Community 40"
 Cohesion: 0.1
 Nodes (18): API Reference, CLI, code:tsx (import { Switch, SwitchLabel, SwitchRootProvider } from "~/c), code:tsx (<Switch disabled />), code:tsx (import { useSwitch } from "@ark-ui/solid/switch";), code:bash (npx solidui-cli@latest add switch), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants') (+10 more)
 
-### Community 42 - "Community 42"
+### Community 41 - "Community 41"
 Cohesion: 0.1
 Nodes (18): 1. Recipe: `packages/core/src/recipes/hover-card.ts`, 2. Core Index: `packages/core/src/index.ts`, 3. Tsup Entry: `packages/core/tsup.config.ts`, 4. Base File: `packages/solid/src/hover-card/hover-card.base.tsx`, 5. Index File: `packages/solid/src/hover-card/index.tsx`, 6. Solid Barrel: `packages/solid/src/index.ts`, 7. Demo: `apps/docs/src/components/hover-card-demo/HoverCardBasicDemo.tsx`, 8. Docs: `apps/docs/src/content/docs/components/hover-card.mdx` (+10 more)
 
-### Community 44 - "Community 44"
+### Community 43 - "Community 43"
 Cohesion: 0.11
 Nodes (17): API Reference, Carousel, CLI, code:tsx (import {), code:bash (npx solidui-cli@latest add carousel), code:bash (npm install tailwind-variants), code:tsx (import { tv } from "tailwind-variants";), code:tsx (import { Carousel as ArkCarousel } from "@ark-ui/solid/carou) (+9 more)
 
-### Community 45 - "Community 45"
+### Community 44 - "Community 44"
 Cohesion: 0.11
 Nodes (17): Anatomy, API Reference, Breadcrumb, CLI, code:tsx (import {), code:tsx (<Breadcrumb>), code:bash (npx solidui-cli@latest add breadcrumb), code:bash (npm install tailwind-variants) (+9 more)
 
-### Community 46 - "Community 46"
+### Community 45 - "Community 45"
 Cohesion: 0.11
 Nodes (17): Alert, Anatomy, API Reference, CLI, code:tsx (import { Alert, AlertTitle, AlertDescription, AlertAction } ), code:bash (npx solidui-cli@latest add alert), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants') (+9 more)
 
-### Community 47 - "Community 47"
+### Community 46 - "Community 46"
 Cohesion: 0.11
 Nodes (17): API Reference, CLI, code:tsx (import { PinInput, PinInputControl, PinInputInput, PinInputL), code:tsx (import { usePinInput } from "@ark-ui/solid/pin-input";), code:bash (npx solidui-cli@latest add pin-input), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants'), code:tsx (import { PinInput as ArkPinInput } from "@ark-ui/solid/pin-i) (+9 more)
 
-### Community 48 - "Community 48"
+### Community 47 - "Community 47"
 Cohesion: 0.11
 Nodes (17): Alert Dialog, Anatomy, API Reference, CLI, code:tsx (import {), code:bash (npx solidui-cli@latest add alert-dialog), code:bash (npm install @ark-ui/solid tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants') (+9 more)
 
-### Community 49 - "Community 49"
+### Community 48 - "Community 48"
 Cohesion: 0.11
 Nodes (17): Advanced Usage, API Reference, CLI, code:tsx (import { ScrollArea } from "~/components/scroll-area";), code:tsx (import { ScrollArea, ScrollAreaBase } from "~/components/scr), code:bash (npx solidui-cli@latest add scroll-area), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from "tailwind-variants";) (+9 more)
 
-### Community 50 - "Community 50"
+### Community 49 - "Community 49"
 Cohesion: 0.11
 Nodes (17): API Reference, CLI, code:tsx (import { Input } from "~/components/input"), code:tsx (<Input label="Email" description="We'll never share your ema), code:tsx (<Input label="Password" error="Password is required" type="p), code:bash (npx solidui-cli@latest add input), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants') (+9 more)
 
-### Community 51 - "Community 51"
+### Community 50 - "Community 50"
 Cohesion: 0.11
 Nodes (17): API Reference, CLI, code:tsx (import { H1, H2, H3, H4, P, Lead, Large, Small, Muted, Inlin), code:tsx (<Blockquote>"A quote for emphasis."</Blockquote>), code:tsx (<List>), code:bash (npx solidui-cli@latest add typography), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants') (+9 more)
 
-### Community 52 - "Community 52"
+### Community 51 - "Community 51"
 Cohesion: 0.11
 Nodes (17): API Reference, Basic Usage, CLI, code:tsx (import { For } from "solid-js";), code:tsx (<MenuItem value="edit">Edit</MenuItem>), code:bash (npx solidui-cli@latest add menu), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from "tailwind-variants";) (+9 more)
 
-### Community 53 - "Community 53"
+### Community 52 - "Community 52"
 Cohesion: 0.11
 Nodes (17): API Reference, CLI, code:tsx (import { Textarea } from "~/components/textarea";), code:tsx (<Textarea label="Bio" description="Write a short introductio), code:tsx (<Textarea label="Bio" error="This field is required" />), code:bash (npx solidui-cli@latest add textarea), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants') (+9 more)
 
-### Community 54 - "Community 54"
+### Community 53 - "Community 53"
 Cohesion: 0.11
 Nodes (17): 1. Recipe: `packages/core/src/recipes/<name>.ts`, 2. Core Index: `packages/core/src/index.ts`, 3. Tsup Entry: `packages/core/tsup.config.ts`, 4. Base File: `packages/solid/src/<name>/<name>.base.tsx`, 5. Index File: `packages/solid/src/<name>/index.tsx`, 6. Solid Barrel: `packages/solid/src/index.ts`, 7. Demos: `apps/docs/src/components/<name>-demo/`, 8. Sidebar: `apps/docs/src/layouts/DocsLayout.astro` (+9 more)
 
-### Community 55 - "Community 55"
+### Community 54 - "Community 54"
 Cohesion: 0.14
 Nodes (4): HoverCardArrowDemo(), HoverCardBasicDemo(), HoverCardControlledDemo(), HoverCardRootProviderDemo()
 
-### Community 56 - "Community 56"
+### Community 55 - "Community 55"
 Cohesion: 0.12
 Nodes (3): Content(), Item(), useListboxVariant()
 
-### Community 57 - "Community 57"
+### Community 56 - "Community 56"
 Cohesion: 0.11
 Nodes (16): Anatomy, API Reference, Card, CLI, code:tsx (import { Card, CardHeader, CardTitle, CardDescription, CardC), code:bash (npx solidui-cli@latest add card), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants') (+8 more)
 
-### Community 58 - "Community 58"
+### Community 57 - "Community 57"
 Cohesion: 0.11
 Nodes (16): API Reference, CLI, code:tsx (import {), code:bash (npx solidui-cli@latest add progress), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants'), code:tsx (import { Progress as ArkProgress } from "@ark-ui/solid/progr), code:tsx (import { splitProps, type Component } from "solid-js";) (+8 more)
 
-### Community 59 - "Community 59"
+### Community 58 - "Community 58"
 Cohesion: 0.11
 Nodes (16): API Reference, Avatar, CLI, code:tsx (import {), code:bash (npx solidui-cli@latest add avatar), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants'), code:tsx (import { Avatar as ArkAvatar } from "@ark-ui/solid/avatar";) (+8 more)
 
-### Community 60 - "Community 60"
+### Community 59 - "Community 59"
 Cohesion: 0.11
 Nodes (16): 1. Recipe: `packages/core/src/recipes/rating-group.ts`, 2. Core Index: `packages/core/src/index.ts`, 3. Tsup Entry: `packages/core/tsup.config.ts`, 4. Base File: `packages/solid/src/rating-group/rating-group.base.tsx`, 5. Index File: `packages/solid/src/rating-group/index.tsx`, 6. Solid Barrel: `packages/solid/src/index.ts`, 7. Demo: `apps/docs/src/components/rating-group-demo/RatingGroupBasicDemo.tsx`, 8. Docs: `apps/docs/src/content/docs/components/rating-group.mdx` (+8 more)
 
-### Community 61 - "Community 61"
+### Community 60 - "Community 60"
 Cohesion: 0.11
 Nodes (16): 1. Recipe: `packages/core/src/recipes/breadcrumb.ts`, 2. Core Index: `packages/core/src/index.ts`, 3. Tsup Entry: `packages/core/tsup.config.ts`, 4. Solid Component: `packages/solid/src/breadcrumb/index.tsx`, 5. Solid Barrel: `packages/solid/src/index.ts`, 6. Demo: `apps/docs/src/components/breadcrumb-demo/BreadcrumbBasicDemo.tsx`, 7. Docs: `apps/docs/src/content/docs/components/breadcrumb.mdx`, Artifact Checklist (+8 more)
 
-### Community 62 - "Community 62"
+### Community 61 - "Community 61"
 Cohesion: 0.11
 Nodes (16): 1. Recipe: `packages/core/src/recipes/listbox.ts`, 2. Core Index: `packages/core/src/index.ts`, 3. Tsup Entry: `packages/core/tsup.config.ts`, 4. Base File: `packages/solid/src/listbox/listbox.base.tsx`, 5. Index File: `packages/solid/src/listbox/index.tsx`, 6. Solid Barrel: `packages/solid/src/index.ts`, 7. Demo: `apps/docs/src/components/listbox-demo/ListboxBasicDemo.tsx`, 8. Docs: `apps/docs/src/content/docs/components/listbox.mdx` (+8 more)
 
-### Community 63 - "Community 63"
+### Community 62 - "Community 62"
 Cohesion: 0.11
 Nodes (16): 1. Recipe: `packages/core/src/recipes/table.ts`, 2. Core Index: `packages/core/src/index.ts`, 3. Tsup Entry: `packages/core/tsup.config.ts`, 4. Solid Component: `packages/solid/src/table/index.tsx`, 5. Solid Barrel: `packages/solid/src/index.ts`, 6. Demo: `apps/docs/src/components/table-demo/TableBasicDemo.tsx`, 7. Docs: `apps/docs/src/content/docs/components/table.mdx`, Artifact Checklist (+8 more)
 
-### Community 64 - "Community 64"
+### Community 63 - "Community 63"
 Cohesion: 0.14
 Nodes (15): ANTI-PATTERNS (THIS PROJECT), CODE MAP, code:block1 (.), COMMANDS, CONVENTIONS, Development, graphify, Moonrepo (+7 more)
 
-### Community 65 - "Community 65"
+### Community 64 - "Community 64"
 Cohesion: 0.12
 Nodes (15): Anatomy, API Reference, CLI, code:tsx (import {), code:bash (npx solidui-cli@latest add table), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants'), code:tsx (import { splitProps, type Component } from 'solid-js') (+7 more)
 
-### Community 66 - "Community 66"
+### Community 65 - "Community 65"
 Cohesion: 0.12
 Nodes (15): API Reference, CLI, code:tsx (import { Spinner } from "~/components/spinner";), code:bash (npx solidui-cli@latest add spinner), code:bash (npm install tailwind-variants), code:tsx (import { tv, type VariantProps } from 'tailwind-variants'), code:tsx (import { splitProps, type Component } from 'solid-js'), code:tsx (import { Spinner } from "@ui/solid";) (+7 more)
 
-### Community 67 - "Community 67"
+### Community 66 - "Community 66"
 Cohesion: 0.16
 Nodes (4): RatingGroupBasicDemo(), RatingGroupControlledDemo(), RatingGroupDisabledDemo(), RatingGroupHalfStarDemo()
 
@@ -439,19 +436,23 @@ Nodes (12): Ark UI, @ark-ui/solid, Astro 6, Component delivery pipeline, MDX, Mo
 Cohesion: 0.2
 Nodes (3): Indicator(), Item(), useSegmentGroupVariant()
 
-### Community 83 - "Community 83"
+### Community 82 - "Community 82"
+Cohesion: 0.24
+Nodes (3): CheckboxBasicDemo(), ArrowRightUp(), TabsBasicDemo()
+
+### Community 84 - "Community 84"
 Cohesion: 0.24
 Nodes (3): TooltipArrowDemo(), TooltipBasicDemo(), TooltipManualArrowDemo()
 
-### Community 89 - "Community 89"
+### Community 90 - "Community 90"
 Cohesion: 0.18
 Nodes (9): High Priority, Implemented (31/88), Legend, Low Priority, Medium Priority, Not Implemented (62) — 20 Ark UI + 42 shadcn parity, Out of Scope (for reference), Solid UI Components Status (+1 more)
 
-### Community 90 - "Community 90"
+### Community 91 - "Community 91"
 Cohesion: 0.18
 Nodes (9): code:block1 (apps/docs/), code:bash (moon run docs:dev        # Dev server with HMR), COMMANDS, CONVENTIONS, NOTES, OVERVIEW, PROJECT KNOWLEDGE BASE, STRUCTURE (+1 more)
 
-### Community 91 - "Community 91"
+### Community 92 - "Community 92"
 Cohesion: 0.29
 Nodes (7): convertFile(), escapePreCode(), jsxDelta(), main(), processImport(), stripFrontmatter(), toPascalCase()
 
@@ -482,12 +483,12 @@ Nodes (6): code:block1 (packages/core/src/recipes/), CONVENTIONS, OVERVIEW, Pack
 ## Knowledge Gaps
 - **754 isolated node(s):** `OVERVIEW`, `code:block1 (.)`, `WHERE TO LOOK`, `CODE MAP`, `CONVENTIONS` (+749 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **40 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **41 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Solid.js` connect `Community 1` to `Community 3`, `Community 132`, `Community 5`, `Community 134`, `Community 135`, `Community 136`, `Community 8`, `Community 138`, `Community 137`, `Community 13`, `Community 141`, `Community 143`, `Community 144`, `Community 142`, `Community 146`, `Community 145`, `Community 16`, `Community 25`, `Community 26`, `Community 43`, `Community 55`, `Community 56`, `Community 67`, `Community 68`, `Community 71`, `Community 72`, `Community 73`, `Community 74`, `Community 75`, `Community 76`, `Community 77`, `Community 78`, `Community 79`, `Community 80`, `Community 81`, `Community 84`, `Community 85`, `Community 86`, `Community 87`, `Community 88`, `Community 93`, `Community 94`, `Community 96`, `Community 97`, `Community 102`, `Community 107`, `Community 108`, `Community 109`, `Community 110`, `Community 111`, `Community 112`, `Community 113`, `Community 114`, `Community 115`, `Community 116`, `Community 117`, `Community 118`, `Community 119`?**
+- **Why does `Solid.js` connect `Community 1` to `Community 3`, `Community 5`, `Community 135`, `Community 136`, `Community 137`, `Community 138`, `Community 139`, `Community 140`, `Community 14`, `Community 143`, `Community 144`, `Community 145`, `Community 146`, `Community 147`, `Community 149`, `Community 150`, `Community 24`, `Community 25`, `Community 26`, `Community 42`, `Community 54`, `Community 55`, `Community 66`, `Community 68`, `Community 71`, `Community 72`, `Community 73`, `Community 74`, `Community 75`, `Community 76`, `Community 77`, `Community 78`, `Community 79`, `Community 80`, `Community 81`, `Community 82`, `Community 85`, `Community 86`, `Community 87`, `Community 88`, `Community 89`, `Community 93`, `Community 94`, `Community 96`, `Community 97`, `Community 102`, `Community 107`, `Community 108`, `Community 109`, `Community 110`, `Community 111`, `Community 112`, `Community 113`, `Community 114`, `Community 115`, `Community 116`, `Community 117`, `Community 118`, `Community 119`?**
   _High betweenness centrality (0.177) - this node is a cross-community bridge._
 - **Why does `@ui/solid` connect `Community 79` to `Community 1`?**
   _High betweenness centrality (0.033) - this node is a cross-community bridge._
@@ -498,6 +499,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.04 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.05 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.06 - nodes in this community are weakly interconnected._
