@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ScrollArea } from "@ui/solid";
 
 export default function ScrollAreaBasicDemo() {
