@@ -1,12 +1,14 @@
 import { Button } from "@ui/solid";
 import {
   createSignal,
+  createMemo,
   type ParentProps,
   Show,
   onMount,
   onCleanup,
   splitProps,
   type JSX,
+  children,
 } from "solid-js";
 
 const MAX_HEIGHT = 200;
@@ -35,10 +37,12 @@ export default function CodeBlock(props: ParentProps<JSX.HTMLAttributes<HTMLPreE
 
   const [local, rest] = splitProps(props, ["class", "style", "classList", "children"]);
 
-  // Directly process children — static code blocks never change
-  let code: any = props.children;
-  if (typeof code === "function") code = code();
-  if (typeof code === "string") code = normalize(code);
+  // Reactive code content — tracks children reactively
+  const code = createMemo(() => {
+    const resolved = children(() => local.children)();
+    if (typeof resolved !== "string") throw Error("the children of codeblocks should be a string");
+    return normalize(resolved);
+  });
 
   const checkOverflow = () => {
     if (preRef && preRef.scrollHeight > MAX_HEIGHT) {
@@ -81,7 +85,7 @@ export default function CodeBlock(props: ParentProps<JSX.HTMLAttributes<HTMLPreE
         }}
         {...rest}
       >
-        {code}
+        {code()}
       </pre>
       <Show when={overflowing()}>
         <Show when={!expanded()}>
@@ -98,9 +102,9 @@ export default function CodeBlock(props: ParentProps<JSX.HTMLAttributes<HTMLPreE
       </Show>
       <button
         class="absolute top-3 right-3 rounded-md p-1.5 text-muted-foreground hover:text-white hover:bg-muted-foreground/10 transition-colors"
-        on:click={() => {
-          const text = typeof code === "string" ? code : "";
-          navigator.clipboard.writeText(text);
+        onClick={() => {
+          const resolved = code();
+          navigator.clipboard.writeText(resolved);
           setCopied(true);
           setTimeout(() => setCopied(false), 1500);
         }}

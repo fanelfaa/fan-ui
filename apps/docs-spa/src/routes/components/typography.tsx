@@ -14,7 +14,6 @@ function TypographyPage() {
       <DocsLink href="https://ui.shadcn.com/docs/components/typography" />
       <TypographyBasicDemo />
       <Pre>{`
-
 import { H1, H2, H3, H4, P, Lead, Large, Small, Muted, InlineCode, Blockquote, List } from "~/components/typography";
 
 export function TypographyDemo() {

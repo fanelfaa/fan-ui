@@ -24,7 +24,7 @@
 
     /* Path aliases */
     "paths": {
-      "@demos/*": ["../docs/src/components/*"]
+      "@demos/*": ["./src/components/demos/*"]
     }
   }
 }

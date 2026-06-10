@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { createSignal } from "solid-js";
 import { ColorPicker } from "@ui/solid";
 import { parseColor } from "@ark-ui/solid/color-picker";
