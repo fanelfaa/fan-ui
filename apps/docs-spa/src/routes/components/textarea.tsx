@@ -1,15 +1,30 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
 import TextareaBasicDemo from "@demos/textarea-demo/TextareaBasicDemo.tsx";
-import { H1, H2, H3, P, InlineCode, Pre, Table, Th, Td, THead, TBody, Tr } from "../../components/markdown"
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  Pre,
+  Table,
+  Th,
+  Td,
+  THead,
+  TBody,
+  Tr,
+} from "../../components/markdown";
 
-export const Route = createFileRoute('/components/textarea')({ component: TextareaPage })
+export const Route = createFileRoute("/components/textarea")({ component: TextareaPage });
 
 function TextareaPage() {
   return (
     <>
       <H1>Textarea</H1>
-      <P>A multi-line text input component with support for labels, descriptions, and error states.</P>
+      <P>
+        A multi-line text input component with support for labels, descriptions, and error states.
+      </P>
       <DocsLink href="https://ui.shadcn.com/docs/components/textarea" />
       <div class="rounded-lg border border-border p-6">
         <TextareaBasicDemo />
@@ -42,15 +57,12 @@ npx solidui-cli@latest add textarea
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/textarea.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/textarea.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const textareaVariants = tv({
   slots: {
@@ -74,14 +86,10 @@ export const textareaVariants = tv({
 })
 
 export type TextareaVariants = VariantProps<typeof textareaVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/textarea/textarea.base.tsx`:
-
-      <Pre>{`import { Field as ArkField } from "@ark-ui/solid/field";
+        Create the component directory and files: `src/components/textarea/textarea.base.tsx`:
+        <Pre>{`import { Field as ArkField } from "@ark-ui/solid/field";
 import { splitProps, type Component } from "solid-js";
 import { textareaVariants } from "../recipes/textarea";
 
@@ -124,10 +132,8 @@ export const Textarea = {
   Description: TextareaDescription,
   ErrorText: TextareaErrorText,
 };`}</Pre>
-
-      `src/components/textarea/index.tsx`:
-
-      <Pre>{`import { Field as ArkField } from "@ark-ui/solid/field";
+        `src/components/textarea/index.tsx`:
+        <Pre>{`import { Field as ArkField } from "@ark-ui/solid/field";
 import { splitProps, type Component } from "solid-js";
 import { Textarea as TextareaBase } from "./textarea.base";
 import { TextareaVariants } from "../recipes/textarea";
@@ -156,7 +162,6 @@ const Textarea: Component<TextareaProps> = (props) => {
 export { Textarea, TextareaBase };
 
 export { textareaVariants, type TextareaVariants } from "../recipes/textarea";`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component:</P>
@@ -196,22 +201,30 @@ import { Textarea } from "@ui/solid";
         <TBody>
           <Tr>
             <Td>label</Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
             <Td>description</Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
             <Td>error</Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
             <Td>class</Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
@@ -222,5 +235,5 @@ import { Textarea } from "@ui/solid";
         </TBody>
       </Table>
     </>
-  )
+  );
 }

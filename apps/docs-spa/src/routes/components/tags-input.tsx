@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import TagsInputBasicDemo from "@demos/tags-input-demo/TagsInputBasicDemo.tsx";
 import TagsInputControlledDemo from "@demos/tags-input-demo/TagsInputControlledDemo.tsx";
@@ -7,7 +7,7 @@ import TagsInputDisabledDemo from "@demos/tags-input-demo/TagsInputDisabledDemo.
 import TagsInputInvalidDemo from "@demos/tags-input-demo/TagsInputInvalidDemo.tsx";
 import TagsInputRootProviderDemo from "@demos/tags-input-demo/TagsInputRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/tags-input')({ component: TagsInputPage })
+export const Route = createFileRoute("/components/tags-input")({ component: TagsInputPage });
 
 function TagsInputPage() {
   return (
@@ -40,17 +40,12 @@ npx solidui-cli@latest add tags-input
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-
-      Create the recipe file at `src/components/recipes/tags-input.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
+        Create the recipe file at `src/components/recipes/tags-input.ts`:
+        <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
 
 export const tagsInputVariants = tv({
   slots: {
@@ -95,13 +90,10 @@ export const tagsInputVariants = tv({
 });
 
 export type TagsInputVariants = VariantProps<typeof tagsInputVariants>;`}</Pre>
-
       </div>
       <div class="space-y-3">
-
-      Create the component file at `src/components/tags-input/tags-input.base.tsx`:
-
-      <Pre>{`import { TagsInput as ArkTagsInput } from "@ark-ui/solid/tags-input";
+        Create the component file at `src/components/tags-input/tags-input.base.tsx`:
+        <Pre>{`import { TagsInput as ArkTagsInput } from "@ark-ui/solid/tags-input";
 import { createContext, useContext, splitProps, type Component } from "solid-js";
 import { tagsInputVariants } from "../recipes/tags-input";
 
@@ -231,13 +223,10 @@ const TagsInput = {
 
 export { TagsInput };
 export { TagsInputVariantContext, useTagsInputVariant };`}</Pre>
-
       </div>
       <div class="space-y-3">
-
-      Create the component file at `src/components/tags-input/index.tsx`:
-
-      <Pre>{`import { Index, splitProps, type Component } from "solid-js";
+        Create the component file at `src/components/tags-input/index.tsx`:
+        <Pre>{`import { Index, splitProps, type Component } from "solid-js";
 import { TagsInput as TagsInputBase } from "./tags-input.base";
 import { TagsInput as ArkTagsInput } from "@ark-ui/solid/tags-input";
 import type { TagsInputVariants } from "../recipes/tags-input";
@@ -306,7 +295,6 @@ const TagsInput: Component<TagsInputProps> = (props) => {
 
 export { TagsInput, TagsInputBase };
 export { tagsInputVariants, type TagsInputVariants } from "../recipes/tags-input";`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component and use it inline:</P>
@@ -320,7 +308,10 @@ import { TagsInput } from "~/components/tags-input";
 <TagsInput defaultValue={["React", "Solid"]} label="Frameworks" />
       `}</Pre>
       <H3>Controlled Value</H3>
-      <P>Use <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode> to control the tag values externally:</P>
+      <P>
+        Use <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode> to control the
+        tag values externally:
+      </P>
       <TagsInputControlledDemo />
       <Pre>{`
 
@@ -342,7 +333,9 @@ export function ControlledDemo() {
 }
       `}</Pre>
       <H3>Disabled</H3>
-      <P>Use the <InlineCode>disabled</InlineCode> prop to disable the tags input:</P>
+      <P>
+        Use the <InlineCode>disabled</InlineCode> prop to disable the tags input:
+      </P>
       <TagsInputDisabledDemo />
       <Pre>{`
 
@@ -359,7 +352,9 @@ export function DisabledDemo() {
 }
       `}</Pre>
       <H3>Invalid State</H3>
-      <P>Use the <InlineCode>invalid</InlineCode> prop (from Ark UI) to mark the input as invalid:</P>
+      <P>
+        Use the <InlineCode>invalid</InlineCode> prop (from Ark UI) to mark the input as invalid:
+      </P>
       <TagsInputInvalidDemo />
       <Pre>{`
 
@@ -376,18 +371,27 @@ export function InvalidDemo() {
 }
       `}</Pre>
       <H2>Advanced Usage</H2>
-      <P>When the composite <InlineCode>TagsInput</InlineCode> doesn't provide enough control, import the raw primitive parts from the base file directly:</P>
+      <P>
+        When the composite <InlineCode>TagsInput</InlineCode> doesn't provide enough control, import
+        the raw primitive parts from the base file directly:
+      </P>
       <Pre>{`
 
 import { TagsInput } from "~/components/tags-input/tags-input.base";
       `}</Pre>
-      <P>Or import <InlineCode>TagsInputBase</InlineCode> (the raw parts namespace) from the composite entry point:</P>
+      <P>
+        Or import <InlineCode>TagsInputBase</InlineCode> (the raw parts namespace) from the
+        composite entry point:
+      </P>
       <Pre>{`
 
 import { TagsInputBase } from "~/components/tags-input";
       `}</Pre>
       <H3>RootProvider Pattern</H3>
-      <P>For full control over the tags input machine, use <InlineCode>useTagsInput</InlineCode> with <InlineCode>TagsInputBase.RootProvider</InlineCode>:</P>
+      <P>
+        For full control over the tags input machine, use <InlineCode>useTagsInput</InlineCode> with{" "}
+        <InlineCode>TagsInputBase.RootProvider</InlineCode>:
+      </P>
       <TagsInputRootProviderDemo />
       <Pre>{`
 
@@ -457,7 +461,10 @@ export function RootProviderDemo() {
 }
       `}</Pre>
       <H3>Custom Tag Rendering with TagsInputItem</H3>
-      <P>For custom tag rendering (e.g., custom delete icon), use <InlineCode>TagsInputItem</InlineCode>:</P>
+      <P>
+        For custom tag rendering (e.g., custom delete icon), use{" "}
+        <InlineCode>TagsInputItem</InlineCode>:
+      </P>
       <Pre>{`
 
 import { Index } from "solid-js";
@@ -482,7 +489,10 @@ export function CustomItemDemo() {
 }
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/tags-input">Ark UI TagsInput</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/tags-input">Ark UI TagsInput</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

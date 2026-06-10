@@ -1,16 +1,19 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import PopoverBasicDemo from "@demos/popover-demo/PopoverBasicDemo.tsx";
 import PopoverRootProviderDemo from "@demos/popover-demo/PopoverRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/popover')({ component: PopoverPage })
+export const Route = createFileRoute("/components/popover")({ component: PopoverPage });
 
 function PopoverPage() {
   return (
     <>
       <H1>Popover</H1>
-      <P>A floating panel that displays content when triggered by a user action, typically a button click.</P>
+      <P>
+        A floating panel that displays content when triggered by a user action, typically a button
+        click.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/popover" />
       <PopoverBasicDemo />
       <Pre>{`
@@ -47,12 +50,12 @@ npx solidui-cli@latest add popover
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/popover.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/popover.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const popoverVariants = tv({
   slots: {
@@ -74,10 +77,8 @@ export const popoverVariants = tv({
 export type PopoverVariants = VariantProps<typeof popoverVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/popover/popover.base.tsx`:
-      <Pre>{`import { Popover as ArkPopover } from '@ark-ui/solid/popover'
+        Create the component directory and files: `src/components/popover/popover.base.tsx`:
+        <Pre>{`import { Popover as ArkPopover } from '@ark-ui/solid/popover'
 import { splitProps, type Component } from 'solid-js'
 import { popoverVariants, type PopoverVariants } from './recipes/popover'
 
@@ -146,9 +147,8 @@ export const Popover = {
   Indicator,
   Positioner,
 };`}</Pre>
-
-      `src/components/popover/index.tsx`:
-      <Pre>{`import { Popover as ArkPopover } from "@ark-ui/solid/popover";
+        `src/components/popover/index.tsx`:
+        <Pre>{`import { Popover as ArkPopover } from "@ark-ui/solid/popover";
 import { Portal } from "solid-js/web";
 import { splitProps, type Component } from "solid-js";
 import { Popover as PopoverBase } from "./popover.base";
@@ -188,7 +188,12 @@ export { Popover, PopoverTrigger, PopoverTitle, PopoverDescription, PopoverArrow
 
 export { popoverVariants, type PopoverVariants };`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--popover</InlineCode>, <InlineCode>--foreground</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--popover</InlineCode>, <InlineCode>--foreground</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -213,9 +218,19 @@ import { Button } from "~/components/button";
   </PopoverContent>
 </Popover>
       `}</Pre>
-      <Blockquote><strong>Note:</strong> <InlineCode>PopoverArrow</InlineCode> and <InlineCode>PopoverCloseTrigger</InlineCode> are automatically included inside <InlineCode>PopoverContent</InlineCode>. You only need to import them separately for custom positioning or advanced use cases.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> <InlineCode>PopoverArrow</InlineCode> and{" "}
+        <InlineCode>PopoverCloseTrigger</InlineCode> are automatically included inside{" "}
+        <InlineCode>PopoverContent</InlineCode>. You only need to import them separately for custom
+        positioning or advanced use cases.
+      </Blockquote>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>PopoverRootProvider</InlineCode> when you need to access the popover state outside of the component tree. This pattern uses the <InlineCode>usePopover</InlineCode> hook from Ark UI to create a shared context that both the popover and external elements can reference.</P>
+      <P>
+        Use <InlineCode>PopoverRootProvider</InlineCode> when you need to access the popover state
+        outside of the component tree. This pattern uses the <InlineCode>usePopover</InlineCode>{" "}
+        hook from Ark UI to create a shared context that both the popover and external elements can
+        reference.
+      </P>
       <PopoverRootProviderDemo />
       <Pre>{`
 
@@ -251,11 +266,25 @@ export function PopoverWithExternalControl() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Popover</InlineCode></strong> — manages its own state internally. Use for simple, self-contained popovers.</li>
-        <li><strong><InlineCode>PopoverBase.RootProvider</InlineCode></strong> — accepts a pre-created popover context via <InlineCode>usePopover</InlineCode>. Use when you need to read or control the popover state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Popover</InlineCode>
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained popovers.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>PopoverBase.RootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created popover context via <InlineCode>usePopover</InlineCode>. Use when
+          you need to read or control the popover state from outside the component tree.
+        </li>
       </List>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/popover">Ark UI Popover</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/popover">Ark UI Popover</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

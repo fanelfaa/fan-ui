@@ -1,15 +1,18 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import DrawerBasicDemo from "@demos/drawer-demo/DrawerBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/drawer')({ component: DrawerPage })
+export const Route = createFileRoute("/components/drawer")({ component: DrawerPage });
 
 function DrawerPage() {
   return (
     <>
       <H1>Drawer</H1>
-      <P>A drawer panel that slides in from the left edge of the screen, used for navigation menus, filters, or secondary content.</P>
+      <P>
+        A drawer panel that slides in from the left edge of the screen, used for navigation menus,
+        filters, or secondary content.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/drawer" />
       <DrawerBasicDemo />
       <Pre>{`
@@ -55,12 +58,12 @@ npx solidui-cli@latest add drawer
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/drawer.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/drawer.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const drawerVariants = tv({
   slots: {
@@ -81,10 +84,8 @@ export const drawerVariants = tv({
 export type DrawerVariants = VariantProps<typeof drawerVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component files:
-
-      At `src/components/drawer/drawer.base.tsx`:
-      <Pre>{`import { Drawer as ArkDrawer } from '@ark-ui/solid/drawer'
+        Create the component files: At `src/components/drawer/drawer.base.tsx`:
+        <Pre>{`import { Drawer as ArkDrawer } from '@ark-ui/solid/drawer'
 import { splitProps, type Component } from 'solid-js'
 import { drawerVariants } from './recipes/drawer'
 
@@ -151,9 +152,8 @@ export const Drawer = {
   Grabber,
   GrabberIndicator,
 }`}</Pre>
-
-      At `src/components/drawer/index.tsx`:
-      <Pre>{`import { Drawer as ArkDrawer } from '@ark-ui/solid/drawer'
+        At `src/components/drawer/index.tsx`:
+        <Pre>{`import { Drawer as ArkDrawer } from '@ark-ui/solid/drawer'
 import { Portal } from 'solid-js/web'
 import { splitProps, type Component } from 'solid-js'
 import { Drawer as DrawerBase } from './drawer.base'
@@ -192,7 +192,12 @@ const DrawerGrabber: Component<ArkDrawer.GrabberProps> = (props) => {
 export { Drawer, DrawerTrigger, DrawerContent, DrawerTitle, DrawerDescription, DrawerGrabber, DrawerBase }
 export { drawerVariants, type DrawerVariants } from './recipes/drawer'`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--background</InlineCode>, <InlineCode>--foreground</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--background</InlineCode>, <InlineCode>--foreground</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -235,7 +240,11 @@ import {
 </Drawer>
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>DrawerBase.RootProvider</InlineCode> when you need to access the drawer state outside of the component tree. This pattern uses the <InlineCode>useDrawer</InlineCode> hook from Ark UI to create a shared context.</P>
+      <P>
+        Use <InlineCode>DrawerBase.RootProvider</InlineCode> when you need to access the drawer
+        state outside of the component tree. This pattern uses the{" "}
+        <InlineCode>useDrawer</InlineCode> hook from Ark UI to create a shared context.
+      </P>
       <Pre>{`
 
 import { useDrawer } from "@ark-ui/solid/drawer";
@@ -264,11 +273,24 @@ export function ExternalControlExample() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Drawer</InlineCode></strong> — manages its own state internally. Use for simple, self-contained usage.</li>
-        <li><strong><InlineCode>DrawerBase.RootProvider</InlineCode></strong> — accepts a pre-created context via <InlineCode>useDrawer</InlineCode>. Use when you need to read or control the drawer state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Drawer</InlineCode>
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained usage.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>DrawerBase.RootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created context via <InlineCode>useDrawer</InlineCode>. Use when you need
+          to read or control the drawer state from outside the component tree.
+        </li>
       </List>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/drawer">Ark UI Drawer</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/drawer">Ark UI Drawer</A> documentation.
+      </P>
     </>
-  )
+  );
 }

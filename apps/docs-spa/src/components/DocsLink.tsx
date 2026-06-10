@@ -1,8 +1,8 @@
-import { type Component } from "solid-js"
-import { ArrowRightUp } from "./ArrowRightUp"
+import { type Component } from "solid-js";
+import { ArrowRightUp } from "./ArrowRightUp";
 
 interface DocsLinkProps {
-  href: string
+  href: string;
 }
 
 /**
@@ -20,4 +20,4 @@ export const DocsLink: Component<DocsLinkProps> = (props) => (
     <ArrowRightUp />
     Docs
   </a>
-)
+);

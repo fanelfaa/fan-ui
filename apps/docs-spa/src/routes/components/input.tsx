@@ -1,10 +1,10 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
 import InputBasicDemo from "@demos/input-demo/InputBasicDemo.tsx";
 
-import { H1, H2, H3, P, Pre, Table, Th, Td, THead, TBody, Tr } from "../../components/markdown"
+import { H1, H2, H3, P, Pre, Table, Th, Td, THead, TBody, Tr } from "../../components/markdown";
 
-export const Route = createFileRoute('/components/input')({ component: InputPage })
+export const Route = createFileRoute("/components/input")({ component: InputPage });
 
 function InputPage() {
   return (
@@ -13,8 +13,8 @@ function InputPage() {
       <P>A text input component with support for labels, descriptions, and error states.</P>
       <DocsLink href="https://ark-ui.com/docs/components/field" />
       <div class="rounded-lg border border-border p-6">
-        <InputBasicDemo/>
-      <Pre>{`import { Input } from "~/components/input"
+        <InputBasicDemo />
+        <Pre>{`import { Input } from "~/components/input"
 
 export function InputDemo() {
   return (
@@ -36,12 +36,12 @@ npx solidui-cli@latest add input
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/input.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/input.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const inputVariants = tv({
   slots: {
@@ -67,10 +67,8 @@ export const inputVariants = tv({
 export type InputVariants = VariantProps<typeof inputVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/input/input.base.tsx`:
-      <Pre>{`import { Field as ArkField } from "@ark-ui/solid/field";
+        Create the component directory and files: `src/components/input/input.base.tsx`:
+        <Pre>{`import { Field as ArkField } from "@ark-ui/solid/field";
 import { splitProps, type Component } from "solid-js";
 import { inputVariants } from "../recipes/input";
 
@@ -113,9 +111,8 @@ export const Input = {
   Description: InputDescription,
   ErrorText: InputErrorText,
 };`}</Pre>
-
-      `src/components/input/index.tsx`:
-      <Pre>{`import { Field as ArkField } from "@ark-ui/solid/field";
+        `src/components/input/index.tsx`:
+        <Pre>{`import { Field as ArkField } from "@ark-ui/solid/field";
 import { splitProps, type Component } from "solid-js";
 import { Input as InputBase } from "./input.base";
 import { type InputVariants } from "../recipes/input";
@@ -214,5 +211,5 @@ import { Input } from "~/components/input";
         </TBody>
       </Table>
     </>
-  )
+  );
 }

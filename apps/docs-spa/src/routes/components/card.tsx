@@ -1,15 +1,31 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, InlineCode, Table, Th, Td, THead, TBody, Tr, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  Table,
+  Th,
+  Td,
+  THead,
+  TBody,
+  Tr,
+  Pre,
+} from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import CardBasicDemo from "@demos/card-demo/CardBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/card')({ component: CardPage })
+export const Route = createFileRoute("/components/card")({ component: CardPage });
 
 function CardPage() {
   return (
     <>
       <H1>Card</H1>
-      <P>A flexible container component used to group related content and actions. Cards provide a structured layout with distinct sections for headers, content, and actions.</P>
+      <P>
+        A flexible container component used to group related content and actions. Cards provide a
+        structured layout with distinct sections for headers, content, and actions.
+      </P>
       <DocsLink href="https://ui.shadcn.com/docs/components/card" />
       <CardBasicDemo />
       <Pre>{`
@@ -49,14 +65,12 @@ npx solidui-cli@latest add card
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/card.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/card.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const cardVariants = tv({
   slots: {
@@ -70,12 +84,10 @@ export const cardVariants = tv({
 })
 
 export type CardVariants = VariantProps<typeof cardVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/card.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from 'solid-js'
+        Create the component file at `src/components/card.tsx`:
+        <Pre>{`import { splitProps, type Component } from 'solid-js'
 import { cardVariants, type CardVariants } from '../recipes/card'
 import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
 
@@ -112,7 +124,6 @@ const CardFooter: Component<HTMLArkProps<"div">> = (props) => {
 }
 
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, cardVariants }`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the components:</P>
@@ -148,33 +159,57 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
         </THead>
         <TBody>
           <Tr>
-            <Td><InlineCode>Card</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
+            <Td>
+              <InlineCode>Card</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
             <Td>The root container.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>CardHeader</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
+            <Td>
+              <InlineCode>CardHeader</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
             <Td>The header section, typically contains the title and description.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>CardTitle</InlineCode></Td>
-            <Td><InlineCode>h3</InlineCode></Td>
+            <Td>
+              <InlineCode>CardTitle</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>h3</InlineCode>
+            </Td>
             <Td>The title text.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>CardDescription</InlineCode></Td>
-            <Td><InlineCode>p</InlineCode></Td>
+            <Td>
+              <InlineCode>CardDescription</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>p</InlineCode>
+            </Td>
             <Td>The description text, styled as muted foreground.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>CardContent</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
+            <Td>
+              <InlineCode>CardContent</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
             <Td>The main content area.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>CardFooter</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
+            <Td>
+              <InlineCode>CardFooter</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
             <Td>The footer section, typically used for actions.</Td>
           </Tr>
         </TBody>
@@ -207,43 +242,79 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
         </THead>
         <TBody>
           <Tr>
-            <Td><InlineCode>Card</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>Card</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>CardHeader</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>CardHeader</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>CardTitle</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>CardTitle</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>CardDescription</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>CardDescription</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>CardContent</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>CardContent</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>CardFooter</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>CardFooter</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
         </TBody>
       </Table>
     </>
-  )
+  );
 }

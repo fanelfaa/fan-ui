@@ -1,10 +1,10 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
 import TypographyBasicDemo from "@demos/typography-demo/TypographyBasicDemo.tsx";
 import { H1, H2, H3, P, InlineCode } from "@ui/solid";
-import { Pre, Table, Th, Td, THead, TBody, Tr } from "../../components/markdown"
+import { Pre, Table, Th, Td, THead, TBody, Tr } from "../../components/markdown";
 
-export const Route = createFileRoute('/components/typography')({ component: TypographyPage })
+export const Route = createFileRoute("/components/typography")({ component: TypographyPage });
 
 function TypographyPage() {
   return (
@@ -47,15 +47,12 @@ npx solidui-cli@latest add typography
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/typography.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/typography.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const typographyVariants = tv({
   slots: {
@@ -75,12 +72,10 @@ export const typographyVariants = tv({
 })
 
 export type TypographyVariants = VariantProps<typeof typographyVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/typography/index.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        Create the component file at `src/components/typography/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { typographyVariants } from "../recipes/typography";
 import { ark, type HTMLArkProps } from "@ark-ui/solid/factory";
 
@@ -145,7 +140,6 @@ export const List: Component<HTMLArkProps<"ul">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <ark.ul class={styles.list({ class: local.class })} {...others} />;
 };`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component:</P>
@@ -200,71 +194,97 @@ import { H1, H2, P, Lead } from "@ui/solid";
         <TBody>
           <Tr>
             <Td>H1</Td>
-            <Td><InlineCode>{`<h1>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<h1>`}</InlineCode>
+            </Td>
             <Td>Top-level heading</Td>
           </Tr>
           <Tr>
             <Td>H2</Td>
-            <Td><InlineCode>{`<h2>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<h2>`}</InlineCode>
+            </Td>
             <Td>Section heading</Td>
           </Tr>
           <Tr>
             <Td>H3</Td>
-            <Td><InlineCode>{`<h3>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<h3>`}</InlineCode>
+            </Td>
             <Td>Sub-section heading</Td>
           </Tr>
           <Tr>
             <Td>H4</Td>
-            <Td><InlineCode>{`<h4>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<h4>`}</InlineCode>
+            </Td>
             <Td>Group heading</Td>
           </Tr>
           <Tr>
             <Td>P</Td>
-            <Td><InlineCode>{`<p>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<p>`}</InlineCode>
+            </Td>
             <Td>Paragraph text</Td>
           </Tr>
           <Tr>
             <Td>Lead</Td>
-            <Td><InlineCode>{`<p>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<p>`}</InlineCode>
+            </Td>
             <Td>Lead/introductory text</Td>
           </Tr>
           <Tr>
             <Td>Large</Td>
-            <Td><InlineCode>{`<div>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<div>`}</InlineCode>
+            </Td>
             <Td>Large body text</Td>
           </Tr>
           <Tr>
             <Td>Small</Td>
-            <Td><InlineCode>{`<small>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<small>`}</InlineCode>
+            </Td>
             <Td>Small/fine print text</Td>
           </Tr>
           <Tr>
             <Td>Muted</Td>
-            <Td><InlineCode>{`<p>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<p>`}</InlineCode>
+            </Td>
             <Td>Muted/secondary text</Td>
           </Tr>
           <Tr>
             <Td>InlineCode</Td>
-            <Td><InlineCode>{`<code>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<code>`}</InlineCode>
+            </Td>
             <Td>Inline code snippet</Td>
           </Tr>
           <Tr>
             <Td>Blockquote</Td>
-            <Td><InlineCode>{`<blockquote>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<blockquote>`}</InlineCode>
+            </Td>
             <Td>Quoted content</Td>
           </Tr>
           <Tr>
             <Td>List</Td>
-            <Td><InlineCode>{`<ul>`}</InlineCode></Td>
+            <Td>
+              <InlineCode>{`<ul>`}</InlineCode>
+            </Td>
             <Td>Unordered list container</Td>
           </Tr>
           <Tr>
             <Td>class</Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>All components accept class</Td>
           </Tr>
         </TBody>
       </Table>
     </>
-  )
+  );
 }

@@ -1,18 +1,21 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import TooltipBasicDemo from "@demos/tooltip-demo/TooltipBasicDemo.tsx";
 import TooltipArrowDemo from "@demos/tooltip-demo/TooltipArrowDemo.tsx";
 import TooltipManualArrowDemo from "@demos/tooltip-demo/TooltipManualArrowDemo.tsx";
 import TooltipControlledDemo from "@demos/tooltip-demo/TooltipControlledDemo.tsx";
 
-export const Route = createFileRoute('/components/tooltip')({ component: TooltipPage })
+export const Route = createFileRoute("/components/tooltip")({ component: TooltipPage });
 
 function TooltipPage() {
   return (
     <>
       <H1>Tooltip</H1>
-      <P>A popup component that displays contextual information when hovering or focusing on a trigger element.</P>
+      <P>
+        A popup component that displays contextual information when hovering or focusing on a
+        trigger element.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/tooltip" />
       <TooltipBasicDemo />
       <Pre>{`
@@ -37,12 +40,12 @@ npx solidui-cli@latest add tooltip
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/tooltip.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/tooltip.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const tooltipVariants = tv({
   slots: {
@@ -60,8 +63,8 @@ export const tooltipVariants = tv({
 export type TooltipVariants = VariantProps<typeof tooltipVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the base component file at `src/components/tooltip/tooltip.base.tsx`:
-      <Pre>{`import { Tooltip as ArkTooltip } from "@ark-ui/solid/tooltip";
+        Create the base component file at `src/components/tooltip/tooltip.base.tsx`:
+        <Pre>{`import { Tooltip as ArkTooltip } from "@ark-ui/solid/tooltip";
 import { splitProps, type Component } from "solid-js";
 import { tooltipVariants } from "../../recipes/tooltip";
 
@@ -110,9 +113,8 @@ export const Tooltip = {
   Arrow,
   ArrowTip,
 };`}</Pre>
-
-      Then create the composite component file at `src/components/tooltip/index.tsx`:
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        Then create the composite component file at `src/components/tooltip/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { Tooltip as TooltipBase } from "./tooltip.base";
 import { Tooltip as ArkTooltip } from "@ark-ui/solid/tooltip";
 
@@ -144,7 +146,12 @@ export { Tooltip, TooltipTrigger, TooltipContent, TooltipBase };
 
 export { tooltipVariants, type TooltipVariants } from "../../recipes/tooltip";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--popover</InlineCode>, <InlineCode>--popover-foreground</InlineCode>, <InlineCode>--border</InlineCode>, <InlineCode>--ring</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--popover</InlineCode>, <InlineCode>--popover-foreground</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, <InlineCode>--ring</InlineCode>, etc.) or override the
+        utility classes to match your design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -174,7 +181,10 @@ import { Tooltip, TooltipTrigger, TooltipContent } from "~/components/tooltip";
 </Tooltip>;
       `}</Pre>
       <H2>Advanced Usage</H2>
-      <P>When the composite <InlineCode>Tooltip</InlineCode> doesn't provide enough control, import the raw primitive parts via <InlineCode>TooltipBase</InlineCode>:</P>
+      <P>
+        When the composite <InlineCode>Tooltip</InlineCode> doesn't provide enough control, import
+        the raw primitive parts via <InlineCode>TooltipBase</InlineCode>:
+      </P>
       <Pre>{`
 
 import { TooltipBase } from "~/components/tooltip";
@@ -185,7 +195,10 @@ import { TooltipBase } from "~/components/tooltip";
 import { Tooltip } from "~/components/tooltip/tooltip.base";
       `}</Pre>
       <H3>Manual Arrow Composition</H3>
-      <P>For custom arrow styling or positioning, compose the parts manually using <InlineCode>TooltipBase</InlineCode>:</P>
+      <P>
+        For custom arrow styling or positioning, compose the parts manually using{" "}
+        <InlineCode>TooltipBase</InlineCode>:
+      </P>
       <TooltipManualArrowDemo />
       <Pre>{`
 
@@ -204,7 +217,10 @@ import { Tooltip, TooltipBase } from "~/components/tooltip";
 </Tooltip>
       `}</Pre>
       <H3>Controlled Open State</H3>
-      <P>Use <InlineCode>open</InlineCode> and <InlineCode>onOpenChange</InlineCode> to control the tooltip visibility externally:</P>
+      <P>
+        Use <InlineCode>open</InlineCode> and <InlineCode>onOpenChange</InlineCode> to control the
+        tooltip visibility externally:
+      </P>
       <TooltipControlledDemo />
       <Pre>{`
 
@@ -227,7 +243,10 @@ export function ControlledTooltip() {
 }
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/tooltip">Ark UI Tooltip</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/tooltip">Ark UI Tooltip</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

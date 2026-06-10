@@ -1,15 +1,18 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import ScrollAreaBasicDemo from "@demos/scroll-area-demo/ScrollAreaBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/scroll-area')({ component: ScrollAreaPage })
+export const Route = createFileRoute("/components/scroll-area")({ component: ScrollAreaPage });
 
 function ScrollAreaPage() {
   return (
     <>
       <H1>ScrollArea</H1>
-      <P>A scrollable container with custom scrollbar styling that provides a consistent look across browsers.</P>
+      <P>
+        A scrollable container with custom scrollbar styling that provides a consistent look across
+        browsers.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/scroll-area" />
       <ScrollAreaBasicDemo />
       <Pre>{`
@@ -39,15 +42,12 @@ npx solidui-cli@latest add scroll-area
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/scroll-area.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
+        Create the recipe file at `src/components/recipes/scroll-area.ts`:
+        <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
 
 export const scrollAreaVariants = tv({
   slots: {
@@ -76,12 +76,10 @@ export const scrollAreaVariants = tv({
 });
 
 export type ScrollAreaVariants = VariantProps<typeof scrollAreaVariants>;`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/scroll-area/scroll-area.base.tsx`:
-
-      <Pre>{`import { ScrollArea as ArkScrollArea } from "@ark-ui/solid/scroll-area";
+        Create the component file at `src/components/scroll-area/scroll-area.base.tsx`:
+        <Pre>{`import { ScrollArea as ArkScrollArea } from "@ark-ui/solid/scroll-area";
 import { splitProps, type Component } from "solid-js";
 import { scrollAreaVariants } from "../recipes/scroll-area";
 
@@ -129,12 +127,10 @@ export const ScrollArea = {
   Thumb: ScrollAreaThumb,
   Corner: ScrollAreaCorner,
 };`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/scroll-area/index.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        Create the component file at `src/components/scroll-area/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { ScrollArea as ScrollAreaBase } from "./scroll-area.base";
 import { ScrollArea as ArkScrollArea } from "@ark-ui/solid/scroll-area";
 
@@ -162,7 +158,6 @@ const ScrollArea: Component<ScrollAreaProps> = (props) => {
 export { ScrollArea, ScrollAreaBase };
 
 export { scrollAreaVariants, type ScrollAreaVariants } from "../recipes/scroll-area";`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component:</P>
@@ -189,7 +184,10 @@ import { ScrollArea } from "~/components/scroll-area";
 </ScrollArea>
       `}</Pre>
       <H2>Advanced Usage</H2>
-      <P>For full control over the scroll area structure, import the primitive parts via <InlineCode>ScrollAreaBase</InlineCode>:</P>
+      <P>
+        For full control over the scroll area structure, import the primitive parts via{" "}
+        <InlineCode>ScrollAreaBase</InlineCode>:
+      </P>
       <Pre>{`
 
 import { ScrollArea, ScrollAreaBase } from "~/components/scroll-area";
@@ -198,9 +196,15 @@ import { ScrollArea, ScrollAreaBase } from "~/components/scroll-area";
 // ScrollAreaBase.Root, ScrollAreaBase.Viewport, ScrollAreaBase.Content,
 // ScrollAreaBase.Scrollbar, ScrollAreaBase.Thumb, ScrollAreaBase.Corner
       `}</Pre>
-      <P>See the <A href="#manual">Manual</A> installation section for example usage of the primitive parts.</P>
+      <P>
+        See the <A href="#manual">Manual</A> installation section for example usage of the primitive
+        parts.
+      </P>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/scroll-area">Ark UI ScrollArea</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/scroll-area">Ark UI ScrollArea</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

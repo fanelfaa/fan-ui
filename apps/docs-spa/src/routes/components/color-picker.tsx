@@ -1,17 +1,20 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import ColorPickerBasicDemo from "@demos/color-picker-demo/ColorPickerBasicDemo.tsx";
 import ColorPickerInlineDemo from "@demos/color-picker-demo/ColorPickerInlineDemo.tsx";
 import ColorPickerControlledDemo from "@demos/color-picker-demo/ColorPickerControlledDemo.tsx";
 
-export const Route = createFileRoute('/components/color-picker')({ component: ColorPickerPage })
+export const Route = createFileRoute("/components/color-picker")({ component: ColorPickerPage });
 
 function ColorPickerPage() {
   return (
     <>
       <H1>Color Picker</H1>
-      <P>A color selection component that allows users to pick a color using a saturation/brightness area, channel sliders, and preset swatches.</P>
+      <P>
+        A color selection component that allows users to pick a color using a saturation/brightness
+        area, channel sliders, and preset swatches.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/color-picker" />
       <ColorPickerBasicDemo />
       <Pre>{`
@@ -33,12 +36,12 @@ npx solidui-cli@latest add color-picker
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/color-picker.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/color-picker.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const colorPickerVariants = tv({
   slots: {
@@ -99,10 +102,9 @@ export const colorPickerVariants = tv({
 export type ColorPickerVariants = VariantProps<typeof colorPickerVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files.
-
-      First, create `src/components/color-picker/color-picker.base.tsx`:
-      <Pre>{`import { ColorPicker as ArkColorPicker } from "@ark-ui/solid/color-picker";
+        Create the component directory and files. First, create
+        `src/components/color-picker/color-picker.base.tsx`:
+        <Pre>{`import { ColorPicker as ArkColorPicker } from "@ark-ui/solid/color-picker";
 import { splitProps, type Component } from "solid-js";
 import { colorPickerVariants } from "../../recipes/color-picker";
 
@@ -257,10 +259,8 @@ export const ColorPickerBase = {
   TransparencyGrid, View,
   Context,
 };`}</Pre>
-
-      Then create `src/components/color-picker/index.tsx`:
-
-      <Pre>{`import { For, Show, splitProps, type Component, type JSX } from "solid-js";
+        Then create `src/components/color-picker/index.tsx`:
+        <Pre>{`import { For, Show, splitProps, type Component, type JSX } from "solid-js";
 import { ColorPicker as ArkColorPicker, parseColor } from "@ark-ui/solid/color-picker";
 import { Portal } from "solid-js/web";
 import { ColorPickerBase } from "./color-picker.base";
@@ -354,9 +354,17 @@ export { ColorPicker, ColorPickerBase };
 
 export { colorPickerVariants, type ColorPickerVariants } from "../../recipes/color-picker";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--primary</InlineCode>, <InlineCode>--ring</InlineCode>, <InlineCode>--border</InlineCode>, <InlineCode>--background</InlineCode>, <InlineCode>--accent</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--primary</InlineCode>, <InlineCode>--ring</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, <InlineCode>--background</InlineCode>,{" "}
+        <InlineCode>--accent</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
-      <P>Import <InlineCode>ColorPicker</InlineCode>:</P>
+      <P>
+        Import <InlineCode>ColorPicker</InlineCode>:
+      </P>
       <Pre>{`
 
 import { ColorPicker, ColorPickerBase } from "~/components/color-picker";
@@ -367,7 +375,9 @@ import { ColorPicker, ColorPickerBase } from "~/components/color-picker";
 <ColorPicker label="Color" presets={["#ff0000", "#00ff00", "#0000ff"]} />
       `}</Pre>
       <H3>Inline</H3>
-      <P>For inline rendering (no popover), use the <InlineCode>inline</InlineCode> prop:</P>
+      <P>
+        For inline rendering (no popover), use the <InlineCode>inline</InlineCode> prop:
+      </P>
       <ColorPickerInlineDemo />
       <Pre>{`
 
@@ -406,7 +416,10 @@ export function ColorPickerControlled() {
   );
 }
       `}</Pre>
-      <P>For fully controlled mode, use <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode>:</P>
+      <P>
+        For fully controlled mode, use <InlineCode>value</InlineCode> and{" "}
+        <InlineCode>onValueChange</InlineCode>:
+      </P>
       <Pre>{`
 
 import { createSignal } from "solid-js";
@@ -426,7 +439,10 @@ export function ColorPickerControlled() {
 }
       `}</Pre>
       <H2>Advanced Usage</H2>
-      <P>For advanced layouts with custom composition, import <InlineCode>ColorPickerBase</InlineCode> to access individual parts:</P>
+      <P>
+        For advanced layouts with custom composition, import{" "}
+        <InlineCode>ColorPickerBase</InlineCode> to access individual parts:
+      </P>
       <Pre>{`
 
 import { ColorPickerBase } from "~/components/color-picker";
@@ -453,7 +469,10 @@ import { ColorPickerBase } from "~/components/color-picker";
 </ColorPickerBase.Root>
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/color-picker">Ark UI Color Picker</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/color-picker">Ark UI Color Picker</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

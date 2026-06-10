@@ -1,15 +1,18 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import DatePickerBasicDemo from "@demos/date-picker-demo/DatePickerBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/date-picker')({ component: DatePickerPage })
+export const Route = createFileRoute("/components/date-picker")({ component: DatePickerPage });
 
 function DatePickerPage() {
   return (
     <>
       <H1>Date Picker</H1>
-      <P>A date picker component that allows users to select a date or date range from a calendar popup.</P>
+      <P>
+        A date picker component that allows users to select a date or date range from a calendar
+        popup.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/date-picker" />
       <DatePickerBasicDemo />
       <Pre>{`
@@ -46,12 +49,12 @@ npx solidui-cli@latest add date-picker
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/date-picker.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/date-picker.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const datePickerVariants = tv({
   slots: {
@@ -134,10 +137,9 @@ export const datePickerVariants = tv({
 export type DatePickerVariants = VariantProps<typeof datePickerVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      First, create `src/components/date-picker/date-picker.base.tsx`:
-      <Pre>{`import { DatePicker as ArkDatePicker } from "@ark-ui/solid/date-picker";
+        Create the component directory and files: First, create
+        `src/components/date-picker/date-picker.base.tsx`:
+        <Pre>{`import { DatePicker as ArkDatePicker } from "@ark-ui/solid/date-picker";
 import { splitProps, type Component } from "solid-js";
 import { datePickerVariants } from "../../recipes/date-picker";
 
@@ -252,10 +254,8 @@ export const DatePickerBase = {
   Trigger, ClearTrigger, PrevTrigger, NextTrigger,
   ViewTrigger, TableCellTrigger,
 };`}</Pre>
-
-      Then create `src/components/date-picker/index.tsx`:
-
-      <Pre>{`import { For, Show, splitProps, type Component, type JSX } from "solid-js";
+        Then create `src/components/date-picker/index.tsx`:
+        <Pre>{`import { For, Show, splitProps, type Component, type JSX } from "solid-js";
 import { DatePicker as ArkDatePicker } from "@ark-ui/solid/date-picker";
 import type { UseDatePickerContext } from "@ark-ui/solid/date-picker";
 import type { DateValue } from "@internationalized/date";
@@ -530,9 +530,17 @@ export { DatePicker, DatePickerBase };
 
 export { datePickerVariants, type DatePickerVariants } from "../../recipes/date-picker";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--primary</InlineCode>, <InlineCode>--ring</InlineCode>, <InlineCode>--border</InlineCode>, <InlineCode>--background</InlineCode>, <InlineCode>--accent</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--primary</InlineCode>, <InlineCode>--ring</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, <InlineCode>--background</InlineCode>,{" "}
+        <InlineCode>--accent</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
-      <P>Import <InlineCode>DatePicker</InlineCode>:</P>
+      <P>
+        Import <InlineCode>DatePicker</InlineCode>:
+      </P>
       <Pre>{`
 
 import { DatePicker, DatePickerBase } from "~/components/date-picker";
@@ -553,7 +561,10 @@ import { DatePicker, DatePickerBase } from "~/components/date-picker";
 <DatePicker label="Select date" clearLabel="清除" />
       `}</Pre>
       <H2>Selection Modes</H2>
-      <P>The date picker supports three selection modes via the <InlineCode>selectionMode</InlineCode> prop:</P>
+      <P>
+        The date picker supports three selection modes via the{" "}
+        <InlineCode>selectionMode</InlineCode> prop:
+      </P>
       <H3>Single (default)</H3>
       <P>Select one date at a time. This is the default mode.</P>
       <Pre>{`
@@ -561,7 +572,9 @@ import { DatePicker, DatePickerBase } from "~/components/date-picker";
 <DatePicker label="Birth date" />
       `}</Pre>
       <H3>Range</H3>
-      <P>Select a start and end date. The control renders two inputs — one for each end of the range.</P>
+      <P>
+        Select a start and end date. The control renders two inputs — one for each end of the range.
+      </P>
       <Pre>{`
 
 <DatePicker
@@ -571,7 +584,9 @@ import { DatePicker, DatePickerBase } from "~/components/date-picker";
 />
       `}</Pre>
       <H3>Multiple</H3>
-      <P>Select multiple individual dates. The control renders selected dates as removable chips.</P>
+      <P>
+        Select multiple individual dates. The control renders selected dates as removable chips.
+      </P>
       <Pre>{`
 
 <DatePicker
@@ -580,7 +595,10 @@ import { DatePicker, DatePickerBase } from "~/components/date-picker";
   placeholder="Select dates..."
 />
       `}</Pre>
-      <P>Use <InlineCode>maxSelectedDates</InlineCode> to limit the number of selections in multiple mode:</P>
+      <P>
+        Use <InlineCode>maxSelectedDates</InlineCode> to limit the number of selections in multiple
+        mode:
+      </P>
       <Pre>{`
 
 <DatePicker
@@ -589,9 +607,16 @@ import { DatePicker, DatePickerBase } from "~/components/date-picker";
   label="Up to 3 dates"
 />
       `}</Pre>
-      <Blockquote><strong>Note:</strong> <InlineCode>closeOnSelect</InlineCode> is automatically ignored when <InlineCode>selectionMode</InlineCode> is <InlineCode>{`"multiple"`}</InlineCode> (Ark UI behavior).</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> <InlineCode>closeOnSelect</InlineCode> is automatically ignored when{" "}
+        <InlineCode>selectionMode</InlineCode> is <InlineCode>{`"multiple"`}</InlineCode> (Ark UI
+        behavior).
+      </Blockquote>
       <H2>Controlled</H2>
-      <P>Control the selected date programmatically using <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode>.</P>
+      <P>
+        Control the selected date programmatically using <InlineCode>value</InlineCode> and{" "}
+        <InlineCode>onValueChange</InlineCode>.
+      </P>
       <Pre>{`
 
 import { createSignal } from "solid-js";
@@ -611,7 +636,10 @@ export function DatePickerControlled() {
 }
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/date-picker">Ark UI Date Picker</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/date-picker">Ark UI Date Picker</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

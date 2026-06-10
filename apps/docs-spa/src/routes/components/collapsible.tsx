@@ -1,10 +1,10 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import CollapsibleBasicDemo from "@demos/collapsible-demo/CollapsibleBasicDemo.tsx";
 import CollapsibleRootProviderDemo from "@demos/collapsible-demo/CollapsibleRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/collapsible')({ component: CollapsiblePage })
+export const Route = createFileRoute("/components/collapsible")({ component: CollapsiblePage });
 
 function CollapsiblePage() {
   return (
@@ -45,12 +45,12 @@ npx solidui-cli@latest add collapsible
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/collapsible.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/collapsible.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const collapsibleVariants = tv({
   slots: {
@@ -66,10 +66,8 @@ export const collapsibleVariants = tv({
 export type CollapsibleVariants = VariantProps<typeof collapsibleVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/collapsible/collapsible.base.tsx`:
-      <Pre>{`import { Collapsible as ArkCollapsible } from "@ark-ui/solid/collapsible";
+        Create the component directory and files: `src/components/collapsible/collapsible.base.tsx`:
+        <Pre>{`import { Collapsible as ArkCollapsible } from "@ark-ui/solid/collapsible";
 import { splitProps, type Component } from "solid-js";
 import { collapsibleVariants } from "../recipes/collapsible";
 
@@ -103,9 +101,8 @@ const Indicator: Component<ArkCollapsible.IndicatorProps> = (props) => {
 };
 
 export const Collapsible = { Root, RootProvider, Trigger, Content, Indicator };`}</Pre>
-
-      `src/components/collapsible/index.tsx`:
-      <Pre>{`import { type Component } from "solid-js";
+        `src/components/collapsible/index.tsx`:
+        <Pre>{`import { type Component } from "solid-js";
 import { Collapsible as CollapsibleBase } from "./collapsible.base";
 import { Collapsible as ArkCollapsible } from "@ark-ui/solid/collapsible";
 
@@ -144,7 +141,11 @@ export {
 
 export { collapsibleVariants, type CollapsibleVariants } from "../recipes/collapsible";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--foreground</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--foreground</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override
+        the utility classes to match your design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -169,7 +170,11 @@ import {
 </Collapsible>
       `}</Pre>
       <H2>With Indicator</H2>
-      <P>The indicator rotates when the content is expanded. Use <InlineCode>CollapsibleIndicator</InlineCode> inside the trigger to show the chevron icon. The rotation is styled via the <InlineCode>indicator</InlineCode> slot in the recipe.</P>
+      <P>
+        The indicator rotates when the content is expanded. Use{" "}
+        <InlineCode>CollapsibleIndicator</InlineCode> inside the trigger to show the chevron icon.
+        The rotation is styled via the <InlineCode>indicator</InlineCode> slot in the recipe.
+      </P>
       <Pre>{`
 
 import {
@@ -190,7 +195,12 @@ import {
 </Collapsible>
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>CollapsibleRootProvider</InlineCode> when you need to access the collapsible state outside of the component tree. This pattern uses the <InlineCode>useCollapsible</InlineCode> hook from Ark UI to create a shared context that both the component and external elements can reference.</P>
+      <P>
+        Use <InlineCode>CollapsibleRootProvider</InlineCode> when you need to access the collapsible
+        state outside of the component tree. This pattern uses the{" "}
+        <InlineCode>useCollapsible</InlineCode> hook from Ark UI to create a shared context that
+        both the component and external elements can reference.
+      </P>
       <CollapsibleRootProviderDemo />
       <Pre>{`
 
@@ -224,11 +234,25 @@ export function ExternalControlExample() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Collapsible</InlineCode> (Root)</strong> — manages its own state internally. Use for simple, self-contained usage.</li>
-        <li><strong><InlineCode>CollapsibleRootProvider</InlineCode></strong> — accepts a pre-created context via <InlineCode>useCollapsible</InlineCode>. Use when you need to read or control the collapsible state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Collapsible</InlineCode> (Root)
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained usage.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>CollapsibleRootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created context via <InlineCode>useCollapsible</InlineCode>. Use when you
+          need to read or control the collapsible state from outside the component tree.
+        </li>
       </List>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/collapsible">Ark UI Collapsible</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/collapsible">Ark UI Collapsible</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

@@ -1,15 +1,31 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
-import { H1, H2, H3, P, InlineCode, Pre, Table, Th, Td, THead, TBody, Tr } from "../../components/markdown"
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  Pre,
+  Table,
+  Th,
+  Td,
+  THead,
+  TBody,
+  Tr,
+} from "../../components/markdown";
 import SpinnerBasicDemo from "@demos/spinner-demo/SpinnerBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/spinner')({ component: SpinnerPage })
+export const Route = createFileRoute("/components/spinner")({ component: SpinnerPage });
 
 function SpinnerPage() {
   return (
     <>
       <H1>Spinner</H1>
-      <P>An animated loading indicator used to show content is being processed. Displays an SVG-based spinning animation with customizable sizes.</P>
+      <P>
+        An animated loading indicator used to show content is being processed. Displays an SVG-based
+        spinning animation with customizable sizes.
+      </P>
       <DocsLink href="https://ui.shadcn.com/docs/components/spinner" />
       <SpinnerBasicDemo />
       <Pre>{`
@@ -36,15 +52,12 @@ npx solidui-cli@latest add spinner
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/spinner.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/spinner.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const spinnerVariants = tv({
   base: "animate-spin text-muted-foreground",
@@ -62,12 +75,10 @@ export const spinnerVariants = tv({
 })
 
 export type SpinnerVariants = VariantProps<typeof spinnerVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/spinner.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from 'solid-js'
+        Create the component file at `src/components/spinner.tsx`:
+        <Pre>{`import { splitProps, type Component } from 'solid-js'
 import { spinnerVariants, type SpinnerVariants } from '../recipes/spinner'
 import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
 
@@ -97,7 +108,6 @@ const Spinner: Component<SpinnerProps> = (props) => {
 }
 
 export { Spinner, spinnerVariants }`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component:</P>
@@ -138,16 +148,22 @@ import { Spinner } from "@ui/solid";
         <TBody>
           <Tr>
             <Td>size</Td>
-            <Td><code>"sm" | "md" | "lg" | "xl"</code></Td>
-            <Td><InlineCode>{"md"}</InlineCode></Td>
+            <Td>
+              <code>"sm" | "md" | "lg" | "xl"</code>
+            </Td>
+            <Td>
+              <InlineCode>{"md"}</InlineCode>
+            </Td>
           </Tr>
           <Tr>
             <Td>class</Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
         </TBody>
       </Table>
     </>
-  )
+  );
 }

@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import ToastBasicDemo from "@demos/toast-demo/ToastBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/toast')({ component: ToastPage })
+export const Route = createFileRoute("/components/toast")({ component: ToastPage });
 
 function ToastPage() {
   return (
@@ -44,12 +44,12 @@ npx solidui-cli@latest add toast
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/toast.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/toast.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const toastVariants = tv({
   slots: {
@@ -77,10 +77,8 @@ export const toastVariants = tv({
 export type ToastVariants = VariantProps<typeof toastVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory at `src/components/toast/`:
-
-      `toast.base.tsx`:
-      <Pre>{`import { Toast as ArkToast } from "@ark-ui/solid/toast";
+        Create the component directory at `src/components/toast/`: `toast.base.tsx`:
+        <Pre>{`import { Toast as ArkToast } from "@ark-ui/solid/toast";
 import { splitProps, type Component } from "solid-js";
 import { toastVariants } from "../recipes/toast";
 
@@ -112,9 +110,8 @@ const ActionTrigger: Component<ArkToast.ActionTriggerProps> = (props) => {
 };
 
 export const Toast = { Root, Title, Description, CloseTrigger, ActionTrigger };`}</Pre>
-
-      `index.tsx`:
-      <Pre>{`import { Toaster as ArkToaster, createToaster, type CreateToasterReturn } from "@ark-ui/solid/toast";
+        `index.tsx`:
+        <Pre>{`import { Toaster as ArkToaster, createToaster, type CreateToasterReturn } from "@ark-ui/solid/toast";
 import { splitProps, type Component } from "solid-js";
 import { Toast as ToastBase } from "./toast.base";
 import { toastVariants, type ToastVariants } from "../recipes/toast";
@@ -153,7 +150,12 @@ const Toaster: Component<ToasterProps> = (props) => {
 export { Toaster, createToaster, ToastBase };
 export { toastVariants, type ToastVariants } from "../recipes/toast";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--primary</InlineCode>, <InlineCode>--ring</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--primary</InlineCode>, <InlineCode>--ring</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -184,7 +186,9 @@ toaster.create({
 });
       `}</Pre>
       <H2>Variants</H2>
-      <P>Use the <InlineCode>type</InlineCode> property to change the visual style.</P>
+      <P>
+        Use the <InlineCode>type</InlineCode> property to change the visual style.
+      </P>
       <Pre>{`
 
 toaster.create({ title: "Default toast", description: "This is a default message" });
@@ -199,13 +203,18 @@ toaster.create({ title: "Error toast", type: "error" });
 
 import { Toast } from "~/components/toast/toast.base";
       `}</Pre>
-      <P>Or import <InlineCode>ToastBase</InlineCode> (the raw parts namespace) from the composite entry point:</P>
+      <P>
+        Or import <InlineCode>ToastBase</InlineCode> (the raw parts namespace) from the composite
+        entry point:
+      </P>
       <Pre>{`
 
 import { ToastBase } from "~/components/toast";
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/toast">Ark UI Toast</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/toast">Ark UI Toast</A> documentation.
+      </P>
     </>
-  )
+  );
 }

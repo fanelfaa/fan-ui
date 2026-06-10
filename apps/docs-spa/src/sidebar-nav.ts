@@ -1,11 +1,11 @@
 export interface SidebarLink {
-  href: string
-  label: string
+  href: string;
+  label: string;
 }
 
 export interface SidebarCategory {
-  category: string
-  links: SidebarLink[]
+  category: string;
+  links: SidebarLink[];
 }
 
 export const sidebarNav: SidebarCategory[] = [
@@ -85,4 +85,4 @@ export const sidebarNav: SidebarCategory[] = [
       { href: "/components/separator", label: "Separator" },
     ],
   },
-]
+];

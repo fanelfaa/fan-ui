@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, Blockquote, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, Blockquote, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import AvatarBasicDemo from "@demos/avatar-demo/AvatarBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/avatar')({ component: AvatarPage })
+export const Route = createFileRoute("/components/avatar")({ component: AvatarPage });
 
 function AvatarPage() {
   return (
@@ -47,12 +47,12 @@ npx solidui-cli@latest add avatar
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/avatar.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/avatar.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const avatarVariants = tv({
   slots: {
@@ -65,10 +65,8 @@ export const avatarVariants = tv({
 export type AvatarVariants = VariantProps<typeof avatarVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/avatar/avatar.base.tsx`:
-      <Pre>{`import { Avatar as ArkAvatar } from "@ark-ui/solid/avatar";
+        Create the component directory and files: `src/components/avatar/avatar.base.tsx`:
+        <Pre>{`import { Avatar as ArkAvatar } from "@ark-ui/solid/avatar";
 import { splitProps, type Component } from "solid-js";
 import { avatarVariants } from "@ui/core";
 
@@ -95,9 +93,8 @@ const Image: Component<ArkAvatar.ImageProps> = (props) => {
 };
 
 export const Avatar = { Root, RootProvider, Fallback, Image };`}</Pre>
-
-      `src/components/avatar/index.tsx`:
-      <Pre>{`import { Avatar as AvatarBase } from "./avatar.base";
+        `src/components/avatar/index.tsx`:
+        <Pre>{`import { Avatar as AvatarBase } from "./avatar.base";
 
 const Avatar = AvatarBase.Root;
 const AvatarFallback = AvatarBase.Fallback;
@@ -107,7 +104,10 @@ export { Avatar, AvatarFallback, AvatarImage, AvatarBase };
 
 export { avatarVariants, type AvatarVariants } from "@ui/core";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up or
+        override the utility classes to match your design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -135,7 +135,9 @@ import {
 </Avatar>
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/avatar">Ark UI Avatar</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/avatar">Ark UI Avatar</A> documentation.
+      </P>
     </>
-  )
+  );
 }

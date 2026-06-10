@@ -1,16 +1,19 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import PinInputBasicDemo from "@demos/pin-input-demo/PinInputBasicDemo.tsx";
 import PinInputRootProviderDemo from "@demos/pin-input-demo/PinInputRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/pin-input')({ component: PinInputPage })
+export const Route = createFileRoute("/components/pin-input")({ component: PinInputPage });
 
 function PinInputPage() {
   return (
     <>
       <H1>Pin Input</H1>
-      <P>A pin input component for entering one-time codes, PINs, and numeric sequences with individual input fields.</P>
+      <P>
+        A pin input component for entering one-time codes, PINs, and numeric sequences with
+        individual input fields.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/pin-input" />
       <PinInputBasicDemo />
       <Pre>{`
@@ -46,12 +49,12 @@ npx solidui-cli@latest add pin-input
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/pin-input.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/pin-input.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const pinInputVariants = tv({
   slots: {
@@ -66,10 +69,8 @@ export const pinInputVariants = tv({
 export type PinInputVariants = VariantProps<typeof pinInputVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/pin-input/pin-input.base.tsx`:
-      <Pre>{`import { PinInput as ArkPinInput } from "@ark-ui/solid/pin-input";
+        Create the component directory and files: `src/components/pin-input/pin-input.base.tsx`:
+        <Pre>{`import { PinInput as ArkPinInput } from "@ark-ui/solid/pin-input";
 import { splitProps, type Component } from "solid-js";
 import { pinInputVariants } from "../recipes/pin-input";
 
@@ -101,9 +102,8 @@ const Label: Component<ArkPinInput.LabelProps> = (props) => {
 };
 
 export const PinInput = { Root, RootProvider, Control, Input, Label };`}</Pre>
-
-      `src/components/pin-input/index.tsx`:
-      <Pre>{`import { PinInput as PinInputBase } from "./pin-input.base";
+        `src/components/pin-input/index.tsx`:
+        <Pre>{`import { PinInput as PinInputBase } from "./pin-input.base";
 
 const PinInput = PinInputBase.Root;
 const PinInputRootProvider = PinInputBase.RootProvider;
@@ -150,7 +150,10 @@ import { Index } from "solid-js";
 </PinInput>
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>PinInputRootProvider</InlineCode> when you need to control the pin input state externally.</P>
+      <P>
+        Use <InlineCode>PinInputRootProvider</InlineCode> when you need to control the pin input
+        state externally.
+      </P>
       <PinInputRootProviderDemo />
       <Pre>{`
 
@@ -182,11 +185,25 @@ export function PinInputWithExternalControl() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>PinInput</InlineCode> (Root)</strong> — manages its own state internally. Use for simple, self-contained pin inputs.</li>
-        <li><strong><InlineCode>PinInputRootProvider</InlineCode></strong> — accepts a pre-created pin input context via <InlineCode>usePinInput</InlineCode>. Use when you need to read or control the pin input state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>PinInput</InlineCode> (Root)
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained pin inputs.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>PinInputRootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created pin input context via <InlineCode>usePinInput</InlineCode>. Use
+          when you need to read or control the pin input state from outside the component tree.
+        </li>
       </List>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/pin-input">Ark UI Pin Input</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/pin-input">Ark UI Pin Input</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

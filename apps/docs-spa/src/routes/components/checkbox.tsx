@@ -1,17 +1,20 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
-import { H1, H2, H3, P, InlineCode, List, Pre, A } from "../../components/markdown"
+import { H1, H2, H3, P, InlineCode, List, Pre, A } from "../../components/markdown";
 
 import CheckboxBasicDemo from "@demos/checkbox-demo/CheckboxBasicDemo.tsx";
 import CheckboxRootProviderDemo from "@demos/checkbox-demo/CheckboxRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/checkbox')({ component: CheckboxPage })
+export const Route = createFileRoute("/components/checkbox")({ component: CheckboxPage });
 
 function CheckboxPage() {
   return (
     <>
       <H1>Checkbox</H1>
-      <P>A checkbox component for capturing boolean input with support for checked, unchecked, and indeterminate states.</P>
+      <P>
+        A checkbox component for capturing boolean input with support for checked, unchecked, and
+        indeterminate states.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/checkbox" />
       <CheckboxBasicDemo />
       <Pre>{`
@@ -46,12 +49,12 @@ npx solidui-cli@latest add checkbox
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/checkbox.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/checkbox.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const checkboxVariants = tv({
   slots: {
@@ -67,10 +70,8 @@ export const checkboxVariants = tv({
 export type CheckboxVariants = VariantProps<typeof checkboxVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/checkbox/checkbox.base.tsx`:
-      <Pre>{`import { Checkbox as ArkCheckbox } from "@ark-ui/solid/checkbox";
+        Create the component directory and files: `src/components/checkbox/checkbox.base.tsx`:
+        <Pre>{`import { Checkbox as ArkCheckbox } from "@ark-ui/solid/checkbox";
 import { splitProps, type Component } from "solid-js";
 import { checkboxVariants } from "../recipes/checkbox";
 
@@ -111,9 +112,8 @@ export const Checkbox = {
   Indicator: CheckboxIndicator,
   HiddenInput: CheckboxHiddenInput,
 };`}</Pre>
-
-      `src/components/checkbox/index.tsx`:
-      <Pre>{`import { Checkbox as ArkCheckbox } from "@ark-ui/solid/checkbox";
+        `src/components/checkbox/index.tsx`:
+        <Pre>{`import { Checkbox as ArkCheckbox } from "@ark-ui/solid/checkbox";
 import { splitProps, type Component } from "solid-js";
 import { Checkbox as CheckboxBase } from "./checkbox.base";
 const CheckboxLabel = CheckboxBase.Label;
@@ -189,7 +189,12 @@ import { Checkbox, CheckboxLabel, CheckboxRootProvider } from "~/components/chec
 <Checkbox checked="indeterminate" />
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>CheckboxRootProvider</InlineCode> when you need to access the checkbox state outside of the checkbox tree. This pattern uses the <InlineCode>useCheckbox</InlineCode> hook from Ark UI to create a shared context that both the checkbox and external elements can reference.</P>
+      <P>
+        Use <InlineCode>CheckboxRootProvider</InlineCode> when you need to access the checkbox state
+        outside of the checkbox tree. This pattern uses the <InlineCode>useCheckbox</InlineCode>{" "}
+        hook from Ark UI to create a shared context that both the checkbox and external elements can
+        reference.
+      </P>
       <CheckboxRootProviderDemo />
       <Pre>{`
 
@@ -213,11 +218,25 @@ export function CheckboxWithExternalControl() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Checkbox</InlineCode> (Root)</strong> — manages its own state internally. Use for simple, self-contained checkboxes.</li>
-        <li><strong><InlineCode>CheckboxRootProvider</InlineCode></strong> — accepts a pre-created checkbox context via <InlineCode>useCheckbox</InlineCode>. Use when you need to read or control the checkbox state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Checkbox</InlineCode> (Root)
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained checkboxes.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>CheckboxRootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created checkbox context via <InlineCode>useCheckbox</InlineCode>. Use
+          when you need to read or control the checkbox state from outside the component tree.
+        </li>
       </List>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/checkbox">Ark UI Checkbox</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/checkbox">Ark UI Checkbox</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

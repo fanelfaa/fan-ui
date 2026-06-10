@@ -1,15 +1,32 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, InlineCode, Table, Th, Td, Pre, THead, TBody, Tr } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  Table,
+  Th,
+  Td,
+  Pre,
+  THead,
+  TBody,
+  Tr,
+} from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import BreadcrumbBasicDemo from "@demos/breadcrumb-demo/BreadcrumbBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/breadcrumb')({ component: BreadcrumbPage })
+export const Route = createFileRoute("/components/breadcrumb")({ component: BreadcrumbPage });
 
 function BreadcrumbPage() {
   return (
     <>
       <H1>Breadcrumb</H1>
-      <P>A navigation component that displays the current page location within a hierarchy. Breadcrumbs help users understand where they are in the site structure and navigate back to parent pages.</P>
+      <P>
+        A navigation component that displays the current page location within a hierarchy.
+        Breadcrumbs help users understand where they are in the site structure and navigate back to
+        parent pages.
+      </P>
       <DocsLink href="https://ui.shadcn.com/docs/components/breadcrumb" />
       <BreadcrumbBasicDemo />
       <Pre>{`
@@ -82,14 +99,12 @@ npx solidui-cli@latest add breadcrumb
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/breadcrumb.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/breadcrumb.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const breadcrumbVariants = tv({
   slots: {
@@ -103,12 +118,10 @@ export const breadcrumbVariants = tv({
 })
 
 export type BreadcrumbVariants = VariantProps<typeof breadcrumbVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/breadcrumb/index.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from 'solid-js'
+        Create the component file at `src/components/breadcrumb/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from 'solid-js'
 import { breadcrumbVariants } from '../recipes/breadcrumb'
 import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
 
@@ -181,7 +194,6 @@ export {
   BreadcrumbEllipsis,
   breadcrumbVariants,
 }`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the components:</P>
@@ -302,38 +314,69 @@ import { Menu, MenuBase, MenuContent, MenuItem } from "~/components/menu"
         </THead>
         <TBody>
           <Tr>
-            <Td><InlineCode>Breadcrumb</InlineCode></Td>
-            <Td><InlineCode>nav</InlineCode></Td>
-            <Td>The root navigation container with <InlineCode>{`aria-label="breadcrumb"`}</InlineCode>.</Td>
+            <Td>
+              <InlineCode>Breadcrumb</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>nav</InlineCode>
+            </Td>
+            <Td>
+              The root navigation container with{" "}
+              <InlineCode>{`aria-label="breadcrumb"`}</InlineCode>.
+            </Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbList</InlineCode></Td>
-            <Td><InlineCode>ol</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbList</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>ol</InlineCode>
+            </Td>
             <Td>The ordered list of breadcrumb items.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbItem</InlineCode></Td>
-            <Td><InlineCode>li</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbItem</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>li</InlineCode>
+            </Td>
             <Td>An individual breadcrumb item wrapper.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbLink</InlineCode></Td>
-            <Td><InlineCode>a</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbLink</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>a</InlineCode>
+            </Td>
             <Td>A clickable breadcrumb link.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbPage</InlineCode></Td>
-            <Td><InlineCode>span</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbPage</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>span</InlineCode>
+            </Td>
             <Td>The current page indicator (not a link).</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbSeparator</InlineCode></Td>
-            <Td><InlineCode>li</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbSeparator</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>li</InlineCode>
+            </Td>
             <Td>A separator between breadcrumb items. Default: chevron right icon.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbEllipsis</InlineCode></Td>
-            <Td><InlineCode>span</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbEllipsis</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>span</InlineCode>
+            </Td>
             <Td>A collapsed items indicator. Default: ellipsis icon.</Td>
           </Tr>
         </TBody>
@@ -350,67 +393,127 @@ import { Menu, MenuBase, MenuContent, MenuItem } from "~/components/menu"
         </THead>
         <TBody>
           <Tr>
-            <Td><InlineCode>Breadcrumb</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>Breadcrumb</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbList</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbList</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbItem</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbItem</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbLink</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbLink</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbLink</InlineCode></Td>
-            <Td><InlineCode>href</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbLink</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>href</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbPage</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbPage</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbSeparator</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbSeparator</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbSeparator</InlineCode></Td>
-            <Td><InlineCode>children</InlineCode></Td>
-            <Td><InlineCode>JSX.Element</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbSeparator</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>children</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>JSX.Element</InlineCode>
+            </Td>
             <Td>Chevron right icon</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbEllipsis</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbEllipsis</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>BreadcrumbEllipsis</InlineCode></Td>
-            <Td><InlineCode>children</InlineCode></Td>
-            <Td><InlineCode>JSX.Element</InlineCode></Td>
+            <Td>
+              <InlineCode>BreadcrumbEllipsis</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>children</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>JSX.Element</InlineCode>
+            </Td>
             <Td>Ellipsis icon</Td>
           </Tr>
         </TBody>
       </Table>
     </>
-  )
+  );
 }

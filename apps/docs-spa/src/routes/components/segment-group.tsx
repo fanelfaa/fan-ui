@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import SegmentGroupBasicDemo from "@demos/segment-group-demo/SegmentGroupBasicDemo.tsx";
 import SegmentGroupControlledDemo from "@demos/segment-group-demo/SegmentGroupControlledDemo.tsx";
@@ -7,13 +7,16 @@ import SegmentGroupDisabledDemo from "@demos/segment-group-demo/SegmentGroupDisa
 import SegmentGroupOutlineDemo from "@demos/segment-group-demo/SegmentGroupOutlineDemo.tsx";
 import SegmentGroupRootProviderDemo from "@demos/segment-group-demo/SegmentGroupRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/segment-group')({ component: SegmentGroupPage })
+export const Route = createFileRoute("/components/segment-group")({ component: SegmentGroupPage });
 
 function SegmentGroupPage() {
   return (
     <>
       <H1>Segment Group</H1>
-      <P>A segmented control component for selecting one option from a set of mutually exclusive options.</P>
+      <P>
+        A segmented control component for selecting one option from a set of mutually exclusive
+        options.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/segment-group" />
       <SegmentGroupBasicDemo />
       <Pre>{`
@@ -39,15 +42,12 @@ npx solidui-cli@latest add segment-group
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/segment-group.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
+        Create the recipe file at `src/components/recipes/segment-group.ts`:
+        <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
 
 export const segmentGroupVariants = tv({
   slots: {
@@ -91,12 +91,10 @@ export const segmentGroupVariants = tv({
 });
 
 export type SegmentGroupVariants = VariantProps<typeof segmentGroupVariants>;`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/segment-group/segment-group.base.tsx`:
-
-      <Pre>{`import { SegmentGroup as ArkSegmentGroup } from "@ark-ui/solid/segment-group";
+        Create the component file at `src/components/segment-group/segment-group.base.tsx`:
+        <Pre>{`import { SegmentGroup as ArkSegmentGroup } from "@ark-ui/solid/segment-group";
 import { createContext, useContext, splitProps, type Component } from "solid-js";
 import { segmentGroupVariants, type SegmentGroupVariants } from "../recipes/segment-group";
 
@@ -205,12 +203,10 @@ const SegmentGroup = {
 
 export { SegmentGroup };
 export { SegmentGroupVariantContext, useSegmentGroupVariant };`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/segment-group/index.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        Create the component file at `src/components/segment-group/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { SegmentGroup as SegmentGroupBase } from "./segment-group.base";
 import { SegmentGroup as ArkSegmentGroup } from "@ark-ui/solid/segment-group";
 import type { SegmentGroupVariants } from "../recipes/segment-group";
@@ -243,7 +239,6 @@ export const SegmentGroupItem: Component<ArkSegmentGroup.ItemProps & SegmentGrou
 };
 
 export { segmentGroupVariants, type SegmentGroupVariants } from "../recipes/segment-group";`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component and use it inline:</P>
@@ -269,18 +264,27 @@ import { SegmentGroup, SegmentGroupItem } from "~/components/segment-group";
 </SegmentGroup>
       `}</Pre>
       <H2>Advanced Usage</H2>
-      <P>When the composite <InlineCode>SegmentGroup</InlineCode> doesn't provide enough control, import the raw primitive parts from the base file directly:</P>
+      <P>
+        When the composite <InlineCode>SegmentGroup</InlineCode> doesn't provide enough control,
+        import the raw primitive parts from the base file directly:
+      </P>
       <Pre>{`
 
 import { SegmentGroup, useSegmentGroupVariant } from "~/components/segment-group/segment-group.base";
       `}</Pre>
-      <P>Or import <InlineCode>SegmentGroupBase</InlineCode> (the raw parts namespace) from the composite entry point:</P>
+      <P>
+        Or import <InlineCode>SegmentGroupBase</InlineCode> (the raw parts namespace) from the
+        composite entry point:
+      </P>
       <Pre>{`
 
 import { SegmentGroupBase } from "~/components/segment-group";
       `}</Pre>
       <H3>Controlled Value</H3>
-      <P>Use <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode> to control the selection state externally:</P>
+      <P>
+        Use <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode> to control the
+        selection state externally:
+      </P>
       <SegmentGroupControlledDemo />
       <Pre>{`
 
@@ -311,7 +315,9 @@ export function ControlledDemo() {
 }
       `}</Pre>
       <H3>Disabled Item</H3>
-      <P>Individual items can be disabled using the <InlineCode>disabled</InlineCode> prop:</P>
+      <P>
+        Individual items can be disabled using the <InlineCode>disabled</InlineCode> prop:
+      </P>
       <SegmentGroupDisabledDemo />
       <Pre>{`
 
@@ -329,7 +335,9 @@ export function DisabledDemo() {
 }
       `}</Pre>
       <H3>Outline Variant</H3>
-      <P>Use <InlineCode>{`variant="outline"`}</InlineCode> for a bordered style:</P>
+      <P>
+        Use <InlineCode>{`variant="outline"`}</InlineCode> for a bordered style:
+      </P>
       <SegmentGroupOutlineDemo />
       <Pre>{`
 
@@ -347,7 +355,12 @@ export function OutlineDemo() {
 }
       `}</Pre>
       <H3>RootProvider Pattern</H3>
-      <P>For full control over the segment group machine, use <InlineCode>useSegmentGroup</InlineCode> with <InlineCode>SegmentGroup.RootProvider</InlineCode>. This allows reading the internal state (e.g., selected value) outside the root:</P>
+      <P>
+        For full control over the segment group machine, use{" "}
+        <InlineCode>useSegmentGroup</InlineCode> with{" "}
+        <InlineCode>SegmentGroup.RootProvider</InlineCode>. This allows reading the internal state
+        (e.g., selected value) outside the root:
+      </P>
       <SegmentGroupRootProviderDemo />
       <Pre>{`
 
@@ -371,7 +384,10 @@ export function RootProviderDemo() {
 }
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/segment-group">Ark UI SegmentGroup</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/segment-group">Ark UI SegmentGroup</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

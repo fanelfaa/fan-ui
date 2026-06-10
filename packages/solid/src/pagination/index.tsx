@@ -1,8 +1,6 @@
 import { splitProps, For, type Component } from "solid-js";
 import { Pagination as PaginationBase } from "./pagination.base";
-import {
-  Pagination as ArkPagination,
-} from "@ark-ui/solid/pagination";
+import { Pagination as ArkPagination } from "@ark-ui/solid/pagination";
 import type { PaginationVariants } from "@ui/core";
 
 const Pagination: Component<ArkPagination.RootProps & PaginationVariants> = (props) => {
@@ -38,9 +36,7 @@ const PaginationPageList: Component = () => {
                 {page.value}
               </PaginationBase.Item>
             ) : (
-              <PaginationBase.Ellipsis index={index()}>
-                ...
-              </PaginationBase.Ellipsis>
+              <PaginationBase.Ellipsis index={index()}>...</PaginationBase.Ellipsis>
             )
           }
         </For>

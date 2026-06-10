@@ -40,7 +40,6 @@ export const tagsInputVariants = tv({
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
     ],
   },
-
 });
 
 export type TagsInputVariants = VariantProps<typeof tagsInputVariants>;

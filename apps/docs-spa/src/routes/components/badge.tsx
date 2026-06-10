@@ -1,16 +1,32 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
-import { H1, H2, H3, P, InlineCode, Pre, Table, Th, Td, THead, TBody, Tr } from "../../components/markdown"
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  Pre,
+  Table,
+  Th,
+  Td,
+  THead,
+  TBody,
+  Tr,
+} from "../../components/markdown";
 import { Badge } from "@ui/solid";
 import BadgeBasicDemo from "@demos/badge-demo/BadgeBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/badge')({ component: BadgePage })
+export const Route = createFileRoute("/components/badge")({ component: BadgePage });
 
 function BadgePage() {
   return (
     <>
       <H1>Badge</H1>
-      <P>A small label component used to display status, categories, or counts. Commonly used in tables, cards, and lists.</P>
+      <P>
+        A small label component used to display status, categories, or counts. Commonly used in
+        tables, cards, and lists.
+      </P>
       <DocsLink href="https://ui.shadcn.com/docs/components/badge" />
       <BadgeBasicDemo />
       <Pre>{`
@@ -39,14 +55,12 @@ npx solidui-cli@latest add badge
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/badge.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/badge.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const badgeVariants = tv({
   base: "inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 [a&]:cursor-pointer",
@@ -71,12 +85,10 @@ export const badgeVariants = tv({
 })
 
 export type BadgeVariants = VariantProps<typeof badgeVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/badge.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from 'solid-js'
+        Create the component file at `src/components/badge.tsx`:
+        <Pre>{`import { splitProps, type Component } from 'solid-js'
 import { badgeVariants, type BadgeVariants } from '../recipes/badge'
 import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
 
@@ -93,7 +105,6 @@ const Badge: Component<BadgeProps> = (props) => {
 }
 
 export { Badge, badgeVariants }`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component:</P>
@@ -119,7 +130,9 @@ import { Badge } from "@ui/solid";
 <Badge class="px-4 py-1 text-sm">Custom Size</Badge>
       `}</Pre>
       <H2>Variants</H2>
-      <P>Use the <InlineCode>variant</InlineCode> prop to change the visual style.</P>
+      <P>
+        Use the <InlineCode>variant</InlineCode> prop to change the visual style.
+      </P>
       <div class="rounded-lg border border-border p-6">
         <div class="flex flex-wrap items-center gap-4">
           <Badge variant="default">Default</Badge>
@@ -131,9 +144,14 @@ import { Badge } from "@ui/solid";
         </div>
       </div>
       <H2>Link</H2>
-      <P>Use <InlineCode>asChild</InlineCode> to wrap a different element, like a link, with the badge styling.</P>
+      <P>
+        Use <InlineCode>asChild</InlineCode> to wrap a different element, like a link, with the
+        badge styling.
+      </P>
       <div class="rounded-lg border border-border p-6 not-prose">
-        <Badge asChild={props=> <a {...props()}/>} variant="link">Anchor Badge</Badge>
+        <Badge asChild={(props) => <a {...props()} />} variant="link">
+          Anchor Badge
+        </Badge>
       </div>
       <Pre>{`
 
@@ -155,21 +173,31 @@ import { Badge } from "@ui/solid";
         <TBody>
           <Tr>
             <Td>variant</Td>
-            <Td><code>"default" | "secondary" | "destructive" | "outline" | "ghost" | "link"</code></Td>
-            <Td><code>"default"</code></Td>
+            <Td>
+              <code>"default" | "secondary" | "destructive" | "outline" | "ghost" | "link"</code>
+            </Td>
+            <Td>
+              <code>"default"</code>
+            </Td>
           </Tr>
           <Tr>
             <Td>asChild</Td>
-            <Td><InlineCode>boolean</InlineCode></Td>
-            <Td><InlineCode>false</InlineCode></Td>
+            <Td>
+              <InlineCode>boolean</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>false</InlineCode>
+            </Td>
           </Tr>
           <Tr>
             <Td>class</Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
         </TBody>
       </Table>
     </>
-  )
+  );
 }

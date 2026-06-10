@@ -1,11 +1,11 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import ListboxBasicDemo from "@demos/listbox-demo/ListboxBasicDemo.tsx";
 import ListboxMultipleDemo from "@demos/listbox-demo/ListboxMultipleDemo.tsx";
 import ListboxHorizontalDemo from "@demos/listbox-demo/ListboxHorizontalDemo.tsx";
 
-export const Route = createFileRoute('/components/listbox')({ component: ListboxPage })
+export const Route = createFileRoute("/components/listbox")({ component: ListboxPage });
 
 function ListboxPage() {
   return (
@@ -53,15 +53,12 @@ npx solidui-cli@latest add listbox
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/listbox.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
+        Create the recipe file at `src/components/recipes/listbox.ts`:
+        <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
 
 export const listboxVariants = tv({
   slots: {
@@ -97,12 +94,10 @@ export const listboxVariants = tv({
 });
 
 export type ListboxVariants = VariantProps<typeof listboxVariants>;`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/listbox/listbox.base.tsx`:
-
-      <Pre>{`import { Listbox as ArkListbox, type CollectionItem } from "@ark-ui/solid/listbox";
+        Create the component file at `src/components/listbox/listbox.base.tsx`:
+        <Pre>{`import { Listbox as ArkListbox, type CollectionItem } from "@ark-ui/solid/listbox";
 import { createContext, useContext, splitProps, type Component } from "solid-js";
 import { listboxVariants, type ListboxVariants } from "../recipes/listbox";
 
@@ -163,12 +158,10 @@ const Listbox = { Root, Content, Item, ItemText, ItemIndicator };
 
 export { Listbox };
 export { ListboxVariantContext, useListboxVariant };`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/listbox/index.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        Create the component file at `src/components/listbox/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { Listbox as ListboxBase } from "./listbox.base";
 import { type CollectionItem } from "@ark-ui/solid/listbox";
 import type { ListboxVariants } from "../recipes/listbox";
@@ -199,7 +192,6 @@ const ListboxItem: Component<ArkListbox.ItemProps<CollectionItem> & ListboxVaria
 
 export { Listbox, ListboxItem, ListboxBase };
 export { listboxVariants, type ListboxVariants } from "../recipes/listbox";`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component and use it inline:</P>
@@ -227,7 +219,9 @@ const frameworks = createListCollection({
 </Listbox>
       `}</Pre>
       <H3>Multiple Selection</H3>
-      <P>Use <InlineCode>{`selectionMode="multiple"`}</InlineCode> to allow selecting multiple items:</P>
+      <P>
+        Use <InlineCode>{`selectionMode="multiple"`}</InlineCode> to allow selecting multiple items:
+      </P>
       <ListboxMultipleDemo />
       <Pre>{`
 
@@ -253,7 +247,9 @@ const frameworks = createListCollection({
 </div>
       `}</Pre>
       <H3>Horizontal Orientation</H3>
-      <P>Use <InlineCode>{`orientation="horizontal"`}</InlineCode> for a horizontal layout:</P>
+      <P>
+        Use <InlineCode>{`orientation="horizontal"`}</InlineCode> for a horizontal layout:
+      </P>
       <ListboxHorizontalDemo />
       <Pre>{`
 
@@ -278,18 +274,27 @@ const frameworks = createListCollection({
 </div>
       `}</Pre>
       <H2>Advanced Usage</H2>
-      <P>When the composite <InlineCode>Listbox</InlineCode> doesn't provide enough control, import the raw primitive parts from the base file directly:</P>
+      <P>
+        When the composite <InlineCode>Listbox</InlineCode> doesn't provide enough control, import
+        the raw primitive parts from the base file directly:
+      </P>
       <Pre>{`
 
 import { Listbox } from "~/components/listbox/listbox.base";
       `}</Pre>
-      <P>Or import <InlineCode>ListboxBase</InlineCode> (the raw parts namespace) from the composite entry point:</P>
+      <P>
+        Or import <InlineCode>ListboxBase</InlineCode> (the raw parts namespace) from the composite
+        entry point:
+      </P>
       <Pre>{`
 
 import { ListboxBase } from "~/components/listbox";
       `}</Pre>
       <H3>RootProvider Pattern</H3>
-      <P>For full control over the listbox machine, use <InlineCode>useListbox</InlineCode> with <InlineCode>ListboxBase.RootProvider</InlineCode>:</P>
+      <P>
+        For full control over the listbox machine, use <InlineCode>useListbox</InlineCode> with{" "}
+        <InlineCode>ListboxBase.RootProvider</InlineCode>:
+      </P>
       <Pre>{`
 
 import { ListboxBase, useListboxVariant } from "~/components/listbox/listbox.base";
@@ -319,7 +324,10 @@ export function RootProviderDemo() {
 }
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/listbox">Ark UI Listbox</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/listbox">Ark UI Listbox</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

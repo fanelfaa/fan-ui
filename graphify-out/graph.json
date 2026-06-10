@@ -6,11 +6,7 @@
       {
         "id": "he_component_delivery",
         "label": "Component delivery pipeline",
-        "nodes": [
-          "ui_core_package",
-          "ui_solid_package",
-          "ui_docs_package"
-        ],
+        "nodes": ["ui_core_package", "ui_solid_package", "ui_docs_package"],
         "relation": "participate_in",
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
@@ -19,12 +15,7 @@
       {
         "id": "he_tech_stack",
         "label": "Tech stack",
-        "nodes": [
-          "solid_js",
-          "ark_ui",
-          "tailwind_variants",
-          "tailwind_css_v4"
-        ],
+        "nodes": ["solid_js", "ark_ui", "tailwind_variants", "tailwind_css_v4"],
         "relation": "participate_in",
         "confidence": "EXTRACTED",
         "confidence_score": 0.9,
@@ -33,11 +24,7 @@
       {
         "id": "he_ark_ui_ecosystem",
         "label": "Ark UI ecosystem",
-        "nodes": [
-          "ark_ui",
-          "ark_ui_solid",
-          "ui_solid_package"
-        ],
+        "nodes": ["ark_ui", "ark_ui_solid", "ui_solid_package"],
         "relation": "participate_in",
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
@@ -42454,11 +42441,7 @@
     {
       "id": "he_component_delivery",
       "label": "Component delivery pipeline",
-      "nodes": [
-        "ui_core_package",
-        "ui_solid_package",
-        "ui_docs_package"
-      ],
+      "nodes": ["ui_core_package", "ui_solid_package", "ui_docs_package"],
       "relation": "participate_in",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -42467,12 +42450,7 @@
     {
       "id": "he_tech_stack",
       "label": "Tech stack",
-      "nodes": [
-        "solid_js",
-        "ark_ui",
-        "tailwind_variants",
-        "tailwind_css_v4"
-      ],
+      "nodes": ["solid_js", "ark_ui", "tailwind_variants", "tailwind_css_v4"],
       "relation": "participate_in",
       "confidence": "EXTRACTED",
       "confidence_score": 0.9,
@@ -42481,11 +42459,7 @@
     {
       "id": "he_ark_ui_ecosystem",
       "label": "Ark UI ecosystem",
-      "nodes": [
-        "ark_ui",
-        "ark_ui_solid",
-        "ui_solid_package"
-      ],
+      "nodes": ["ark_ui", "ark_ui_solid", "ui_solid_package"],
       "relation": "participate_in",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,

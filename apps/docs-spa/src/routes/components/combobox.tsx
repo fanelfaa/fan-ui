@@ -1,16 +1,19 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import ComboboxBasicDemo from "@demos/combobox-demo/ComboboxBasicDemo.tsx";
 import ComboboxRootProviderDemo from "@demos/combobox-demo/ComboboxRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/combobox')({ component: ComboboxPage })
+export const Route = createFileRoute("/components/combobox")({ component: ComboboxPage });
 
 function ComboboxPage() {
   return (
     <>
       <H1>Combobox</H1>
-      <P>An autocomplete input component that allows users to filter and select options from a list by typing.</P>
+      <P>
+        An autocomplete input component that allows users to filter and select options from a list
+        by typing.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/combobox" />
       <ComboboxBasicDemo />
       <Pre>{`
@@ -57,15 +60,12 @@ npx solidui-cli@latest add combobox
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/combobox.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/combobox.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const comboboxVariants = tv({
   slots: {
@@ -102,14 +102,10 @@ export const comboboxVariants = tv({
 });
 
 export type ComboboxVariants = VariantProps<typeof comboboxVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component directory at `src/components/combobox/`:
-
-      `combobox.base.tsx`:
-
-      <Pre>{`import { Combobox as ArkCombobox } from "@ark-ui/solid/combobox";
+        Create the component directory at `src/components/combobox/`: `combobox.base.tsx`:
+        <Pre>{`import { Combobox as ArkCombobox } from "@ark-ui/solid/combobox";
 import { splitProps, type Component } from "solid-js";
 import { comboboxVariants, type ComboboxVariants } from "../recipes/combobox";
 
@@ -177,12 +173,10 @@ const Empty: Component<ArkCombobox.EmptyProps> = (props) => {
 const Combobox = { Root, RootProvider, Label, Input, Trigger, Positioner, List, Item, ItemText, ItemIndicator, Empty };
 
 export { Combobox };`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/combobox/index.tsx`:
-
-      <Pre>{`import { Combobox as ComboboxBase } from "./combobox.base";
+        Create the component file at `src/components/combobox/index.tsx`:
+        <Pre>{`import { Combobox as ComboboxBase } from "./combobox.base";
 import type { Combobox as ArkCombobox } from "@ark-ui/solid/combobox";
 import { Portal } from "solid-js/web";
 import { splitProps, type Component, type JSX } from "solid-js";
@@ -256,9 +250,13 @@ export {
   ComboboxBase,
 };
 export { comboboxVariants, type ComboboxVariants } from "../recipes/combobox";`}</Pre>
-
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--foreground</InlineCode>, <InlineCode>--input</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--foreground</InlineCode>, <InlineCode>--input</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -311,7 +309,12 @@ const { collection, filter } = useListCollection({
 </Combobox>
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>ComboboxRootProvider</InlineCode> when you need to access the combobox state outside of the component tree. This pattern uses the <InlineCode>useCombobox</InlineCode> hook from Ark UI to create a shared context that both the combobox and external elements can reference.</P>
+      <P>
+        Use <InlineCode>ComboboxRootProvider</InlineCode> when you need to access the combobox state
+        outside of the component tree. This pattern uses the <InlineCode>useCombobox</InlineCode>{" "}
+        hook from Ark UI to create a shared context that both the combobox and external elements can
+        reference.
+      </P>
       <ComboboxRootProviderDemo />
       <Pre>{`
 
@@ -361,11 +364,27 @@ function ComboboxWithExternalControl() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Combobox</InlineCode></strong> — manages its own state internally. Use for simple, self-contained comboboxes.</li>
-        <li><strong><InlineCode>ComboboxRootProvider</InlineCode></strong> — accepts a pre-created combobox context via <InlineCode>useCombobox</InlineCode>. Use when you need to read or control the combobox state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Combobox</InlineCode>
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained comboboxes.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>ComboboxRootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created combobox context via <InlineCode>useCombobox</InlineCode>. Use
+          when you need to read or control the combobox state from outside the component tree.
+        </li>
       </List>
       <H2>Error State</H2>
-      <P>Use the <InlineCode>error</InlineCode> prop on <InlineCode>ComboboxBase.Root</InlineCode> to show an error state. The structured <InlineCode>Combobox</InlineCode> component delegates its root styling to <InlineCode>ComboboxBase.Root</InlineCode>, so the <InlineCode>error</InlineCode> prop requires using the base component directly:</P>
+      <P>
+        Use the <InlineCode>error</InlineCode> prop on <InlineCode>ComboboxBase.Root</InlineCode> to
+        show an error state. The structured <InlineCode>Combobox</InlineCode> component delegates
+        its root styling to <InlineCode>ComboboxBase.Root</InlineCode>, so the{" "}
+        <InlineCode>error</InlineCode> prop requires using the base component directly:
+      </P>
       <Pre>{`
 
 <ComboboxBase.Root
@@ -383,7 +402,12 @@ function ComboboxWithExternalControl() {
 </ComboboxBase.Root>
       `}</Pre>
       <H2>Composite Exports</H2>
-      <P>The <InlineCode>ComboboxInputTrigger</InlineCode>, <InlineCode>ComboboxContent</InlineCode>, and <InlineCode>ComboboxItem</InlineCode> components are composite exports from the barrel entry point that include inline SVG icons and Portal. Import them alongside <InlineCode>Combobox</InlineCode>:</P>
+      <P>
+        The <InlineCode>ComboboxInputTrigger</InlineCode>, <InlineCode>ComboboxContent</InlineCode>,
+        and <InlineCode>ComboboxItem</InlineCode> components are composite exports from the barrel
+        entry point that include inline SVG icons and Portal. Import them alongside{" "}
+        <InlineCode>Combobox</InlineCode>:
+      </P>
       <Pre>{`
 
 import { Combobox, ComboboxLabel, ComboboxInputTrigger, ComboboxContent, ComboboxItem } from "~/components/combobox";
@@ -394,13 +418,19 @@ import { Combobox, ComboboxLabel, ComboboxInputTrigger, ComboboxContent, Combobo
 
 import { Combobox } from "~/components/combobox/combobox.base";
       `}</Pre>
-      <P>Or import <InlineCode>ComboboxBase</InlineCode> (the raw parts namespace) from the barrel entry point:</P>
+      <P>
+        Or import <InlineCode>ComboboxBase</InlineCode> (the raw parts namespace) from the barrel
+        entry point:
+      </P>
       <Pre>{`
 
 import { ComboboxBase } from "~/components/combobox";
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/combobox">Ark UI Combobox</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/combobox">Ark UI Combobox</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

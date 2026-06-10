@@ -1,16 +1,19 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import DialogBasicDemo from "@demos/dialog-demo/DialogBasicDemo.tsx";
 import DialogRootProviderDemo from "@demos/dialog-demo/DialogRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/dialog')({ component: DialogPage })
+export const Route = createFileRoute("/components/dialog")({ component: DialogPage });
 
 function DialogPage() {
   return (
     <>
       <H1>Dialog</H1>
-      <P>A modal dialog that overlays the page content, typically used for important actions or information.</P>
+      <P>
+        A modal dialog that overlays the page content, typically used for important actions or
+        information.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/dialog" />
       <DialogBasicDemo />
       <Pre>{`
@@ -71,12 +74,12 @@ npx solidui-cli@latest add dialog
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/dialog.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/dialog.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const dialogVariants = tv({
   slots: {
@@ -97,10 +100,8 @@ export const dialogVariants = tv({
 export type DialogVariants = VariantProps<typeof dialogVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component files:
-
-      At `src/components/dialog/dialog.base.tsx`:
-      <Pre>{`import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
+        Create the component files: At `src/components/dialog/dialog.base.tsx`:
+        <Pre>{`import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
 import { splitProps, type Component } from 'solid-js'
 import { dialogVariants } from './recipes/dialog'
 import { HTMLProps } from '@ark-ui/solid'
@@ -164,9 +165,8 @@ export const Dialog = {
   Header,
   Footer,
 }`}</Pre>
-
-      At `src/components/dialog/index.tsx`:
-      <Pre>{`import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
+        At `src/components/dialog/index.tsx`:
+        <Pre>{`import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
 import { Portal } from 'solid-js/web'
 import { splitProps, type Component } from 'solid-js'
 import { Dialog as DialogBase } from './dialog.base'
@@ -198,7 +198,12 @@ const DialogFooter = DialogBase.Footer
 export { Dialog, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogContent, DialogBase }
 export { dialogVariants, type DialogVariants } from './recipes/dialog'`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--background</InlineCode>, <InlineCode>--foreground</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--background</InlineCode>, <InlineCode>--foreground</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -268,7 +273,12 @@ export function ControlledDialog() {
 }
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>DialogBase.RootProvider</InlineCode> when you need to access the dialog state outside of the component tree. This pattern uses the <InlineCode>useDialog</InlineCode> hook from Ark UI to create a shared context that both the component and external elements can reference.</P>
+      <P>
+        Use <InlineCode>DialogBase.RootProvider</InlineCode> when you need to access the dialog
+        state outside of the component tree. This pattern uses the{" "}
+        <InlineCode>useDialog</InlineCode> hook from Ark UI to create a shared context that both the
+        component and external elements can reference.
+      </P>
       <DialogRootProviderDemo />
       <Pre>{`
 
@@ -308,11 +318,24 @@ export function ExternalControlExample() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Dialog</InlineCode></strong> — manages its own state internally. Use for simple, self-contained usage.</li>
-        <li><strong><InlineCode>DialogBase.RootProvider</InlineCode></strong> — accepts a pre-created context via <InlineCode>useDialog</InlineCode>. Use when you need to read or control the dialog state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Dialog</InlineCode>
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained usage.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>DialogBase.RootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created context via <InlineCode>useDialog</InlineCode>. Use when you need
+          to read or control the dialog state from outside the component tree.
+        </li>
       </List>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/dialog">Ark UI Dialog</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/dialog">Ark UI Dialog</A> documentation.
+      </P>
     </>
-  )
+  );
 }

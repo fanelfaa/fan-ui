@@ -1,15 +1,31 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
-import { H1, H2, H3, P, InlineCode, Pre, Table, Th, Td, THead, TBody, Tr } from "../../components/markdown"
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  Pre,
+  Table,
+  Th,
+  Td,
+  THead,
+  TBody,
+  Tr,
+} from "../../components/markdown";
 import SeparatorBasicDemo from "@demos/separator-demo/SeparatorBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/separator')({ component: SeparatorPage })
+export const Route = createFileRoute("/components/separator")({ component: SeparatorPage });
 
 function SeparatorPage() {
   return (
     <>
       <H1>Separator</H1>
-      <P>A horizontal or vertical line used to visually divide content. Commonly used in toolbars, forms, and lists.</P>
+      <P>
+        A horizontal or vertical line used to visually divide content. Commonly used in toolbars,
+        forms, and lists.
+      </P>
       <DocsLink href="https://ui.shadcn.com/docs/components/separator" />
       <SeparatorBasicDemo />
       <Pre>{`
@@ -35,15 +51,12 @@ npx solidui-cli@latest add separator
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/separator.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/separator.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const separatorVariants = tv({
   base: "shrink-0 bg-border",
@@ -59,12 +72,10 @@ export const separatorVariants = tv({
 })
 
 export type SeparatorVariants = VariantProps<typeof separatorVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/separator.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from 'solid-js'
+        Create the component file at `src/components/separator.tsx`:
+        <Pre>{`import { splitProps, type Component } from 'solid-js'
 import { separatorVariants, type SeparatorVariants } from '../recipes/separator'
 import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
 
@@ -84,7 +95,6 @@ const Separator: Component<SeparatorProps> = (props) => {
 }
 
 export { Separator, separatorVariants }`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component:</P>
@@ -118,16 +128,22 @@ import { Separator } from "@ui/solid";
         <TBody>
           <Tr>
             <Td>orientation</Td>
-            <Td><code>"horizontal" | "vertical"</code></Td>
-            <Td><InlineCode>{"horizontal"}</InlineCode></Td>
+            <Td>
+              <code>"horizontal" | "vertical"</code>
+            </Td>
+            <Td>
+              <InlineCode>{"horizontal"}</InlineCode>
+            </Td>
           </Tr>
           <Tr>
             <Td>class</Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
         </TBody>
       </Table>
     </>
-  )
+  );
 }

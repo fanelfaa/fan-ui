@@ -1,18 +1,21 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import PaginationBasicDemo from "@demos/pagination-demo/PaginationBasicDemo.tsx";
 import PaginationControlledDemo from "@demos/pagination-demo/PaginationControlledDemo.tsx";
 import PaginationRootProviderDemo from "@demos/pagination-demo/PaginationRootProviderDemo.tsx";
 import PaginationSizeDemo from "@demos/pagination-demo/PaginationSizeDemo.tsx";
 
-export const Route = createFileRoute('/components/pagination')({ component: PaginationPage })
+export const Route = createFileRoute("/components/pagination")({ component: PaginationPage });
 
 function PaginationPage() {
   return (
     <>
       <H1>Pagination</H1>
-      <P>A navigation component for moving between pages of content. Built on Ark UI's Pagination — supports controlled/uncontrolled modes, custom page sizes, and link-based navigation.</P>
+      <P>
+        A navigation component for moving between pages of content. Built on Ark UI's Pagination —
+        supports controlled/uncontrolled modes, custom page sizes, and link-based navigation.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/pagination" />
       <H2>Basic</H2>
       <PaginationBasicDemo />
@@ -33,7 +36,10 @@ export function PaginationDemo() {
 }
       `}</Pre>
       <H2>Controlled Page</H2>
-      <P>Use <InlineCode>page</InlineCode> and <InlineCode>onPageChange</InlineCode> to control the current page externally.</P>
+      <P>
+        Use <InlineCode>page</InlineCode> and <InlineCode>onPageChange</InlineCode> to control the
+        current page externally.
+      </P>
       <PaginationControlledDemo />
       <Pre>{`
 
@@ -58,7 +64,11 @@ export function ControlledDemo() {
 }
       `}</Pre>
       <H2>RootProvider Pattern</H2>
-      <P>For full control over the pagination machine state, use <InlineCode>usePagination</InlineCode> with <InlineCode>PaginationBase.RootProvider</InlineCode>.</P>
+      <P>
+        For full control over the pagination machine state, use{" "}
+        <InlineCode>usePagination</InlineCode> with{" "}
+        <InlineCode>PaginationBase.RootProvider</InlineCode>.
+      </P>
       <PaginationRootProviderDemo />
       <Pre>{`
 
@@ -91,7 +101,11 @@ export function RootProviderDemo() {
 }
       `}</Pre>
       <H2>Size Variants</H2>
-      <P>Use the <InlineCode>size</InlineCode> prop to control button dimensions — <InlineCode>sm</InlineCode> (h-7 min-w-7), <InlineCode>md</InlineCode> (h-8 min-w-8), <InlineCode>lg</InlineCode> (h-9 min-w-9).</P>
+      <P>
+        Use the <InlineCode>size</InlineCode> prop to control button dimensions —{" "}
+        <InlineCode>sm</InlineCode> (h-7 min-w-7), <InlineCode>md</InlineCode> (h-8 min-w-8),{" "}
+        <InlineCode>lg</InlineCode> (h-9 min-w-9).
+      </P>
       <PaginationSizeDemo />
       <Pre>{`
 
@@ -118,15 +132,12 @@ npx solidui-cli@latest add pagination
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/pagination.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
+        Create the recipe file at `src/components/recipes/pagination.ts`:
+        <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
 
 export const paginationVariants = tv({
   slots: {
@@ -162,12 +173,10 @@ export const paginationVariants = tv({
 });
 
 export type PaginationVariants = VariantProps<typeof paginationVariants>;`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the base file at `src/components/pagination/pagination.base.tsx`:
-
-      <Pre>{`import { Pagination as ArkPagination } from "@ark-ui/solid/pagination";
+        Create the base file at `src/components/pagination/pagination.base.tsx`:
+        <Pre>{`import { Pagination as ArkPagination } from "@ark-ui/solid/pagination";
 import { createContext, useContext, splitProps, type Component } from "solid-js";
 import { paginationVariants, type PaginationVariants } from "../recipes/pagination";
 
@@ -253,12 +262,10 @@ export const Pagination = {
 };
 
 export { PaginationVariantContext, usePaginationVariant };`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/pagination/index.tsx`:
-
-      <Pre>{`import { splitProps, For, type Component } from "solid-js";
+        Create the component file at `src/components/pagination/index.tsx`:
+        <Pre>{`import { splitProps, For, type Component } from "solid-js";
 import { Pagination as PaginationBase } from "./pagination.base";
 import { Pagination as ArkPagination } from "@ark-ui/solid/pagination";
 import type { PaginationVariants } from "@ui/core";
@@ -321,10 +328,12 @@ export {
 };
 
 export { paginationVariants, type PaginationVariants } from "../recipes/pagination";`}</Pre>
-
       </div>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/pagination">Ark UI Pagination</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/pagination">Ark UI Pagination</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

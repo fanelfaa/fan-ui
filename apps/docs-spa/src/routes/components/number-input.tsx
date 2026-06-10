@@ -1,15 +1,18 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import NumberInputBasicDemo from "@demos/number-input-demo/NumberInputBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/number-input')({ component: NumberInputPage })
+export const Route = createFileRoute("/components/number-input")({ component: NumberInputPage });
 
 function NumberInputPage() {
   return (
     <>
       <H1>Number Input</H1>
-      <P>An input component for entering numeric values, with built-in increment and decrement buttons.</P>
+      <P>
+        An input component for entering numeric values, with built-in increment and decrement
+        buttons.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/number-input" />
       <NumberInputBasicDemo />
       <Pre>{`
@@ -29,12 +32,12 @@ npx solidui-cli@latest add number-input
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/number-input.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/number-input.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const numberInputVariants = tv({
   slots: {
@@ -78,10 +81,9 @@ export const numberInputVariants = tv({
 export type NumberInputVariants = VariantProps<typeof numberInputVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/number-input/number-input.base.tsx`:
-      <Pre>{`import { NumberInput as ArkNumberInput } from "@ark-ui/solid/number-input";
+        Create the component directory and files:
+        `src/components/number-input/number-input.base.tsx`:
+        <Pre>{`import { NumberInput as ArkNumberInput } from "@ark-ui/solid/number-input";
 import { splitProps, type Component } from "solid-js";
 import { numberInputVariants } from "../recipes/number-input";
 import { HTMLProps } from "@ark-ui/solid";
@@ -154,9 +156,8 @@ export const NumberInput = {
   TriggerGroup: NumberInputTriggerGroup,
   ValueText: NumberInputValueText,
 };`}</Pre>
-
-      `src/components/number-input/index.tsx`:
-      <Pre>{`import { NumberInput as ArkNumberInput } from "@ark-ui/solid/number-input";
+        `src/components/number-input/index.tsx`:
+        <Pre>{`import { NumberInput as ArkNumberInput } from "@ark-ui/solid/number-input";
 import { splitProps, type Component } from "solid-js";
 import { NumberInput as NumberInputBase } from "./number-input.base";
 
@@ -210,7 +211,12 @@ export { NumberInput, NumberInputBase };
 
 export { numberInputVariants, type NumberInputVariants } from "../recipes/number-input";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--foreground</InlineCode>, <InlineCode>--input</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--foreground</InlineCode>, <InlineCode>--input</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the component:</P>
       <Pre>{`
@@ -223,25 +229,34 @@ import { NumberInput } from "~/components/number-input";
 <NumberInput defaultValue={50} min={0} max={100} />
       `}</Pre>
       <H2>With Label</H2>
-      <P>Add a label using the <InlineCode>label</InlineCode> prop.</P>
+      <P>
+        Add a label using the <InlineCode>label</InlineCode> prop.
+      </P>
       <Pre>{`
 
 <NumberInput label="Quantity" defaultValue={1} min={1} max={10} />
       `}</Pre>
       <H2>Error State</H2>
-      <P>Use the <InlineCode>error</InlineCode> prop to show an error state.</P>
+      <P>
+        Use the <InlineCode>error</InlineCode> prop to show an error state.
+      </P>
       <Pre>{`
 
 <NumberInput label="Amount" defaultValue={0} error />
       `}</Pre>
       <H2>Disabled</H2>
-      <P>Use the <InlineCode>disabled</InlineCode> prop to disable the input.</P>
+      <P>
+        Use the <InlineCode>disabled</InlineCode> prop to disable the input.
+      </P>
       <Pre>{`
 
 <NumberInput defaultValue={50} disabled />
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/number-input">Ark UI Number Input</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/number-input">Ark UI Number Input</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import AccordionBasicDemo from "@demos/accordion-demo/AccordionBasicDemo.tsx";
 import AccordionMultipleDemo from "@demos/accordion-demo/AccordionMultipleDemo.tsx";
 import AccordionDisabledDemo from "@demos/accordion-demo/AccordionDisabledDemo.tsx";
 import AccordionRootProviderDemo from "@demos/accordion-demo/AccordionRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/accordion')({ component: AccordionPage })
+export const Route = createFileRoute("/components/accordion")({ component: AccordionPage });
 
 function AccordionPage() {
   return (
@@ -66,12 +66,12 @@ npx solidui-cli@latest add accordion
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/accordion.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/accordion.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const accordionVariants = tv({
   slots: {
@@ -90,10 +90,8 @@ export const accordionVariants = tv({
 export type AccordionVariants = VariantProps<typeof accordionVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/accordion/accordion.base.tsx`:
-      <Pre>{`import { Accordion as ArkAccordion } from "@ark-ui/solid/accordion";
+        Create the component directory and files: `src/components/accordion/accordion.base.tsx`:
+        <Pre>{`import { Accordion as ArkAccordion } from "@ark-ui/solid/accordion";
 import { splitProps, type Component } from "solid-js";
 import { accordionVariants } from "../recipes/accordion";
 
@@ -136,9 +134,8 @@ const ItemIndicator: Component<ArkAccordion.ItemIndicatorProps> = (props) => {
 };
 
 export const Accordion = { Root, RootProvider, Item, ItemTrigger, ItemContent, ItemIndicator };`}</Pre>
-
-      `src/components/accordion/index.tsx`:
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        `src/components/accordion/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { Accordion as AccordionBase } from "./accordion.base";
 import type { Accordion as ArkAccordion } from "@ark-ui/solid/accordion";
 
@@ -175,7 +172,12 @@ export {
 
 export { accordionVariants, type AccordionVariants } from "../recipes/accordion";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--ring</InlineCode>, <InlineCode>--border</InlineCode>, <InlineCode>--background</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--ring</InlineCode>, <InlineCode>--border</InlineCode>,{" "}
+        <InlineCode>--background</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -225,7 +227,10 @@ import {
 </Accordion>
       `}</Pre>
       <H2>Multiple</H2>
-      <P>Use the <InlineCode>multiple</InlineCode> prop to allow more than one item to be expanded at the same time.</P>
+      <P>
+        Use the <InlineCode>multiple</InlineCode> prop to allow more than one item to be expanded at
+        the same time.
+      </P>
       <AccordionMultipleDemo />
       <Pre>{`
 
@@ -244,7 +249,10 @@ import {
 </Accordion>
       `}</Pre>
       <H2>Controlled</H2>
-      <P>Control the expanded state programmatically using <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode>.</P>
+      <P>
+        Control the expanded state programmatically using <InlineCode>value</InlineCode> and{" "}
+        <InlineCode>onValueChange</InlineCode>.
+      </P>
       <Pre>{`
 
 import { createSignal } from "solid-js";
@@ -273,7 +281,12 @@ export function AccordionControlled() {
 }
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>AccordionRootProvider</InlineCode> when you need to access the accordion state outside of the accordion tree. This pattern uses the <InlineCode>useAccordion</InlineCode> hook from Ark UI to create a shared context that both the accordion and external elements can reference.</P>
+      <P>
+        Use <InlineCode>AccordionRootProvider</InlineCode> when you need to access the accordion
+        state outside of the accordion tree. This pattern uses the{" "}
+        <InlineCode>useAccordion</InlineCode> hook from Ark UI to create a shared context that both
+        the accordion and external elements can reference.
+      </P>
       <AccordionRootProviderDemo />
       <Pre>{`
 
@@ -317,8 +330,19 @@ export function AccordionWithExternalControl() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Accordion</InlineCode> (Root)</strong> — manages its own state internally. Use for simple, self-contained accordions.</li>
-        <li><strong><InlineCode>AccordionRootProvider</InlineCode></strong> — accepts a pre-created accordion context via <InlineCode>useAccordion</InlineCode>. Use when you need to read or control the accordion state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Accordion</InlineCode> (Root)
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained accordions.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>AccordionRootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created accordion context via <InlineCode>useAccordion</InlineCode>. Use
+          when you need to read or control the accordion state from outside the component tree.
+        </li>
       </List>
       <H2>Disabled</H2>
       <P>Disable individual items or the entire accordion.</P>
@@ -340,9 +364,15 @@ export function AccordionWithExternalControl() {
   </AccordionItem>
 </Accordion>
       `}</Pre>
-      <P>To disable all items at once, pass <InlineCode>disabled</InlineCode> to the <InlineCode>{`<Accordion>`}</InlineCode> root.</P>
+      <P>
+        To disable all items at once, pass <InlineCode>disabled</InlineCode> to the{" "}
+        <InlineCode>{`<Accordion>`}</InlineCode> root.
+      </P>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/accordion">Ark UI Accordion</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/accordion">Ark UI Accordion</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

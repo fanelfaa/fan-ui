@@ -19,12 +19,7 @@ const Positioner: Component<ArkHoverCard.PositionerProps> = (props) => {
 
 const Content: Component<ArkHoverCard.ContentProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return (
-    <ArkHoverCard.Content
-      class={styles.content({ class: local.class })}
-      {...others}
-    />
-  );
+  return <ArkHoverCard.Content class={styles.content({ class: local.class })} {...others} />;
 };
 
 const Arrow: Component<ArkHoverCard.ArrowProps> = (props) => {

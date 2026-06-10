@@ -1,15 +1,18 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import CarouselBasicDemo from "@demos/carousel-demo/CarouselBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/carousel')({ component: CarouselPage })
+export const Route = createFileRoute("/components/carousel")({ component: CarouselPage });
 
 function CarouselPage() {
   return (
     <>
       <H1>Carousel</H1>
-      <P>An interactive image carousel component that allows users to cycle through a collection of content.</P>
+      <P>
+        An interactive image carousel component that allows users to cycle through a collection of
+        content.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/carousel" />
       <CarouselBasicDemo />
       <Pre>{`
@@ -65,12 +68,12 @@ npx solidui-cli@latest add carousel
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/carousel.ts`:
-      <Pre>{`import { tv } from "tailwind-variants";
+        Create the recipe file at `src/components/recipes/carousel.ts`:
+        <Pre>{`import { tv } from "tailwind-variants";
 
 export const carouselVariants = tv({
   slots: {
@@ -94,8 +97,8 @@ export const carouselVariants = tv({
 export type CarouselVariants = ReturnType<typeof carouselVariants>;`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/carousel.tsx`:
-      <Pre>{`import { Carousel as ArkCarousel } from "@ark-ui/solid/carousel";
+        Create the component file at `src/components/carousel.tsx`:
+        <Pre>{`import { Carousel as ArkCarousel } from "@ark-ui/solid/carousel";
 import { splitProps, type Component } from "solid-js";
 import { carouselVariants } from "./recipes/carousel";
 
@@ -158,7 +161,12 @@ export const CarouselProgressText: Component<ArkCarousel.ProgressTextProps> = (p
 
 export { CarouselRoot as Carousel, carouselVariants, type CarouselVariants };`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--foreground</InlineCode>, <InlineCode>--input</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--foreground</InlineCode>, <InlineCode>--input</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -219,7 +227,10 @@ const images = [
 </Carousel>
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/carousel">Ark UI Carousel</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/carousel">Ark UI Carousel</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

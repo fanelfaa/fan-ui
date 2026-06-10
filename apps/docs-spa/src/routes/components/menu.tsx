@@ -1,10 +1,10 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import MenuBasicDemo from "@demos/menu-demo/MenuBasicDemo.tsx";
 import MenuNestedDemo from "@demos/menu-demo/MenuNestedDemo.tsx";
 
-export const Route = createFileRoute('/components/menu')({ component: MenuPage })
+export const Route = createFileRoute("/components/menu")({ component: MenuPage });
 
 function MenuPage() {
   return (
@@ -49,12 +49,12 @@ npx solidui-cli@latest add menu
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/menu.ts`:
-      <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
+        Create the recipe file at `src/components/recipes/menu.ts`:
+        <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
 
 export const menuVariants = tv({
   slots: {
@@ -85,8 +85,8 @@ export const menuVariants = tv({
 export type MenuVariants = VariantProps<typeof menuVariants>;`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the base component file at `src/components/menu/menu.base.tsx`:
-      <Pre>{`import { Menu as ArkMenu } from "@ark-ui/solid/menu";
+        Create the base component file at `src/components/menu/menu.base.tsx`:
+        <Pre>{`import { Menu as ArkMenu } from "@ark-ui/solid/menu";
 import { splitProps, type Component } from "solid-js";
 import { menuVariants } from "../recipes/menu";
 
@@ -188,8 +188,8 @@ export const Menu = {
 };`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the composite wrapper at `src/components/menu/index.tsx`:
-      <Pre>{`import { Menu as ArkMenu } from "@ark-ui/solid/menu";
+        Create the composite wrapper at `src/components/menu/index.tsx`:
+        <Pre>{`import { Menu as ArkMenu } from "@ark-ui/solid/menu";
 import { Portal } from "solid-js/web";
 import { splitProps, type Component } from "solid-js";
 import { Menu as MenuBase } from "./menu.base";
@@ -314,7 +314,12 @@ const NestedMenuContent: Component<ArkMenu.ContentProps> = (props) => {
 export { MenuTrigger, MenuContent, MenuItem, MenuTriggerItem, MenuSeparator, NestedMenuContent, MenuBase };
 export { menuVariants, type MenuVariants } from "../recipes/menu";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--accent</InlineCode>, <InlineCode>--border</InlineCode>, <InlineCode>--popover</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--accent</InlineCode>, <InlineCode>--border</InlineCode>,{" "}
+        <InlineCode>--popover</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -369,7 +374,9 @@ import { MenuTrigger, MenuContent, MenuTriggerItem, MenuItem, MenuSeparator, Nes
 <MenuItem value="delete">Delete</MenuItem>
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/menu">Ark UI Menu</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/menu">Ark UI Menu</A> documentation.
+      </P>
     </>
-  )
+  );
 }

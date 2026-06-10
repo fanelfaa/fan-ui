@@ -1,16 +1,32 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
-import { H1, H2, H3, P, InlineCode, Pre, Table, Th, Td, THead, TBody, Tr } from "../../components/markdown"
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  Pre,
+  Table,
+  Th,
+  Td,
+  THead,
+  TBody,
+  Tr,
+} from "../../components/markdown";
 import { Skeleton } from "@ui/solid";
 import SkeletonBasicDemo from "@demos/skeleton-demo/SkeletonBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/skeleton')({ component: SkeletonPage })
+export const Route = createFileRoute("/components/skeleton")({ component: SkeletonPage });
 
 function SkeletonPage() {
   return (
     <>
       <H1>Skeleton</H1>
-      <P>A placeholder component used to indicate loading content. Skeletons mimic the shape and layout of actual content while data is being fetched.</P>
+      <P>
+        A placeholder component used to indicate loading content. Skeletons mimic the shape and
+        layout of actual content while data is being fetched.
+      </P>
       <DocsLink href="https://ui.shadcn.com/docs/components/skeleton" />
       <SkeletonBasicDemo />
       <Pre>{`
@@ -38,26 +54,22 @@ npx solidui-cli@latest add skeleton
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/skeleton.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/skeleton.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const skeletonVariants = tv({
   base: "animate-pulse rounded-md bg-muted",
 })
 
 export type SkeletonVariants = VariantProps<typeof skeletonVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/skeleton.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from 'solid-js'
+        Create the component file at `src/components/skeleton.tsx`:
+        <Pre>{`import { splitProps, type Component } from 'solid-js'
 import { skeletonVariants } from '../recipes/skeleton'
 import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
 
@@ -67,7 +79,6 @@ const Skeleton: Component<HTMLArkProps<"div">> = (props) => {
 }
 
 export { Skeleton, skeletonVariants }`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component:</P>
@@ -126,7 +137,11 @@ import { Skeleton } from "@ui/solid";
 </div>
       `}</Pre>
       <H2>Customizing</H2>
-      <P>The skeleton is a simple <InlineCode>{`<div>`}</InlineCode> with <InlineCode>animate-pulse</InlineCode> and <InlineCode>bg-muted</InlineCode> applied. Use <InlineCode>class</InlineCode> to control dimensions and shape:</P>
+      <P>
+        The skeleton is a simple <InlineCode>{`<div>`}</InlineCode> with{" "}
+        <InlineCode>animate-pulse</InlineCode> and <InlineCode>bg-muted</InlineCode> applied. Use{" "}
+        <InlineCode>class</InlineCode> to control dimensions and shape:
+      </P>
       <Pre>{`
 
 {/* Circle for avatars */}
@@ -153,16 +168,20 @@ import { Skeleton } from "@ui/solid";
         <TBody>
           <Tr>
             <Td>class</Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
             <Td>children</Td>
-            <Td><InlineCode>any</InlineCode></Td>
+            <Td>
+              <InlineCode>any</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
         </TBody>
       </Table>
     </>
-  )
+  );
 }

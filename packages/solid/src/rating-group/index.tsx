@@ -14,7 +14,7 @@ const RatingGroupItem: Component<ArkRatingGroup.ItemProps & RatingGroupVariants>
       {...others}
     >
       <RatingGroupBase.ItemContext>
-        {(context) => (
+        {() => (
           <span class={styles.itemIndicator()}>
             {/* Background unfilled star */}
             <svg
@@ -57,9 +57,7 @@ const RatingGroup: Component<ArkRatingGroup.RootProps & RatingGroupVariants> = (
       <RatingGroupBase.Context>
         {(context) => (
           <RatingGroupBase.Control>
-            <Index each={context().items}>
-              {(item) => <RatingGroupItem index={item()} />}
-            </Index>
+            <Index each={context().items}>{(item) => <RatingGroupItem index={item()} />}</Index>
             <RatingGroupBase.HiddenInput />
           </RatingGroupBase.Control>
         )}

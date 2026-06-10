@@ -1,4 +1,4 @@
-import type { Component } from "solid-js"
+import type { Component } from "solid-js";
 
 export const ArrowRightUp: Component = () => (
   <svg
@@ -16,4 +16,4 @@ export const ArrowRightUp: Component = () => (
     <polyline points="15 3 21 3 21 9" />
     <line x1="10" x2="21" y1="14" y2="3" />
   </svg>
-)
+);

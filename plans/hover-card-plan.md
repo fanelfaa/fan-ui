@@ -10,15 +10,15 @@ The HoverCard component shows a popup card on hover/trigger interaction. It open
 
 ### Ark UI Parts
 
-| Part | Has tv() variants? | Notes |
-|------|--------------------|-------|
-| Root | No | Context provider; manages open/close state, delays, positioning |
-| RootProvider | No | For machine-controlled usage via `useHoverCard` |
-| Trigger | Yes | Inline trigger button; styled with tv() |
-| Positioner | Yes | Fixed position container; styled with tv() |
-| Content | Yes | Popup card; styled with tv() |
-| Arrow | Yes | Arrow connector element; styled with tv() |
-| ArrowTip | Yes | Arrow tip element; styled with tv() |
+| Part         | Has tv() variants? | Notes                                                           |
+| ------------ | ------------------ | --------------------------------------------------------------- |
+| Root         | No                 | Context provider; manages open/close state, delays, positioning |
+| RootProvider | No                 | For machine-controlled usage via `useHoverCard`                 |
+| Trigger      | Yes                | Inline trigger button; styled with tv()                         |
+| Positioner   | Yes                | Fixed position container; styled with tv()                      |
+| Content      | Yes                | Popup card; styled with tv()                                    |
+| Arrow        | Yes                | Arrow connector element; styled with tv()                       |
+| ArrowTip     | Yes                | Arrow tip element; styled with tv()                             |
 
 ### Variants
 
@@ -27,6 +27,7 @@ No visual variants — hover-card does not have semantic visual variants. The re
 ## Artifact Checklist
 
 ### 1. Recipe: `packages/core/src/recipes/hover-card.ts`
+
 - [ ] Create tv() with slots for each Ark UI part
   - **Slots**: root, trigger, positioner, content, arrow, arrowTip
 - [ ] No variants (same as tooltip pattern)
@@ -41,14 +42,17 @@ No visual variants — hover-card does not have semantic visual variants. The re
 - [ ] Module-level `const styles = hoverCardVariants();` call pattern (module scope, not inside components)
 
 ### 2. Core Index: `packages/core/src/index.ts`
+
 - [ ] Add `export { hoverCardVariants } from "./recipes/hover-card"`
 - [ ] Add `export type { HoverCardVariants } from "./recipes/hover-card"`
 - [ ] Insert in alphabetical order between `editable` (not yet) and `input` (or after `accordion` area near `date-picker`/`tooltip`)
 
 ### 3. Tsup Entry: `packages/core/tsup.config.ts`
+
 - [ ] Add `"src/recipes/hover-card.ts"` to entry list (alphabetical position after `date-picker`/`editable` or near `tooltip`)
 
 ### 4. Base File: `packages/solid/src/hover-card/hover-card.base.tsx`
+
 - [ ] Import Ark UI parts from `@ark-ui/solid/hover-card`
 - [ ] Import `hoverCardVariants`, `type HoverCardVariants` from `@ui/core`
 - [ ] Module-level: `const styles = hoverCardVariants();`
@@ -65,6 +69,7 @@ No visual variants — hover-card does not have semantic visual variants. The re
 - [ ] No separate context export (no variant context needed)
 
 ### 5. Index File: `packages/solid/src/hover-card/index.tsx`
+
 - [ ] Import namespace as `{ HoverCard as HoverCardBase }` from `./hover-card.base`
 - [ ] Import Ark types from `@ark-ui/solid/hover-card`
 - [ ] **No** `export *` from base (Pattern E rule)
@@ -78,10 +83,12 @@ No visual variants — hover-card does not have semantic visual variants. The re
 - [ ] Re-export variants: `export { hoverCardVariants, type HoverCardVariants } from "@ui/core"`
 
 ### 6. Solid Barrel: `packages/solid/src/index.ts`
+
 - [ ] Add `export * from "./hover-card"` in alphabetical order
 - [ ] Placement: between `"highlight"` (not yet) and `"input"`, or near `"accordion"`/`"checkbox"` section
 
 ### 7. Demo: `apps/docs/src/components/hover-card-demo/HoverCardBasicDemo.tsx`
+
 - [ ] Create BasicDemo importing only named composites from `@ui/solid`
 - [ ] Must NOT import `.base.tsx` or `HoverCardBase`
 - [ ] Imports: `import { HoverCard, HoverCardTrigger, HoverCardContent } from "@ui/solid"`
@@ -101,6 +108,7 @@ No visual variants — hover-card does not have semantic visual variants. The re
   - **RootProvider**: Advanced usage with `useHoverCard` machine hook
 
 ### 8. Docs: `apps/docs/src/content/docs/components/hover-card.mdx`
+
 - [ ] Create MDX page with title, description, category
 - [ ] Frontmatter:
   ```yaml

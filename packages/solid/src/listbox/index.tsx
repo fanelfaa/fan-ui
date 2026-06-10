@@ -47,12 +47,6 @@ const ListboxEmpty: Component<ArkListbox.EmptyProps> = (props) => {
   return <ListboxBase.Empty {...others}>{local.children}</ListboxBase.Empty>;
 };
 
-export {
-  Listbox,
-  ListboxItem,
-  ListboxContent,
-  ListboxEmpty,
-  ListboxBase,
-};
+export { Listbox, ListboxItem, ListboxContent, ListboxEmpty, ListboxBase };
 
 export { listboxVariants, type ListboxVariants } from "@ui/core";

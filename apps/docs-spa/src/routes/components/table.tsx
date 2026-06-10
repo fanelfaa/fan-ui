@@ -1,14 +1,30 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, InlineCode, Table, Th, Td, Pre, THead, TBody, Tr } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  Table,
+  Th,
+  Td,
+  Pre,
+  THead,
+  TBody,
+  Tr,
+} from "../../components/markdown";
 import TableBasicDemo from "@demos/table-demo/TableBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/table')({ component: TablePage })
+export const Route = createFileRoute("/components/table")({ component: TablePage });
 
 function TablePage() {
   return (
     <>
       <H1>Table</H1>
-      <P>A responsive data table component with accessible markup. Built with native HTML <InlineCode>{`<table>`}</InlineCode> elements — no external dependencies.</P>
+      <P>
+        A responsive data table component with accessible markup. Built with native HTML{" "}
+        <InlineCode>{`<table>`}</InlineCode> elements — no external dependencies.
+      </P>
       <TableBasicDemo />
       <Pre>{`
 
@@ -61,14 +77,12 @@ npx solidui-cli@latest add table
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/table.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/table.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const tableVariants = tv({
   slots: {
@@ -83,12 +97,10 @@ export const tableVariants = tv({
 })
 
 export type TableVariants = VariantProps<typeof tableVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/table.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from 'solid-js'
+        Create the component file at `src/components/table.tsx`:
+        <Pre>{`import { splitProps, type Component } from 'solid-js'
 import { tableVariants } from '../recipes/table'
 import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
 
@@ -139,7 +151,6 @@ export {
   TableCaption,
   tableVariants,
 }`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the components:</P>
@@ -184,7 +195,9 @@ import {
   </TableBody>
 </Table>
       `}</Pre>
-      <P>Column alignment can be customized using the <InlineCode>class</InlineCode> prop:</P>
+      <P>
+        Column alignment can be customized using the <InlineCode>class</InlineCode> prop:
+      </P>
       <Pre>{`
 
 <TableHead class="text-right">Amount</TableHead>
@@ -202,38 +215,66 @@ import {
         </THead>
         <TBody>
           <Tr>
-            <Td><InlineCode>Table</InlineCode></Td>
-            <Td><InlineCode>table</InlineCode></Td>
+            <Td>
+              <InlineCode>Table</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>table</InlineCode>
+            </Td>
             <Td>The root table element.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableHeader</InlineCode></Td>
-            <Td><InlineCode>thead</InlineCode></Td>
+            <Td>
+              <InlineCode>TableHeader</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>thead</InlineCode>
+            </Td>
             <Td>The header row group.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableBody</InlineCode></Td>
-            <Td><InlineCode>tbody</InlineCode></Td>
+            <Td>
+              <InlineCode>TableBody</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>tbody</InlineCode>
+            </Td>
             <Td>The body row group.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableRow</InlineCode></Td>
-            <Td><InlineCode>tr</InlineCode></Td>
+            <Td>
+              <InlineCode>TableRow</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>tr</InlineCode>
+            </Td>
             <Td>A table row.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableHead</InlineCode></Td>
-            <Td><InlineCode>th</InlineCode></Td>
+            <Td>
+              <InlineCode>TableHead</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>th</InlineCode>
+            </Td>
             <Td>A header cell.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableCell</InlineCode></Td>
-            <Td><InlineCode>td</InlineCode></Td>
+            <Td>
+              <InlineCode>TableCell</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>td</InlineCode>
+            </Td>
             <Td>A data cell.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableCaption</InlineCode></Td>
-            <Td><InlineCode>caption</InlineCode></Td>
+            <Td>
+              <InlineCode>TableCaption</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>caption</InlineCode>
+            </Td>
             <Td>A table caption.</Td>
           </Tr>
         </TBody>
@@ -250,49 +291,91 @@ import {
         </THead>
         <TBody>
           <Tr>
-            <Td><InlineCode>Table</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>Table</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableHeader</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>TableHeader</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableBody</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>TableBody</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableRow</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>TableRow</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableHead</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>TableHead</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableCell</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>TableCell</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>TableCaption</InlineCode></Td>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>TableCaption</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
           </Tr>
         </TBody>
       </Table>
     </>
-  )
+  );
 }

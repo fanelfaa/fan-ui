@@ -10,15 +10,15 @@ A responsive data table component with accessible markup. Pure HTML/CSS componen
 
 ### Parts
 
-| Part | Has tv() slots? | Notes |
-|------|-----------------|-------|
-| Table | Yes | `<table>` root element |
-| TableHeader | Yes | `<thead>` header group |
-| TableBody | Yes | `<tbody>` body group |
-| TableRow | Yes | `<tr>` row |
-| TableHead | Yes | `<th>` header cell |
-| TableCell | Yes | `<td>` data cell |
-| TableCaption | Yes | `<caption>` table description |
+| Part         | Has tv() slots? | Notes                         |
+| ------------ | --------------- | ----------------------------- |
+| Table        | Yes             | `<table>` root element        |
+| TableHeader  | Yes             | `<thead>` header group        |
+| TableBody    | Yes             | `<tbody>` body group          |
+| TableRow     | Yes             | `<tr>` row                    |
+| TableHead    | Yes             | `<th>` header cell            |
+| TableCell    | Yes             | `<td>` data cell              |
+| TableCaption | Yes             | `<caption>` table description |
 
 ### Variants
 
@@ -27,6 +27,7 @@ No visual variants — table does not have semantic visual variants. The recipe 
 ## Artifact Checklist
 
 ### 1. Recipe: `packages/core/src/recipes/table.ts`
+
 - [ ] Create tv() with slots for each part:
   - **table**: `"w-full caption-bottom text-sm"` — full width table
   - **header**: `"[&_tr]:border-b"` — header row border
@@ -40,14 +41,17 @@ No visual variants — table does not have semantic visual variants. The recipe 
 - [ ] Export `tableVariants` + type `TableVariants`
 
 ### 2. Core Index: `packages/core/src/index.ts`
+
 - [ ] Add `export { tableVariants } from "./recipes/table"`
 - [ ] Add `export type { TableVariants } from "./recipes/table"`
 - [ ] Insert in alphabetical order (after `switch`/`tabs` area)
 
 ### 3. Tsup Entry: `packages/core/tsup.config.ts`
+
 - [ ] Add `"src/recipes/table.ts"` to entry list (alphabetical order, after `switch.ts`/`tabs.ts`)
 
 ### 4. Solid Component: `packages/solid/src/table/index.tsx`
+
 - [ ] Import `tableVariants` from `@ui/core`
 - [ ] Import `ark, type HTMLArkProps` from `@ark-ui/solid/factory`
 - [ ] Module-level: `const styles = tableVariants();`
@@ -62,9 +66,11 @@ No visual variants — table does not have semantic visual variants. The recipe 
 - [ ] Export all named components + `tableVariants`
 
 ### 5. Solid Barrel: `packages/solid/src/index.ts`
+
 - [ ] Add `export * from "./table"` in alphabetical order (after `switch`, before `tabs`)
 
 ### 6. Demo: `apps/docs/src/components/table-demo/TableBasicDemo.tsx`
+
 - [ ] Create BasicDemo importing named composites from `@ui/solid` only
 - [ ] Imports: `import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption } from "@ui/solid"`
 - [ ] Basic usage:
@@ -98,6 +104,7 @@ No visual variants — table does not have semantic visual variants. The recipe 
 - [ ] Wrap in `not-prose` border container
 
 ### 7. Docs: `apps/docs/src/content/docs/components/table.mdx`
+
 - [ ] Create MDX page with frontmatter:
   ```yaml
   title: Table

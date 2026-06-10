@@ -1,18 +1,21 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import RadioGroupBasicDemo from "@demos/radio-group-demo/RadioGroupBasicDemo.tsx";
 import RadioGroupControlledDemo from "@demos/radio-group-demo/RadioGroupControlledDemo.tsx";
 import RadioGroupDisabledDemo from "@demos/radio-group-demo/RadioGroupDisabledDemo.tsx";
 import RadioGroupRootProviderDemo from "@demos/radio-group-demo/RadioGroupRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/radio-group')({ component: RadioGroupPage })
+export const Route = createFileRoute("/components/radio-group")({ component: RadioGroupPage });
 
 function RadioGroupPage() {
   return (
     <>
       <H1>Radio Group</H1>
-      <P>A component that allows users to select a single option from a set of mutually exclusive options.</P>
+      <P>
+        A component that allows users to select a single option from a set of mutually exclusive
+        options.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/radio-group" />
       <RadioGroupBasicDemo />
       <Pre>{`
@@ -38,12 +41,12 @@ npx solidui-cli@latest add radio-group
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/radio-group.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/radio-group.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const radioGroupVariants = tv({
   slots: {
@@ -80,10 +83,8 @@ export const radioGroupVariants = tv({
 export type RadioGroupVariants = VariantProps<typeof radioGroupVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/radio-group/radio-group.base.tsx`:
-      <Pre>{`import { RadioGroup as ArkRadioGroup } from "@ark-ui/solid/radio-group";
+        Create the component directory and files: `src/components/radio-group/radio-group.base.tsx`:
+        <Pre>{`import { RadioGroup as ArkRadioGroup } from "@ark-ui/solid/radio-group";
 import { splitProps, type Component } from "solid-js";
 import { radioGroupVariants } from "../recipes/radio-group";
 
@@ -152,9 +153,8 @@ const RadioGroup = {
 
 export { RadioGroup };
 export { ItemHiddenInput };`}</Pre>
-
-      `src/components/radio-group/index.tsx`:
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        `src/components/radio-group/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { RadioGroup as RadioGroupBase } from "./radio-group.base";
 import { RadioGroup as ArkRadioGroup } from "@ark-ui/solid/radio-group";
 import type { RadioGroupVariants } from "../recipes/radio-group";
@@ -184,7 +184,12 @@ export const RadioGroupItem: Component<ArkRadioGroup.ItemProps> = (props) => {
 
 export { radioGroupVariants, type RadioGroupVariants } from "../recipes/radio-group";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--foreground</InlineCode>, <InlineCode>--input</InlineCode>, <InlineCode>--primary</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--foreground</InlineCode>, <InlineCode>--input</InlineCode>,{" "}
+        <InlineCode>--primary</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -210,18 +215,27 @@ import { RadioGroup, RadioGroupItem } from "~/components/radio-group";
 </RadioGroup>
       `}</Pre>
       <H2>Advanced Usage</H2>
-      <P>When the composite <InlineCode>RadioGroup</InlineCode> doesn't provide enough control, import the raw primitive parts from the base file directly:</P>
+      <P>
+        When the composite <InlineCode>RadioGroup</InlineCode> doesn't provide enough control,
+        import the raw primitive parts from the base file directly:
+      </P>
       <Pre>{`
 
 import { RadioGroup } from "~/components/radio-group/radio-group.base";
       `}</Pre>
-      <P>Or import <InlineCode>RadioGroupBase</InlineCode> (the raw parts namespace) from the composite entry point:</P>
+      <P>
+        Or import <InlineCode>RadioGroupBase</InlineCode> (the raw parts namespace) from the
+        composite entry point:
+      </P>
       <Pre>{`
 
 import { RadioGroupBase } from "~/components/radio-group";
       `}</Pre>
       <H3>Controlled Value</H3>
-      <P>Use <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode> to control the selection state externally:</P>
+      <P>
+        Use <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode> to control the
+        selection state externally:
+      </P>
       <RadioGroupControlledDemo />
       <Pre>{`
 
@@ -252,7 +266,9 @@ export function ControlledDemo() {
 }
       `}</Pre>
       <H3>Disabled Item</H3>
-      <P>Individual items can be disabled using the <InlineCode>disabled</InlineCode> prop:</P>
+      <P>
+        Individual items can be disabled using the <InlineCode>disabled</InlineCode> prop:
+      </P>
       <RadioGroupDisabledDemo />
       <Pre>{`
 
@@ -269,7 +285,12 @@ export function DisabledDemo() {
 }
       `}</Pre>
       <H3>Root Provider</H3>
-      <P>Use <InlineCode>RadioGroupBase.RootProvider</InlineCode> when you need to access the radio group state outside of the component tree. This pattern uses the <InlineCode>useRadioGroup</InlineCode> hook from Ark UI to create a shared context that both the radio group and external elements can reference.</P>
+      <P>
+        Use <InlineCode>RadioGroupBase.RootProvider</InlineCode> when you need to access the radio
+        group state outside of the component tree. This pattern uses the{" "}
+        <InlineCode>useRadioGroup</InlineCode> hook from Ark UI to create a shared context that both
+        the radio group and external elements can reference.
+      </P>
       <RadioGroupRootProviderDemo />
       <Pre>{`
 
@@ -304,11 +325,26 @@ export function RadioGroupWithExternalControl() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>RadioGroup</InlineCode> (Root)</strong> — manages its own state internally. Use for simple, self-contained radio groups.</li>
-        <li><strong><InlineCode>RadioGroupBase.RootProvider</InlineCode></strong> — accepts a pre-created radio group context via <InlineCode>useRadioGroup</InlineCode>. Use when you need to read or control the radio group state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>RadioGroup</InlineCode> (Root)
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained radio groups.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>RadioGroupBase.RootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created radio group context via <InlineCode>useRadioGroup</InlineCode>.
+          Use when you need to read or control the radio group state from outside the component
+          tree.
+        </li>
       </List>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/radio-group">Ark UI Radio Group</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/radio-group">Ark UI Radio Group</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

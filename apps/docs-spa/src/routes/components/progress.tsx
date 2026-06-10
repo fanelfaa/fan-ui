@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import ProgressBasicDemo from "@demos/progress-demo/ProgressBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/progress')({ component: ProgressPage })
+export const Route = createFileRoute("/components/progress")({ component: ProgressPage });
 
 function ProgressPage() {
   return (
@@ -40,12 +40,12 @@ npx solidui-cli@latest add progress
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/progress.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/progress.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const progressVariants = tv({
   slots: {
@@ -61,10 +61,8 @@ export const progressVariants = tv({
 export type ProgressVariants = VariantProps<typeof progressVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/progress/progress.base.tsx`:
-      <Pre>{`import { Progress as ArkProgress } from "@ark-ui/solid/progress";
+        Create the component directory and files: `src/components/progress/progress.base.tsx`:
+        <Pre>{`import { Progress as ArkProgress } from "@ark-ui/solid/progress";
 import { splitProps, type Component } from "solid-js";
 import { progressVariants } from "../recipes/progress";
 
@@ -106,9 +104,8 @@ const View: Component<ArkProgress.ViewProps> = (props) => {
 };
 
 export const Progress = { Root, RootProvider, Label, Track, Range, ValueText, View };`}</Pre>
-
-      `src/components/progress/index.tsx`:
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        `src/components/progress/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { Progress as ProgressBase } from "./progress.base";
 import { Progress as ArkProgress } from "@ark-ui/solid/progress";
 
@@ -139,7 +136,10 @@ export {
 
 export { progressVariants, type ProgressVariants } from "../recipes/progress";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up or
+        override the utility classes to match your design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -161,7 +161,9 @@ import {
 </Progress>
       `}</Pre>
       <H2>Indeterminate</H2>
-      <P>Omit the <InlineCode>value</InlineCode> prop to render an indeterminate progress bar:</P>
+      <P>
+        Omit the <InlineCode>value</InlineCode> prop to render an indeterminate progress bar:
+      </P>
       <Pre>{`
 
 <Progress>
@@ -170,7 +172,10 @@ import {
 </Progress>
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/progress">Ark UI Progress</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/progress">Ark UI Progress</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

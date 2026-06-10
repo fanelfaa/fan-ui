@@ -1,16 +1,21 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import PasswordInputBasicDemo from "@demos/password-input-demo/PasswordInputBasicDemo.tsx";
 import PasswordInputRootProviderDemo from "@demos/password-input-demo/PasswordInputRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/password-input')({ component: PasswordInputPage })
+export const Route = createFileRoute("/components/password-input")({
+  component: PasswordInputPage,
+});
 
 function PasswordInputPage() {
   return (
     <>
       <H1>Password Input</H1>
-      <P>A password input component with a visibility toggle button and support for labels and error states.</P>
+      <P>
+        A password input component with a visibility toggle button and support for labels and error
+        states.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/password-input" />
       <PasswordInputBasicDemo />
       <Pre>{`
@@ -36,12 +41,12 @@ npx solidui-cli@latest add password-input
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/password-input.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/password-input.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const passwordInputVariants = tv({
   slots: {
@@ -76,10 +81,9 @@ export const passwordInputVariants = tv({
 export type PasswordInputVariants = VariantProps<typeof passwordInputVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/password-input/password-input.base.tsx`:
-      <Pre>{`import { PasswordInput as ArkPasswordInput } from "@ark-ui/solid/password-input";
+        Create the component directory and files:
+        `src/components/password-input/password-input.base.tsx`:
+        <Pre>{`import { PasswordInput as ArkPasswordInput } from "@ark-ui/solid/password-input";
 import { splitProps, type Component } from "solid-js";
 import { passwordInputVariants } from "../recipes/password-input";
 
@@ -138,7 +142,7 @@ export const PasswordInput = {
 };
 
 \`src/components/password-input/index.tsx\`:`}</Pre>
-      <Pre>{`import { PasswordInput as ArkPasswordInput } from "@ark-ui/solid/password-input";
+        <Pre>{`import { PasswordInput as ArkPasswordInput } from "@ark-ui/solid/password-input";
 import { splitProps, type Component } from "solid-js";
 import { PasswordInput as PasswordInputBase } from "./password-input.base";
 
@@ -213,7 +217,10 @@ import { PasswordInput } from "~/components/password-input";
 <PasswordInput label="Password" placeholder="Enter your password" />
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>PasswordInputRootProvider</InlineCode> when you need to control the password input state externally.</P>
+      <P>
+        Use <InlineCode>PasswordInputRootProvider</InlineCode> when you need to control the password
+        input state externally.
+      </P>
       <PasswordInputRootProviderDemo />
       <Pre>{`
 
@@ -239,11 +246,27 @@ export function PasswordInputWithExternalControl() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>PasswordInput</InlineCode> (Root)</strong> — manages its own state internally. Use for simple, self-contained password inputs.</li>
-        <li><strong><InlineCode>PasswordInputRootProvider</InlineCode></strong> — accepts a pre-created password input context via <InlineCode>usePasswordInput</InlineCode>. Use when you need to read or control the password input state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>PasswordInput</InlineCode> (Root)
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained password inputs.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>PasswordInputRootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created password input context via{" "}
+          <InlineCode>usePasswordInput</InlineCode>. Use when you need to read or control the
+          password input state from outside the component tree.
+        </li>
       </List>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/password-input">Ark UI Password Input</A> documentation.</P>
+      <P>
+        See the{" "}
+        <A href="https://ark-ui.com/docs/components/password-input">Ark UI Password Input</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

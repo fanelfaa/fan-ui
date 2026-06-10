@@ -1,11 +1,11 @@
-import { Outlet, createRootRoute } from '@tanstack/solid-router'
-import { TanStackRouterDevtools } from '@tanstack/solid-router-devtools'
+import { Outlet, createRootRoute } from "@tanstack/solid-router";
+import { TanStackRouterDevtools } from "@tanstack/solid-router-devtools";
 
-import '../styles.css'
+import "../styles.css";
 
 export const Route = createRootRoute({
   component: RootComponent,
-})
+});
 
 function RootComponent() {
   return (
@@ -20,7 +20,10 @@ function RootComponent() {
             <a href="/" class="text-muted-foreground hover:text-foreground transition-colors">
               Docs
             </a>
-            <a href="/components/button" class="text-foreground font-medium hover:text-foreground transition-colors">
+            <a
+              href="/components/button"
+              class="text-foreground font-medium hover:text-foreground transition-colors"
+            >
               Components
             </a>
           </nav>
@@ -30,5 +33,5 @@ function RootComponent() {
       <Outlet />
       <TanStackRouterDevtools position="bottom-right" />
     </>
-  )
+  );
 }

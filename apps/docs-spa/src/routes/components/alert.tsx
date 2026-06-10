@@ -1,16 +1,32 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
-import { H1, H2, H3, P, InlineCode, Pre, Table, THead, TBody, Th, Tr, Td } from "../../components/markdown"
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  Pre,
+  Table,
+  THead,
+  TBody,
+  Th,
+  Tr,
+  Td,
+} from "../../components/markdown";
 import { Alert, AlertTitle, AlertDescription } from "@ui/solid";
 import AlertBasicDemo from "@demos/alert-demo/AlertBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/alert')({ component: AlertPage })
+export const Route = createFileRoute("/components/alert")({ component: AlertPage });
 
 function AlertPage() {
   return (
     <>
       <H1>Alert</H1>
-      <P>A callout that conveys important information to the user, such as system messages, warnings, or errors.</P>
+      <P>
+        A callout that conveys important information to the user, such as system messages, warnings,
+        or errors.
+      </P>
       <DocsLink href="https://ui.shadcn.com/docs/components/alert" />
       <AlertBasicDemo />
       <Pre>{`
@@ -38,15 +54,12 @@ npx solidui-cli@latest add alert
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/alert.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/alert.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const alertVariants = tv({
   slots: {
@@ -71,12 +84,10 @@ export const alertVariants = tv({
 })
 
 export type AlertVariants = VariantProps<typeof alertVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/alert.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from 'solid-js'
+        Create the component file at `src/components/alert.tsx`:
+        <Pre>{`import { splitProps, type Component } from 'solid-js'
 import { alertVariants, type AlertVariants } from '../recipes/alert'
 import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
 
@@ -106,7 +117,6 @@ const AlertDescription: Component<HTMLArkProps<"div">> = (props) => {
 }
 
 export { Alert, AlertTitle, AlertDescription, alertVariants }`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the components:</P>
@@ -144,7 +154,9 @@ import { Alert, AlertTitle, AlertDescription, AlertAction } from "@ui/solid";
 </Alert>
       `}</Pre>
       <H2>Variants</H2>
-      <P>Use the <InlineCode>variant</InlineCode> prop to change the visual style.</P>
+      <P>
+        Use the <InlineCode>variant</InlineCode> prop to change the visual style.
+      </P>
       <div class="rounded-lg border border-border p-6">
         <div class="space-y-4">
           <Alert>
@@ -168,23 +180,41 @@ import { Alert, AlertTitle, AlertDescription, AlertAction } from "@ui/solid";
         </THead>
         <TBody>
           <Tr>
-            <Td><InlineCode>Alert</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
-            <Td>The root container with <InlineCode>{`role="alert"`}</InlineCode>.</Td>
+            <Td>
+              <InlineCode>Alert</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
+            <Td>
+              The root container with <InlineCode>{`role="alert"`}</InlineCode>.
+            </Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertTitle</InlineCode></Td>
-            <Td><InlineCode>h5</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertTitle</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>h5</InlineCode>
+            </Td>
             <Td>The title text.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertDescription</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertDescription</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
             <Td>The description text.</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertAction</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertAction</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
             <Td>Action element, positioned within the alert.</Td>
           </Tr>
         </TBody>
@@ -201,19 +231,29 @@ import { Alert, AlertTitle, AlertDescription, AlertAction } from "@ui/solid";
         </THead>
         <TBody>
           <Tr>
-            <Td><InlineCode>variant</InlineCode></Td>
-            <Td><code>"default" | "destructive"</code></Td>
-            <Td><InlineCode>{`"default"`}</InlineCode></Td>
+            <Td>
+              <InlineCode>variant</InlineCode>
+            </Td>
+            <Td>
+              <code>"default" | "destructive"</code>
+            </Td>
+            <Td>
+              <InlineCode>{`"default"`}</InlineCode>
+            </Td>
             <Td>The visual style variant</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
             <Td>Additional CSS classes</Td>
           </Tr>
         </TBody>
       </Table>
     </>
-  )
+  );
 }

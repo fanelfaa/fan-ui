@@ -1,16 +1,19 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import SliderBasicDemo from "@demos/slider-demo/SliderBasicDemo.tsx";
 import SliderRootProviderDemo from "@demos/slider-demo/SliderRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/slider')({ component: SliderPage })
+export const Route = createFileRoute("/components/slider")({ component: SliderPage });
 
 function SliderPage() {
   return (
     <>
       <H1>Slider</H1>
-      <P>A range input component that allows users to select a value from a predefined range by dragging a thumb.</P>
+      <P>
+        A range input component that allows users to select a value from a predefined range by
+        dragging a thumb.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/slider" />
       <SliderBasicDemo />
       <Pre>{`
@@ -47,12 +50,12 @@ npx solidui-cli@latest add slider
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/slider.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/slider.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const sliderVariants = tv({
   slots: {
@@ -84,10 +87,8 @@ export const sliderVariants = tv({
 export type SliderVariants = VariantProps<typeof sliderVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/slider/slider.base.tsx`:
-      <Pre>{`import { Slider as ArkSlider } from "@ark-ui/solid/slider";
+        Create the component directory and files: `src/components/slider/slider.base.tsx`:
+        <Pre>{`import { Slider as ArkSlider } from "@ark-ui/solid/slider";
 import { splitProps, type Component } from "solid-js";
 import { sliderVariants } from "@ui/core";
 
@@ -166,9 +167,8 @@ const Marker: Component<ArkSlider.MarkerProps> = (props) => {
 };
 
 export const Slider = { Root, RootProvider, Label, ValueText, Control, Track, Range, Thumb, HiddenInput, DraggingIndicator, MarkerGroup, Marker };`}</Pre>
-
-      `src/components/slider/index.tsx`:
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        `src/components/slider/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { Slider as SliderBase } from "./slider.base";
 import { Slider as ArkSlider } from "@ark-ui/solid/slider";
 
@@ -221,7 +221,12 @@ export {
 
 export { sliderVariants, type SliderVariants } from "@ui/core";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--primary</InlineCode>, <InlineCode>--ring</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--primary</InlineCode>, <InlineCode>--ring</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -249,7 +254,12 @@ import {
 </Slider>
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>SliderRootProvider</InlineCode> when you need to access the slider state outside of the component tree. This pattern uses the <InlineCode>useSlider</InlineCode> hook from Ark UI to create a shared context that both the slider and external elements can reference.</P>
+      <P>
+        Use <InlineCode>SliderRootProvider</InlineCode> when you need to access the slider state
+        outside of the component tree. This pattern uses the <InlineCode>useSlider</InlineCode> hook
+        from Ark UI to create a shared context that both the slider and external elements can
+        reference.
+      </P>
       <SliderRootProviderDemo />
       <Pre>{`
 
@@ -285,11 +295,24 @@ export function SliderWithExternalControl() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Slider</InlineCode> (Root)</strong> — manages its own state internally. Use for simple, self-contained sliders.</li>
-        <li><strong><InlineCode>SliderRootProvider</InlineCode></strong> — accepts a pre-created slider context via <InlineCode>useSlider</InlineCode>. Use when you need to read or control the slider state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Slider</InlineCode> (Root)
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained sliders.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>SliderRootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created slider context via <InlineCode>useSlider</InlineCode>. Use when
+          you need to read or control the slider state from outside the component tree.
+        </li>
       </List>
       <H2>Disabled</H2>
-      <P>Use the <InlineCode>disabled</InlineCode> prop to disable the slider.</P>
+      <P>
+        Use the <InlineCode>disabled</InlineCode> prop to disable the slider.
+      </P>
       <Pre>{`
 
 <Slider defaultValue={[50]} disabled>
@@ -300,7 +323,9 @@ export function SliderWithExternalControl() {
 </Slider>
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/slider">Ark UI Slider</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/slider">Ark UI Slider</A> documentation.
+      </P>
     </>
-  )
+  );
 }

@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import HoverCardBasicDemo from "@demos/hover-card-demo/HoverCardBasicDemo.tsx";
 import HoverCardControlledDemo from "@demos/hover-card-demo/HoverCardControlledDemo.tsx";
@@ -8,13 +8,16 @@ import HoverCardPositioningDemo from "@demos/hover-card-demo/HoverCardPositionin
 import HoverCardRootProviderDemo from "@demos/hover-card-demo/HoverCardRootProviderDemo.tsx";
 import HoverCardArrowDemo from "@demos/hover-card-demo/HoverCardArrowDemo.tsx";
 
-export const Route = createFileRoute('/components/hover-card')({ component: HoverCardPage })
+export const Route = createFileRoute("/components/hover-card")({ component: HoverCardPage });
 
 function HoverCardPage() {
   return (
     <>
       <H1>Hover Card</H1>
-      <P>A popup card that appears when the user hovers over a trigger element, displaying additional information or actions without leaving the current context.</P>
+      <P>
+        A popup card that appears when the user hovers over a trigger element, displaying additional
+        information or actions without leaving the current context.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/hover-card" />
       <HoverCardBasicDemo />
       <Pre>{`
@@ -47,12 +50,12 @@ npx solidui-cli@latest add hover-card
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/hover-card.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/hover-card.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const hoverCardVariants = tv({
   slots: {
@@ -70,8 +73,8 @@ export const hoverCardVariants = tv({
 export type HoverCardVariants = VariantProps<typeof hoverCardVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the base component file at `src/components/hover-card/hover-card.base.tsx`:
-      <Pre>{`import { HoverCard as ArkHoverCard } from "@ark-ui/solid/hover-card";
+        Create the base component file at `src/components/hover-card/hover-card.base.tsx`:
+        <Pre>{`import { HoverCard as ArkHoverCard } from "@ark-ui/solid/hover-card";
 import { splitProps, type Component } from "solid-js";
 import { hoverCardVariants } from "../../recipes/hover-card";
 
@@ -120,9 +123,8 @@ export const HoverCard = {
   Arrow,
   ArrowTip,
 };`}</Pre>
-
-      Then create the composite component file at `src/components/hover-card/index.tsx`:
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        Then create the composite component file at `src/components/hover-card/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { HoverCard as HoverCardBase } from "./hover-card.base";
 import { HoverCard as ArkHoverCard } from "@ark-ui/solid/hover-card";
 
@@ -154,7 +156,12 @@ export { HoverCard, HoverCardTrigger, HoverCardContent, HoverCardBase };
 
 export { hoverCardVariants, type HoverCardVariants } from "../../recipes/hover-card";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--popover</InlineCode>, <InlineCode>--popover-foreground</InlineCode>, <InlineCode>--border</InlineCode>, <InlineCode>--ring</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--popover</InlineCode>, <InlineCode>--popover-foreground</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, <InlineCode>--ring</InlineCode>, etc.) or override the
+        utility classes to match your design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -173,7 +180,10 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "~/components/hove
       `}</Pre>
       <H3>Controlled Open State</H3>
       <HoverCardControlledDemo />
-      <P>Use <InlineCode>open</InlineCode> and <InlineCode>onOpenChange</InlineCode> to control the hover card visibility externally:</P>
+      <P>
+        Use <InlineCode>open</InlineCode> and <InlineCode>onOpenChange</InlineCode> to control the
+        hover card visibility externally:
+      </P>
       <Pre>{`
 
 import { createSignal } from "solid-js";
@@ -212,7 +222,10 @@ function ControlledHoverCard() {
 </HoverCard>
       `}</Pre>
       <H2>Advanced Usage</H2>
-      <P>When the composite <InlineCode>HoverCard</InlineCode> does not provide enough control, import the raw primitive parts via <InlineCode>HoverCardBase</InlineCode>:</P>
+      <P>
+        When the composite <InlineCode>HoverCard</InlineCode> does not provide enough control,
+        import the raw primitive parts via <InlineCode>HoverCardBase</InlineCode>:
+      </P>
       <Pre>{`
 
 import { HoverCardBase } from "~/components/hover-card";
@@ -224,7 +237,9 @@ import { HoverCard } from "~/components/hover-card/hover-card.base";
       `}</Pre>
       <H3>RootProvider Pattern</H3>
       <HoverCardRootProviderDemo />
-      <P>For machine-controlled usage with <InlineCode>useHoverCard</InlineCode>:</P>
+      <P>
+        For machine-controlled usage with <InlineCode>useHoverCard</InlineCode>:
+      </P>
       <Pre>{`
 
 import { useHoverCard } from "@ark-ui/solid/hover-card";
@@ -243,7 +258,10 @@ const machine = useHoverCard({ open: true });
       `}</Pre>
       <H3>Custom Arrow</H3>
       <HoverCardArrowDemo />
-      <P>For custom arrow styling or positioning, compose the parts manually using <InlineCode>HoverCardBase</InlineCode>:</P>
+      <P>
+        For custom arrow styling or positioning, compose the parts manually using{" "}
+        <InlineCode>HoverCardBase</InlineCode>:
+      </P>
       <Pre>{`
 
 import { HoverCard, HoverCardBase } from "~/components/hover-card";
@@ -261,7 +279,10 @@ import { HoverCard, HoverCardBase } from "~/components/hover-card";
 </HoverCard>
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/hover-card">Ark UI Hover Card</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/hover-card">Ark UI Hover Card</A>{" "}
+        documentation.
+      </P>
     </>
-  )
+  );
 }

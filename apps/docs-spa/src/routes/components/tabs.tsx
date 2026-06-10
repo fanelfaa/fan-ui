@@ -1,17 +1,20 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import TabsBasicDemo from "@demos/tabs-demo/TabsBasicDemo.tsx";
 import TabsRootProviderDemo from "@demos/tabs-demo/TabsRootProviderDemo.tsx";
 import TabsDisabledDemo from "@demos/tabs-demo/TabsDisabledDemo.tsx";
 
-export const Route = createFileRoute('/components/tabs')({ component: TabsPage })
+export const Route = createFileRoute("/components/tabs")({ component: TabsPage });
 
 function TabsPage() {
   return (
     <>
       <H1>Tabs</H1>
-      <P>A navigable component that organizes content into separate views where only one view is visible at a time.</P>
+      <P>
+        A navigable component that organizes content into separate views where only one view is
+        visible at a time.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/tabs" />
       <TabsBasicDemo />
       <Pre>{`
@@ -44,15 +47,12 @@ npx solidui-cli@latest add tabs
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/tabs.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/tabs.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const tabsVariants = tv({
   slots: {
@@ -68,12 +68,10 @@ export const tabsVariants = tv({
 });
 
 export type TabsVariants = VariantProps<typeof tabsVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the base component file at `src/components/tabs/tabs.base.tsx`:
-
-      <Pre>{`import { Tabs as ArkTabs } from '@ark-ui/solid/tabs'
+        Create the base component file at `src/components/tabs/tabs.base.tsx`:
+        <Pre>{`import { Tabs as ArkTabs } from '@ark-ui/solid/tabs'
 import { splitProps, type Component } from 'solid-js'
 import { tabsVariants } from '../recipes/tabs'
 
@@ -119,12 +117,10 @@ const TabsBase = {
 }
 
 export { TabsBase, tabsVariants }`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/tabs/index.tsx`:
-
-      <Pre>{`import { splitProps, type Component } from "solid-js";
+        Create the component file at `src/components/tabs/index.tsx`:
+        <Pre>{`import { splitProps, type Component } from "solid-js";
 import { Tabs as TabsBase } from "./tabs.base";
 import { Tabs as ArkTabs } from "@ark-ui/solid/tabs";
 
@@ -154,9 +150,13 @@ const TabsContent: Component<ArkTabs.ContentProps> = (props) => {
 };
 
 export { Tabs, TabsContent, TabsTrigger, TabsBase, TabsList, tabsVariants };`}</Pre>
-
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--foreground</InlineCode>, <InlineCode>--muted</InlineCode>, <InlineCode>--background</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--foreground</InlineCode>, <InlineCode>--muted</InlineCode>,{" "}
+        <InlineCode>--background</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -180,13 +180,21 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "~/components/tabs";
 </Tabs>
       `}</Pre>
       <H2>Advanced Usage</H2>
-      <P>When the composite <InlineCode>Tabs</InlineCode> doesn't provide enough control, import the raw primitive parts from <InlineCode>TabsBase</InlineCode>:</P>
+      <P>
+        When the composite <InlineCode>Tabs</InlineCode> doesn't provide enough control, import the
+        raw primitive parts from <InlineCode>TabsBase</InlineCode>:
+      </P>
       <Pre>{`
 
 import { TabsBase, TabsTrigger, TabsContent } from "~/components/tabs";
       `}</Pre>
       <H3>Access Raw Parts</H3>
-      <P>Access raw parts via <InlineCode>TabsBase.Root</InlineCode>, <InlineCode>TabsBase.RootProvider</InlineCode>, <InlineCode>TabsBase.List</InlineCode>, <InlineCode>TabsBase.Trigger</InlineCode>, <InlineCode>TabsBase.Content</InlineCode>, and <InlineCode>TabsBase.Indicator</InlineCode>:</P>
+      <P>
+        Access raw parts via <InlineCode>TabsBase.Root</InlineCode>,{" "}
+        <InlineCode>TabsBase.RootProvider</InlineCode>, <InlineCode>TabsBase.List</InlineCode>,{" "}
+        <InlineCode>TabsBase.Trigger</InlineCode>, <InlineCode>TabsBase.Content</InlineCode>, and{" "}
+        <InlineCode>TabsBase.Indicator</InlineCode>:
+      </P>
       <Pre>{`
 
 <TabsBase.Root defaultValue="account">
@@ -200,7 +208,10 @@ import { TabsBase, TabsTrigger, TabsContent } from "~/components/tabs";
 </TabsBase.Root>
       `}</Pre>
       <H2>Disabled Tab</H2>
-      <P>Use the <InlineCode>disabled</InlineCode> prop on a <InlineCode>TabsTrigger</InlineCode> to disable that specific tab.</P>
+      <P>
+        Use the <InlineCode>disabled</InlineCode> prop on a <InlineCode>TabsTrigger</InlineCode> to
+        disable that specific tab.
+      </P>
       <TabsDisabledDemo />
       <Pre>{`
 
@@ -237,7 +248,11 @@ export function DisabledDemo() {
 }
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>TabsBase.RootProvider</InlineCode> when you need to access the tabs state outside of the tabs tree. This pattern uses the <InlineCode>useTabs</InlineCode> hook from Ark UI to create a shared context that both the tabs and external elements can reference.</P>
+      <P>
+        Use <InlineCode>TabsBase.RootProvider</InlineCode> when you need to access the tabs state
+        outside of the tabs tree. This pattern uses the <InlineCode>useTabs</InlineCode> hook from
+        Ark UI to create a shared context that both the tabs and external elements can reference.
+      </P>
       <TabsRootProviderDemo />
       <Pre>{`
 
@@ -257,11 +272,24 @@ const tabs = useTabs({ defaultValue: "overview" });
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Tabs</InlineCode> (Root)</strong> — manages its own state internally. Use for simple, self-contained tabs.</li>
-        <li><strong><InlineCode>TabsBase.RootProvider</InlineCode></strong> — accepts a pre-created tabs context via <InlineCode>useTabs</InlineCode>. Use when you need to read or control the tabs state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Tabs</InlineCode> (Root)
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained tabs.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>TabsBase.RootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created tabs context via <InlineCode>useTabs</InlineCode>. Use when you
+          need to read or control the tabs state from outside the component tree.
+        </li>
       </List>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/tabs">Ark UI Tabs</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/tabs">Ark UI Tabs</A> documentation.
+      </P>
     </>
-  )
+  );
 }

@@ -1,17 +1,20 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
-import { H1, H2, H3, P, InlineCode, Pre, A } from "../../components/markdown"
+import { H1, H2, H3, P, InlineCode, Pre, A } from "../../components/markdown";
 import { Toggle } from "@ui/solid";
 import ToggleBasicDemo from "@demos/toggle-demo/ToggleBasicDemo.tsx";
 import ToggleIndicatorDemo from "@demos/toggle-demo/ToggleIndicatorDemo.tsx";
 
-export const Route = createFileRoute('/components/toggle')({ component: TogglePage })
+export const Route = createFileRoute("/components/toggle")({ component: TogglePage });
 
 function TogglePage() {
   return (
     <>
       <H1>Toggle</H1>
-      <P>A button-like component for toggling between on and off states, commonly used for formatting options like bold, italic, or other binary settings.</P>
+      <P>
+        A button-like component for toggling between on and off states, commonly used for formatting
+        options like bold, italic, or other binary settings.
+      </P>
       <DocsLink href="https://ark-ui.com/docs/components/toggle" />
       <ToggleBasicDemo />
       <Pre>{`
@@ -35,7 +38,11 @@ export function ToggleDemo() {
 }
       `}</Pre>
       <H2>With Indicator</H2>
-      <P><InlineCode>ToggleIndicator</InlineCode> renders different content based on the toggle state — the <InlineCode>fallback</InlineCode> is shown when off, and the children are shown when on.</P>
+      <P>
+        <InlineCode>ToggleIndicator</InlineCode> renders different content based on the toggle state
+        — the <InlineCode>fallback</InlineCode> is shown when off, and the children are shown when
+        on.
+      </P>
       <ToggleIndicatorDemo />
       <Pre>{`
 
@@ -59,7 +66,9 @@ export function ToggleIndicatorDemo() {
 }
       `}</Pre>
       <H2>Sizes</H2>
-      <P>Use the <InlineCode>size</InlineCode> prop to change the toggle size.</P>
+      <P>
+        Use the <InlineCode>size</InlineCode> prop to change the toggle size.
+      </P>
       <div class="rounded-lg border border-border p-6">
         <div class="flex flex-wrap items-center gap-4">
           <Toggle size="sm">Sm</Toggle>
@@ -90,12 +99,12 @@ npx solidui-cli@latest add toggle
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/toggle.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/toggle.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const toggleVariants = tv({
   slots: {
@@ -117,9 +126,8 @@ export const toggleVariants = tv({
 export type ToggleVariants = VariantProps<typeof toggleVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      <Pre>{`// src/components/toggle/toggle.base.tsx
+        Create the component directory and files:
+        <Pre>{`// src/components/toggle/toggle.base.tsx
 import { Toggle as ArkToggle } from "@ark-ui/solid/toggle";
 import { splitProps, type Component } from "solid-js";
 import { toggleVariants, type ToggleVariants } from "@ui/core";
@@ -137,8 +145,7 @@ const Indicator: Component<ArkToggle.IndicatorProps> = (props) => {
 };
 
 export const Toggle = { Root, Indicator };`}</Pre>
-
-      <Pre>{`// src/components/toggle/index.tsx
+        <Pre>{`// src/components/toggle/index.tsx
 import { Toggle as ToggleBase } from "./toggle.base";
 
 const ToggleRoot = ToggleBase.Root;
@@ -185,7 +192,11 @@ const [pressed, setPressed] = createSignal(false);
 </Toggle>
       `}</Pre>
       <P>With Indicator:</P>
-      <P><InlineCode>ToggleIndicator</InlineCode> renders different content based on the toggle state — the <InlineCode>fallback</InlineCode> is shown when off, and the children are shown when on.</P>
+      <P>
+        <InlineCode>ToggleIndicator</InlineCode> renders different content based on the toggle state
+        — the <InlineCode>fallback</InlineCode> is shown when off, and the children are shown when
+        on.
+      </P>
       <Pre>{`
 
 <Toggle>
@@ -195,7 +206,9 @@ const [pressed, setPressed] = createSignal(false);
 </Toggle>
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/toggle">Ark UI Toggle</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/toggle">Ark UI Toggle</A> documentation.
+      </P>
     </>
-  )
+  );
 }

@@ -1,17 +1,35 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
-import { H1, H2, H3, P, InlineCode, List, Pre, Table, Th, Td, A, THead, TBody, Tr } from "../../components/markdown"
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  List,
+  Pre,
+  Table,
+  Th,
+  Td,
+  A,
+  THead,
+  TBody,
+  Tr,
+} from "../../components/markdown";
 
 import AlertDialogBasicDemo from "@demos/alert-dialog-demo/AlertDialogBasicDemo.tsx";
 import AlertDialogDeleteDemo from "@demos/alert-dialog-demo/AlertDialogDeleteDemo.tsx";
 
-export const Route = createFileRoute('/components/alert-dialog')({ component: AlertDialogPage })
+export const Route = createFileRoute("/components/alert-dialog")({ component: AlertDialogPage });
 
 function AlertDialogPage() {
   return (
     <>
       <H1>Alert Dialog</H1>
-      <P>A modal dialog that interrupts the user with important content and expects a response. Typically used for confirmations and destructive actions.</P>
+      <P>
+        A modal dialog that interrupts the user with important content and expects a response.
+        Typically used for confirmations and destructive actions.
+      </P>
       <DocsLink href="https://ui.shadcn.com/docs/components/alert-dialog" />
       <AlertDialogBasicDemo />
       <Pre>{`
@@ -61,15 +79,12 @@ npx solidui-cli@latest add alert-dialog
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependencies:
-
-      <Pre>{`npm install @ark-ui/solid tailwind-variants`}</Pre>
-
+        Install the dependencies:
+        <Pre>{`npm install @ark-ui/solid tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/alert-dialog.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/alert-dialog.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const alertDialogVariants = tv({
   slots: {
@@ -90,14 +105,10 @@ export const alertDialogVariants = tv({
 })
 
 export type AlertDialogVariants = VariantProps<typeof alertDialogVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component files:
-
-      At `src/components/alert-dialog/alert-dialog.base.tsx`:
-
-      <Pre>{`import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
+        Create the component files: At `src/components/alert-dialog/alert-dialog.base.tsx`:
+        <Pre>{`import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
 import { splitProps, type Component } from 'solid-js'
 import { alertDialogVariants, buttonVariants, type ButtonVariants } from './recipes/alert-dialog'
 import { HTMLProps } from '@ark-ui/solid'
@@ -168,10 +179,8 @@ export const AlertDialogAction: Component<HTMLArkProps<'button'> & ButtonVariant
     />
   )
 }`}</Pre>
-
-      At `src/components/alert-dialog/index.tsx`:
-
-      <Pre>{`import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
+        At `src/components/alert-dialog/index.tsx`:
+        <Pre>{`import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
 import { Portal } from 'solid-js/web'
 import { splitProps, type Component } from 'solid-js'
 import {
@@ -201,7 +210,6 @@ const AlertDialogContent: Component<ArkDialog.ContentProps> = (props) => {
 export { AlertDialogContent }
 export * from './alert-dialog.base'
 export { alertDialogVariants, type AlertDialogVariants } from './recipes/alert-dialog'`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the components:</P>
@@ -237,7 +245,12 @@ import {
 </AlertDialog>
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>AlertDialogBase.RootProvider</InlineCode> when you need to control the dialog state from outside its component tree. This pattern uses the <InlineCode>useDialog</InlineCode> hook from Ark UI and is useful for utility dialogs like delete confirmations that can be triggered from any element.</P>
+      <P>
+        Use <InlineCode>AlertDialogBase.RootProvider</InlineCode> when you need to control the
+        dialog state from outside its component tree. This pattern uses the{" "}
+        <InlineCode>useDialog</InlineCode> hook from Ark UI and is useful for utility dialogs like
+        delete confirmations that can be triggered from any element.
+      </P>
       <AlertDialogDeleteDemo />
       <Pre>{`
 
@@ -292,8 +305,20 @@ export function DeleteConfirmation() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>AlertDialog</InlineCode></strong> — manages its own state internally. Use for simple, self-contained usage.</li>
-        <li><strong><InlineCode>AlertDialogBase.RootProvider</InlineCode></strong> — accepts a pre-created context via <InlineCode>useDialog</InlineCode>. Use when you need to read or control the dialog state from outside the component tree. Ideal for reusable utility dialogs.</li>
+        <li>
+          <strong>
+            <InlineCode>AlertDialog</InlineCode>
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained usage.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>AlertDialogBase.RootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created context via <InlineCode>useDialog</InlineCode>. Use when you need
+          to read or control the dialog state from outside the component tree. Ideal for reusable
+          utility dialogs.
+        </li>
       </List>
       <H2>Anatomy</H2>
       <Table>
@@ -306,55 +331,97 @@ export function DeleteConfirmation() {
         </THead>
         <TBody>
           <Tr>
-            <Td><InlineCode>AlertDialog</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertDialog</InlineCode>
+            </Td>
             <Td>—</Td>
-            <Td>Manages dialog state, uses <InlineCode>{`role="alertdialog"`}</InlineCode></Td>
+            <Td>
+              Manages dialog state, uses <InlineCode>{`role="alertdialog"`}</InlineCode>
+            </Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertDialogTrigger</InlineCode></Td>
-            <Td><InlineCode>button</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertDialogTrigger</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>button</InlineCode>
+            </Td>
             <Td>The button that opens the dialog</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertDialogContent</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertDialogContent</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
             <Td>The dialog panel (portal to body)</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertDialogHeader</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertDialogHeader</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
             <Td>Header section for title and description</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertDialogTitle</InlineCode></Td>
-            <Td><InlineCode>h2</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertDialogTitle</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>h2</InlineCode>
+            </Td>
             <Td>The dialog title</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertDialogDescription</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertDialogDescription</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
             <Td>Descriptive text for the dialog</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertDialogFooter</InlineCode></Td>
-            <Td><InlineCode>div</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertDialogFooter</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>div</InlineCode>
+            </Td>
             <Td>Footer section for action buttons</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertDialogCancel</InlineCode></Td>
-            <Td><InlineCode>button</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertDialogCancel</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>button</InlineCode>
+            </Td>
             <Td>Dismisses the dialog</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>AlertDialogAction</InlineCode></Td>
-            <Td><InlineCode>button</InlineCode></Td>
+            <Td>
+              <InlineCode>AlertDialogAction</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>button</InlineCode>
+            </Td>
             <Td>Confirms the dialog action</Td>
           </Tr>
         </TBody>
       </Table>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/dialog">Ark UI Dialog</A> documentation.</P>
-      <P>The <InlineCode>AlertDialog</InlineCode> automatically sets <InlineCode>{`role="alertdialog"`}</InlineCode> on the dialog content, providing proper accessibility semantics for alert dialogs.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/dialog">Ark UI Dialog</A> documentation.
+      </P>
+      <P>
+        The <InlineCode>AlertDialog</InlineCode> automatically sets{" "}
+        <InlineCode>{`role="alertdialog"`}</InlineCode> on the dialog content, providing proper
+        accessibility semantics for alert dialogs.
+      </P>
     </>
-  )
+  );
 }

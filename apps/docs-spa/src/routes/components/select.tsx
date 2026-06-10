@@ -1,12 +1,12 @@
-import { createFileRoute } from "@tanstack/solid-router"
-import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown"
+import { createFileRoute } from "@tanstack/solid-router";
+import { H1, H2, H3, P, A, InlineCode, Blockquote, List, Pre } from "../../components/markdown";
 import { DocsLink } from "../../components/DocsLink";
 import SelectBasicDemo from "@demos/select-demo/SelectBasicDemo.tsx";
 import SelectRootProviderDemo from "@demos/select-demo/SelectRootProviderDemo.tsx";
 import SelectMultipleDemo from "@demos/select-demo/SelectMultipleDemo.tsx";
 import SelectSearchableDemo from "@demos/select-demo/SelectSearchableDemo.tsx";
 
-export const Route = createFileRoute('/components/select')({ component: SelectPage })
+export const Route = createFileRoute("/components/select")({ component: SelectPage });
 
 function SelectPage() {
   return (
@@ -59,12 +59,12 @@ npx solidui-cli@latest add select
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/select.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/select.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const selectVariants = tv({
   slots: {
@@ -98,10 +98,8 @@ export const selectVariants = tv({
 export type SelectVariants = VariantProps<typeof selectVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory at `src/components/select/`:
-
-      `select.base.tsx`:
-      <Pre>{`import { Select as ArkSelect } from "@ark-ui/solid/select";
+        Create the component directory at `src/components/select/`: `select.base.tsx`:
+        <Pre>{`import { Select as ArkSelect } from "@ark-ui/solid/select";
 import { splitProps, type Component } from "solid-js";
 import { selectVariants } from "../recipes/select";
 
@@ -172,8 +170,8 @@ const Select = {
 export { Select };`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/select/index.tsx`:
-      <Pre>{`import { Select as SelectBase } from "./select.base";
+        Create the component file at `src/components/select/index.tsx`:
+        <Pre>{`import { Select as SelectBase } from "./select.base";
 import { Select as ArkSelect } from "@ark-ui/solid/select";
 import { Portal } from "solid-js/web";
 import { splitProps, type Component, type JSX } from "solid-js";
@@ -265,7 +263,12 @@ export { createListCollection } from "@ark-ui/solid/select";
 export { selectVariants, type SelectVariants } from "../recipes/select";
 export type { ListCollection } from "@ark-ui/solid/select";`}</Pre>
       </div>
-      <Blockquote><strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (<InlineCode>--foreground</InlineCode>, <InlineCode>--input</InlineCode>, <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your design system.</Blockquote>
+      <Blockquote>
+        <strong>Note:</strong> Make sure your project has the Tailwind CSS theme variables set up (
+        <InlineCode>--foreground</InlineCode>, <InlineCode>--input</InlineCode>,{" "}
+        <InlineCode>--border</InlineCode>, etc.) or override the utility classes to match your
+        design system.
+      </Blockquote>
       <H2>Usage</H2>
       <P>Import the components:</P>
       <Pre>{`
@@ -315,7 +318,12 @@ const items = createListCollection({
 </Select>
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>SelectRootProvider</InlineCode> when you need to access the select state outside of the component tree. This pattern uses the <InlineCode>useSelect</InlineCode> hook from Ark UI to create a shared context that both the select and external elements can reference.</P>
+      <P>
+        Use <InlineCode>SelectRootProvider</InlineCode> when you need to access the select state
+        outside of the component tree. This pattern uses the <InlineCode>useSelect</InlineCode> hook
+        from Ark UI to create a shared context that both the select and external elements can
+        reference.
+      </P>
       <SelectRootProviderDemo />
       <Pre>{`
 
@@ -355,11 +363,26 @@ export function SelectWithExternalControl() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Select</InlineCode></strong> — manages its own state internally. Use for simple, self-contained selects.</li>
-        <li><strong><InlineCode>SelectRootProvider</InlineCode></strong> — accepts a pre-created select context via <InlineCode>useSelect</InlineCode>. Use when you need to read or control the select state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Select</InlineCode>
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained selects.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>SelectRootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created select context via <InlineCode>useSelect</InlineCode>. Use when
+          you need to read or control the select state from outside the component tree.
+        </li>
       </List>
       <H2>Multiple Selection</H2>
-      <P>Use the <InlineCode>multiple</InlineCode> prop to allow selecting multiple options. The <InlineCode>SelectTrigger</InlineCode> composite includes a clear button to deselect all selections.</P>
+      <P>
+        Use the <InlineCode>multiple</InlineCode> prop to allow selecting multiple options. The{" "}
+        <InlineCode>SelectTrigger</InlineCode> composite includes a clear button to deselect all
+        selections.
+      </P>
       <SelectMultipleDemo />
       <Pre>{`
 
@@ -397,7 +420,10 @@ export function SelectMultipleDemo() {
 }
       `}</Pre>
       <H2>Searchable Selection</H2>
-      <P>Use the <InlineCode>searchable</InlineCode> prop to enable a search input inside the dropdown. Pass <InlineCode>onSearch</InlineCode> to filter the collection as the user types.</P>
+      <P>
+        Use the <InlineCode>searchable</InlineCode> prop to enable a search input inside the
+        dropdown. Pass <InlineCode>onSearch</InlineCode> to filter the collection as the user types.
+      </P>
       <SelectSearchableDemo />
       <Pre>{`
 
@@ -440,9 +466,17 @@ export function SelectSearchableDemo() {
   );
 }
       `}</Pre>
-      <P>The <InlineCode>searchable</InlineCode> prop works with both single and <InlineCode>multiple</InlineCode> selection modes.</P>
+      <P>
+        The <InlineCode>searchable</InlineCode> prop works with both single and{" "}
+        <InlineCode>multiple</InlineCode> selection modes.
+      </P>
       <H2>Error State</H2>
-      <P>Use the <InlineCode>error</InlineCode> prop on <InlineCode>SelectBase.Root</InlineCode> to show an error state. The structured <InlineCode>Select</InlineCode> component delegates its root styling to <InlineCode>SelectBase.Root</InlineCode>, so the <InlineCode>error</InlineCode> prop requires using the base component directly:</P>
+      <P>
+        Use the <InlineCode>error</InlineCode> prop on <InlineCode>SelectBase.Root</InlineCode> to
+        show an error state. The structured <InlineCode>Select</InlineCode> component delegates its
+        root styling to <InlineCode>SelectBase.Root</InlineCode>, so the{" "}
+        <InlineCode>error</InlineCode> prop requires using the base component directly:
+      </P>
       <Pre>{`
 
 <SelectBase.Root collection={items} error>
@@ -456,7 +490,13 @@ export function SelectSearchableDemo() {
 </SelectBase.Root>
       `}</Pre>
       <H2>Composite Exports</H2>
-      <P>The <InlineCode>SelectTrigger</InlineCode>, <InlineCode>SelectContent</InlineCode>, and <InlineCode>SelectItem</InlineCode> components are composite wrappers from the barrel entry point that include inline SVG icons and Portal. <InlineCode>SelectTrigger</InlineCode> also includes a clear button when used with <InlineCode>multiple</InlineCode> selection. Import them alongside <InlineCode>Select</InlineCode>:</P>
+      <P>
+        The <InlineCode>SelectTrigger</InlineCode>, <InlineCode>SelectContent</InlineCode>, and{" "}
+        <InlineCode>SelectItem</InlineCode> components are composite wrappers from the barrel entry
+        point that include inline SVG icons and Portal. <InlineCode>SelectTrigger</InlineCode> also
+        includes a clear button when used with <InlineCode>multiple</InlineCode> selection. Import
+        them alongside <InlineCode>Select</InlineCode>:
+      </P>
       <Pre>{`
 
 import { Select, SelectLabel, SelectTrigger, SelectContent, SelectItem } from "~/components/select";
@@ -467,13 +507,18 @@ import { Select, SelectLabel, SelectTrigger, SelectContent, SelectItem } from "~
 
 import { Select } from "~/components/select/select.base";
       `}</Pre>
-      <P>Or import <InlineCode>SelectBase</InlineCode> (the raw parts namespace) from the barrel entry point:</P>
+      <P>
+        Or import <InlineCode>SelectBase</InlineCode> (the raw parts namespace) from the barrel
+        entry point:
+      </P>
       <Pre>{`
 
 import { SelectBase } from "~/components/select";
       `}</Pre>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/select">Ark UI Select</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/select">Ark UI Select</A> documentation.
+      </P>
     </>
-  )
+  );
 }

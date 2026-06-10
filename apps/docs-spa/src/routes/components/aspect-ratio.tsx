@@ -1,16 +1,32 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 
 import { DocsLink } from "../../components/DocsLink";
-import { H1, H2, H3, P, InlineCode, Pre, Table, THead, TBody, Th, Td, Tr } from "../../components/markdown"
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  InlineCode,
+  Pre,
+  Table,
+  THead,
+  TBody,
+  Th,
+  Td,
+  Tr,
+} from "../../components/markdown";
 import AspectRatioBasicDemo from "@demos/aspect-ratio-demo/AspectRatioBasicDemo.tsx";
 
-export const Route = createFileRoute('/components/aspect-ratio')({ component: AspectRatioPage })
+export const Route = createFileRoute("/components/aspect-ratio")({ component: AspectRatioPage });
 
 function AspectRatioPage() {
   return (
     <>
       <H1>Aspect Ratio</H1>
-      <P>Displays content within a desired ratio. Useful for maintaining consistent proportions for images, videos, and embeds.</P>
+      <P>
+        Displays content within a desired ratio. Useful for maintaining consistent proportions for
+        images, videos, and embeds.
+      </P>
       <DocsLink href="https://ui.shadcn.com/docs/components/aspect-ratio" />
       <AspectRatioBasicDemo />
       <Pre>{`
@@ -34,27 +50,22 @@ npx solidui-cli@latest add aspect-ratio
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-
-      <Pre>{`npm install tailwind-variants`}</Pre>
-
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/aspect-ratio.ts`:
-
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/aspect-ratio.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const aspectRatioVariants = tv({
   base: "relative w-full",
 })
 
 export type AspectRatioVariants = VariantProps<typeof aspectRatioVariants>`}</Pre>
-
       </div>
       <div class="space-y-3">
-      Create the component file at `src/components/aspect-ratio.tsx`:
-
-      <Pre>{`import { splitProps, type Component, children } from 'solid-js'
+        Create the component file at `src/components/aspect-ratio.tsx`:
+        <Pre>{`import { splitProps, type Component, children } from 'solid-js'
 import { aspectRatioVariants } from '../recipes/aspect-ratio'
 import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
 
@@ -78,7 +89,6 @@ const AspectRatio: Component<AspectRatioProps> = (props) => {
 }
 
 export { AspectRatio, aspectRatioVariants }`}</Pre>
-
       </div>
       <H2>Usage</H2>
       <P>Import the component:</P>
@@ -114,19 +124,29 @@ import { AspectRatio } from "@ui/solid";
         </THead>
         <TBody>
           <Tr>
-            <Td><InlineCode>ratio</InlineCode></Td>
-            <Td><InlineCode>number</InlineCode></Td>
-            <Td><InlineCode>16/9</InlineCode></Td>
+            <Td>
+              <InlineCode>ratio</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>number</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>16/9</InlineCode>
+            </Td>
             <Td>The desired aspect ratio</Td>
           </Tr>
           <Tr>
-            <Td><InlineCode>class</InlineCode></Td>
-            <Td><InlineCode>string</InlineCode></Td>
+            <Td>
+              <InlineCode>class</InlineCode>
+            </Td>
+            <Td>
+              <InlineCode>string</InlineCode>
+            </Td>
             <Td>—</Td>
             <Td>Additional CSS classes</Td>
           </Tr>
         </TBody>
       </Table>
     </>
-  )
+  );
 }

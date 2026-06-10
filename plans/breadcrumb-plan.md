@@ -10,15 +10,15 @@ A navigation component showing the current page location within a hierarchy. Pur
 
 ### Parts
 
-| Part | Has tv() slots? | Notes |
-|------|-----------------|-------|
-| Breadcrumb | No | Semantic `<nav>` wrapper with `aria-label="breadcrumb"` |
-| BreadcrumbList | Yes | `<ol>` ordered list container |
-| BreadcrumbItem | Yes | `<li>` list item |
-| BreadcrumbLink | Yes | `<a>` link element |
-| BreadcrumbPage | Yes | `<span>` current page indicator (not a link) |
-| BreadcrumbSeparator | Yes | `<li>` separator between items (icon or text) |
-| BreadcrumbEllipsis | Yes | `<span>` collapsed items indicator |
+| Part                | Has tv() slots? | Notes                                                   |
+| ------------------- | --------------- | ------------------------------------------------------- |
+| Breadcrumb          | No              | Semantic `<nav>` wrapper with `aria-label="breadcrumb"` |
+| BreadcrumbList      | Yes             | `<ol>` ordered list container                           |
+| BreadcrumbItem      | Yes             | `<li>` list item                                        |
+| BreadcrumbLink      | Yes             | `<a>` link element                                      |
+| BreadcrumbPage      | Yes             | `<span>` current page indicator (not a link)            |
+| BreadcrumbSeparator | Yes             | `<li>` separator between items (icon or text)           |
+| BreadcrumbEllipsis  | Yes             | `<span>` collapsed items indicator                      |
 
 ### Variants
 
@@ -27,6 +27,7 @@ No visual variants — breadcrumb does not have semantic visual variants. The re
 ## Artifact Checklist
 
 ### 1. Recipe: `packages/core/src/recipes/breadcrumb.ts`
+
 - [ ] Create tv() with slots for each part:
   - **list**: `"flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5"` — flex row
   - **item**: `"inline-flex items-center gap-1.5"` — inline flex item
@@ -39,14 +40,17 @@ No visual variants — breadcrumb does not have semantic visual variants. The re
 - [ ] Export `breadcrumbVariants` + type `BreadcrumbVariants`
 
 ### 2. Core Index: `packages/core/src/index.ts`
+
 - [ ] Add `export { breadcrumbVariants } from "./recipes/breadcrumb"`
 - [ ] Add `export type { BreadcrumbVariants } from "./recipes/breadcrumb"`
 - [ ] Insert in alphabetical order after `avatar`/`badge` area
 
 ### 3. Tsup Entry: `packages/core/tsup.config.ts`
+
 - [ ] Add `"src/recipes/breadcrumb.ts"` to entry list (alphabetical order, after `badge.ts`/`button.ts`)
 
 ### 4. Solid Component: `packages/solid/src/breadcrumb/index.tsx`
+
 - [ ] Import `breadcrumbVariants` from `@ui/core`
 - [ ] Import `ark, type HTMLArkProps` from `@ark-ui/solid/factory`
 - [ ] Module-level: `const styles = breadcrumbVariants();`
@@ -61,9 +65,11 @@ No visual variants — breadcrumb does not have semantic visual variants. The re
 - [ ] Export all named components + `breadcrumbVariants`
 
 ### 5. Solid Barrel: `packages/solid/src/index.ts`
+
 - [ ] Add `export * from "./breadcrumb"` in alphabetical order (after `avatar`, before `button`)
 
 ### 6. Demo: `apps/docs/src/components/breadcrumb-demo/BreadcrumbBasicDemo.tsx`
+
 - [ ] Create BasicDemo importing named composites from `@ui/solid` only — no base imports
 - [ ] Imports: `import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis } from "@ui/solid"`
 - [ ] Usage:
@@ -88,6 +94,7 @@ No visual variants — breadcrumb does not have semantic visual variants. The re
 - [ ] Add long-path demo showing collapsed ellipsis behavior
 
 ### 7. Docs: `apps/docs/src/content/docs/components/breadcrumb.mdx`
+
 - [ ] Create MDX page with frontmatter:
   ```yaml
   title: Breadcrumb

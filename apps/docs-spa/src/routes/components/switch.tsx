@@ -1,11 +1,11 @@
-import { createFileRoute } from "@tanstack/solid-router"
+import { createFileRoute } from "@tanstack/solid-router";
 import { DocsLink } from "../../components/DocsLink";
-import { H1, H2, H3, P, InlineCode, List, Pre, A } from "../../components/markdown"
+import { H1, H2, H3, P, InlineCode, List, Pre, A } from "../../components/markdown";
 
 import SwitchBasicDemo from "@demos/switch-demo/SwitchBasicDemo.tsx";
 import SwitchRootProviderDemo from "@demos/switch-demo/SwitchRootProviderDemo.tsx";
 
-export const Route = createFileRoute('/components/switch')({ component: SwitchPage })
+export const Route = createFileRoute("/components/switch")({ component: SwitchPage });
 
 function SwitchPage() {
   return (
@@ -43,12 +43,12 @@ npx solidui-cli@latest add switch
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-      Install the dependency:
-      <Pre>{`npm install tailwind-variants`}</Pre>
+        Install the dependency:
+        <Pre>{`npm install tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the recipe file at `src/components/recipes/switch.ts`:
-      <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
+        Create the recipe file at `src/components/recipes/switch.ts`:
+        <Pre>{`import { tv, type VariantProps } from 'tailwind-variants'
 
 export const switchVariants = tv({
   slots: {
@@ -65,10 +65,8 @@ export const switchVariants = tv({
 export type SwitchVariants = VariantProps<typeof switchVariants>`}</Pre>
       </div>
       <div class="space-y-3">
-      Create the component directory and files:
-
-      `src/components/switch/switch.base.tsx`:
-      <Pre>{`import { Switch as ArkSwitch } from "@ark-ui/solid/switch";
+        Create the component directory and files: `src/components/switch/switch.base.tsx`:
+        <Pre>{`import { Switch as ArkSwitch } from "@ark-ui/solid/switch";
 import { splitProps, type Component } from "solid-js";
 import { switchVariants } from "../recipes/switch";
 
@@ -109,9 +107,8 @@ export const Switch = {
   Label: SwitchLabel,
   HiddenInput: SwitchHiddenInput,
 };`}</Pre>
-
-      `src/components/switch/index.tsx`:
-      <Pre>{`import { Switch as ArkSwitch } from "@ark-ui/solid/switch";
+        `src/components/switch/index.tsx`:
+        <Pre>{`import { Switch as ArkSwitch } from "@ark-ui/solid/switch";
 import { splitProps, type Component } from "solid-js";
 import { Switch as SwitchBase } from "./switch.base";
 
@@ -178,7 +175,12 @@ import { Switch, SwitchLabel, SwitchRootProvider } from "~/components/switch";
 <Switch disabled />
       `}</Pre>
       <H2>Root Provider</H2>
-      <P>Use <InlineCode>SwitchRootProvider</InlineCode> when you need to access the switch state outside of the switch tree. This pattern uses the <InlineCode>useSwitch</InlineCode> hook from Ark UI to create a shared context that both the switch and external elements can reference.</P>
+      <P>
+        Use <InlineCode>SwitchRootProvider</InlineCode> when you need to access the switch state
+        outside of the switch tree. This pattern uses the <InlineCode>useSwitch</InlineCode> hook
+        from Ark UI to create a shared context that both the switch and external elements can
+        reference.
+      </P>
       <SwitchRootProviderDemo />
       <Pre>{`
 
@@ -202,11 +204,24 @@ export function SwitchWithExternalControl() {
       `}</Pre>
       <P>The key difference:</P>
       <List>
-        <li><strong><InlineCode>Switch</InlineCode> (Root)</strong> — manages its own state internally. Use for simple, self-contained switches.</li>
-        <li><strong><InlineCode>SwitchRootProvider</InlineCode></strong> — accepts a pre-created switch context via <InlineCode>useSwitch</InlineCode>. Use when you need to read or control the switch state from outside the component tree.</li>
+        <li>
+          <strong>
+            <InlineCode>Switch</InlineCode> (Root)
+          </strong>{" "}
+          — manages its own state internally. Use for simple, self-contained switches.
+        </li>
+        <li>
+          <strong>
+            <InlineCode>SwitchRootProvider</InlineCode>
+          </strong>{" "}
+          — accepts a pre-created switch context via <InlineCode>useSwitch</InlineCode>. Use when
+          you need to read or control the switch state from outside the component tree.
+        </li>
       </List>
       <H2>API Reference</H2>
-      <P>See the <A href="https://ark-ui.com/docs/components/switch">Ark UI Switch</A> documentation.</P>
+      <P>
+        See the <A href="https://ark-ui.com/docs/components/switch">Ark UI Switch</A> documentation.
+      </P>
     </>
-  )
+  );
 }

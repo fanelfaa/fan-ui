@@ -10,16 +10,16 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
 
 ### Ark UI Parts
 
-| Part | Has tv() variants? | Notes |
-|------|--------------------|-------|
-| Root | Yes (size) | `<nav>` main container |
-| RootProvider | Yes (size) | For `usePagination()` machine-controlled usage |
-| Ellipsis | No | `...` indicator between page ranges (render prop with `index`) |
-| FirstTrigger | Yes | First page button |
-| Item | Yes | Individual page button (requires `type="page"` + `value`) |
-| LastTrigger | Yes | Last page button |
-| NextTrigger | Yes | Next page button |
-| PrevTrigger | Yes | Previous page button |
+| Part         | Has tv() variants? | Notes                                                          |
+| ------------ | ------------------ | -------------------------------------------------------------- |
+| Root         | Yes (size)         | `<nav>` main container                                         |
+| RootProvider | Yes (size)         | For `usePagination()` machine-controlled usage                 |
+| Ellipsis     | No                 | `...` indicator between page ranges (render prop with `index`) |
+| FirstTrigger | Yes                | First page button                                              |
+| Item         | Yes                | Individual page button (requires `type="page"` + `value`)      |
+| LastTrigger  | Yes                | Last page button                                               |
+| NextTrigger  | Yes                | Next page button                                               |
+| PrevTrigger  | Yes                | Previous page button                                           |
 
 ### Variants
 
@@ -28,6 +28,7 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
 ## Artifact Checklist
 
 ### 1. Recipe: `packages/core/src/recipes/pagination.ts`
+
 - [ ] Create tv() with slots for each stylable part:
   - **root**: `"mx-auto flex w-full justify-center"` — centered nav container
   - **trigger**: common button styles with size variants:
@@ -42,14 +43,17 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
 - [ ] Export `paginationVariants` + type `PaginationVariants`
 
 ### 2. Core Index: `packages/core/src/index.ts`
+
 - [ ] Add `export { paginationVariants } from "./recipes/pagination"`
 - [ ] Add `export type { PaginationVariants } from "./recipes/pagination"`
 - [ ] Insert in alphabetical order (after `popover`, before `password-input` or near other `p*` entries)
 
 ### 3. Tsup Entry: `packages/core/tsup.config.ts`
+
 - [ ] Add `"src/recipes/pagination.ts"` to entry list (alphabetical order, after `popover.ts`)
 
 ### 4. Base File: `packages/solid/src/pagination/pagination.base.tsx`
+
 - [ ] Import Ark UI parts from `@ark-ui/solid/pagination`
   - `Pagination as ArkPagination, type PaginationProps as ArkPaginationProps` (or use namespace imports)
 - [ ] Import `paginationVariants`, `type PaginationVariants` from `@ui/core`
@@ -68,13 +72,20 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
 - [ ] Export single namespace:
   ```tsx
   export const Pagination = {
-    Root, RootProvider, Ellipsis, FirstTrigger,
-    Item, LastTrigger, NextTrigger, PrevTrigger,
+    Root,
+    RootProvider,
+    Ellipsis,
+    FirstTrigger,
+    Item,
+    LastTrigger,
+    NextTrigger,
+    PrevTrigger,
   };
   ```
 - [ ] Export `PaginationVariantContext` separately for advanced use (same as segment-group)
 
 ### 5. Index File: `packages/solid/src/pagination/index.tsx`
+
 - [ ] Import namespace as `{ Pagination as PaginationBase }` from `./pagination.base`
 - [ ] Import Ark types from `@ark-ui/solid/pagination`
 - [ ] Import `PaginationVariants` type from `@ui/core`
@@ -83,6 +94,7 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
 - [ ] Create composite named exports:
 
   **Pagination**: composite root that auto-renders page structure:
+
   ```tsx
   const Pagination: Component<ArkPagination.RootProps & PaginationVariants> = (props) => {
     const [local, others] = splitProps(props, ["class", "size", "children"]);
@@ -96,9 +108,7 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
             <PaginationBase.PrevTrigger>
               <LeftArrowIcon />
             </PaginationBase.PrevTrigger>
-            <For each={/* pages array from context */}>
-              {/* render Item, Ellipsis */}
-            </For>
+            <For each={/* pages array from context */}>{/* render Item, Ellipsis */}</For>
             <PaginationBase.NextTrigger>
               <RightArrowIcon />
             </PaginationBase.NextTrigger>
@@ -111,6 +121,7 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
     );
   };
   ```
+
   **Note**: The composite Pagination needs access to the Ark UI context (pages array, current page) to auto-render items. This requires reading from Ark's pagination context. The "children"-based approach renders nothing by default and lets users compose manually (simpler, more flexible).
 
   Better approach — **minimal composite** with manual composition encouraged:
@@ -135,9 +146,7 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
   // PaginationItem — composite that applies active styling
   const PaginationItem: Component<ArkPagination.ItemProps> = (props) => {
     const [local, others] = splitProps(props, ["class"]);
-    return (
-      <PaginationBase.Item class={local.class} {...others} />
-    );
+    return <PaginationBase.Item class={local.class} {...others} />;
   };
   ```
 
@@ -147,13 +156,16 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
 - [ ] Re-export variants: `export { paginationVariants, type PaginationVariants } from "@ui/core"`
 
 ### 6. Solid Barrel: `packages/solid/src/index.ts`
+
 - [ ] Add `export * from "./pagination"` in alphabetical order (near `p*` entries, after `popover`)
 
 ### 7. Demo: `apps/docs/src/components/pagination-demo/`
+
 - [ ] Create `PaginationBasicDemo.tsx` — basic usage with default page items
 - [ ] Must import only named composites from `@ui/solid`, never `.base.tsx` or `PaginationBase`
 - [ ] Imports: `import { Pagination, PaginationItem, PaginationPrevTrigger, PaginationNextTrigger, PaginationFirstTrigger, PaginationLastTrigger, PaginationEllipsis } from "@ui/solid"`
 - [ ] Basic usage:
+
   ```tsx
   import { Index } from "solid-js";
   import { Pagination, ... } from "@ui/solid";
@@ -176,6 +188,7 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
     </PaginationLastTrigger>
   </Pagination>
   ```
+
   - **Note**: Page items require accessing Ark UI context (pages array). The demo must use Ark's pagination context to render items. This may require the demo to also import from a context hook (which would come from the base file).
 
   **Alternative approach**: Create a `PaginationPageList` composite that auto-renders page items + ellipsis, so the demo is clean:
@@ -191,13 +204,9 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
       <Index each={pagination().pages}>
         {(page) =>
           page().type === "page" ? (
-            <PaginationBase.Item {...page()}>
-              {page().value}
-            </PaginationBase.Item>
+            <PaginationBase.Item {...page()}>{page().value}</PaginationBase.Item>
           ) : (
-            <PaginationBase.Ellipsis index={page().index}>
-              ...
-            </PaginationBase.Ellipsis>
+            <PaginationBase.Ellipsis index={page().index}>...</PaginationBase.Ellipsis>
           )
         }
       </Index>
@@ -213,6 +222,7 @@ A navigation component for moving between pages of content. Built on Ark UI's `@
   - **RootProvider**: `PaginationRootProviderDemo.tsx` — advanced machine-controlled via `usePagination()` hook
 
 ### 8. Docs: `apps/docs/src/content/docs/components/pagination.mdx`
+
 - [ ] Create MDX page with frontmatter:
   ```yaml
   title: Pagination
