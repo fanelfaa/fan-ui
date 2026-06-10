@@ -57,6 +57,8 @@ const GrabberIndicator: Component<ArkDrawer.GrabberIndicatorProps> = (props) => 
   );
 };
 
+const Context = ArkDrawer.Context;
+
 export const Drawer = {
   Root,
   RootProvider,
@@ -69,4 +71,5 @@ export const Drawer = {
   Description,
   Grabber,
   GrabberIndicator,
+  Context,
 };

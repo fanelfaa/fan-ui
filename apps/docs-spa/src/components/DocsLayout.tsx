@@ -1,6 +1,6 @@
 import { type JSX, type Component } from "solid-js";
-import { useRouter } from "@tanstack/solid-router";
-import { ScrollArea } from "@ui/solid";
+import { Link } from "@tanstack/solid-router";
+import { ScrollArea, DrawerContent, Drawer, DrawerTrigger, DrawerBase } from "@ui/solid";
 import { sidebarNav } from "../sidebar-nav";
 
 interface DocsLayoutProps {
@@ -8,17 +8,6 @@ interface DocsLayoutProps {
 }
 
 export const DocsLayout: Component<DocsLayoutProps> = (props) => {
-  const router = useRouter();
-
-  function getLinkClass(href: string): string {
-    const currentPath = router.state.location.pathname;
-    const isActive = currentPath === href;
-    const base = "block rounded-md px-3 py-1.5 text-sm transition-colors";
-    return isActive
-      ? `${base} text-foreground font-medium bg-muted/80`
-      : `${base} text-muted-foreground hover:text-foreground hover:bg-muted`;
-  }
-
   return (
     <div class="mx-auto max-w-7xl flex">
       {/* Sidebar */}
@@ -33,9 +22,13 @@ export const DocsLayout: Component<DocsLayoutProps> = (props) => {
                 <ul class="space-y-0.5">
                   {category.links.map((link) => (
                     <li>
-                      <a href={link.href} class={getLinkClass(link.href)}>
+                      <Link
+                        to={link.href}
+                        activeProps={{ class: "!text-foreground font-medium bg-muted/80" }}
+                        class="block rounded-md px-3 py-1.5 text-sm transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                      >
                         {link.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -44,6 +37,42 @@ export const DocsLayout: Component<DocsLayoutProps> = (props) => {
           </nav>
         </ScrollArea>
       </aside>
+
+      {/* Mobile drawer */}
+      <Drawer swipeDirection="start">
+        <DrawerTrigger id="drawer-trigger" class="hidden" onClick={() => console.log("click")} />
+        <DrawerContent>
+          <DrawerBase.Context>
+            {(api) => (
+              <ScrollArea class="h-full">
+                <nav class="p-4">
+                  {sidebarNav.map((category) => (
+                    <div class="mb-6">
+                      <h4 class="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2 px-3">
+                        {category.category}
+                      </h4>
+                      <ul class="space-y-0.5">
+                        {category.links.map((link) => (
+                          <li>
+                            <Link
+                              to={link.href}
+                              activeProps={{ class: "!text-foreground font-medium bg-muted/80" }}
+                              class="block rounded-md px-3 py-1.5 text-sm transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                              onClick={() => api().setOpen(false)}
+                            >
+                              {link.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </nav>
+              </ScrollArea>
+            )}
+          </DrawerBase.Context>
+        </DrawerContent>
+      </Drawer>
 
       {/* Main content */}
       <main class="flex-1 min-w-0">

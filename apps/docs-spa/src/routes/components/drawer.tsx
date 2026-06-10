@@ -139,6 +139,8 @@ const GrabberIndicator: Component<ArkDrawer.GrabberIndicatorProps> = (props) => 
   return <ArkDrawer.GrabberIndicator class={styles.grabberIndicator({ class: local.class })} {...others} />
 }
 
+const Context = ArkDrawer.Context
+
 export const Drawer = {
   Root,
   RootProvider,
@@ -151,6 +153,7 @@ export const Drawer = {
   Description,
   Grabber,
   GrabberIndicator,
+  Context,
 }`}</Pre>
         At `src/components/drawer/index.tsx`:
         <Pre>{`import { Drawer as ArkDrawer } from '@ark-ui/solid/drawer'
@@ -286,7 +289,28 @@ export function ExternalControlExample() {
           — accepts a pre-created context via <InlineCode>useDrawer</InlineCode>. Use when you need
           to read or control the drawer state from outside the component tree.
         </li>
+        <li>
+          <strong>
+            <InlineCode>DrawerBase.Context</InlineCode>
+          </strong>{" "}
+          — a render-prop component that provides access to the drawer state. Use when you need
+          to read the open/close state inside the drawer tree.
+        </li>
       </List>
+      <P>Example using <InlineCode>DrawerBase.Context</InlineCode>:</P>
+      <Pre>{`
+import { Drawer, DrawerTrigger, DrawerContent, DrawerBase } from "~/components/drawer";
+import { Button } from "~/components/button";
+
+<Drawer>
+  <DrawerTrigger asChild={(props) => <Button {...props()} />}>Open</DrawerTrigger>
+  <DrawerContent>
+    <DrawerBase.Context>
+      {(drawer) => <p>Drawer is {drawer().open ? "open" : "closed"}</p>}
+    </DrawerBase.Context>
+  </DrawerContent>
+</Drawer>
+      `}</Pre>
       <H2>API Reference</H2>
       <P>
         See the <A href="https://ark-ui.com/docs/components/drawer">Ark UI Drawer</A> documentation.
