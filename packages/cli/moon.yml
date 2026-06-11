@@ -3,10 +3,22 @@ layer: tool
 stack: backend
 
 tasks:
+  generate-manifest:
+    command: tsx src/scripts/generate-manifest.ts
+    inputs:
+      - src/scripts/generate-manifest.ts
+      - ../../packages/solid/src/**/*.tsx
+      - ../../packages/core/src/recipes/**/*.ts
+      - ../../packages/core/src/theme.css
+
   build:
-    command: tsup
+    command: tsup && cp -r templates component-manifest.json dist/
+    deps:
+      - generate-manifest
     inputs:
       - src/**/*
+      - component-manifest.json
+      - templates/**/*
     outputs:
       - dist/**/*
 

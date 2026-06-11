@@ -7,7 +7,8 @@
   },
   "type": "module",
   "scripts": {
-    "build": "tsup",
+    "generate-manifest": "tsx src/scripts/generate-manifest.ts",
+    "build": "npm run generate-manifest && tsup && cp -r templates component-manifest.json dist/",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit"
   },
@@ -18,6 +19,7 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.0",
     "tsup": "^8.0.0",
+    "tsx": "^4.22.4",
     "typescript": "^5.0.0"
   }
 }
