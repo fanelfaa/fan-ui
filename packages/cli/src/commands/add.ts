@@ -26,14 +26,14 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // Package root is one level up from dist/ (or from src/ during dev)
-const packageRoot = path.resolve(__dirname, "..");
+// const packageRoot = path.resolve(__dirname, "..");
 
 // In dev (src/commands/add.ts), package root is packages/cli/
 // In prod (dist/add-*.js),  package root is packages/cli/dist/.. == packages/cli/
 // We resolve from __dirname upward until we find component-manifest.json
 function findPackageRoot(): string {
   let dir = __dirname;
-  for (let i = 0; i < 5; i++) {
+  while (true) {
     if (fs.existsSync(path.join(dir, "component-manifest.json"))) {
       return dir;
     }
@@ -41,8 +41,11 @@ function findPackageRoot(): string {
     if (parent === dir) break;
     dir = parent;
   }
-  // Fallback: assume we're in dist/ and look one level up
-  return path.resolve(__dirname, "..");
+  console.error(
+    "❌ component-manifest.json not found. Run the build script first:\n" +
+    "  moon run create-ui:generate-manifest"
+  );
+  process.exit(1);
 }
 
 const PACKAGE_ROOT = findPackageRoot();
@@ -170,10 +173,13 @@ function resolveWithDependencies(
 async function copyWithImportRewrite(
   templatePath: string,
   targetPath: string,
+  recipeDir: string,
 ): Promise<void> {
   let content = await fs.readFile(templatePath, "utf-8");
-  // Rewrite imports: @ui/core → ../recipes
-  content = content.replace(/from\s+['"]@ui\/core['"]/g, "from '../recipes'");
+  // Compute relative path from the target file to the recipe directory
+  const relPath = path.relative(path.dirname(targetPath), recipeDir);
+  const importPath = relPath.startsWith(".") ? relPath : `./${relPath}`;
+  content = content.replace(/from\s+['"]@ui\/core['"]/g, `from '${importPath}'`);
   await fs.writeFile(targetPath, content, "utf-8");
 }
 
@@ -238,72 +244,87 @@ export async function addComponent(
   const compTargetDir = path.resolve(outputDir);
   const recipeTargetDir = path.join(path.dirname(compTargetDir), "recipes");
 
-  // ── Copy component files ──────────────────────────────────
-  for (const file of resolved.files) {
-    const templatePath = path.join(TEMPLATES_DIR, file);
-    // Determine output path: preserve the relative structure within the component
-    // file pattern: "<framework>/<component>/<filename>" → "<component>/<filename>"
-    const relativeToFramework = file.split("/").slice(1).join("/"); // remove framework prefix
-    const targetPath = path.join(compTargetDir, relativeToFramework);
+  const writtenFiles: string[] = [];
 
-    if (!fs.existsSync(templatePath)) {
-      console.warn(`  ⚠ Template not found: ${templatePath}`);
-      continue;
+  try {
+    // ── Copy component files ──────────────────────────────────
+    for (const file of resolved.files) {
+      const templatePath = path.join(TEMPLATES_DIR, file);
+      // Determine output path: preserve the relative structure within the component
+      // file pattern: "<framework>/<component>/<filename>" → "<component>/<filename>"
+      const relativeToFramework = file.split("/").slice(1).join("/"); // remove framework prefix
+      const targetPath = path.join(compTargetDir, relativeToFramework);
+
+      if (!fs.existsSync(templatePath)) {
+        console.warn(`  ⚠ Template not found: ${templatePath}`);
+        continue;
+      }
+
+      await fs.ensureDir(path.dirname(targetPath));
+      await copyWithImportRewrite(templatePath, targetPath, recipeTargetDir);
+      writtenFiles.push(targetPath);
+      console.log(`  ✓ Copied: ${relativeToFramework}`);
     }
 
-    await fs.ensureDir(path.dirname(targetPath));
-    await copyWithImportRewrite(templatePath, targetPath);
-    console.log(`  ✓ Copied: ${relativeToFramework}`);
-  }
+    // ── Copy recipe files ─────────────────────────────────────
+    for (const recipe of resolved.recipes) {
+      const templatePath = path.join(TEMPLATES_DIR, "recipes", recipe);
+      const targetPath = path.join(recipeTargetDir, recipe);
 
-  // ── Copy recipe files ─────────────────────────────────────
-  for (const recipe of resolved.recipes) {
-    const templatePath = path.join(TEMPLATES_DIR, "recipes", recipe);
-    const targetPath = path.join(recipeTargetDir, recipe);
+      if (!fs.existsSync(templatePath)) {
+        console.warn(`  ⚠ Recipe template not found: ${templatePath}`);
+        continue;
+      }
 
-    if (!fs.existsSync(templatePath)) {
-      console.warn(`  ⚠ Recipe template not found: ${templatePath}`);
-      continue;
+      await fs.ensureDir(recipeTargetDir);
+      await fs.copy(templatePath, targetPath);
+      writtenFiles.push(targetPath);
+      console.log(`  ✓ Copied recipe: ${recipe}`);
     }
 
-    await fs.ensureDir(recipeTargetDir);
-    await fs.copy(templatePath, targetPath);
-    console.log(`  ✓ Copied recipe: ${recipe}`);
+    // ── Update index files ────────────────────────────────────
+    const compIndexFile = path.join(compTargetDir, "index.ts");
+    const recipeIndexFile = path.join(recipeTargetDir, "index.ts");
+
+    // Extract unique component directory names from files
+    const componentDirs = new Set(
+      resolved.files.map((f) => {
+        // file pattern: "<framework>/<component>/<filename>" → extract <component>
+        const parts = f.split("/");
+        return parts.length >= 2 ? parts[1] : component;
+      }),
+    );
+
+    // Also add the primary component
+    componentDirs.add(component);
+
+    for (const dir of componentDirs) {
+      await updateIndexFile(compIndexFile, `export * from './${dir}'`);
+    }
+
+    for (const recipe of resolved.recipes) {
+      const recipeName = recipe.replace(/\.ts$/, "");
+      await updateIndexFile(recipeIndexFile, `export * from './${recipeName}'`);
+    }
+
+    // ── Copy theme.css (only if not exists) ───────────────────
+    const themeTemplate = path.join(TEMPLATES_DIR, "theme.css");
+    const themeTarget = path.join(compTargetDir, "theme.css");
+
+    if (fs.existsSync(themeTemplate) && !(await fs.pathExists(themeTarget))) {
+      await fs.copy(themeTemplate, themeTarget);
+      console.log(`  ✓ Copied theme.css`);
+    }
+
+    console.log(`\n✅ "${component}" added successfully.\n`);
+  } catch (err) {
+    // Rollback: remove all written files on failure
+    console.error(`\n❌ Failed to add component: ${err}`);
+    for (const file of writtenFiles) {
+      try {
+        await fs.remove(file);
+      } catch { /* ignore cleanup errors */ }
+    }
+    process.exit(1);
   }
-
-  // ── Update index files ────────────────────────────────────
-  const compIndexFile = path.join(compTargetDir, "index.ts");
-  const recipeIndexFile = path.join(recipeTargetDir, "index.ts");
-
-  // Extract unique component directory names from files
-  const componentDirs = new Set(
-    resolved.files.map((f) => {
-      // file pattern: "<framework>/<component>/<filename>" → extract <component>
-      const parts = f.split("/");
-      return parts.length >= 2 ? parts[1] : component;
-    }),
-  );
-
-  // Also add the primary component
-  componentDirs.add(component);
-
-  for (const dir of componentDirs) {
-    await updateIndexFile(compIndexFile, `export * from './${dir}'`);
-  }
-
-  for (const recipe of resolved.recipes) {
-    const recipeName = recipe.replace(/\.ts$/, "");
-    await updateIndexFile(recipeIndexFile, `export * from './${recipeName}'`);
-  }
-
-  // ── Copy theme.css (only if not exists) ───────────────────
-  const themeTemplate = path.join(TEMPLATES_DIR, "theme.css");
-  const themeTarget = path.join(compTargetDir, "theme.css");
-
-  if (fs.existsSync(themeTemplate) && !(await fs.pathExists(themeTarget))) {
-    await fs.copy(themeTemplate, themeTarget);
-    console.log(`  ✓ Copied theme.css`);
-  }
-
-  console.log(`\n✅ "${component}" added successfully.\n`);
 }

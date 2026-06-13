@@ -23,59 +23,26 @@ const repoRoot = path.resolve(cliRoot, "../..");
 
 // ── Configuration ─────────────────────────────────────────────
 const FRAMEWORKS = ["solid"] as const;
-type Framework = (typeof FRAMEWORKS)[number];
 
-// Canonical list from packages/solid/src/index.ts
-const COMPONENTS: Record<Framework, string[]> = {
-  solid: [
-    "accordion",
-    "alert",
-    "alert-dialog",
-    "aspect-ratio",
-    "avatar",
-    "badge",
-    "breadcrumb",
-    "button",
-    "carousel",
-    "card",
-    "checkbox",
-    "collapsible",
-    "color-picker",
-    "combobox",
-    "date-picker",
-    "dialog",
-    "drawer",
-    "hover-card",
-    "input",
-    "listbox",
-    "menu",
-    "number-input",
-    "pagination",
-    "password-input",
-    "pin-input",
-    "popover",
-    "progress",
-    "radio-group",
-    "rating-group",
-    "scroll-area",
-    "segment-group",
-    "select",
-    "separator",
-    "skeleton",
-    "slider",
-    "spinner",
-    "switch",
-    "table",
-    "tabs",
-    "tags-input",
-    "textarea",
-    "toast",
-    "toggle",
-    "toggle-group",
-    "tooltip",
-    "typography",
-  ],
-};
+/** Read component names from packages/<framework>/src/index.ts exports */
+function discoverComponents(framework: string): string[] {
+  const indexPath = path.join(repoRoot, `packages/${framework}/src/index.ts`);
+  if (!fs.existsSync(indexPath)) {
+    console.error(`  ⚠ Cannot discover components: ${indexPath} not found`);
+    return [];
+  }
+  const content = fs.readFileSync(indexPath, "utf-8");
+  const components: string[] = [];
+  const regex = /export\s+\*\s+from\s+['"]\.\/([^'"]+)['"]/g;
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    const name = match[1];
+    if (!name.startsWith(".") && !name.includes("/")) {
+      components.push(name);
+    }
+  }
+  return components.sort();
+}
 
 const RECIPE_SOURCE_BASE = "packages/core/src/recipes";
 const THEME_SOURCE = "packages/core/src/theme.css";
@@ -232,7 +199,7 @@ async function main() {
 
   // Process each framework
   for (const framework of FRAMEWORKS) {
-    const components = COMPONENTS[framework];
+    const components = discoverComponents(framework);
     console.log(`\n🔧 Framework: ${framework}`);
 
     for (const component of components) {
