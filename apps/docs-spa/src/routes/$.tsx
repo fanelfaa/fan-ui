@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/solid-router";
-import { Button } from "@ui/solid";
+import { buttonVariants } from "@ui/core";
 
 export const Route = createFileRoute("/$")({ component: NotFound });
 
@@ -13,11 +13,11 @@ function NotFound() {
         URL or browse our component library.
       </p>
       <div class="flex gap-4">
-        <Link to="/">
-          <Button variant="default">Go Home</Button>
+        <Link to="/" class={buttonVariants({ variant: "default" })}>
+          Go Home
         </Link>
-        <Link to="/components/button">
-          <Button variant="outline">Browse Components</Button>
+        <Link to="/components/button" class={buttonVariants({ variant: "outline" })}>
+          Browse Components
         </Link>
       </div>
     </div>

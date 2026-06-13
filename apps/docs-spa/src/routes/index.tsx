@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/solid-router";
-import { Button } from "@ui/solid";
-import { H1, H2, P, InlineCode } from "../components/markdown";
+import { buttonVariants } from "@ui/core";
+import { H2, P, InlineCode } from "../components/markdown";
 
 export const Route = createFileRoute("/")({ component: Home });
 
@@ -43,6 +43,8 @@ const categories = [
   },
 ];
 
+const totalCount = categories.reduce((sum, cat) => sum + cat.count, 0);
+
 const quickLinks = [
   { href: "/components/button", label: "Button" },
   { href: "/components/input", label: "Input" },
@@ -59,23 +61,17 @@ function Home() {
     <div class="mx-auto max-w-4xl px-6 py-12">
       {/* Hero */}
       <section class="mb-16 text-center">
-        <h1 class="mb-4 text-5xl font-bold tracking-tight">
-          UI Component Library
-        </h1>
+        <h1 class="mb-4 text-5xl font-bold tracking-tight">UI Component Library</h1>
         <P>
-          A comprehensive collection of accessible, composable UI primitives
-          built with{" "}
-          <InlineCode>Ark UI</InlineCode> and{" "}
-          <InlineCode>Solid.js</InlineCode>. Ready to use, fully typed, and
-          styled with Tailwind CSS.
+          A comprehensive collection of accessible, composable UI primitives built with{" "}
+          <InlineCode>Ark UI</InlineCode> and <InlineCode>Solid.js</InlineCode>. Ready to use, fully
+          typed, and styled with Tailwind CSS.
         </P>
         <div class="mt-8 flex items-center justify-center gap-4">
-          <Link to="/components/button">
-            <Button size="lg">Browse Components</Button>
+          <Link to="/components/button" class={buttonVariants({ size: "lg" })}>
+            Browse Components
           </Link>
-          <span class="text-sm text-muted-foreground">
-            45 components across 6 categories
-          </span>
+          <span class="text-sm text-muted-foreground">{totalCount} components across {categories.length} categories</span>
         </div>
       </section>
 
@@ -86,9 +82,7 @@ function Home() {
           <pre class="text-sm">
             <code>{`npm install @ui/solid`}</code>
           </pre>
-          <p class="mt-4 text-sm text-muted-foreground">
-            Then import and use any component:
-          </p>
+          <p class="mt-4 text-sm text-muted-foreground">Then import and use any component:</p>
           <pre class="mt-2 text-sm">
             <code>{`import { Button } from "@ui/solid";
 
@@ -111,18 +105,14 @@ function MyApp() {
               <h3 class="text-lg font-semibold group-hover:text-primary transition-colors">
                 {cat.name}
               </h3>
-              <p class="mt-1 text-sm text-muted-foreground">
-                {cat.description}
-              </p>
-              <p class="mt-2 text-xs text-muted-foreground">
-                {cat.count} components
-              </p>
+              <p class="mt-1 text-sm text-muted-foreground">{cat.description}</p>
+              <p class="mt-2 text-xs text-muted-foreground">{cat.count} components</p>
             </Link>
           ))}
         </div>
         <div class="mt-6 text-center">
-          <Link to="/components/button">
-            <Button variant="outline">View All Components</Button>
+          <Link to="/components/button" class={buttonVariants({ variant: "outline" })}>
+            View All Components
           </Link>
         </div>
       </section>
