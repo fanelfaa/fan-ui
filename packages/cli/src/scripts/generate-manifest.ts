@@ -22,12 +22,59 @@ const cliRoot = path.resolve(__dirname, "../..");
 const repoRoot = path.resolve(cliRoot, "../..");
 
 // ── Configuration ─────────────────────────────────────────────
-// First pass: 5 flat Solid components (zero cross-deps)
 const FRAMEWORKS = ["solid"] as const;
 type Framework = (typeof FRAMEWORKS)[number];
 
+// Canonical list from packages/solid/src/index.ts
 const COMPONENTS: Record<Framework, string[]> = {
-  solid: ["button", "badge", "alert", "card", "separator"],
+  solid: [
+    "accordion",
+    "alert",
+    "alert-dialog",
+    "aspect-ratio",
+    "avatar",
+    "badge",
+    "breadcrumb",
+    "button",
+    "carousel",
+    "card",
+    "checkbox",
+    "collapsible",
+    "color-picker",
+    "combobox",
+    "date-picker",
+    "dialog",
+    "drawer",
+    "hover-card",
+    "input",
+    "listbox",
+    "menu",
+    "number-input",
+    "pagination",
+    "password-input",
+    "pin-input",
+    "popover",
+    "progress",
+    "radio-group",
+    "rating-group",
+    "scroll-area",
+    "segment-group",
+    "select",
+    "separator",
+    "skeleton",
+    "slider",
+    "spinner",
+    "switch",
+    "table",
+    "tabs",
+    "tags-input",
+    "textarea",
+    "toast",
+    "toggle",
+    "toggle-group",
+    "tooltip",
+    "typography",
+  ],
 };
 
 const RECIPE_SOURCE_BASE = "packages/core/src/recipes";
