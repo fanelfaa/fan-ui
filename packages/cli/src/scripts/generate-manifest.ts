@@ -9,7 +9,7 @@
  * 4. Copies template files into packages/cli/templates/
  * 5. Generates component-manifest.json for the CLI to consume at runtime
  *
- * Run via: moon run create-ui:build (wired as pre-build step)
+ * Run via: moon run @ui/cli:build (wired as pre-build step)
  */
 
 import fs from "fs-extra";

@@ -1,5 +1,5 @@
 {
-  "name": "create-ui",
+  "name": "@ui/cli",
   "version": "0.1.0",
   "private": true,
   "bin": {

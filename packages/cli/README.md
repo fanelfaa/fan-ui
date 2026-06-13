@@ -1,9 +1,9 @@
-# `create-ui` — UI Component CLI
+# `@ui/cli` — UI Component CLI
 
 Generate UI components into your project from pre-built templates.
 
 ```bash
-npx create-ui add button --solid
+npx @ui/cli add button --solid
 ```
 
 ## Architecture

@@ -5,7 +5,7 @@
 
 ## OVERVIEW
 
-CLI for component generation (`create-ui` / `ui`).
+CLI for component generation (`@ui/cli` / `ui`).
 
 ## ARCHITECTURE
 
@@ -45,8 +45,8 @@ packages/core/src/recipes/ ──                        ──       ↓
 ```bash
 npm run generate-manifest    # Generate templates + manifest from source
 npm run build                # Full build (generate-manifest + tsup + copy to dist)
-moon run create-ui:build     # Same via moonrepo
-moon run create-ui:dev       # Watch mode
+moon run @ui/cli:build     # Same via moonrepo
+moon run @ui/cli:dev       # Watch mode
 ```
 
 ## IMPORTANT NOTES
