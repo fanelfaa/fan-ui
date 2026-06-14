@@ -70,7 +70,7 @@ export default function CodeBlock(props: ParentProps<JSX.HTMLAttributes<HTMLPreE
     <div class="relative isolate">
       <pre
         ref={preRef}
-        class={`whitespace-pre-wrap${local.class ? ` ${local.class}` : ""}`}
+        class={`whitespace-pre-wrap bg-neutral-900 dark:bg-neutral-800 ${local.class ? ` ${local.class}` : ""}`}
         classList={{
           "cursor-pointer": overflowing() && !expanded(),
           "overflow-hidden": overflowing() && !expanded(),
@@ -89,7 +89,7 @@ export default function CodeBlock(props: ParentProps<JSX.HTMLAttributes<HTMLPreE
       </pre>
       <Show when={overflowing()}>
         <Show when={!expanded()}>
-          <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-linear-to-t from-black/80 to-transparent" />
+          <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-linear-to-t from-black/80 dark:from-black/40 to-transparent" />
         </Show>
         <Button
           variant="outline"
@@ -101,7 +101,7 @@ export default function CodeBlock(props: ParentProps<JSX.HTMLAttributes<HTMLPreE
         </Button>
       </Show>
       <button
-        class="absolute top-3 right-3 rounded-md p-1.5 text-muted-foreground hover:text-white hover:bg-muted-foreground/10 transition-colors"
+        class="absolute top-3 right-3 rounded-md p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted-foreground/10 dark:hover:text-foreground transition-colors"
         onClick={() => {
           const resolved = code();
           navigator.clipboard.writeText(resolved);

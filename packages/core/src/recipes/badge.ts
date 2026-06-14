@@ -7,7 +7,7 @@ export const badgeVariants = tv({
       default: "bg-primary text-primary-foreground hover:bg-primary/90",
       secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/90",
       destructive:
-        "bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 hover:border-destructive/30",
+        "bg-destructive/10 text-destructive focus-visible:ring-destructive/20 hover:border-destructive/30 dark:bg-destructive/20 dark:text-destructive-foreground dark:border-destructive/50 dark:focus-visible:ring-destructive/50",
       outline: "border-border text-foreground hover:bg-accent hover:text-accent-foreground",
       ghost: "hover:bg-accent hover:text-accent-foreground",
       link: "text-primary underline-offset-4 hover:underline",
