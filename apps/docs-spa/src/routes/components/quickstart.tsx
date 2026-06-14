@@ -88,10 +88,10 @@ function QuickstartPage() {
 
       <H2>Prerequisites</H2>
 
-      <P>Install Tailwind CSS v4 and the Vite plugin:</P>
+      <P>Install Tailwind CSS, <InlineCode>tailwind-variants</InlineCode> (required by all component recipes), and the Vite plugin if using Vite:</P>
 
       <Pre>{`
-npm install tailwindcss @tailwindcss/vite
+npm install tailwindcss tailwind-variants @tailwindcss/vite
       `}</Pre>
 
       <P>Optionally install the animation plugin (used by toast, dialog, and other components):</P>
