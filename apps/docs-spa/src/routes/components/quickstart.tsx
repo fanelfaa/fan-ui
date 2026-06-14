@@ -75,26 +75,32 @@ function QuickstartPage() {
       <H1>Quickstart</H1>
 
       <P>
-        Get started using <InlineCode>@ui</InlineCode> components in your own project.
-        This is a copy-paste component library — pick any component from the sidebar,
-        copy the code, and paste it into your project.
+        Get started using <InlineCode>@fan-ui</InlineCode> components in your own project. This is a
+        copy-paste component library — pick any component from the sidebar, copy the code, and paste
+        it into your project.
       </P>
 
       <Blockquote>
         <strong>Framework support:</strong> Currently only Solid.js is supported. Support for React,
-        Vue, and other frameworks is coming in future releases. A CLI (<InlineCode>@fan-ui/cli</InlineCode>)
-        to automate setup is also planned.
+        Vue, and other frameworks is coming in future releases. A CLI (
+        <InlineCode>@fan-ui/cli</InlineCode>) to automate setup is also planned.
       </Blockquote>
 
       <H2>Prerequisites</H2>
 
-      <P>Install Tailwind CSS, <InlineCode>tailwind-variants</InlineCode> (required by all component recipes), and the Vite plugin if using Vite:</P>
+      <P>
+        Install Tailwind CSS, <InlineCode>tailwind-variants</InlineCode> (required by all component
+        recipes), and the Vite plugin if using Vite:
+      </P>
 
       <Pre>{`
 npm install tailwindcss tailwind-variants @tailwindcss/vite
       `}</Pre>
 
-      <P>Install <InlineCode>@ark-ui/solid</InlineCode> (used by all components) and its peer dependency <InlineCode>solid-js</InlineCode>:</P>
+      <P>
+        Install <InlineCode>@ark-ui/solid</InlineCode> (used by all components) and its peer
+        dependency <InlineCode>solid-js</InlineCode>:
+      </P>
 
       <Pre>{`
 npm install @ark-ui/solid solid-js
@@ -106,7 +112,9 @@ npm install @ark-ui/solid solid-js
 npm install tw-animate-css
       `}</Pre>
 
-      <P>Configure <InlineCode>src/index.css</InlineCode>:</P>
+      <P>
+        Configure <InlineCode>src/index.css</InlineCode>:
+      </P>
 
       <Pre>{`@import "tailwindcss";
 @import "tw-animate-css";`}</Pre>
@@ -114,44 +122,71 @@ npm install tw-animate-css
       <H2>Theme variables</H2>
 
       <P>
-        Add these CSS custom properties to your main CSS file. They define the design tokens
-        used by all components.
+        Add these CSS custom properties to your main CSS file. They define the design tokens used by
+        all components.
       </P>
 
       <Pre>{themeCssContent}</Pre>
 
       <Blockquote>
-        <strong>Note:</strong> The <InlineCode>[data-scope="toast"]</InlineCode> block at the bottom is
-        specific to the Toast component — you can omit it if you're not using Toast.
+        <strong>Note:</strong> The <InlineCode>[data-scope="toast"]</InlineCode> block at the bottom
+        is specific to the Toast component — you can omit it if you're not using Toast.
       </Blockquote>
 
       <H2>Using a component</H2>
 
       <P>
-        Browse the <a href="/components/button" class="font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">component library</a>,
-        find the component you need, and copy the code. Each component page includes the recipe
+        Browse the{" "}
+        <a
+          href="/components/button"
+          class="font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+        >
+          component library
+        </a>
+        , find the component you need, and copy the code. Each component page includes the recipe
         (styling) and the component source — paste both into your project and customize as needed.
       </P>
 
       <P>
-        For example, to use the Button component, create <InlineCode>src/components/recipes/button.ts</InlineCode>{" "}
-        with the recipe and <InlineCode>src/components/button.tsx</InlineCode> with the component code from the{" "}
-        <a href="/components/button" class="font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">Button page</a>.
+        For example, to use the Button component, create{" "}
+        <InlineCode>src/components/recipes/button.ts</InlineCode> with the recipe and{" "}
+        <InlineCode>src/components/button.tsx</InlineCode> with the component code from the{" "}
+        <a
+          href="/components/button"
+          class="font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+        >
+          Button page
+        </a>
+        .
       </P>
 
       <Blockquote>
-        <strong>Tip:</strong> A CLI (<InlineCode>@fan-ui/cli</InlineCode>) to automate this setup will be
-        available in a future release.
+        <strong>Tip:</strong> A CLI (<InlineCode>@fan-ui/cli</InlineCode>) to automate this setup
+        will be available in a future release.
       </Blockquote>
 
       <H2>Next steps</H2>
 
       <ul class="my-6 ml-6 list-disc [&>li]:mt-2">
         <li>
-          Browse the <a href="/components/button" class="font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">component library</a> to find components
+          Browse the{" "}
+          <a
+            href="/components/button"
+            class="font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            component library
+          </a>{" "}
+          to find components
         </li>
         <li>
-          Check the <a href="https://ark-ui.com/docs/guides/composition" class="font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">Ark UI documentation</a> for composability patterns
+          Check the{" "}
+          <a
+            href="https://ark-ui.com/docs/guides/composition"
+            class="font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            Ark UI documentation
+          </a>{" "}
+          for composability patterns
         </li>
       </ul>
     </>

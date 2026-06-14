@@ -31,7 +31,7 @@ Use when the component just wraps the Ark UI Root and re-exports parts.
 ```tsx
 import { ComponentName as ArkComponentName } from "@ark-ui/solid/<package>";
 import { splitProps, type Component } from "solid-js";
-import { <component>Variants } from "@ui/core";
+import { <component>Variants } from "@fan-ui/core";
 
 const styles = <component>Variants();
 
@@ -50,7 +50,7 @@ export const Component = ComponentRoot;
 
 export * from "./<component>.base";
 
-export { <component>Variants, type <component>Variants } from "@ui/core";
+export { <component>Variants, type <component>Variants } from "@fan-ui/core";
 ```
 
 ## Pattern B — With InnerComponent (composite with inline SVGs)
@@ -93,7 +93,7 @@ export const Component: Component<ArkComponentName.RootProps> = (props) => {
 
 export * from "./<component>.base";
 
-export { <component>Variants, type <component>Variants } from "@ui/core";
+export { <component>Variants, type <component>Variants } from "@fan-ui/core";
 ```
 
 ## Pattern C — With Portal (composite wrapping content in Portal)
@@ -137,7 +137,7 @@ Same as Pattern B but wraps the inner content in `<Portal>` from `solid-js/web`.
 | ------------------- | ---------------------- | -------------------------------------------- |
 | All base parts      | `<component>.base.tsx` | Named exports only                           |
 | Composite component | `index.tsx`            | Named export                                 |
-| Recipe variants     | `@ui/core`             | `export { vars, type Vars } from "@ui/core"` |
+| Recipe variants     | `@fan-ui/core`             | `export { vars, type Vars } from "@fan-ui/core"` |
 | Re-export base      | `index.tsx`            | `export * from "./<component>.base"`         |
 
 ### Variant Handling

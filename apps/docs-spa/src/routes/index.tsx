@@ -71,7 +71,9 @@ function Home() {
           <Link to="/components/button" class={buttonVariants({ size: "lg" })}>
             Browse Components
           </Link>
-          <span class="text-sm text-muted-foreground">{totalCount} components across {categories.length} categories</span>
+          <span class="text-sm text-muted-foreground">
+            {totalCount} components across {categories.length} categories
+          </span>
         </div>
       </section>
 
@@ -79,7 +81,7 @@ function Home() {
       <section class="mb-16 text-center">
         <H2>Quick Start</H2>
         <P class="mb-6">
-          Follow the step-by-step guide to add <InlineCode>@ui</InlineCode> to your project.
+          Follow the step-by-step guide to add <InlineCode>@fan-ui</InlineCode> to your project.
         </P>
         <Link to="/components/quickstart" class={buttonVariants({ size: "lg" })}>
           View Quickstart Guide

@@ -20,7 +20,7 @@ The docs site uses **Astro with Solid.js islands**. Key implications:
 - Solid.js components render client-side via `client:load` directive
 - Inline JSX in MDX works for simple components (Strategy A)
 - Compound components need `.tsx` demo wrappers rendered with `client:load` (Strategy B)
-- Global styles via `apps/docs/src/styles/global.css` (Tailwind v4 + `@ui/core` theme)
+- Global styles via `apps/docs/src/styles/global.css` (Tailwind v4 + `@fan-ui/core` theme)
 - Path aliases: `@components/*` → `src/components/*`, `@layouts/*` → `src/layouts/*`
 
 ## MDX Structure
@@ -74,10 +74,10 @@ There are **two distinct import domains** that must never be mixed:
 
 | Domain          | Import Path                | Used In                                                                  |
 | --------------- | -------------------------- | ------------------------------------------------------------------------ |
-| **Live demo**   | `@ui/solid`                | Top-level MDX import for inline JSX, or inside demo wrapper `.tsx` files |
+| **Live demo**   | `@fan-ui/solid`                | Top-level MDX import for inline JSX, or inside demo wrapper `.tsx` files |
 | **Code blocks** | `~/components/<component>` | All fenced code blocks (`tsx ... `) shown to the user                    |
 
-**DO NOT** use `@ui/solid` inside any fenced code block. It is only for the docs site's own rendering.
+**DO NOT** use `@fan-ui/solid` inside any fenced code block. It is only for the docs site's own rendering.
 
 ### Live Demo Import — Two Strategies
 
@@ -88,7 +88,7 @@ Choose one based on whether the component relies on Solid.js context (Ark UI com
 For simple components like Button, Checkbox, Switch — components that render without needing a parent provider context:
 
 ```tsx
-import { Button } from "@ui/solid";
+import { Button } from "@fan-ui/solid";
 ```
 
 Then use JSX directly in the MDX:
@@ -120,7 +120,7 @@ import {
   AccordionItemTrigger,
   AccordionItemContent,
   AccordionItemIndicator,
-} from "@ui/solid";
+} from "@fan-ui/solid";
 
 export default function AccordionBasicDemo() {
   return (
@@ -166,7 +166,7 @@ import AccordionMultipleDemo from "@components/accordion-demo/AccordionMultipleD
 - **Only create `<component>-demo/` when the component needs Solid.js context** — i.e. compound components like Accordion, Select, Dialog, Menu, Tabs, Radio Group, Combobox, Date Picker, etc. where sub-components (`Item`, `ItemTrigger`, `ItemContent`, etc.) rely on a parent provider and crash during Astro SSR with `ContextError: useXxxContext returned undefined`.
 - **DO NOT create `<component>-demo/` for simple components** — single-element components like Button, Checkbox, Switch, Slider, Input, Tooltip, Toast, etc. that render fine with inline JSX (Strategy A).
 - File location: `apps/docs/src/components/<component>-demo/<DemoName>.tsx`
-- Import from `@ui/solid` (the monorepo package)
+- Import from `@fan-ui/solid` (the monorepo package)
 - Default export a function component
 - Wrap content in `<div class="rounded-lg border border-border p-6">` for visual consistency
 - Each distinct demo (basic, multiple, collapsible, disabled, etc.) gets its own file
@@ -215,7 +215,7 @@ npx @fan-ui/cli@latest add <component>
 
 The CLI command performs **five operations** automatically:
 1. Copies component file from `packages/solid/src/<component>.tsx` → `src/components/<component>.tsx`
-2. Rewrites `@ui/core` imports to `../recipes` in the copied component
+2. Rewrites `@fan-ui/core` imports to `../recipes` in the copied component
 3. Copies recipe file from `packages/core/src/recipes/<component>.ts` → `src/recipes/<component>.ts`
 4. Updates (or creates) `src/components/index.ts` with the new export
 5. Updates (or creates) `src/recipes/index.ts` with the new export
@@ -241,7 +241,7 @@ The manual section contains **two or three code blocks**, each wrapped in `<div 
 3. **Component file** — copy from `packages/solid/src/<component>.tsx`:
    - File path: `src/components/<component>.tsx`
    - **Import changes required:**
-     - `import { ... } from '@ui/core'` → `import { ... } from '../recipes/<component>'`
+     - `import { ... } from '@fan-ui/core'` → `import { ... } from '../recipes/<component>'`
      - Ark UI imports may use **two patterns**:
        - Named import: `import { Component } from '@ark-ui/solid/<component>'`
        - Factory import: `import { ark, HTMLArkProps } from '@ark-ui/solid/factory'`
@@ -389,7 +389,7 @@ When copying recipe code into the Manual installation section:
 
 1. **Copy verbatim** — do not modify the `tv()` call or variant definitions
 2. **File path** in the doc must match: `src/components/recipes/<component>.ts`
-3. **Import** in the recipe code block: `import { tv } from 'tailwind-variants'` (no `@ui/core`)
+3. **Import** in the recipe code block: `import { tv } from 'tailwind-variants'` (no `@fan-ui/core`)
 
 ## Component-to-Doc Code Block Rules
 
@@ -397,7 +397,7 @@ When copying component code into the Manual installation section:
 
 1. **Change recipe import**:
    ```diff
-   - import { componentVariants } from '@ui/core'
+   - import { componentVariants } from '@fan-ui/core'
    + import { componentVariants } from '../recipes/<component>'
    ```
 2. **Keep Ark UI imports** unchanged — components use **two patterns**:
