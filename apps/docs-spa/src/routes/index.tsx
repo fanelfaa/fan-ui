@@ -76,21 +76,14 @@ function Home() {
       </section>
 
       {/* Quick Start */}
-      <section class="mb-16">
+      <section class="mb-16 text-center">
         <H2>Quick Start</H2>
-        <div class="rounded-lg border border-border bg-muted/30 p-6">
-          <pre class="text-sm">
-            <code>{`npm install @ui/solid`}</code>
-          </pre>
-          <p class="mt-4 text-sm text-muted-foreground">Then import and use any component:</p>
-          <pre class="mt-2 text-sm">
-            <code>{`import { Button } from "@ui/solid";
-
-function MyApp() {
-  return <Button variant="primary">Click me</Button>;
-}`}</code>
-          </pre>
-        </div>
+        <P class="mb-6">
+          Follow the step-by-step guide to add <InlineCode>@ui</InlineCode> to your project.
+        </P>
+        <Link to="/components/quickstart" class={buttonVariants({ size: "lg" })}>
+          View Quickstart Guide
+        </Link>
       </section>
 
       {/* Component Categories */}
