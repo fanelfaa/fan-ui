@@ -77,7 +77,7 @@ npx @fan-ui/cli@latest add alert-dialog
       <H3>Manual</H3>
       <div class="space-y-3">
         Install the dependencies:
-        <Pre lang="tsx">{`npm install @ark-ui/solid tailwind-variants`}</Pre>
+        <Pre lang="bash">{`npm install @ark-ui/solid tailwind-variants`}</Pre>
       </div>
       <div class="space-y-3">
         Create the recipe file at `src/components/recipes/alert-dialog.ts`:

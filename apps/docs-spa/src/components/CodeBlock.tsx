@@ -34,6 +34,11 @@ const LANG_MAP: Record<string, string> = {
   jsx: "javascript",
   sh: "bash",
   shell: "bash",
+  json: "javascript",
+  yaml: "bash",
+  md: "bash",
+  zsh: "bash",
+  fish: "bash",
 };
 
 const MAX_HEIGHT = 200;
@@ -82,12 +87,28 @@ export default function CodeBlock(props: CodeBlockProps) {
     }
   };
 
+  // Track previous content to avoid redundant re-highlighting
+  let prevCode: string | undefined;
+
   createEffect(() => {
     // Apply syntax highlighting
     if (codeRef) {
+      const content = code();
+      // Skip if content hasn't changed since last highlight
+      if (content === prevCode) return;
+      prevCode = content;
+
       const lang = LANG_MAP[local.lang] || local.lang;
-      const result = hljs.highlight(code(), { language: lang });
-      codeRef.innerHTML = result.value;
+      try {
+        const result = hljs.highlight(content, { language: lang });
+        codeRef.innerHTML = result.value;
+      } catch {
+        // Fallback to plain text if highlighting fails (e.g. unknown language)
+        codeRef.textContent = content;
+      }
+
+      // Re-check overflow after highlighting changes DOM height
+      requestAnimationFrame(checkOverflow);
     }
   });
 
