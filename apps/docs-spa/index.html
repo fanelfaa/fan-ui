@@ -12,14 +12,17 @@
     />
     <script>
       (function() {
-        var theme = localStorage.getItem('ui-theme');
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else if (theme === 'light') {
-          document.documentElement.classList.remove('dark');
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          document.documentElement.classList.add('dark');
-        }
+        if (typeof document === 'undefined') return;
+        try {
+          var theme = localStorage.getItem('ui-theme');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else if (theme === 'light') {
+            document.documentElement.classList.remove('dark');
+          } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch {}
       })();
     </script>
   </head>

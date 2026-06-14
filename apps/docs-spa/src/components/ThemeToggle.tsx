@@ -7,8 +7,10 @@ function getSystemPref(): "dark" | "light" {
 }
 
 function getStored(): "dark" | "light" | null {
-  const val = localStorage.getItem(STORAGE_KEY);
-  if (val === "dark" || val === "light") return val;
+  try {
+    const val = localStorage.getItem(STORAGE_KEY);
+    if (val === "dark" || val === "light") return val;
+  } catch {}
   return null;
 }
 
@@ -41,7 +43,9 @@ export function ThemeToggle() {
     const nextTheme = next ? "dark" : "light";
     setIsDark(next);
     applyTheme(nextTheme);
-    localStorage.setItem(STORAGE_KEY, nextTheme);
+    try {
+      localStorage.setItem(STORAGE_KEY, nextTheme);
+    } catch {}
   };
 
   return (
