@@ -11,7 +11,7 @@ export const DocsLayout: Component<DocsLayoutProps> = (props) => {
   return (
     <div class="mx-auto max-w-7xl flex">
       {/* Sidebar */}
-      <aside class="hidden lg:block w-64 shrink-0 border-r border-border sticky top-14 self-start h-[calc(100vh-3.5rem)]">
+      <aside class="hidden lg:block w-64 shrink-0 border-r border-border bg-background sticky top-14 self-start h-[calc(100vh-3.5rem)]">
         <SidebarNav />
       </aside>
 
@@ -26,7 +26,7 @@ export const DocsLayout: Component<DocsLayoutProps> = (props) => {
       </Drawer>
 
       {/* Main content */}
-      <main class="flex-1 min-w-0">
+      <main class="flex-1 min-w-0 bg-background">
         <div class="max-w-4xl mx-auto px-6 py-10 prose dark:prose-invert">{props.children}</div>
       </main>
     </div>

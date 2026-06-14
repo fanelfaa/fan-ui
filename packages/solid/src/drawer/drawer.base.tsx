@@ -6,11 +6,7 @@ const styles = drawerVariants();
 
 const Root = ArkDrawer.Root;
 const RootProvider = ArkDrawer.RootProvider;
-
-const Trigger: Component<ArkDrawer.TriggerProps> = (props) => {
-  const [local, others] = splitProps(props, ["class"]);
-  return <ArkDrawer.Trigger class={styles.trigger({ class: local.class })} {...others} />;
-};
+const Trigger = ArkDrawer.Trigger;
 
 const Backdrop: Component<ArkDrawer.BackdropProps> = (props) => {
   const [local, others] = splitProps(props, ["class"]);

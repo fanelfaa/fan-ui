@@ -1,4 +1,10 @@
-import { Drawer, DrawerTrigger, DrawerContent, DrawerTitle, DrawerDescription } from "@fan-ui/solid";
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerTitle,
+  DrawerDescription,
+} from "@fan-ui/solid";
 import { Button, Input, Separator } from "@fan-ui/solid";
 
 export default function DrawerBasicDemo() {
