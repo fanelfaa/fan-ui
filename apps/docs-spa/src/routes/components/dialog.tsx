@@ -100,13 +100,22 @@ export type DialogVariants = VariantProps<typeof dialogVariants>`}</Pre>
         <Pre>{`import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
 import { splitProps, type Component } from 'solid-js'
 import { dialogVariants } from './recipes/dialog'
+import { buttonVariants, type ButtonVariants } from './recipes/button'
 import { HTMLProps } from '@ark-ui/solid'
 
 const styles = dialogVariants()
 
 const Root = ArkDialog.Root
 const RootProvider = ArkDialog.RootProvider
-const Trigger = ArkDialog.Trigger
+const Trigger: Component<ArkDialog.TriggerProps & ButtonVariants> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'variant', 'size']);
+  return (
+    <ArkDialog.Trigger
+      class={buttonVariants({ variant: local.variant, size: local.size, class: local.class })}
+      {...others}
+    />
+  );
+};
 
 const Backdrop: Component<ArkDialog.BackdropProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])

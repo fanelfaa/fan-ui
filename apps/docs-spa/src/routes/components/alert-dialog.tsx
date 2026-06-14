@@ -45,7 +45,6 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "~/components/alert-dialog";
-import { Button } from "~/components/button";
 
 export function AlertDialogDemo() {
   return (
@@ -108,14 +107,23 @@ export type AlertDialogVariants = VariantProps<typeof alertDialogVariants>`}</Pr
         Create the component files: At `src/components/alert-dialog/alert-dialog.base.tsx`:
         <Pre>{`import { Dialog as ArkDialog } from '@ark-ui/solid/dialog'
 import { splitProps, type Component } from 'solid-js'
-import { alertDialogVariants, buttonVariants, type ButtonVariants } from './recipes/alert-dialog'
+import { alertDialogVariants } from './recipes/alert-dialog'
+import { buttonVariants, type ButtonVariants } from './recipes/button'
 import { HTMLProps } from '@ark-ui/solid'
 import { ark, type HTMLArkProps } from '@ark-ui/solid/factory'
 
 const styles = alertDialogVariants()
 const AlertDialog = ArkDialog.Root
 const AlertDialogRootProvider = ArkDialog.RootProvider
-const AlertDialogTrigger = ArkDialog.Trigger
+const AlertDialogTrigger: Component<ArkDialog.TriggerProps & ButtonVariants> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'variant', 'size'])
+  return (
+    <ArkDialog.Trigger
+      class={buttonVariants({ variant: local.variant, size: local.size, class: local.class })}
+      {...others}
+    />
+  )
+}
 
 export const AlertDialogBackdrop: Component<ArkDialog.BackdropProps> = (props) => {
   const [local, others] = splitProps(props, ['class'])

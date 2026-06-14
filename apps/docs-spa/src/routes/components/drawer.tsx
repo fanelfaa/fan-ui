@@ -25,7 +25,7 @@ import {
   DrawerDescription,
   DrawerGrabber,
 } from "~/components/drawer";
-import { Button, Input, Separator } from "~/components/button";
+import { Input, Separator } from "~/components/button";
 
 export function DrawerDemo() {
   return (
@@ -84,15 +84,21 @@ export type DrawerVariants = VariantProps<typeof drawerVariants>`}</Pre>
         <Pre>{`import { Drawer as ArkDrawer } from '@ark-ui/solid/drawer'
 import { splitProps, type Component } from 'solid-js'
 import { drawerVariants } from './recipes/drawer'
+import { buttonVariants, type ButtonVariants } from './recipes/button'
 
 const styles = drawerVariants()
 
 const Root = ArkDrawer.Root
 const RootProvider = ArkDrawer.RootProvider
 
-const Trigger: Component<ArkDrawer.TriggerProps> = (props) => {
-  const [local, others] = splitProps(props, ['class'])
-  return <ArkDrawer.Trigger class={styles.trigger({ class: local.class })} {...others} />
+const Trigger: Component<ArkDrawer.TriggerProps & ButtonVariants> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'variant', 'size'])
+  return (
+    <ArkDrawer.Trigger
+      class={buttonVariants({ variant: local.variant, size: local.size, class: local.class })}
+      {...others}
+    />
+  )
 }
 
 const Backdrop: Component<ArkDrawer.BackdropProps> = (props) => {
@@ -287,11 +293,13 @@ export function ExternalControlExample() {
           <strong>
             <InlineCode>DrawerBase.Context</InlineCode>
           </strong>{" "}
-          — a render-prop component that provides access to the drawer state. Use when you need
-          to read the open/close state inside the drawer tree.
+          — a render-prop component that provides access to the drawer state. Use when you need to
+          read the open/close state inside the drawer tree.
         </li>
       </List>
-      <P>Example using <InlineCode>DrawerBase.Context</InlineCode>:</P>
+      <P>
+        Example using <InlineCode>DrawerBase.Context</InlineCode>:
+      </P>
       <Pre>{`
 import { Drawer, DrawerTrigger, DrawerContent, DrawerBase } from "~/components/drawer";
 import { Button } from "~/components/button";
