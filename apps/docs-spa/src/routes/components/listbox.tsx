@@ -53,10 +53,6 @@ npx solidui-cli@latest add listbox
       `}</Pre>
       <H3>Manual</H3>
       <div class="space-y-3">
-        Install the dependency:
-        <Pre>{`npm install tailwind-variants`}</Pre>
-      </div>
-      <div class="space-y-3">
         Create the recipe file at `src/components/recipes/listbox.ts`:
         <Pre>{`import { tv, type VariantProps } from "tailwind-variants";
 

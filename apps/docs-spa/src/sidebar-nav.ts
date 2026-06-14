@@ -10,6 +10,12 @@ export interface SidebarCategory {
 
 export const sidebarNav: SidebarCategory[] = [
   {
+    category: "Getting Started",
+    links: [
+      { href: "/components/quickstart", label: "Quickstart" },
+    ],
+  },
+  {
     category: "Form & Input",
     links: [
       { href: "/components/button", label: "Button" },

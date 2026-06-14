@@ -31,6 +31,7 @@ import { Route as ComponentsSegmentGroupRouteImport } from './routes/components/
 import { Route as ComponentsScrollAreaRouteImport } from './routes/components/scroll-area'
 import { Route as ComponentsRatingGroupRouteImport } from './routes/components/rating-group'
 import { Route as ComponentsRadioGroupRouteImport } from './routes/components/radio-group'
+import { Route as ComponentsQuickstartRouteImport } from './routes/components/quickstart'
 import { Route as ComponentsProgressRouteImport } from './routes/components/progress'
 import { Route as ComponentsPopoverRouteImport } from './routes/components/popover'
 import { Route as ComponentsPinInputRouteImport } from './routes/components/pin-input'
@@ -167,6 +168,11 @@ const ComponentsRatingGroupRoute = ComponentsRatingGroupRouteImport.update({
 const ComponentsRadioGroupRoute = ComponentsRadioGroupRouteImport.update({
   id: '/radio-group',
   path: '/radio-group',
+  getParentRoute: () => ComponentsRoute,
+} as any)
+const ComponentsQuickstartRoute = ComponentsQuickstartRouteImport.update({
+  id: '/quickstart',
+  path: '/quickstart',
   getParentRoute: () => ComponentsRoute,
 } as any)
 const ComponentsProgressRoute = ComponentsProgressRouteImport.update({
@@ -336,6 +342,7 @@ export interface FileRoutesByFullPath {
   '/components/pin-input': typeof ComponentsPinInputRoute
   '/components/popover': typeof ComponentsPopoverRoute
   '/components/progress': typeof ComponentsProgressRoute
+  '/components/quickstart': typeof ComponentsQuickstartRoute
   '/components/radio-group': typeof ComponentsRadioGroupRoute
   '/components/rating-group': typeof ComponentsRatingGroupRoute
   '/components/scroll-area': typeof ComponentsScrollAreaRoute
@@ -387,6 +394,7 @@ export interface FileRoutesByTo {
   '/components/pin-input': typeof ComponentsPinInputRoute
   '/components/popover': typeof ComponentsPopoverRoute
   '/components/progress': typeof ComponentsProgressRoute
+  '/components/quickstart': typeof ComponentsQuickstartRoute
   '/components/radio-group': typeof ComponentsRadioGroupRoute
   '/components/rating-group': typeof ComponentsRatingGroupRoute
   '/components/scroll-area': typeof ComponentsScrollAreaRoute
@@ -439,6 +447,7 @@ export interface FileRoutesById {
   '/components/pin-input': typeof ComponentsPinInputRoute
   '/components/popover': typeof ComponentsPopoverRoute
   '/components/progress': typeof ComponentsProgressRoute
+  '/components/quickstart': typeof ComponentsQuickstartRoute
   '/components/radio-group': typeof ComponentsRadioGroupRoute
   '/components/rating-group': typeof ComponentsRatingGroupRoute
   '/components/scroll-area': typeof ComponentsScrollAreaRoute
@@ -492,6 +501,7 @@ export interface FileRouteTypes {
     | '/components/pin-input'
     | '/components/popover'
     | '/components/progress'
+    | '/components/quickstart'
     | '/components/radio-group'
     | '/components/rating-group'
     | '/components/scroll-area'
@@ -543,6 +553,7 @@ export interface FileRouteTypes {
     | '/components/pin-input'
     | '/components/popover'
     | '/components/progress'
+    | '/components/quickstart'
     | '/components/radio-group'
     | '/components/rating-group'
     | '/components/scroll-area'
@@ -594,6 +605,7 @@ export interface FileRouteTypes {
     | '/components/pin-input'
     | '/components/popover'
     | '/components/progress'
+    | '/components/quickstart'
     | '/components/radio-group'
     | '/components/rating-group'
     | '/components/scroll-area'
@@ -775,6 +787,13 @@ declare module '@tanstack/solid-router' {
       path: '/radio-group'
       fullPath: '/components/radio-group'
       preLoaderRoute: typeof ComponentsRadioGroupRouteImport
+      parentRoute: typeof ComponentsRoute
+    }
+    '/components/quickstart': {
+      id: '/components/quickstart'
+      path: '/quickstart'
+      fullPath: '/components/quickstart'
+      preLoaderRoute: typeof ComponentsQuickstartRouteImport
       parentRoute: typeof ComponentsRoute
     }
     '/components/progress': {
@@ -997,6 +1016,7 @@ interface ComponentsRouteChildren {
   ComponentsPinInputRoute: typeof ComponentsPinInputRoute
   ComponentsPopoverRoute: typeof ComponentsPopoverRoute
   ComponentsProgressRoute: typeof ComponentsProgressRoute
+  ComponentsQuickstartRoute: typeof ComponentsQuickstartRoute
   ComponentsRadioGroupRoute: typeof ComponentsRadioGroupRoute
   ComponentsRatingGroupRoute: typeof ComponentsRatingGroupRoute
   ComponentsScrollAreaRoute: typeof ComponentsScrollAreaRoute
@@ -1046,6 +1066,7 @@ const ComponentsRouteChildren: ComponentsRouteChildren = {
   ComponentsPinInputRoute: ComponentsPinInputRoute,
   ComponentsPopoverRoute: ComponentsPopoverRoute,
   ComponentsProgressRoute: ComponentsProgressRoute,
+  ComponentsQuickstartRoute: ComponentsQuickstartRoute,
   ComponentsRadioGroupRoute: ComponentsRadioGroupRoute,
   ComponentsRatingGroupRoute: ComponentsRatingGroupRoute,
   ComponentsScrollAreaRoute: ComponentsScrollAreaRoute,
