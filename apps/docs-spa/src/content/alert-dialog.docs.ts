@@ -1,14 +1,14 @@
 /**
  * AlertDialog documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import AlertDialogBasicDemo from "../components/demos/alert-dialog-demo/AlertDialogBasicDemo";
 export const docs: DocSchema = {
   name: "AlertDialog",
   description: "A modal dialog for important confirmations or messages",
   category: "Overlay",
   blocks: [
-    { type: "install" },
+    install(),
     demo(AlertDialogBasicDemo),
 
     md(`## Usage

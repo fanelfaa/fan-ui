@@ -1,14 +1,14 @@
 /**
  * DatePicker documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import DatePickerBasicDemo from "../components/demos/date-picker-demo/DatePickerBasicDemo";
 export const docs: DocSchema = {
   name: "DatePicker",
   description: "A date input component with a calendar picker",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(DatePickerBasicDemo),
 
     md(`## Usage

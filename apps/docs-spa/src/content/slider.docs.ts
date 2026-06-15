@@ -1,14 +1,14 @@
 /**
  * Slider documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import SliderBasicDemo from "../components/demos/slider-demo/SliderBasicDemo";
 export const docs: DocSchema = {
   name: "Slider",
   description: "A control for selecting a value from a range",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(SliderBasicDemo),
 
     md(`## Usage

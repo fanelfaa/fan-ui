@@ -1,14 +1,14 @@
 /**
  * Textarea documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import TextareaBasicDemo from "../components/demos/textarea-demo/TextareaBasicDemo";
 export const docs: DocSchema = {
   name: "Textarea",
   description: "A native textarea element styled with Tailwind",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(TextareaBasicDemo),
 
     md(`## Usage

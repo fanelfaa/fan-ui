@@ -1,14 +1,14 @@
 /**
  * ToggleGroup documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import ToggleGroupBasicDemo from "../components/demos/toggle-group-demo/ToggleGroupBasicDemo";
 export const docs: DocSchema = {
   name: "ToggleGroup",
   description: "A set of two-state buttons that can be toggled on or off",
   category: "Navigation",
   blocks: [
-    { type: "install" },
+    install(),
     demo(ToggleGroupBasicDemo),
 
     md(`## Usage

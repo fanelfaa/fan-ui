@@ -1,14 +1,14 @@
 /**
  * Popover documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import PopoverBasicDemo from "../components/demos/popover-demo/PopoverBasicDemo";
 export const docs: DocSchema = {
   name: "Popover",
   description: "Displays rich content in a portal, triggered by a button",
   category: "Overlay",
   blocks: [
-    { type: "install" },
+    install(),
     demo(PopoverBasicDemo),
 
     md(`## Usage

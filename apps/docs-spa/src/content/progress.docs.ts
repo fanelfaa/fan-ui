@@ -1,14 +1,14 @@
 /**
  * Progress documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import ProgressBasicDemo from "../components/demos/progress-demo/ProgressBasicDemo";
 export const docs: DocSchema = {
   name: "Progress",
   description: "Shows the progress of a task or operation",
   category: "Feedback",
   blocks: [
-    { type: "install" },
+    install(),
     demo(ProgressBasicDemo),
 
     md(`## Usage

@@ -9,11 +9,11 @@
  *     return <DocRenderer docs={docs} />;
  *   }
  */
-import { type Component, For, Show, createResource } from "solid-js";
+import { For, Show, createResource } from "solid-js";
 import { H1, H2, H3, P } from "../components/markdown";
-import { CodeBlock } from "../components/CodeBlock";
+import CodeBlock from "../components/CodeBlock";
 import { expandInstallToMarkdown } from "./docs";
-import type { DocSchema, MdBlock, DemoBlock, InstallBlock, DocBlock } from "./docs";
+import type { DocSchema, MdBlock, DemoBlock, DocBlock } from "./docs";
 
 function MdRenderer(props: { block: MdBlock }) {
   // Simple markdown → JSX: split by \n\n, render paragraphs and headings
@@ -33,7 +33,7 @@ function MdRenderer(props: { block: MdBlock }) {
         if (trimmed.startsWith("```")) {
           const match = trimmed.match(/^```(\w*)\n([\s\S]*?)```$/);
           if (match) {
-            return <CodeBlock code={match[2]} lang={match[1] || "text"} />;
+            return <CodeBlock lang={match[1] || "text"}>{match[2]}</CodeBlock>;
           }
         }
         // Handle tables
@@ -54,7 +54,7 @@ function DemoRenderer(props: { block: DemoBlock }) {
         <Demo />
       </div>
       <Show when={props.block.code}>
-        {(code) => <CodeBlock code={code()} lang="tsx" />}
+        {(code) => <CodeBlock lang="tsx">{code()}</CodeBlock>}
       </Show>
     </div>
   );
@@ -99,7 +99,7 @@ function InstallRenderer(props: { componentName: string }) {
               if (trimmed.startsWith("```")) {
                 const match = trimmed.match(/^```(\w*)\n([\s\S]*?)```$/);
                 if (match) {
-                  return <CodeBlock code={match[2]} lang={match[1] || "text"} />;
+                  return <CodeBlock lang={match[1] || "text"}>{match[2]}</CodeBlock>;
                 }
               }
               // Handle bold lines like **Recipe** — ...

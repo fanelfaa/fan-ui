@@ -1,14 +1,14 @@
 /**
  * Typography documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import TypographyBasicDemo from "../components/demos/typography-demo/TypographyBasicDemo";
 export const docs: DocSchema = {
   name: "Typography",
   description: "Text styling components for headings, paragraphs, and more",
   category: "Data Display",
   blocks: [
-    { type: "install" },
+    install(),
     demo(TypographyBasicDemo),
 
     md(`## Usage

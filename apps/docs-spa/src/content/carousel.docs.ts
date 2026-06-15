@@ -1,14 +1,14 @@
 /**
  * Carousel documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import CarouselBasicDemo from "../components/demos/carousel-demo/CarouselBasicDemo";
 export const docs: DocSchema = {
   name: "Carousel",
   description: "A slideshow component for cycling through elements",
   category: "Data Display",
   blocks: [
-    { type: "install" },
+    install(),
     demo(CarouselBasicDemo),
 
     md(`## Usage

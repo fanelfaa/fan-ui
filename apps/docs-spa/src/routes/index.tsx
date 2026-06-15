@@ -68,7 +68,7 @@ function Home() {
           typed, and styled with Tailwind CSS.
         </P>
         <div class="mt-8 flex items-center justify-center gap-4">
-          <Link to="/components/button" class={buttonVariants({ size: "lg" })}>
+          <Link to="/components/quickstart" class={buttonVariants({ size: "lg" })}>
             Browse Components
           </Link>
           <span class="text-sm text-muted-foreground">
@@ -106,7 +106,7 @@ function Home() {
           ))}
         </div>
         <div class="mt-6 text-center">
-          <Link to="/components/button" class={buttonVariants({ variant: "outline" })}>
+          <Link to="/components/quickstart" class={buttonVariants({ variant: "outline" })}>
             View All Components
           </Link>
         </div>

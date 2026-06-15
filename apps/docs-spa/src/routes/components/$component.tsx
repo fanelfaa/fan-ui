@@ -1,15 +1,11 @@
 /**
  * Catch-all route for generated doc pages.
  *
- * Hand-typed routes (button.tsx, select.tsx, dialog.tsx) take priority.
- * This catch-all only matches paths without an explicit route.
- *
- * The Vite plugin generates:
- * - src/generated/pages/<name>.tsx (page components)
- * - src/generated/registry.ts (name → page module mapping)
+ * Hand-typed routes take priority over this catch-all.
+ * The Vite plugin generates page components in src/generated/pages/.
  */
-import { createFileRoute, notFound } from "@tanstack/solid-router";
-import { createSignal, Show, type JSX } from "solid-js";
+import { createFileRoute } from "@tanstack/solid-router";
+import { createResource, Show, type JSX } from "solid-js";
 import { componentRegistry } from "../../generated/registry";
 
 export const Route = createFileRoute("/components/$component")({
@@ -17,24 +13,22 @@ export const Route = createFileRoute("/components/$component")({
 });
 
 function ComponentPage() {
-  const { component } = Route.useParams();
+  const params = Route.useParams();
+  const component = () => params().component;
 
-  const loader = componentRegistry[component()];
-
-  if (!loader) {
-    throw notFound();
-  }
-
-  const [PageComp, setPageComp] = createSignal<(() => JSX.Element) | null>(null);
-
-  loader().then((mod) => setPageComp(() => mod.default));
+  const [pageModule] = createResource(component, async (name) => {
+    const loader = componentRegistry[name];
+    if (!loader) return undefined;
+    return await loader();
+  });
 
   return (
-    <Show
-      when={PageComp()}
-      fallback={<div class="p-8 text-muted-foreground">Loading...</div>}
-    >
-      {(Comp) => <Comp />}
+    <Show when={pageModule()} fallback={<div class="p-8 text-muted-foreground">Loading...</div>}>
+      {(mod) => {
+        const modVal = mod();
+        const Page = modVal.default as unknown as () => JSX.Element;
+        return <Page />;
+      }}
     </Show>
   );
 }

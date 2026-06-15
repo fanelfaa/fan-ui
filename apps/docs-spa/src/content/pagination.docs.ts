@@ -1,14 +1,14 @@
 /**
  * Pagination documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import PaginationBasicDemo from "../components/demos/pagination-demo/PaginationBasicDemo";
 export const docs: DocSchema = {
   name: "Pagination",
   description: "Navigation for paged content",
   category: "Navigation",
   blocks: [
-    { type: "install" },
+    install(),
     demo(PaginationBasicDemo),
 
     md(`## Usage

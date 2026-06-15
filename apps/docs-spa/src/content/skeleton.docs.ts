@@ -1,14 +1,14 @@
 /**
  * Skeleton documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import SkeletonBasicDemo from "../components/demos/skeleton-demo/SkeletonBasicDemo";
 export const docs: DocSchema = {
   name: "Skeleton",
   description: "Use to show a placeholder while content is loading",
   category: "Data Display",
   blocks: [
-    { type: "install" },
+    install(),
     demo(SkeletonBasicDemo),
 
     md(`## Usage

@@ -9,7 +9,7 @@ export const docs: DocSchema = {
   description: "A modal dialog that overlays the page content, typically used for important actions or collecting user input.",
   category: "Overlay",
   blocks: [
-    { type: "install" },
+    install(),
 
     md(`## Usage
 

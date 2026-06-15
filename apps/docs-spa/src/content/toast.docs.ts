@@ -1,14 +1,14 @@
 /**
  * Toast documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import ToastBasicDemo from "../components/demos/toast-demo/ToastBasicDemo";
 export const docs: DocSchema = {
   name: "Toast",
   description: "A brief message that appears temporarily",
   category: "Feedback",
   blocks: [
-    { type: "install" },
+    install(),
     demo(ToastBasicDemo),
 
     md(`## Usage

@@ -1,14 +1,14 @@
 /**
  * Checkbox documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import CheckboxBasicDemo from "../components/demos/checkbox-demo/CheckboxBasicDemo";
 export const docs: DocSchema = {
   name: "Checkbox",
   description: "A control that allows the user to toggle between checked and not checked",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(CheckboxBasicDemo),
 
     md(`## Usage

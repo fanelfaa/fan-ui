@@ -1,14 +1,14 @@
 /**
  * Input documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import InputBasicDemo from "../components/demos/input-demo/InputBasicDemo";
 export const docs: DocSchema = {
   name: "Input",
   description: "A native input element styled with Tailwind",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(InputBasicDemo),
 
     md(`## Usage

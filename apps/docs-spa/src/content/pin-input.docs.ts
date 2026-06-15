@@ -1,14 +1,14 @@
 /**
  * PinInput documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import PinInputBasicDemo from "../components/demos/pin-input-demo/PinInputBasicDemo";
 export const docs: DocSchema = {
   name: "PinInput",
   description: "A series of inputs for entering one-time passwords",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(PinInputBasicDemo),
 
     md(`## Usage

@@ -1,14 +1,14 @@
 /**
  * Drawer documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import DrawerBasicDemo from "../components/demos/drawer-demo/DrawerBasicDemo";
 export const docs: DocSchema = {
   name: "Drawer",
   description: "A dialog that slides in from the edge of the screen",
   category: "Overlay",
   blocks: [
-    { type: "install" },
+    install(),
     demo(DrawerBasicDemo),
 
     md(`## Usage

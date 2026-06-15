@@ -1,14 +1,14 @@
 /**
  * NumberInput documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import NumberInputBasicDemo from "../components/demos/number-input-demo/NumberInputBasicDemo";
 export const docs: DocSchema = {
   name: "NumberInput",
   description: "A number input field with increment/decrement controls",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(NumberInputBasicDemo),
 
     md(`## Usage

@@ -1,14 +1,14 @@
 /**
  * Toggle documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import ToggleBasicDemo from "../components/demos/toggle-demo/ToggleBasicDemo";
 export const docs: DocSchema = {
   name: "Toggle",
   description: "A two-state button that can be either on or off",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(ToggleBasicDemo),
 
     md(`## Usage

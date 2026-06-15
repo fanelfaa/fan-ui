@@ -1,14 +1,14 @@
 /**
  * Combobox documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import ComboboxBasicDemo from "../components/demos/combobox-demo/ComboboxBasicDemo";
 export const docs: DocSchema = {
   name: "Combobox",
   description: "A combobox input with a list of suggestions",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(ComboboxBasicDemo),
 
     md(`## Usage

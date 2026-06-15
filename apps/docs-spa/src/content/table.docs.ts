@@ -1,14 +1,14 @@
 /**
  * Table documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import TableBasicDemo from "../components/demos/table-demo/TableBasicDemo";
 export const docs: DocSchema = {
   name: "Table",
   description: "A structured set of data with rows and columns",
   category: "Data Display",
   blocks: [
-    { type: "install" },
+    install(),
     demo(TableBasicDemo),
 
     md(`## Usage

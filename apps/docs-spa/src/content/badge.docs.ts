@@ -1,14 +1,14 @@
 /**
  * Badge documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import BadgeBasicDemo from "../components/demos/badge-demo/BadgeBasicDemo";
 export const docs: DocSchema = {
   name: "Badge",
   description: "Displays a badge or a component that looks like a badge",
   category: "Data Display",
   blocks: [
-    { type: "install" },
+    install(),
     demo(BadgeBasicDemo),
 
     md(`## Usage

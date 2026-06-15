@@ -1,14 +1,14 @@
 /**
  * Card documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import CardBasicDemo from "../components/demos/card-demo/CardBasicDemo";
 export const docs: DocSchema = {
   name: "Card",
   description: "Displays a card with header, content, and footer",
   category: "Data Display",
   blocks: [
-    { type: "install" },
+    install(),
     demo(CardBasicDemo),
 
     md(`## Usage

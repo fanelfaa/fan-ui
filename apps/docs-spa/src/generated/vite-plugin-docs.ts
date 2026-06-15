@@ -104,12 +104,13 @@ async function fullGenerate(
   packageRoot: string,
 ): Promise<void> {
   const names = scanDocsFiles(contentDir);
+  const pagesDir = path.join(generatedDir, "pages");
 
   console.log(`[docs-plugin] Scanned ${names.length} docs files: ${names.join(", ")}`);
 
   // Generate route pages
   for (const name of names) {
-    generateRoutePage(name, contentDir, PAGES_DIR);
+    generateRoutePage(name, contentDir, pagesDir);
   }
 
   // Registry is auto-discovered via import.meta.glob
@@ -132,7 +133,7 @@ export function docsPlugin(options?: {
   return {
     name: "vite-plugin-docs",
 
-    async configResolved(config) {
+    async configResolved(_config) {
       // Run full generation on startup
       await fullGenerate(contentDir, GENERATED_DIR, PUBLIC_LLMS_DIR, packageRoot);
     },

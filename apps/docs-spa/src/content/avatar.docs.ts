@@ -1,14 +1,14 @@
 /**
  * Avatar documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import AvatarBasicDemo from "../components/demos/avatar-demo/AvatarBasicDemo";
 export const docs: DocSchema = {
   name: "Avatar",
   description: "An image element with a fallback representing the user",
   category: "Data Display",
   blocks: [
-    { type: "install" },
+    install(),
     demo(AvatarBasicDemo),
 
     md(`## Usage

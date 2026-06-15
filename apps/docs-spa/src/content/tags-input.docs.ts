@@ -1,14 +1,14 @@
 /**
  * TagsInput documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import TagsInputBasicDemo from "../components/demos/tags-input-demo/TagsInputBasicDemo";
 export const docs: DocSchema = {
   name: "TagsInput",
   description: "An input for entering multiple tags",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(TagsInputBasicDemo),
 
     md(`## Usage

@@ -1,14 +1,14 @@
 /**
  * Switch documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import SwitchBasicDemo from "../components/demos/switch-demo/SwitchBasicDemo";
 export const docs: DocSchema = {
   name: "Switch",
   description: "A control that can be toggled between on and off",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(SwitchBasicDemo),
 
     md(`## Usage

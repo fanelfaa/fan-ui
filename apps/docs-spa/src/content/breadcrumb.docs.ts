@@ -1,14 +1,14 @@
 /**
  * Breadcrumb documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import BreadcrumbBasicDemo from "../components/demos/breadcrumb-demo/BreadcrumbBasicDemo";
 export const docs: DocSchema = {
   name: "Breadcrumb",
   description: "Shows the current page's location within a navigational hierarchy",
   category: "Navigation",
   blocks: [
-    { type: "install" },
+    install(),
     demo(BreadcrumbBasicDemo),
 
     md(`## Usage

@@ -1,14 +1,14 @@
 /**
  * Tooltip documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import TooltipBasicDemo from "../components/demos/tooltip-demo/TooltipBasicDemo";
 export const docs: DocSchema = {
   name: "Tooltip",
   description: "A popup that displays information on hover",
   category: "Overlay",
   blocks: [
-    { type: "install" },
+    install(),
     demo(TooltipBasicDemo),
 
     md(`## Usage

@@ -1,14 +1,14 @@
 /**
  * ScrollArea documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import ScrollAreaBasicDemo from "../components/demos/scroll-area-demo/ScrollAreaBasicDemo";
 export const docs: DocSchema = {
   name: "ScrollArea",
   description: "A scrollable container with custom scrollbar",
   category: "Data Display",
   blocks: [
-    { type: "install" },
+    install(),
     demo(ScrollAreaBasicDemo),
 
     md(`## Usage

@@ -9,7 +9,7 @@ export const docs: DocSchema = {
   description: "A dropdown component that allows users to select one or more options from a list.",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
 
     md(`## Usage
 

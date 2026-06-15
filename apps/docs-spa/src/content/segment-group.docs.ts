@@ -1,14 +1,14 @@
 /**
  * SegmentGroup documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import SegmentGroupBasicDemo from "../components/demos/segment-group-demo/SegmentGroupBasicDemo";
 export const docs: DocSchema = {
   name: "SegmentGroup",
   description: "A single-select segment control",
   category: "Form & Input",
   blocks: [
-    { type: "install" },
+    install(),
     demo(SegmentGroupBasicDemo),
 
     md(`## Usage

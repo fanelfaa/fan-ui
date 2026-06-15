@@ -44,7 +44,7 @@ function RootComponent() {
               Docs
             </Link>
             <Link
-              to="/components/button"
+              to="/components/quickstart"
               class="text-foreground font-medium hover:text-foreground transition-colors"
             >
               Components

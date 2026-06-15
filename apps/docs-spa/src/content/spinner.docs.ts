@@ -1,14 +1,14 @@
 /**
  * Spinner documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import SpinnerBasicDemo from "../components/demos/spinner-demo/SpinnerBasicDemo";
 export const docs: DocSchema = {
   name: "Spinner",
   description: "A visual indicator of loading",
   category: "Feedback",
   blocks: [
-    { type: "install" },
+    install(),
     demo(SpinnerBasicDemo),
 
     md(`## Usage

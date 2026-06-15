@@ -1,14 +1,14 @@
 /**
  * Collapsible documentation — source of truth for docs-spa and LLM .md output.
  */
-import { type DocSchema, md, install } from "./docs";
+import { type DocSchema, md, demo, install } from "./docs";
 import CollapsibleBasicDemo from "../components/demos/collapsible-demo/CollapsibleBasicDemo";
 export const docs: DocSchema = {
   name: "Collapsible",
   description: "An interactive component which expands/collapses a panel",
   category: "Data Display",
   blocks: [
-    { type: "install" },
+    install(),
     demo(CollapsibleBasicDemo),
 
     md(`## Usage
