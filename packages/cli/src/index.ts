@@ -16,4 +16,12 @@ program
     await addComponent(component, options.output, options.framework);
   });
 
+program
+  .command("doc")
+  .argument("<component>", "Component name to scaffold docs for")
+  .action(async (component) => {
+    const { openDocs } = await import("./commands/doc.js");
+    await openDocs(component);
+  });
+
 program.parse();

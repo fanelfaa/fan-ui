@@ -26,7 +26,6 @@ import { Route as ComponentsSpinnerRouteImport } from './routes/components/spinn
 import { Route as ComponentsSliderRouteImport } from './routes/components/slider'
 import { Route as ComponentsSkeletonRouteImport } from './routes/components/skeleton'
 import { Route as ComponentsSeparatorRouteImport } from './routes/components/separator'
-import { Route as ComponentsSelectRouteImport } from './routes/components/select'
 import { Route as ComponentsSegmentGroupRouteImport } from './routes/components/segment-group'
 import { Route as ComponentsScrollAreaRouteImport } from './routes/components/scroll-area'
 import { Route as ComponentsRatingGroupRouteImport } from './routes/components/rating-group'
@@ -43,7 +42,6 @@ import { Route as ComponentsListboxRouteImport } from './routes/components/listb
 import { Route as ComponentsInputRouteImport } from './routes/components/input'
 import { Route as ComponentsHoverCardRouteImport } from './routes/components/hover-card'
 import { Route as ComponentsDrawerRouteImport } from './routes/components/drawer'
-import { Route as ComponentsDialogRouteImport } from './routes/components/dialog'
 import { Route as ComponentsDatePickerRouteImport } from './routes/components/date-picker'
 import { Route as ComponentsComboboxRouteImport } from './routes/components/combobox'
 import { Route as ComponentsColorPickerRouteImport } from './routes/components/color-picker'
@@ -51,7 +49,6 @@ import { Route as ComponentsCollapsibleRouteImport } from './routes/components/c
 import { Route as ComponentsCheckboxRouteImport } from './routes/components/checkbox'
 import { Route as ComponentsCarouselRouteImport } from './routes/components/carousel'
 import { Route as ComponentsCardRouteImport } from './routes/components/card'
-import { Route as ComponentsButtonRouteImport } from './routes/components/button'
 import { Route as ComponentsBreadcrumbRouteImport } from './routes/components/breadcrumb'
 import { Route as ComponentsBadgeRouteImport } from './routes/components/badge'
 import { Route as ComponentsAvatarRouteImport } from './routes/components/avatar'
@@ -59,6 +56,7 @@ import { Route as ComponentsAspectRatioRouteImport } from './routes/components/a
 import { Route as ComponentsAlertDialogRouteImport } from './routes/components/alert-dialog'
 import { Route as ComponentsAlertRouteImport } from './routes/components/alert'
 import { Route as ComponentsAccordionRouteImport } from './routes/components/accordion'
+import { Route as ComponentsComponentRouteImport } from './routes/components/$component'
 
 const ComponentsRoute = ComponentsRouteImport.update({
   id: '/components',
@@ -145,11 +143,6 @@ const ComponentsSeparatorRoute = ComponentsSeparatorRouteImport.update({
   path: '/separator',
   getParentRoute: () => ComponentsRoute,
 } as any)
-const ComponentsSelectRoute = ComponentsSelectRouteImport.update({
-  id: '/select',
-  path: '/select',
-  getParentRoute: () => ComponentsRoute,
-} as any)
 const ComponentsSegmentGroupRoute = ComponentsSegmentGroupRouteImport.update({
   id: '/segment-group',
   path: '/segment-group',
@@ -230,11 +223,6 @@ const ComponentsDrawerRoute = ComponentsDrawerRouteImport.update({
   path: '/drawer',
   getParentRoute: () => ComponentsRoute,
 } as any)
-const ComponentsDialogRoute = ComponentsDialogRouteImport.update({
-  id: '/dialog',
-  path: '/dialog',
-  getParentRoute: () => ComponentsRoute,
-} as any)
 const ComponentsDatePickerRoute = ComponentsDatePickerRouteImport.update({
   id: '/date-picker',
   path: '/date-picker',
@@ -268,11 +256,6 @@ const ComponentsCarouselRoute = ComponentsCarouselRouteImport.update({
 const ComponentsCardRoute = ComponentsCardRouteImport.update({
   id: '/card',
   path: '/card',
-  getParentRoute: () => ComponentsRoute,
-} as any)
-const ComponentsButtonRoute = ComponentsButtonRouteImport.update({
-  id: '/button',
-  path: '/button',
   getParentRoute: () => ComponentsRoute,
 } as any)
 const ComponentsBreadcrumbRoute = ComponentsBreadcrumbRouteImport.update({
@@ -310,11 +293,17 @@ const ComponentsAccordionRoute = ComponentsAccordionRouteImport.update({
   path: '/accordion',
   getParentRoute: () => ComponentsRoute,
 } as any)
+const ComponentsComponentRoute = ComponentsComponentRouteImport.update({
+  id: '/$component',
+  path: '/$component',
+  getParentRoute: () => ComponentsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/components': typeof ComponentsRouteWithChildren
+  '/components/$component': typeof ComponentsComponentRoute
   '/components/accordion': typeof ComponentsAccordionRoute
   '/components/alert': typeof ComponentsAlertRoute
   '/components/alert-dialog': typeof ComponentsAlertDialogRoute
@@ -322,7 +311,6 @@ export interface FileRoutesByFullPath {
   '/components/avatar': typeof ComponentsAvatarRoute
   '/components/badge': typeof ComponentsBadgeRoute
   '/components/breadcrumb': typeof ComponentsBreadcrumbRoute
-  '/components/button': typeof ComponentsButtonRoute
   '/components/card': typeof ComponentsCardRoute
   '/components/carousel': typeof ComponentsCarouselRoute
   '/components/checkbox': typeof ComponentsCheckboxRoute
@@ -330,7 +318,6 @@ export interface FileRoutesByFullPath {
   '/components/color-picker': typeof ComponentsColorPickerRoute
   '/components/combobox': typeof ComponentsComboboxRoute
   '/components/date-picker': typeof ComponentsDatePickerRoute
-  '/components/dialog': typeof ComponentsDialogRoute
   '/components/drawer': typeof ComponentsDrawerRoute
   '/components/hover-card': typeof ComponentsHoverCardRoute
   '/components/input': typeof ComponentsInputRoute
@@ -347,7 +334,6 @@ export interface FileRoutesByFullPath {
   '/components/rating-group': typeof ComponentsRatingGroupRoute
   '/components/scroll-area': typeof ComponentsScrollAreaRoute
   '/components/segment-group': typeof ComponentsSegmentGroupRoute
-  '/components/select': typeof ComponentsSelectRoute
   '/components/separator': typeof ComponentsSeparatorRoute
   '/components/skeleton': typeof ComponentsSkeletonRoute
   '/components/slider': typeof ComponentsSliderRoute
@@ -367,6 +353,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/components': typeof ComponentsRouteWithChildren
+  '/components/$component': typeof ComponentsComponentRoute
   '/components/accordion': typeof ComponentsAccordionRoute
   '/components/alert': typeof ComponentsAlertRoute
   '/components/alert-dialog': typeof ComponentsAlertDialogRoute
@@ -374,7 +361,6 @@ export interface FileRoutesByTo {
   '/components/avatar': typeof ComponentsAvatarRoute
   '/components/badge': typeof ComponentsBadgeRoute
   '/components/breadcrumb': typeof ComponentsBreadcrumbRoute
-  '/components/button': typeof ComponentsButtonRoute
   '/components/card': typeof ComponentsCardRoute
   '/components/carousel': typeof ComponentsCarouselRoute
   '/components/checkbox': typeof ComponentsCheckboxRoute
@@ -382,7 +368,6 @@ export interface FileRoutesByTo {
   '/components/color-picker': typeof ComponentsColorPickerRoute
   '/components/combobox': typeof ComponentsComboboxRoute
   '/components/date-picker': typeof ComponentsDatePickerRoute
-  '/components/dialog': typeof ComponentsDialogRoute
   '/components/drawer': typeof ComponentsDrawerRoute
   '/components/hover-card': typeof ComponentsHoverCardRoute
   '/components/input': typeof ComponentsInputRoute
@@ -399,7 +384,6 @@ export interface FileRoutesByTo {
   '/components/rating-group': typeof ComponentsRatingGroupRoute
   '/components/scroll-area': typeof ComponentsScrollAreaRoute
   '/components/segment-group': typeof ComponentsSegmentGroupRoute
-  '/components/select': typeof ComponentsSelectRoute
   '/components/separator': typeof ComponentsSeparatorRoute
   '/components/skeleton': typeof ComponentsSkeletonRoute
   '/components/slider': typeof ComponentsSliderRoute
@@ -420,6 +404,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/components': typeof ComponentsRouteWithChildren
+  '/components/$component': typeof ComponentsComponentRoute
   '/components/accordion': typeof ComponentsAccordionRoute
   '/components/alert': typeof ComponentsAlertRoute
   '/components/alert-dialog': typeof ComponentsAlertDialogRoute
@@ -427,7 +412,6 @@ export interface FileRoutesById {
   '/components/avatar': typeof ComponentsAvatarRoute
   '/components/badge': typeof ComponentsBadgeRoute
   '/components/breadcrumb': typeof ComponentsBreadcrumbRoute
-  '/components/button': typeof ComponentsButtonRoute
   '/components/card': typeof ComponentsCardRoute
   '/components/carousel': typeof ComponentsCarouselRoute
   '/components/checkbox': typeof ComponentsCheckboxRoute
@@ -435,7 +419,6 @@ export interface FileRoutesById {
   '/components/color-picker': typeof ComponentsColorPickerRoute
   '/components/combobox': typeof ComponentsComboboxRoute
   '/components/date-picker': typeof ComponentsDatePickerRoute
-  '/components/dialog': typeof ComponentsDialogRoute
   '/components/drawer': typeof ComponentsDrawerRoute
   '/components/hover-card': typeof ComponentsHoverCardRoute
   '/components/input': typeof ComponentsInputRoute
@@ -452,7 +435,6 @@ export interface FileRoutesById {
   '/components/rating-group': typeof ComponentsRatingGroupRoute
   '/components/scroll-area': typeof ComponentsScrollAreaRoute
   '/components/segment-group': typeof ComponentsSegmentGroupRoute
-  '/components/select': typeof ComponentsSelectRoute
   '/components/separator': typeof ComponentsSeparatorRoute
   '/components/skeleton': typeof ComponentsSkeletonRoute
   '/components/slider': typeof ComponentsSliderRoute
@@ -474,6 +456,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/components'
+    | '/components/$component'
     | '/components/accordion'
     | '/components/alert'
     | '/components/alert-dialog'
@@ -481,7 +464,6 @@ export interface FileRouteTypes {
     | '/components/avatar'
     | '/components/badge'
     | '/components/breadcrumb'
-    | '/components/button'
     | '/components/card'
     | '/components/carousel'
     | '/components/checkbox'
@@ -489,7 +471,6 @@ export interface FileRouteTypes {
     | '/components/color-picker'
     | '/components/combobox'
     | '/components/date-picker'
-    | '/components/dialog'
     | '/components/drawer'
     | '/components/hover-card'
     | '/components/input'
@@ -506,7 +487,6 @@ export interface FileRouteTypes {
     | '/components/rating-group'
     | '/components/scroll-area'
     | '/components/segment-group'
-    | '/components/select'
     | '/components/separator'
     | '/components/skeleton'
     | '/components/slider'
@@ -526,6 +506,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/components'
+    | '/components/$component'
     | '/components/accordion'
     | '/components/alert'
     | '/components/alert-dialog'
@@ -533,7 +514,6 @@ export interface FileRouteTypes {
     | '/components/avatar'
     | '/components/badge'
     | '/components/breadcrumb'
-    | '/components/button'
     | '/components/card'
     | '/components/carousel'
     | '/components/checkbox'
@@ -541,7 +521,6 @@ export interface FileRouteTypes {
     | '/components/color-picker'
     | '/components/combobox'
     | '/components/date-picker'
-    | '/components/dialog'
     | '/components/drawer'
     | '/components/hover-card'
     | '/components/input'
@@ -558,7 +537,6 @@ export interface FileRouteTypes {
     | '/components/rating-group'
     | '/components/scroll-area'
     | '/components/segment-group'
-    | '/components/select'
     | '/components/separator'
     | '/components/skeleton'
     | '/components/slider'
@@ -578,6 +556,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/components'
+    | '/components/$component'
     | '/components/accordion'
     | '/components/alert'
     | '/components/alert-dialog'
@@ -585,7 +564,6 @@ export interface FileRouteTypes {
     | '/components/avatar'
     | '/components/badge'
     | '/components/breadcrumb'
-    | '/components/button'
     | '/components/card'
     | '/components/carousel'
     | '/components/checkbox'
@@ -593,7 +571,6 @@ export interface FileRouteTypes {
     | '/components/color-picker'
     | '/components/combobox'
     | '/components/date-picker'
-    | '/components/dialog'
     | '/components/drawer'
     | '/components/hover-card'
     | '/components/input'
@@ -610,7 +587,6 @@ export interface FileRouteTypes {
     | '/components/rating-group'
     | '/components/scroll-area'
     | '/components/segment-group'
-    | '/components/select'
     | '/components/separator'
     | '/components/skeleton'
     | '/components/slider'
@@ -754,13 +730,6 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof ComponentsSeparatorRouteImport
       parentRoute: typeof ComponentsRoute
     }
-    '/components/select': {
-      id: '/components/select'
-      path: '/select'
-      fullPath: '/components/select'
-      preLoaderRoute: typeof ComponentsSelectRouteImport
-      parentRoute: typeof ComponentsRoute
-    }
     '/components/segment-group': {
       id: '/components/segment-group'
       path: '/segment-group'
@@ -873,13 +842,6 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof ComponentsDrawerRouteImport
       parentRoute: typeof ComponentsRoute
     }
-    '/components/dialog': {
-      id: '/components/dialog'
-      path: '/dialog'
-      fullPath: '/components/dialog'
-      preLoaderRoute: typeof ComponentsDialogRouteImport
-      parentRoute: typeof ComponentsRoute
-    }
     '/components/date-picker': {
       id: '/components/date-picker'
       path: '/date-picker'
@@ -927,13 +889,6 @@ declare module '@tanstack/solid-router' {
       path: '/card'
       fullPath: '/components/card'
       preLoaderRoute: typeof ComponentsCardRouteImport
-      parentRoute: typeof ComponentsRoute
-    }
-    '/components/button': {
-      id: '/components/button'
-      path: '/button'
-      fullPath: '/components/button'
-      preLoaderRoute: typeof ComponentsButtonRouteImport
       parentRoute: typeof ComponentsRoute
     }
     '/components/breadcrumb': {
@@ -985,10 +940,18 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof ComponentsAccordionRouteImport
       parentRoute: typeof ComponentsRoute
     }
+    '/components/$component': {
+      id: '/components/$component'
+      path: '/$component'
+      fullPath: '/components/$component'
+      preLoaderRoute: typeof ComponentsComponentRouteImport
+      parentRoute: typeof ComponentsRoute
+    }
   }
 }
 
 interface ComponentsRouteChildren {
+  ComponentsComponentRoute: typeof ComponentsComponentRoute
   ComponentsAccordionRoute: typeof ComponentsAccordionRoute
   ComponentsAlertRoute: typeof ComponentsAlertRoute
   ComponentsAlertDialogRoute: typeof ComponentsAlertDialogRoute
@@ -996,7 +959,6 @@ interface ComponentsRouteChildren {
   ComponentsAvatarRoute: typeof ComponentsAvatarRoute
   ComponentsBadgeRoute: typeof ComponentsBadgeRoute
   ComponentsBreadcrumbRoute: typeof ComponentsBreadcrumbRoute
-  ComponentsButtonRoute: typeof ComponentsButtonRoute
   ComponentsCardRoute: typeof ComponentsCardRoute
   ComponentsCarouselRoute: typeof ComponentsCarouselRoute
   ComponentsCheckboxRoute: typeof ComponentsCheckboxRoute
@@ -1004,7 +966,6 @@ interface ComponentsRouteChildren {
   ComponentsColorPickerRoute: typeof ComponentsColorPickerRoute
   ComponentsComboboxRoute: typeof ComponentsComboboxRoute
   ComponentsDatePickerRoute: typeof ComponentsDatePickerRoute
-  ComponentsDialogRoute: typeof ComponentsDialogRoute
   ComponentsDrawerRoute: typeof ComponentsDrawerRoute
   ComponentsHoverCardRoute: typeof ComponentsHoverCardRoute
   ComponentsInputRoute: typeof ComponentsInputRoute
@@ -1021,7 +982,6 @@ interface ComponentsRouteChildren {
   ComponentsRatingGroupRoute: typeof ComponentsRatingGroupRoute
   ComponentsScrollAreaRoute: typeof ComponentsScrollAreaRoute
   ComponentsSegmentGroupRoute: typeof ComponentsSegmentGroupRoute
-  ComponentsSelectRoute: typeof ComponentsSelectRoute
   ComponentsSeparatorRoute: typeof ComponentsSeparatorRoute
   ComponentsSkeletonRoute: typeof ComponentsSkeletonRoute
   ComponentsSliderRoute: typeof ComponentsSliderRoute
@@ -1039,6 +999,7 @@ interface ComponentsRouteChildren {
 }
 
 const ComponentsRouteChildren: ComponentsRouteChildren = {
+  ComponentsComponentRoute: ComponentsComponentRoute,
   ComponentsAccordionRoute: ComponentsAccordionRoute,
   ComponentsAlertRoute: ComponentsAlertRoute,
   ComponentsAlertDialogRoute: ComponentsAlertDialogRoute,
@@ -1046,7 +1007,6 @@ const ComponentsRouteChildren: ComponentsRouteChildren = {
   ComponentsAvatarRoute: ComponentsAvatarRoute,
   ComponentsBadgeRoute: ComponentsBadgeRoute,
   ComponentsBreadcrumbRoute: ComponentsBreadcrumbRoute,
-  ComponentsButtonRoute: ComponentsButtonRoute,
   ComponentsCardRoute: ComponentsCardRoute,
   ComponentsCarouselRoute: ComponentsCarouselRoute,
   ComponentsCheckboxRoute: ComponentsCheckboxRoute,
@@ -1054,7 +1014,6 @@ const ComponentsRouteChildren: ComponentsRouteChildren = {
   ComponentsColorPickerRoute: ComponentsColorPickerRoute,
   ComponentsComboboxRoute: ComponentsComboboxRoute,
   ComponentsDatePickerRoute: ComponentsDatePickerRoute,
-  ComponentsDialogRoute: ComponentsDialogRoute,
   ComponentsDrawerRoute: ComponentsDrawerRoute,
   ComponentsHoverCardRoute: ComponentsHoverCardRoute,
   ComponentsInputRoute: ComponentsInputRoute,
@@ -1071,7 +1030,6 @@ const ComponentsRouteChildren: ComponentsRouteChildren = {
   ComponentsRatingGroupRoute: ComponentsRatingGroupRoute,
   ComponentsScrollAreaRoute: ComponentsScrollAreaRoute,
   ComponentsSegmentGroupRoute: ComponentsSegmentGroupRoute,
-  ComponentsSelectRoute: ComponentsSelectRoute,
   ComponentsSeparatorRoute: ComponentsSeparatorRoute,
   ComponentsSkeletonRoute: ComponentsSkeletonRoute,
   ComponentsSliderRoute: ComponentsSliderRoute,

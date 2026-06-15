@@ -10,3 +10,8 @@ dist-ssr
 .output
 .vinxi
 __unconfig*
+
+# Generated docs (from *.docs.ts)
+src/generated/pages/
+src/generated/manifest.ts
+public/llms/

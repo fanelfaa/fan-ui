@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 
 import solidPlugin from "vite-plugin-solid";
+import { docsPlugin } from "./src/generated/vite-plugin-docs";
 
 export default defineConfig({
   resolve: { tsconfigPaths: true },
@@ -12,6 +13,7 @@ export default defineConfig({
     exclude: ["@fan-ui/solid", "@fan-ui/core"],
   },
   plugins: [
+    docsPlugin(),
     devtools(),
     tailwindcss(),
     tanstackRouter({ target: "solid", autoCodeSplitting: true }),
