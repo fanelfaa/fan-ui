@@ -1,0 +1,143 @@
+import { InlineCode } from "@fan-ui/solid";
+import RadioGroupControlledDemo from "@demos/radio-group-demo/RadioGroupControlledDemo.tsx";
+import RadioGroupDisabledDemo from "@demos/radio-group-demo/RadioGroupDisabledDemo.tsx";
+import RadioGroupRootProviderDemo from "@demos/radio-group-demo/RadioGroupRootProviderDemo.tsx";
+
+## Usage
+
+Import the components:
+
+```tsx
+import { RadioGroup, RadioGroupItem } from "~/components/radio-group";
+```
+
+Basic usage:
+
+```tsx
+<RadioGroup defaultValue="1" orientation="horizontal">
+  <RadioGroupItem value="1">Credit Card</RadioGroupItem>
+  <RadioGroupItem value="2">Paypal</RadioGroupItem>
+  <RadioGroupItem value="3">Debit</RadioGroupItem>
+</RadioGroup>
+```
+
+## With Label
+
+Add a label to describe the radio group.
+
+```tsx
+<RadioGroup defaultValue="1" orientation="horizontal">
+  <RadioGroupItem value="1">Credit Card</RadioGroupItem>
+  <RadioGroupItem value="2">Paypal</RadioGroupItem>
+</RadioGroup>
+```
+
+## Advanced Usage
+
+When the composite <InlineCode>RadioGroup</InlineCode> doesn't provide enough control, import the raw primitive parts from the base file directly:
+
+```tsx
+import { RadioGroup } from "~/components/radio-group/radio-group.base";
+```
+
+Or import <InlineCode>RadioGroupBase</InlineCode> (the raw parts namespace) from the composite entry point:
+
+```tsx
+import { RadioGroupBase } from "~/components/radio-group";
+```
+
+### Controlled Value
+
+Use <InlineCode>value</InlineCode> and <InlineCode>onValueChange</InlineCode> to control the selection state externally:
+
+<RadioGroupControlledDemo />
+
+```tsx
+import { Index, createSignal } from "solid-js";
+import { RadioGroupBase } from "~/components/radio-group";
+
+const frameworks = ["React", "Solid", "Vue"];
+
+export function ControlledDemo() {
+  const [value, setValue] = createSignal("Solid");
+
+  return (
+    <div>
+      <p class="text-sm text-muted-foreground">Selected: {value()}</p>
+      <RadioGroupBase.Root value={value()} onValueChange={(e) => setValue(e.value)} orientation="horizontal">
+        <RadioGroupBase.Indicator />
+        <Index each={frameworks}>
+          {(framework) => (
+            <RadioGroupBase.Item value={framework()}>
+              <RadioGroupBase.ItemText>{framework()}</RadioGroupBase.ItemText>
+              <RadioGroupBase.ItemControl />
+            </RadioGroupBase.Item>
+          )}
+        </Index>
+      </RadioGroupBase.Root>
+    </div>
+  );
+}
+```
+
+### Disabled Item
+
+Individual items can be disabled using the <InlineCode>disabled</InlineCode> prop:
+
+<RadioGroupDisabledDemo />
+
+```tsx
+import { RadioGroup } from "~/components/radio-group/radio-group.base";
+
+export function DisabledDemo() {
+  return (
+    <RadioGroup.Root defaultValue="React" orientation="horizontal">
+      <RadioGroup.Item value="React">React</RadioGroup.Item>
+      <RadioGroup.Item value="Solid">Solid</RadioGroup.Item>
+      <RadioGroup.Item value="Vue" disabled>Vue</RadioGroup.Item>
+    </RadioGroup.Root>
+  );
+}
+```
+
+### Root Provider
+
+Use <InlineCode>RadioGroupBase.RootProvider</InlineCode> when you need to access the radio group state outside of the component tree. This pattern uses the <InlineCode>useRadioGroup</InlineCode> hook from Ark UI to create a shared context that both the radio group and external elements can reference.
+
+<RadioGroupRootProviderDemo />
+
+```tsx
+import { Index, createMemo } from "solid-js";
+import { RadioGroupBase, RadioGroupItem } from "~/components/radio-group";
+import { useRadioGroup } from "@ark-ui/solid/radio-group";
+
+const paymentMethods = [
+  { value: "1", label: "Credit Card" },
+  { value: "2", label: "Paypal" },
+  { value: "3", label: "Debit" },
+];
+
+export function RadioGroupWithExternalControl() {
+  const radioGroup = useRadioGroup({ defaultValue: "1" });
+  const value = createMemo(() => radioGroup().value);
+
+  return (
+    <div>
+      {/* Access radio group state outside the tree */}
+      <output>Value: {JSON.stringify(value())}</output>
+
+      <RadioGroupBase.RootProvider value={radioGroup} orientation="horizontal">
+        <RadioGroupBase.Label>Payment Method</RadioGroupBase.Label>
+        <Index each={paymentMethods}>
+          {(method) => <RadioGroupItem value={method().value}>{method().label}</RadioGroupItem>}
+        </Index>
+      </RadioGroupBase.RootProvider>
+    </div>
+  );
+}
+```
+
+The key difference:
+
+- **<InlineCode>RadioGroup</InlineCode> (Root)** — manages its own state internally. Use for simple, self-contained radio groups.
+- **<InlineCode>RadioGroupBase.RootProvider</InlineCode>** — accepts a pre-created radio group context via <InlineCode>useRadioGroup</InlineCode>. Use when you need to read or control the radio group state from outside the component tree.

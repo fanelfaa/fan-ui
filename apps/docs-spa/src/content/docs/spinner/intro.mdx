@@ -1,0 +1,25 @@
+import { DocsLink } from "../../../components/DocsLink";
+import SpinnerBasicDemo from "@demos/spinner-demo/SpinnerBasicDemo.tsx";
+
+# Spinner
+
+An animated loading indicator used to show content is being processed. Displays an SVG-based spinning animation with customizable sizes.
+
+<DocsLink href="https://ui.shadcn.com/docs/components/spinner" />
+
+<SpinnerBasicDemo />
+
+```tsx
+import { Spinner } from "~/components/spinner";
+
+export function SpinnerDemo() {
+  return (
+    <div class="flex items-center gap-4">
+      <Spinner size="sm" />
+      <Spinner size="md" />
+      <Spinner size="lg" />
+      <Spinner size="xl" />
+    </div>
+  );
+}
+```

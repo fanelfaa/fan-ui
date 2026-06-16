@@ -1,0 +1,38 @@
+import { DocsLink } from "../../../components/DocsLink";
+import MenuBasicDemo from "@demos/menu-demo/MenuBasicDemo.tsx";
+
+# Menu
+
+Displays a list of options that appears when a user interacts with a trigger button.
+
+<DocsLink href="https://ark-ui.com/docs/components/menu" />
+
+## Basic Usage
+
+<MenuBasicDemo />
+
+```tsx
+import { For } from "solid-js";
+import { MenuTrigger, MenuContent, MenuItem, Menu } from "@fan-ui/solid";
+
+const menuItems = [
+  { value: "edit", label: "Edit" },
+  { value: "duplicate", label: "Duplicate" },
+  { value: "delete", label: "Delete" },
+];
+
+export default function MenuDemo() {
+  return (
+    <Menu>
+      <MenuTrigger>Actions</MenuTrigger>
+      <MenuContent>
+        <For each={menuItems}>
+          {(item) => (
+            <MenuItem value={item.value}>{item.label}</MenuItem>
+          )}
+        </For>
+      </MenuContent>
+    </Menu>
+  );
+}
+```

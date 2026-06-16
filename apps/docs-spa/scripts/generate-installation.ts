@@ -21,11 +21,19 @@ const CORE_RECIPES_DIR = resolve(PROJECT_ROOT, "packages/core/src/recipes");
 const SOLID_COMPONENTS_DIR = resolve(PROJECT_ROOT, "packages/solid/src");
 const DOCS_DIR = resolve(PROJECT_ROOT, "apps/docs-spa/src/content/docs");
 
-const POC_COMPONENTS = ["accordion", "alert", "button"];
+/** Discover components that have docs dirs AND recipe files */
+function discoverComponents(): string[] {
+  if (!existsSync(DOCS_DIR)) return [];
+  return readdirSync(DOCS_DIR, { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name)
+    .filter((name) => name !== "node_modules" && name !== ".git")
+    .filter((name) => existsSync(resolve(CORE_RECIPES_DIR, `${name}.ts`)));
+}
 
 function getComponents(args: string[]): string[] {
-  if (args.length === 0) return POC_COMPONENTS;
-  return args.filter((c) => POC_COMPONENTS.includes(c));
+  if (args.length === 0) return discoverComponents();
+  return args;
 }
 
 function readFileSafe(filePath: string): string | null {

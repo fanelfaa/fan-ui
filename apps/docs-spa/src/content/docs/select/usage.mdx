@@ -1,0 +1,232 @@
+import { InlineCode } from "@fan-ui/solid";
+import SelectRootProviderDemo from "@demos/select-demo/SelectRootProviderDemo.tsx";
+import SelectMultipleDemo from "@demos/select-demo/SelectMultipleDemo.tsx";
+import SelectSearchableDemo from "@demos/select-demo/SelectSearchableDemo.tsx";
+
+## Usage
+
+Import the components:
+
+```tsx
+import { createListCollection } from "@ark-ui/solid";
+import { Index } from "solid-js";
+import {
+  Select,
+  SelectLabel,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+} from "~/components/select";
+```
+
+Basic usage:
+
+```tsx
+const items = createListCollection({
+  items: [
+    { label: 'React', value: 'react' },
+    { label: 'Solid.js', value: 'solid' },
+  ],
+})
+
+<Select collection={items}>
+  <SelectLabel>Framework</SelectLabel>
+  <SelectTrigger placeholder="Select..." />
+  <SelectContent>
+    <Index each={items.items}>
+      {(item) => <SelectItem item={item()}>{item().label}</SelectItem>}
+    </Index>
+  </SelectContent>
+</Select>
+```
+
+### With Label
+
+Add a label to describe the select field.
+
+```tsx
+<Select collection={items}>
+  <SelectLabel>Choose your framework</SelectLabel>
+  <SelectTrigger placeholder="Select..." />
+  <SelectContent>
+    <Index each={items.items}>
+      {(item) => <SelectItem item={item()}>{item().label}</SelectItem>}
+    </Index>
+  </SelectContent>
+</Select>
+```
+
+### Root Provider
+
+Use <InlineCode>SelectRootProvider</InlineCode> when you need to access the select state outside of the component tree. This pattern uses the <InlineCode>useSelect</InlineCode> hook from Ark UI to create a shared context that both the select and external elements can reference.
+
+<SelectRootProviderDemo />
+
+```tsx
+import { useSelect, createListCollection } from "@ark-ui/solid/select";
+import { Index } from "solid-js";
+import { SelectRootProvider, SelectLabel, SelectTrigger, SelectContent, SelectItem } from "~/components/select";
+
+const frameworks = createListCollection({
+  items: [
+    { label: "React", value: "react" },
+    { label: "Solid.js", value: "solid" },
+    { label: "Vue", value: "vue" },
+    { label: "Svelte", value: "svelte" },
+  ],
+});
+
+export function SelectWithExternalControl() {
+  const select = useSelect({ collection: frameworks, defaultValue: ["solid"] });
+
+  return (
+    <div>
+      {/* Access select state outside the tree */}
+      <output>Value: {JSON.stringify(select().value)}</output>
+
+      <SelectRootProvider value={select}>
+        <SelectLabel>Framework</SelectLabel>
+        <SelectTrigger placeholder="Select a framework" />
+        <SelectContent>
+          <Index each={frameworks.items}>
+            {(item) => <SelectItem item={item()}>{item().label}</SelectItem>}
+          </Index>
+        </SelectContent>
+      </SelectRootProvider>
+    </div>
+  );
+}
+```
+
+The key difference:
+
+- **<InlineCode>Select</InlineCode>** — manages its own state internally. Use for simple, self-contained selects.
+- **<InlineCode>SelectRootProvider</InlineCode>** — accepts a pre-created select context via <InlineCode>useSelect</InlineCode>. Use when you need to read or control the select state from outside the component tree.
+
+### Multiple Selection
+
+Use the <InlineCode>multiple</InlineCode> prop to allow selecting multiple options. The <InlineCode>SelectTrigger</InlineCode> composite includes a clear button to deselect all selections.
+
+<SelectMultipleDemo />
+
+```tsx
+import { createListCollection } from "@ark-ui/solid";
+import { Index } from "solid-js";
+import {
+  Select,
+  SelectLabel,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+} from "~/components/select";
+
+const frameworks = createListCollection({
+  items: [
+    { label: "React", value: "react" },
+    { label: "Solid.js", value: "solid" },
+    { label: "Vue", value: "vue" },
+    { label: "Svelte", value: "svelte" },
+  ],
+});
+
+export function SelectMultipleDemo() {
+  return (
+    <Select collection={frameworks} multiple>
+      <SelectLabel>Framework</SelectLabel>
+      <SelectTrigger placeholder="Select frameworks" />
+      <SelectContent>
+        <Index each={frameworks.items}>
+          {(item) => <SelectItem item={item()}>{item().label}</SelectItem>}
+        </Index>
+      </SelectContent>
+    </Select>
+  );
+}
+```
+
+### Searchable Selection
+
+Use the <InlineCode>searchable</InlineCode> prop to enable a search input inside the dropdown. Pass <InlineCode>onSearch</InlineCode> to filter the collection as the user types.
+
+<SelectSearchableDemo />
+
+```tsx
+import { useFilter, useListCollection } from "@ark-ui/solid";
+import { Index } from "solid-js";
+import {
+  Select,
+  SelectLabel,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+} from "~/components/select";
+
+const filterFn = useFilter({ sensitivity: "base" });
+const { collection, filter } = useListCollection({
+  initialItems: [
+    { label: "React", value: "react" },
+    { label: "Solid.js", value: "solid" },
+    { label: "Vue", value: "vue" },
+    { label: "Svelte", value: "svelte" },
+  ],
+  filter: filterFn().contains,
+});
+
+export function SelectSearchableDemo() {
+  return (
+    <Select
+      collection={collection()}
+      searchable
+      onSearch={(value) => filter(value)}
+    >
+      <SelectLabel>Framework</SelectLabel>
+      <SelectTrigger placeholder="Select a framework" />
+      <SelectContent>
+        <Index each={collection().items}>
+          {(item) => <SelectItem item={item()}>{item().label}</SelectItem>}
+        </Index>
+      </SelectContent>
+    </Select>
+  );
+}
+```
+
+The <InlineCode>searchable</InlineCode> prop works with both single and <InlineCode>multiple</InlineCode> selection modes.
+
+### Error State
+
+Use the <InlineCode>error</InlineCode> prop on <InlineCode>SelectBase.Root</InlineCode> to show an error state. The structured <InlineCode>Select</InlineCode> component delegates its root styling to <InlineCode>SelectBase.Root</InlineCode>, so the <InlineCode>error</InlineCode> prop requires using the base component directly:
+
+```tsx
+<SelectBase.Root collection={items} error>
+  <SelectLabel>Framework</SelectLabel>
+  <SelectTrigger placeholder="Select..." />
+  <SelectContent>
+    <Index each={items.items}>
+      {(item) => <SelectItem item={item()}>{item().label}</SelectItem>}
+    </Index>
+  </SelectContent>
+</SelectBase.Root>
+```
+
+### Composite Exports
+
+The <InlineCode>SelectTrigger</InlineCode>, <InlineCode>SelectContent</InlineCode>, and <InlineCode>SelectItem</InlineCode> components are composite wrappers from the barrel entry point that include inline SVG icons and Portal. <InlineCode>SelectTrigger</InlineCode> also includes a clear button when used with <InlineCode>multiple</InlineCode> selection. Import them alongside <InlineCode>Select</InlineCode>:
+
+```tsx
+import { Select, SelectLabel, SelectTrigger, SelectContent, SelectItem } from "~/components/select";
+```
+
+## Advanced Usage
+
+When you need more control, import raw primitive parts directly from the base file:
+
+```tsx
+import { Select } from "~/components/select/select.base";
+```
+
+Or import <InlineCode>SelectBase</InlineCode> (the raw parts namespace) from the barrel entry point:
+
+```tsx
+import { SelectBase } from "~/components/select";
+```

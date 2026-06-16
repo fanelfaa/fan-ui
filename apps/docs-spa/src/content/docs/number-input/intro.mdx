@@ -1,0 +1,18 @@
+import { DocsLink } from "../../../components/DocsLink";
+import NumberInputBasicDemo from "@demos/number-input-demo/NumberInputBasicDemo.tsx";
+
+# Number Input
+
+An input component for entering numeric values, with built-in increment and decrement buttons.
+
+<DocsLink href="https://ark-ui.com/docs/components/number-input" />
+
+<NumberInputBasicDemo />
+
+```tsx
+import { NumberInput } from "~/components/number-input";
+
+export function NumberInputDemo() {
+  return <NumberInput defaultValue={50} min={0} max={100} />;
+}
+```

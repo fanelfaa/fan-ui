@@ -20,7 +20,48 @@ const CORE_RECIPES_DIR = resolve(PROJECT_ROOT, "packages/core/src/recipes");
 const SOLID_COMPONENTS_DIR = resolve(PROJECT_ROOT, "packages/solid/src");
 const DOCS_DIR = resolve(PROJECT_ROOT, "apps/docs-spa/src/content/docs");
 
-const POC = new Set(["accordion", "alert", "button"]);
+/** Discover components that have docs directories */
+function getDocsComponents(): string[] {
+  if (!existsSync(DOCS_DIR)) return [];
+  return readdirSync(DOCS_DIR, { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name);
+}
+
+function restartWatchers(logger: any) {
+  // Close existing watchers
+  for (const w of _watchers) w.close();
+  _watchers = [];
+
+  const components = getDocsComponents();
+  const componentSet = new Set(components);
+
+  // —— recipe watcher (flat directory, no recursive) ——
+  if (existsSync(CORE_RECIPES_DIR)) {
+    _watchers.push(watch(CORE_RECIPES_DIR, (_event, filename) => {
+      if (!filename || !filename.endsWith(".ts")) return;
+      const c = basename(filename, ".ts");
+      if (!componentSet.has(c)) return;
+      logger.info(`[iw] recipe changed: ${filename}`);
+      regenerate(c);
+    }));
+    logger.info(`[iw] watching ${CORE_RECIPES_DIR}`);
+  }
+
+  // —— solid component watchers (one per component) ——
+  for (const c of components) {
+    const dir = resolve(SOLID_COMPONENTS_DIR, c);
+    if (!existsSync(dir)) continue;
+    _watchers.push(watch(dir, (_event, filename) => {
+      if (!filename || !filename.endsWith(".tsx")) return;
+      logger.info(`[iw] component changed: ${c}/${filename}`);
+      regenerate(c);
+    }));
+    logger.info(`[iw] watching ${dir}`);
+  }
+}
+
+let _watchers: ReturnType<typeof watch>[] = [];
 
 // ── helpers ──────────────────────────────────────────────────────────
 
@@ -103,31 +144,7 @@ export function installationWatcher(): Plugin {
         logger.info(`[iw] ✓ ${component}/installation.gen.mdx`);
       }
 
-      // —— recipe watcher (flat directory, no recursive) ——
-      if (existsSync(CORE_RECIPES_DIR)) {
-        watch(CORE_RECIPES_DIR, (_event, filename) => {
-          if (!filename || !filename.endsWith(".ts")) return;
-          const c = basename(filename, ".ts");
-          if (!POC.has(c)) return;
-          logger.info(`[iw] recipe changed: ${filename}`);
-          regenerate(c);
-        });
-        logger.info(`[iw] watching ${CORE_RECIPES_DIR}`);
-      } else {
-        logger.warn(`[iw] recipes dir not found: ${CORE_RECIPES_DIR}`);
-      }
-
-      // —— solid component watchers (one per POC component, no recursive) ——
-      for (const c of POC) {
-        const dir = resolve(SOLID_COMPONENTS_DIR, c);
-        if (!existsSync(dir)) { logger.warn(`[iw] component dir not found: ${dir}`); continue; }
-        watch(dir, (_event, filename) => {
-          if (!filename || !filename.endsWith(".tsx")) return;
-          logger.info(`[iw] component changed: ${c}/${filename}`);
-          regenerate(c);
-        });
-        logger.info(`[iw] watching ${dir}`);
-      }
+      restartWatchers(logger);
     },
   };
 }

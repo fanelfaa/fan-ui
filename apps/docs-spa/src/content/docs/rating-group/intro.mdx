@@ -1,0 +1,25 @@
+import { DocsLink } from "../../../components/DocsLink";
+import RatingGroupBasicDemo from "@demos/rating-group-demo/RatingGroupBasicDemo.tsx";
+
+# Rating Group
+
+Star-based rating input component supporting controlled/uncontrolled modes, half-star ratings, and disabled/readonly states.
+
+<DocsLink href="https://ark-ui.com/docs/components/rating-group" />
+
+<RatingGroupBasicDemo />
+
+```tsx
+import { RatingGroup, RatingGroupLabel } from "~/components/rating-group";
+
+export default function RatingGroupBasicDemo() {
+  return (
+    <div class="rounded-lg border border-border p-6">
+      <p class="text-sm text-muted-foreground mb-2">Basic horizontal</p>
+      <RatingGroup count={5} defaultValue={3}>
+        <RatingGroupLabel>Rate this</RatingGroupLabel>
+      </RatingGroup>
+    </div>
+  );
+}
+```

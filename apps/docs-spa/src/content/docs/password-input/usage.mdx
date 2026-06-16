@@ -1,0 +1,61 @@
+import { InlineCode } from "@fan-ui/solid";
+import PasswordInputRootProviderDemo from "@demos/password-input-demo/PasswordInputRootProviderDemo.tsx";
+
+## Usage
+
+Import the component:
+
+```tsx
+import { PasswordInput } from "~/components/password-input";
+```
+
+Basic:
+
+```tsx
+<PasswordInput />
+```
+
+With label:
+
+```tsx
+<PasswordInput label="Password" />
+```
+
+With placeholder:
+
+```tsx
+<PasswordInput label="Password" placeholder="Enter your password" />
+```
+
+## Root Provider
+
+Use <InlineCode>PasswordInputRootProvider</InlineCode> when you need to control the password input state externally.
+
+<PasswordInputRootProviderDemo />
+
+```tsx
+import { usePasswordInput } from "@ark-ui/solid/password-input";
+import { Button } from "~/components/button";
+import { PasswordInputRootProvider } from "~/components/password-input";
+
+export function PasswordInputWithExternalControl() {
+  const passwordInput = usePasswordInput();
+
+  return (
+    <div>
+      <output>Value: {JSON.stringify(passwordInput().value)}</output>
+
+      <Button onClick={() => passwordInput().toggleVisible()}>
+        Toggle
+      </Button>
+
+      <PasswordInputRootProvider value={passwordInput} />
+    </div>
+  );
+}
+```
+
+The key difference:
+
+- **<InlineCode>PasswordInput</InlineCode> (Root)** — manages its own state internally. Use for simple, self-contained password inputs.
+- **<InlineCode>PasswordInputRootProvider</InlineCode>** — accepts a pre-created password input context via <InlineCode>usePasswordInput</InlineCode>. Use when you need to read or control the password input state from outside the component tree.
