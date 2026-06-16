@@ -1,0 +1,141 @@
+import { Button } from "@fan-ui/solid";
+
+## Usage
+
+Import the component:
+
+```tsx
+import { Button } from "~/components/button";
+```
+
+Basic usage:
+
+```tsx
+<Button>Click me</Button>
+```
+
+With event handler:
+
+```tsx
+<Button onClick={() => console.log("clicked!")}>Submit</Button>
+```
+
+Combining variant and size:
+
+```tsx
+<Button variant="destructive" size="lg">
+  Delete Account
+</Button>
+```
+
+With icon:
+
+```tsx
+<Button variant="outline" size="icon">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12h14" />
+    <path d="M12 5v14" />
+  </svg>
+</Button>
+```
+
+Custom class override:
+
+```tsx
+<Button class="w-full">Full Width Button</Button>
+```
+
+### Variants
+
+Use the <code>variant</code> prop to change the visual style.
+
+<div class="flex flex-wrap gap-4 not-prose">
+  <Button>Default</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="destructive">Destructive</Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="ghost">Ghost</Button>
+  <Button variant="link">Link</Button>
+</div>
+
+### Sizes
+
+Use the <code>size</code> prop to change the button size.
+
+<div class="flex flex-wrap items-center gap-4 not-prose">
+  <Button size="sm">Sm</Button>
+  <Button size="md">Md</Button>
+  <Button size="lg">Lg</Button>
+  <Button size="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14" />
+      <path d="M12 5v14" />
+    </svg>
+  </Button>
+</div>
+
+### Disabled
+
+Add the <code>disabled</code> prop to disable interaction.
+
+<div class="flex flex-wrap gap-4 not-prose">
+  <Button disabled>Default</Button>
+  <Button variant="secondary" disabled>Secondary</Button>
+  <Button variant="destructive" disabled>Destructive</Button>
+  <Button variant="outline" disabled>Outline</Button>
+  <Button variant="ghost" disabled>Ghost</Button>
+  <Button variant="link" disabled>Link</Button>
+</div>
+
+### Loading
+
+Add the <code>loading</code> prop to show a spinner alongside the button label and automatically disable interaction.
+
+<div class="flex flex-wrap gap-4 not-prose">
+  <Button loading>Default</Button>
+  <Button variant="secondary" loading>Secondary</Button>
+  <Button variant="destructive" loading>Destructive</Button>
+  <Button variant="outline" loading>Outline</Button>
+  <Button variant="ghost" loading>Ghost</Button>
+  <Button variant="link" loading>Link</Button>
+</div>
+
+Useful for async operations like form submissions:
+
+```tsx
+import { createSignal } from "solid-js";
+import { Button } from "~/components/button";
+
+export function SubmitDemo() {
+  const [loading, setLoading] = createSignal(false);
+
+  async function handleSubmit() {
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 2000));
+    setLoading(false);
+  }
+
+  return (
+    <Button loading={loading()} onClick={handleSubmit}>
+      Submit
+    </Button>
+  );
+}
+```
+
+### Link
+
+Use the <code>buttonVariants</code> helper to render a link that looks like a button.
+
+```tsx
+import { Button, buttonVariants } from "~/components/button";
+
+<a class={buttonVariants({ variant: "outline" })} href="/docs">
+  Click here
+</a>;
+
+// or
+<Button asChild={(props)=><a {...props()}/>}>
+  Click Here
+</Button>
+```

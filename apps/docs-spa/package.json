@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite dev --port 4173",
     "generate-routes": "tsr generate",
+    "generate-installation": "tsx scripts/generate-installation.ts",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",

@@ -1,0 +1,91 @@
+## Installation
+
+### CLI
+
+Run the following command to add the component to your project:
+
+```bash
+npx @fan-ui/cli@latest add button
+```
+
+### Manual
+
+Create the recipe file at `src/components/recipes/button.ts`:
+
+```ts
+import { tv, type VariantProps } from "tailwind-variants";
+
+export const buttonVariants = tv({
+  base: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  variants: {
+    variant: {
+      default: "bg-primary text-primary-foreground hover:bg-primary/90",
+      destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+      outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+      secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+      ghost: "hover:bg-accent hover:text-accent-foreground",
+      link: "text-primary underline-offset-4 hover:underline",
+    },
+    size: {
+      sm: "h-8 px-2.5 text-sm",
+      md: "h-9 px-3 py-1.5",
+      lg: "h-10 px-6",
+      icon: "size-8",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "sm",
+  },
+});
+
+export type ButtonVariants = VariantProps<typeof buttonVariants>;
+```
+
+Create the component file at `src/components/button/index.tsx`:
+
+```tsx
+import { splitProps, type Component, Show, children } from "solid-js";
+import { ButtonVariants, buttonVariants } from "@fan-ui/core";
+import { ark, HTMLArkProps } from "@ark-ui/solid/factory";
+import { Spinner } from "../spinner";
+
+type ButtonProps = HTMLArkProps<"button"> &
+  ButtonVariants & {
+    loading?: boolean;
+  };
+
+const Button: Component<ButtonProps> = (props) => {
+  const [local, others] = splitProps(props, [
+    "class",
+    "variant",
+    "size",
+    "loading",
+    "disabled",
+    "children",
+  ]);
+  const isDisabled = () => local.loading || local.disabled;
+
+  const resolvedChildren = children(() => local.children);
+  return (
+    <ark.button
+      class={buttonVariants({
+        variant: local.variant,
+        size: local.size,
+        class: local.class,
+      })}
+      disabled={isDisabled()}
+      {...others}
+    >
+      <Show when={local.loading}>
+        <Spinner size="sm" />
+      </Show>
+      {resolvedChildren()}
+    </ark.button>
+  );
+};
+
+export { Button, buttonVariants };
+```
+
+> **Note:** Make sure your project has the Tailwind CSS theme variables set up (`--background`, `--foreground`, `--ring`, `--border`, etc.) or override the utility classes to match your design system.
