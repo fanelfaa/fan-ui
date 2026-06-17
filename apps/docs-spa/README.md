@@ -1,120 +1,156 @@
-Welcome to your new TanStack Start app!
+# docs-spa
 
-# Getting Started
+SolidJS + Vite + TanStack Router documentation SPA for the @fan-ui component library.
 
-To run this application:
+## Architecture
 
-```bash
-pnpm install
-pnpm dev
+Component docs live under `src/content/docs/<component>/` as a directory of files:
+
+```
+src/content/docs/
+├── index.tsx              ← Collector: exports all component doc modules
+├── accordion/
+│   ├── index.tsx          ← Combines all section files in order
+│   ├── intro.mdx          ← Title, description, live demo
+│   ├── installation.gen.mdx  ← AUTO-GENERATED (CLI + Manual)
+│   ├── usage.mdx          ← Usage + sub-sections
+│   └── api.mdx            ← API reference table
+├── alert/
+│   └── ...
+└── button/
+    └── ...
 ```
 
-# Building For Production
+Each component directory has:
+- `index.tsx` — imports every section `.mdx` and renders them sequentially
+- `installation.gen.mdx` — **auto-generated** by reading the actual recipe + component source
+- Hand-written section `.mdx` files — one per section (intro, usage, api, etc.)
+- Sub-sections (e.g. Multiple, Controlled, Disabled) are nested under Usage as `###` headings
 
-To build this application for production:
+## Auto-Generated Installation
+
+The `installation.gen.mdx` file is generated from the actual source code:
+
+| Source | Location |
+|--------|----------|
+| Recipe code | `packages/core/src/recipes/<name>.ts` |
+| Component code | `packages/solid/src/<name>/` (all `.tsx` files) |
+
+### Generation Script
 
 ```bash
-pnpm build
+pnpm generate-installation              # All components with docs
+pnpm generate-installation accordion    # Specific component(s)
+```
+
+The script at `scripts/generate-installation.ts`:
+1. Reads the recipe file from `packages/core/src/recipes/<name>.ts`
+2. Reads all `.tsx` files from `packages/solid/src/<name>/`
+3. Generates `## Installation` section with CLI command + recipe code + component code
+4. Writes to `src/content/docs/<name>/installation.gen.mdx`
+
+Generated files are committed to git.
+
+### Dev-Mode Auto-Watch (Vite Plugin)
+
+The plugin at `src/plugins/installation-watcher.ts` watches source files during `pnpm dev`:
+
+- **Recipe changes** (`packages/core/src/recipes/`) — regenerates on `.ts` change
+- **Component changes** (`packages/solid/src/<name>/`) — regenerates on `.tsx` change
+
+Uses `fs.watch` on each directory individually (no `recursive: true`, for Linux compatibility).
+
+## Adding a New Component Documentation
+
+### Step 1: Create the docs directory
+
+```
+src/content/docs/<name>/
+├── index.tsx
+├── intro.mdx
+├── usage.mdx
+└── api.mdx
+```
+
+The `index.tsx` imports section files in order:
+
+```tsx
+import Intro from "./intro.mdx";
+import Installation from "./installation.gen.mdx";
+import Usage from "./usage.mdx";
+import Api from "./api.mdx";
+import type { Component } from "solid-js";
+
+const NameDoc: Component = () => (
+  <>
+    <Intro />
+    <Installation />
+    <Usage />
+    <Api />
+  </>
+);
+export default NameDoc;
+```
+
+### Step 2: Write section files
+
+- `intro.mdx` — `# Title` + description + `<DocsLink>` + live demo
+- `usage.mdx` — `## Usage` with import examples and sub-sections as `###`
+- `api.mdx` — `## API Reference` with prop table
+
+Each `.mdx` file can import components directly:
+
+```mdx
+import { DocsLink } from "../../../components/DocsLink";
+import { Button } from "@fan-ui/solid";
+```
+
+> Relative imports from `src/content/docs/<name>/` to `src/components/` need `../../../components/` (3 levels up from the nested directory).
+
+### Step 3: Generate the installation file
+
+```bash
+pnpm generate-installation <name>
+```
+
+This creates `installation.gen.mdx` from the recipe + component source.
+
+### Step 4: Register in the collector
+
+Add to `src/content/docs/index.tsx`:
+
+```tsx
+import NameDoc from "./<name>/index";
+// ...
+export const docs: Record<string, Component> = {
+  // ...
+  "<name>": NameDoc,
+};
+```
+
+### Step 5: Add to the watcher (optional)
+
+If you want dev-mode auto-regeneration, add the component name to the `POC` set in:
+- `scripts/generate-installation.ts`
+- `src/plugins/installation-watcher.ts`
+
+### Future: Auto-Discovery
+
+Currently component names are hardcoded in POC lists. The planned improvement is auto-discovery: scanning `packages/core/src/recipes/` for recipe files and checking if a corresponding `content/docs/<name>/` directory exists, eliminating step 4 and 5.
+
+## Dev Commands
+
+```bash
+pnpm dev                  # Start dev server (port 4173)
+pnpm build                # Production build
+pnpm typecheck            # TypeScript check
+pnpm generate-routes      # Regenerate TanStack Router route tree
+pnpm generate-installation # Regenerate all installation.gen.mdx files
 ```
 
 ## Styling
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
-
-### Removing Tailwind CSS
-
-If you prefer not to use Tailwind CSS:
-
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Uninstall the packages: `pnpm add @tailwindcss/vite tailwindcss --dev`
-
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/solid-router`.
-
-```tsx
-import { Link } from "@tanstack/solid-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/solid/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes.
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/solid/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from "@tanstack/solid-start";
-
-const getServerTime = createServerFn({
-  method: "GET",
-}).handler(async () => {
-  return new Date().toISOString();
-});
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from "@tanstack/solid-router";
-
-export const Route = createFileRoute("/people")({
-  loader: async () => {
-    const response = await fetch("https://swapi.dev/api/people");
-    return response.json();
-  },
-  component: PeopleComponent,
-});
-
-function PeopleComponent() {
-  const data = Route.useLoaderData();
-  return (
-    <ul>
-      <For each={data().results}>{(person) => <li>{person.name}</li>}</For>
-    </ul>
-  );
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/solid/guide/data-loading#loader-parameters).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+- Tailwind CSS v4 via `@tailwindcss/vite`
+- Prose styles via `@tailwindcss/typography`
+- MDX rendered via `vite-plugin-solid-marked` with custom provider at `src/mdx-provider.tsx`
+- Component demos at `src/components/demos/<name>-demo/`

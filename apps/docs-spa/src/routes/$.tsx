@@ -16,7 +16,7 @@ function NotFound() {
         <Link to="/" class={buttonVariants({ variant: "default" })}>
           Go Home
         </Link>
-        <Link to="/components/button" class={buttonVariants({ variant: "outline" })}>
+        <Link to="/docs/components/$component" params={{ component: "button" }} class={buttonVariants({ variant: "outline" })}>
           Browse Components
         </Link>
       </div>

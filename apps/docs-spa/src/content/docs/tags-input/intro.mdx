@@ -1,0 +1,25 @@
+import { DocsLink } from "../../../components/DocsLink";
+import TagsInputBasicDemo from "@demos/tags-input-demo/TagsInputBasicDemo.tsx";
+
+# Tags Input
+
+Allows entering multiple tags/values in a text input field.
+
+<DocsLink href="https://ark-ui.com/docs/components/tags-input" />
+
+<TagsInputBasicDemo />
+
+```tsx
+import { TagsInput } from "~/components/tags-input";
+
+export default function TagsInputBasicDemo() {
+  return (
+    <div class="rounded-lg border border-border p-6 space-y-6">
+      <div>
+        <p class="text-sm text-muted-foreground mb-2">Basic tags input</p>
+        <TagsInput defaultValue={["React", "Solid"]} label="Frameworks" />
+      </div>
+    </div>
+  );
+}
+```

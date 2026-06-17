@@ -1,0 +1,72 @@
+import { InlineCode } from "@fan-ui/solid";
+import PinInputRootProviderDemo from "@demos/pin-input-demo/PinInputRootProviderDemo.tsx";
+
+## Usage
+
+Import the components:
+
+```tsx
+import { PinInput, PinInputControl, PinInputInput, PinInputLabel } from "~/components/pin-input";
+import { Index } from "solid-js";
+```
+
+Basic:
+
+```tsx
+<PinInput>
+  <PinInputLabel>Code</PinInputLabel>
+  <PinInputControl>
+    <Index each={[0, 1, 2, 3]}>{(id) => <PinInputInput index={id()} />}</Index>
+  </PinInputControl>
+</PinInput>
+```
+
+Masked (for sensitive codes):
+
+```tsx
+<PinInput placeholder="\u2022" mask>
+  <PinInputLabel>PIN</PinInputLabel>
+  <PinInputControl>
+    <Index each={[0, 1, 2, 3]}>{(id) => <PinInputInput index={id()} />}</Index>
+  </PinInputControl>
+</PinInput>
+```
+
+## Root Provider
+
+Use <InlineCode>PinInputRootProvider</InlineCode> when you need to control the pin input state externally.
+
+<PinInputRootProviderDemo />
+
+```tsx
+import { usePinInput } from "@ark-ui/solid/pin-input";
+import {
+  PinInputRootProvider,
+  PinInputControl,
+  PinInputInput,
+  PinInputLabel,
+} from "~/components/pin-input";
+import { Index } from "solid-js";
+
+export function PinInputWithExternalControl() {
+  const pinInput = usePinInput();
+
+  return (
+    <div>
+      <output>Value: {JSON.stringify(pinInput().value)}</output>
+
+      <PinInputRootProvider value={pinInput}>
+        <PinInputLabel>Code</PinInputLabel>
+        <PinInputControl>
+          <Index each={[0, 1, 2, 3]}>{(id) => <PinInputInput index={id()} />}</Index>
+        </PinInputControl>
+      </PinInputRootProvider>
+    </div>
+  );
+}
+```
+
+The key difference:
+
+- **<InlineCode>PinInput</InlineCode> (Root)** — manages its own state internally. Use for simple, self-contained pin inputs.
+- **<InlineCode>PinInputRootProvider</InlineCode>** — accepts a pre-created pin input context via <InlineCode>usePinInput</InlineCode>. Use when you need to read or control the pin input state from outside the component tree.

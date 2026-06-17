@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/solid-router";
 import { buttonVariants } from "@fan-ui/core";
-import { H2, P, InlineCode } from "../components/markdown";
+import { H2, P, InlineCode } from "@fan-ui/solid";
 
 export const Route = createFileRoute("/")({ component: Home });
 
@@ -8,37 +8,37 @@ const categories = [
   {
     name: "Form & Input",
     count: 19,
-    href: "/components/button",
+    href: "/docs/components/button",
     description: "Button, Input, Select, Checkbox, Switch, and more",
   },
   {
     name: "Overlay",
     count: 8,
-    href: "/components/dialog",
+    href: "/docs/components/dialog",
     description: "Dialog, Drawer, Popover, Tooltip, Toast, and more",
   },
   {
     name: "Navigation",
     count: 6,
-    href: "/components/accordion",
+    href: "/docs/components/accordion",
     description: "Accordion, Breadcrumb, Tabs, Menu, Pagination",
   },
   {
     name: "Data Display",
     count: 6,
-    href: "/components/card",
+    href: "/docs/components/card",
     description: "Card, Table, Avatar, Badge, Carousel, Typography",
   },
   {
     name: "Feedback",
     count: 4,
-    href: "/components/alert",
+    href: "/docs/components/alert",
     description: "Alert, Progress, Skeleton, Spinner",
   },
   {
     name: "Layout",
     count: 3,
-    href: "/components/scroll-area",
+    href: "/docs/components/scroll-area",
     description: "Scroll Area, Separator, Aspect Ratio",
   },
 ];
@@ -46,14 +46,14 @@ const categories = [
 const totalCount = categories.reduce((sum, cat) => sum + cat.count, 0);
 
 const quickLinks = [
-  { href: "/components/button", label: "Button" },
-  { href: "/components/input", label: "Input" },
-  { href: "/components/dialog", label: "Dialog" },
-  { href: "/components/select", label: "Select" },
-  { href: "/components/toast", label: "Toast" },
-  { href: "/components/tabs", label: "Tabs" },
-  { href: "/components/accordion", label: "Accordion" },
-  { href: "/components/card", label: "Card" },
+  { href: "/docs/components/button", label: "Button" },
+  { href: "/docs/components/input", label: "Input" },
+  { href: "/docs/components/dialog", label: "Dialog" },
+  { href: "/docs/components/select", label: "Select" },
+  { href: "/docs/components/toast", label: "Toast" },
+  { href: "/docs/components/tabs", label: "Tabs" },
+  { href: "/docs/components/accordion", label: "Accordion" },
+  { href: "/docs/components/card", label: "Card" },
 ];
 
 function Home() {
@@ -68,7 +68,7 @@ function Home() {
           typed, and styled with Tailwind CSS.
         </P>
         <div class="mt-8 flex items-center justify-center gap-4">
-          <Link to="/components/button" class={buttonVariants({ size: "lg" })}>
+          <Link to="/docs/components/$component" params={{ component: "button" }} class={buttonVariants({ size: "lg" })}>
             Browse Components
           </Link>
           <span class="text-sm text-muted-foreground">
@@ -83,8 +83,8 @@ function Home() {
         <P class="mb-6">
           Follow the step-by-step guide to add <InlineCode>@fan-ui</InlineCode> to your project.
         </P>
-        <Link to="/components/quickstart" class={buttonVariants({ size: "lg" })}>
-          View Quickstart Guide
+        <Link to="/docs/components/$component" params={{ component: "button" }} class={buttonVariants({ size: "lg" })}>
+          Browse Components
         </Link>
       </section>
 
@@ -106,7 +106,7 @@ function Home() {
           ))}
         </div>
         <div class="mt-6 text-center">
-          <Link to="/components/button" class={buttonVariants({ variant: "outline" })}>
+          <Link to="/docs/components/$component" params={{ component: "button" }} class={buttonVariants({ variant: "outline" })}>
             View All Components
           </Link>
         </div>

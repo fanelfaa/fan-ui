@@ -1,0 +1,135 @@
+## Usage
+
+Import the components:
+
+```tsx
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "~/components/hover-card";
+```
+
+Basic hover card:
+
+```tsx
+<HoverCard>
+  <HoverCardTrigger>Hover me</HoverCardTrigger>
+  <HoverCardContent useArrow>
+    <div>Content displayed on hover</div>
+  </HoverCardContent>
+</HoverCard>
+```
+
+### Controlled Open State
+
+import HoverCardControlledDemo from "@demos/hover-card-demo/HoverCardControlledDemo.tsx";
+
+<HoverCardControlledDemo />
+
+Use <InlineCode>open</InlineCode> and <InlineCode>onOpenChange</InlineCode> to control the hover card visibility externally:
+
+```tsx
+import { createSignal } from "solid-js";
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "~/components/hover-card";
+
+function ControlledHoverCard() {
+  const [open, setOpen] = createSignal(false);
+  return (
+    <HoverCard open={open()} onOpenChange={(e) => setOpen(e.open)}>
+      <HoverCardTrigger>Hover me</HoverCardTrigger>
+      <HoverCardContent>Controlled hover card</HoverCardContent>
+    </HoverCard>
+  );
+}
+```
+
+### Custom Delay
+
+import HoverCardDelayDemo from "@demos/hover-card-demo/HoverCardDelayDemo.tsx";
+
+<HoverCardDelayDemo />
+
+Adjust the hover open and close delays:
+
+```tsx
+<HoverCard openDelay={200} closeDelay={100}>
+  <HoverCardTrigger>Hover me</HoverCardTrigger>
+  <HoverCardContent>Custom delay (200ms open, 100ms close)</HoverCardContent>
+</HoverCard>
+```
+
+### Custom Positioning
+
+import HoverCardPositioningDemo from "@demos/hover-card-demo/HoverCardPositioningDemo.tsx";
+
+<HoverCardPositioningDemo />
+
+Position the hover card at different sides:
+
+```tsx
+<HoverCard positioning={{ placement: "right" }}>
+  <HoverCardTrigger>Hover me</HoverCardTrigger>
+  <HoverCardContent>
+    Positioned to the right
+  </HoverCardContent>
+</HoverCard>
+```
+
+### Advanced Usage
+
+When the composite <InlineCode>HoverCard</InlineCode> does not provide enough control, import the raw primitive parts via <InlineCode>HoverCardBase</InlineCode>:
+
+```tsx
+import { HoverCardBase } from "~/components/hover-card";
+```
+
+Or import directly from the base file:
+
+```tsx
+import { HoverCard } from "~/components/hover-card/hover-card.base";
+```
+
+#### RootProvider Pattern
+
+import HoverCardRootProviderDemo from "@demos/hover-card-demo/HoverCardRootProviderDemo.tsx";
+
+<HoverCardRootProviderDemo />
+
+For machine-controlled usage with <InlineCode>useHoverCard</InlineCode>:
+
+```tsx
+import { useHoverCard } from "@ark-ui/solid/hover-card";
+import { HoverCardBase } from "~/components/hover-card";
+
+const machine = useHoverCard({ open: true });
+
+<HoverCardBase.RootProvider value={machine}>
+  <HoverCardBase.Trigger>Hover me</HoverCardBase.Trigger>
+  <HoverCardBase.Positioner>
+    <HoverCardBase.Content>
+      Content controlled via machine
+    </HoverCardBase.Content>
+  </HoverCardBase.Positioner>
+</HoverCardBase.RootProvider>
+```
+
+#### Custom Arrow
+
+import HoverCardArrowDemo from "@demos/hover-card-demo/HoverCardArrowDemo.tsx";
+
+<HoverCardArrowDemo />
+
+For custom arrow styling or positioning, compose the parts manually using <InlineCode>HoverCardBase</InlineCode>:
+
+```tsx
+import { HoverCard, HoverCardBase } from "~/components/hover-card";
+
+<HoverCard>
+  <HoverCardBase.Trigger>Hover me</HoverCardBase.Trigger>
+  <HoverCardBase.Positioner>
+    <HoverCardBase.Content>
+      <HoverCardBase.Arrow class="[--arrow-size:14px]">
+        <HoverCardBase.ArrowTip />
+      </HoverCardBase.Arrow>
+      Custom arrow size
+    </HoverCardBase.Content>
+  </HoverCardBase.Positioner>
+</HoverCard>
+```

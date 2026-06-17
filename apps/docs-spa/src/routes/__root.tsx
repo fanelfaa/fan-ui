@@ -44,7 +44,8 @@ function RootComponent() {
               Docs
             </Link>
             <Link
-              to="/components/button"
+              to="/docs/components/$component"
+              params={{ component: "button" }}
               class="text-foreground font-medium hover:text-foreground transition-colors"
             >
               Components

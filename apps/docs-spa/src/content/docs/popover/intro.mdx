@@ -1,0 +1,34 @@
+import { DocsLink } from "../../../components/DocsLink";
+import PopoverBasicDemo from "@demos/popover-demo/PopoverBasicDemo.tsx";
+
+# Popover
+
+A floating panel that displays content when triggered by a user action, typically a button click.
+
+<DocsLink href="https://ark-ui.com/docs/components/popover" />
+
+<PopoverBasicDemo />
+
+```tsx
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverTitle,
+  PopoverDescription,
+} from "~/components/popover";
+
+export function PopoverDemo() {
+  return (
+    <Popover>
+      <PopoverTrigger>Open Popover</PopoverTrigger>
+      <PopoverContent>
+        <PopoverTitle>Popover Title</PopoverTitle>
+        <PopoverDescription>
+          This is a popover description. It can contain any content you want.
+        </PopoverDescription>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```

@@ -1,0 +1,33 @@
+import { DocsLink } from "../../../components/DocsLink";
+import CheckboxBasicDemo from "@demos/checkbox-demo/CheckboxBasicDemo.tsx";
+
+# Checkbox
+
+A checkbox component for capturing boolean input with support for checked, unchecked, and indeterminate states.
+
+<DocsLink href="https://ark-ui.com/docs/components/checkbox" />
+
+<CheckboxBasicDemo />
+
+```tsx
+import { Checkbox, CheckboxLabel, CheckboxRootProvider } from "~/components/checkbox";
+
+export function CheckboxDemo() {
+  return (
+    <div class="flex flex-col gap-4">
+      <Checkbox defaultChecked>
+        <CheckboxLabel>Checked</CheckboxLabel>
+      </Checkbox>
+      <Checkbox>
+        <CheckboxLabel>Unchecked</CheckboxLabel>
+      </Checkbox>
+      <Checkbox checked="indeterminate">
+        <CheckboxLabel>Indeterminate</CheckboxLabel>
+      </Checkbox>
+      <Checkbox disabled>
+        <CheckboxLabel>Disabled</CheckboxLabel>
+      </Checkbox>
+    </div>
+  );
+}
+```
