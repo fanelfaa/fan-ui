@@ -43,7 +43,7 @@ function restartWatchers(logger: any) {
       const c = basename(filename, ".ts");
       if (!componentSet.has(c)) return;
       logger.info(`[iw] recipe changed: ${filename}`);
-      regenerate(c);
+      regenerateWatcherFile(c, logger);
     }));
     logger.info(`[iw] watching ${CORE_RECIPES_DIR}`);
   }
@@ -55,10 +55,19 @@ function restartWatchers(logger: any) {
     _watchers.push(watch(dir, (_event, filename) => {
       if (!filename || !filename.endsWith(".tsx")) return;
       logger.info(`[iw] component changed: ${c}/${filename}`);
-      regenerate(c);
+      regenerateWatcherFile(c, logger);
     }));
     logger.info(`[iw] watching ${dir}`);
   }
+}
+
+function regenerateWatcherFile(component: string, logger: any) {
+  const content = generateContent(component);
+  if (!content) { logger.warn(`[iw] ✗ ${component} — generation failed`); return; }
+  const outDir = resolve(DOCS_DIR, component);
+  mkdirSync(outDir, { recursive: true });
+  writeFileSync(resolve(outDir, "installation.gen.mdx"), content, "utf-8");
+  logger.info(`[iw] ✓ ${component}/installation.gen.mdx`);
 }
 
 let _watchers: ReturnType<typeof watch>[] = [];
@@ -133,18 +142,7 @@ export function installationWatcher(): Plugin {
     apply: "serve",
 
     configureServer(server) {
-      const logger = server.config.logger;
-
-      function regenerate(component: string) {
-        const content = generateContent(component);
-        if (!content) { logger.warn(`[iw] ✗ ${component} — generation failed`); return; }
-        const outDir = resolve(DOCS_DIR, component);
-        mkdirSync(outDir, { recursive: true });
-        writeFileSync(resolve(outDir, "installation.gen.mdx"), content, "utf-8");
-        logger.info(`[iw] ✓ ${component}/installation.gen.mdx`);
-      }
-
-      restartWatchers(logger);
+      restartWatchers(server.config.logger);
     },
   };
 }

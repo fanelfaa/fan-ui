@@ -5,7 +5,7 @@
  * packages/solid/src/, then generates installation.gen.mdx for each component.
  *
  * Usage:
- *   pnpm generate-installation          # All 3 POC components
+ *   pnpm generate-installation          # All components with docs
  *   pnpm generate-installation accordion # Specific component(s)
  */
 
@@ -155,7 +155,7 @@ function main() {
   const components = getComponents(args);
 
   if (components.length === 0) {
-    console.log("No valid components specified. Available: " + POC_COMPONENTS.join(", "));
+    console.log("No valid components specified. Available: " + discoverComponents().join(", "));
     process.exit(1);
   }
 
