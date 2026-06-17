@@ -124,6 +124,12 @@ export function useMDX() {
           if (tag[0] === tag[0].toLowerCase()) {
             return (props: any) => <Dynamic component={tag} {...props} />;
           }
+          // Uppercase tags (e.g. <Switch>, <Callout>) must be registered
+          // in the components map or imported directly in the .md file.
+          console.warn(
+            `[mdx-provider] Unregistered component "${tag}" — ` +
+              `import and register it in the components map, or import it directly in the MDX file.`,
+          );
           return undefined;
         },
       },

@@ -34,29 +34,50 @@
  * When you add a new component recipe + solid wrapper, create its docs
  * directory at apps/docs-spa/src/content/docs/<component>/. The watcher
  * auto-discovers it on next restart, and the build hook picks it up.
+ *
+ * ## Shared logic
+ *
+ * The generation logic lives in src/shared/generate-content.ts and is
+ * shared with the CLI script (scripts/generate-installation.ts).
+ * Changes to the output format should be made there, not in this file.
  */
 
 import type { Plugin } from "vite";
-import { watch, existsSync, readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
-import { resolve, basename, extname, dirname } from "node:path";
+import { watch, existsSync, readdirSync, mkdirSync, writeFileSync } from "node:fs";
+import { resolve, basename, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  generateInstallationContent,
+  CORE_RECIPES_DIR,
+  SOLID_COMPONENTS_DIR,
+  DOCS_DIR,
+} from "../shared/generate-content";
 
 // ── Paths ──────────────────────────────────────────────────────────────
-// All resolved relative to this file's location in apps/docs-spa/src/plugins/.
-// PROJECT_ROOT lands at the monorepo root (4 levels up from __dirname).
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const PROJECT_ROOT = resolve(__dirname, "../../../..");
-const CORE_RECIPES_DIR = resolve(PROJECT_ROOT, "packages/core/src/recipes");
-const SOLID_COMPONENTS_DIR = resolve(PROJECT_ROOT, "packages/solid/src");
-const DOCS_DIR = resolve(PROJECT_ROOT, "apps/docs-spa/src/content/docs");
 
-// ── Discovery ──────────────────────────────────────────────────────────
-// Scans DOCS_DIR for subdirectories — each one is a component with docs.
-// The watcher uses this list to know which recipe/component changes matter.
+// ── Watcher state helpers ──────────────────────────────────────────────
+// Wrapped in a factory so each plugin instance gets its own isolated state.
 
-/** Discover components that have docs directories under content/docs/. */
+interface WatcherState {
+  watchers: ReturnType<typeof watch>[];
+  debounceTimers: Map<string, ReturnType<typeof setTimeout>>;
+}
+
+function createWatcherState(): WatcherState {
+  return { watchers: [], debounceTimers: new Map() };
+}
+
+// ── Dev-mode watchers ─────────────────────────────────────────────────
+
+/**
+ * Discover components that have docs directories under content/docs/.
+ * Unlike discoverComponents() from the shared module, this checks only
+ * for the presence of a docs directory — it doesn't require a recipe file,
+ * so even pre-generation or partial-component docs get watched.
+ */
 function getDocsComponents(): string[] {
   if (!existsSync(DOCS_DIR)) return [];
   return readdirSync(DOCS_DIR, { withFileTypes: true })
@@ -64,24 +85,35 @@ function getDocsComponents(): string[] {
     .map((e) => e.name);
 }
 
-// ── Dev-mode watchers ─────────────────────────────────────────────────
-// Two sets of watchers:
-//   • One on CORE_RECIPES_DIR — fires when any *.ts file changes
-//   • One per component directory under SOLID_COMPONENTS_DIR — *.tsx only
-//
-// fs.watch is used without `recursive: true` (the directories are flat).
-// On Linux this delegates to inotify for near-instant notification.
-//
-// When a file changes, regenerateWatcherFile reads the latest source and
-// writes a fresh installation.gen.mdx for that component.
+/** Read current source for `component`, generate the mdx content, and write it to disk. */
+function regenerateWatcherFile(component: string) {
+  const content = generateInstallationContent(component);
+  if (!content) return;
+  const outDir = resolve(DOCS_DIR, component);
+  mkdirSync(outDir, { recursive: true });
+  writeFileSync(resolve(outDir, "installation.gen.mdx"), content, "utf-8");
+}
 
-// eslint-disable-next-line prefer-const
-let _watchers: ReturnType<typeof watch>[] = [];
+/**
+ * Debounced wrapper around regenerateWatcherFile.
+ * Fires at most once per component per 150ms window.
+ */
+function debouncedRegenerate(component: string, state: WatcherState) {
+  const existing = state.debounceTimers.get(component);
+  if (existing) clearTimeout(existing);
+  state.debounceTimers.set(
+    component,
+    setTimeout(() => {
+      state.debounceTimers.delete(component);
+      regenerateWatcherFile(component);
+    }, 150),
+  );
+}
 
 /** Close all existing watchers and re-initialise against the current set of docs components. */
-function restartWatchers(logger: any) {
-  for (const w of _watchers) w.close();
-  _watchers = [];
+function restartWatchers(state: WatcherState, logger: { info: (m: string) => void }) {
+  for (const w of state.watchers) w.close();
+  state.watchers = [];
 
   const components = getDocsComponents();
   const componentSet = new Set(components);
@@ -90,13 +122,15 @@ function restartWatchers(logger: any) {
   // Listens for any .ts file change in packages/core/src/recipes/.
   // The filename (minus .ts) must match a docs component dir name.
   if (existsSync(CORE_RECIPES_DIR)) {
-    _watchers.push(watch(CORE_RECIPES_DIR, (_event, filename) => {
-      if (!filename || !filename.endsWith(".ts")) return;
-      const c = basename(filename, ".ts");
-      if (!componentSet.has(c)) return;
-      logger.info(`[iw] recipe changed: ${filename}`);
-      regenerateWatcherFile(c, logger);
-    }));
+    state.watchers.push(
+      watch(CORE_RECIPES_DIR, (_event, filename) => {
+        if (!filename || !filename.endsWith(".ts")) return;
+        const c = basename(filename, ".ts");
+        if (!componentSet.has(c)) return;
+        logger.info(`[iw] recipe changed: ${filename}`);
+        debouncedRegenerate(c, state);
+      }),
+    );
     logger.info(`[iw] watching ${CORE_RECIPES_DIR}`);
   }
 
@@ -105,122 +139,15 @@ function restartWatchers(logger: any) {
   for (const c of components) {
     const dir = resolve(SOLID_COMPONENTS_DIR, c);
     if (!existsSync(dir)) continue;
-    _watchers.push(watch(dir, (_event, filename) => {
-      if (!filename || !filename.endsWith(".tsx")) return;
-      logger.info(`[iw] component changed: ${c}/${filename}`);
-      regenerateWatcherFile(c, logger);
-    }));
+    state.watchers.push(
+      watch(dir, (_event, filename) => {
+        if (!filename || !filename.endsWith(".tsx")) return;
+        logger.info(`[iw] component changed: ${c}/${filename}`);
+        debouncedRegenerate(c, state);
+      }),
+    );
     logger.info(`[iw] watching ${dir}`);
   }
-}
-
-/** Read current source for `component`, generate the mdx content, and write it to disk. */
-function regenerateWatcherFile(component: string, logger: any) {
-  const content = generateContent(component);
-  if (!content) { logger.warn(`[iw] ✗ ${component} — generation failed`); return; }
-  const outDir = resolve(DOCS_DIR, component);
-  mkdirSync(outDir, { recursive: true });
-  writeFileSync(resolve(outDir, "installation.gen.mdx"), content, "utf-8");
-  logger.info(`[iw] ✓ ${component}/installation.gen.mdx`);
-}
-
-// ── Helpers ────────────────────────────────────────────────────────────
-
-/** Read a file, returning null if it doesn't exist or can't be read. */
-function readFileSafe(fp: string): string | null {
-  try { return readFileSync(fp, "utf-8"); } catch { return null; }
-}
-
-/**
- * Read all .tsx files in a component's solid source directory.
- *
- * Sorting: index.tsx always comes last, so in multi-file components
- * the "entry point" appears at the bottom of the docs page.
- *
- * Returns an array of { label, content } where label is a human-readable
- * path like "src/components/button/index.tsx".
- */
-function getComponentFiles(c: string): { label: string; content: string }[] {
-  const d = resolve(SOLID_COMPONENTS_DIR, c);
-  if (!existsSync(d)) return [];
-  return readdirSync(d, { withFileTypes: true })
-    .filter((e) => e.isFile() && e.name.endsWith(".tsx"))
-    .sort((a, b) => {
-      if (a.name === "index.tsx") return 1;
-      if (b.name === "index.tsx") return -1;
-      return a.name.localeCompare(b.name);
-    })
-    .map((e) => ({
-      label: `src/components/${c}/${e.name}`,
-      content: readFileSync(resolve(d, e.name), "utf-8"),
-    }));
-}
-
-/**
- * Build the full markdown content for a component's installation page.
- *
- * Sections: CLI command → recipe code block → component source code block(s)
- * → Tailwind CSS variables reminder note.
- *
- * Returns null if the component has no recipe file (required) or no
- * component source files (required).
- */
-function generateContent(component: string): string | null {
-  const recipe = readFileSafe(resolve(CORE_RECIPES_DIR, `${component}.ts`));
-  if (!recipe) return null;
-  const files = getComponentFiles(component);
-  if (!files.length) return null;
-
-  const out: string[] = [];
-  out.push("## Installation\n");
-  out.push("### CLI\n");
-  out.push("Run the following command to add the component to your project:\n");
-  out.push("```bash");
-  out.push(`npx @fan-ui/cli@latest add ${component}`);
-  out.push("```\n");
-  out.push("### Manual\n");
-  out.push(`Create the recipe file at \`src/components/recipes/${component}.ts\`:\n`);
-  out.push("```ts");
-  out.push(recipe.trimEnd());
-  out.push("```\n");
-
-  if (files.length === 1) {
-    const f = files[0];
-    out.push(`Create the component file at \`${f.label}\`:\n`);
-    out.push("```" + extname(f.label).slice(1));
-    out.push(f.content.trimEnd());
-    out.push("```\n");
-  } else {
-    // Multi-file component: detect if it follows the .base.tsx + index.tsx pattern.
-    // If so, use a terser heading ("Create the component directory and files.")
-    // instead of repeating the full path for every file.
-    const hasBoth = files.some((f) => f.label.endsWith(".base.tsx")) && files.some((f) => f.label.endsWith("index.tsx"));
-    if (hasBoth) out.push("Create the component directory and files.\n");
-    for (const f of files) {
-      out.push(hasBoth ? `\`${f.label}\`:\n` : `Create the component file at \`${f.label}\`:\n`);
-      out.push("```" + extname(f.label).slice(1));
-      out.push(f.content.trimEnd());
-      out.push("```\n");
-    }
-  }
-
-  out.push("> **Note:** Make sure your project has the Tailwind CSS theme variables set up (`--background`, `--foreground`, `--ring`, `--border`, etc.) or override the utility classes to match your design system.\n");
-  return out.join("\n");
-}
-
-/** Regenerate installation files for every docs component. Used during build. */
-function generateAll(logger: { info: (m: string) => void; warn: (m: string) => void }) {
-  const components = getDocsComponents();
-  let count = 0;
-  for (const c of components) {
-    const content = generateContent(c);
-    if (!content) { logger.warn(`[iw] ✗ ${c} — generation failed`); continue; }
-    const outDir = resolve(DOCS_DIR, c);
-    mkdirSync(outDir, { recursive: true });
-    writeFileSync(resolve(outDir, "installation.gen.mdx"), content, "utf-8");
-    count++;
-  }
-  logger.info(`[iw] ✓ regenerated ${count} installation files`);
 }
 
 // ── Plugin definition ─────────────────────────────────────────────────
@@ -236,18 +163,42 @@ function generateAll(logger: { info: (m: string) => void; warn: (m: string) => v
 //
 
 export function installationWatcher(): Plugin {
+  const state = createWatcherState();
+
   return {
     name: "installation-watcher",
 
     configureServer(server) {
-      restartWatchers(server.config.logger);
+      restartWatchers(state, server.config.logger);
     },
 
     buildStart() {
-      generateAll({
-        info: (m) => this.warn(m),
-        warn: (m) => this.warn(m),
-      });
+      const components = getDocsComponents();
+      let count = 0;
+      for (const c of components) {
+        const content = generateInstallationContent(c);
+        if (!content) {
+          this.warn(`[iw] ✗ ${c} — generation failed (missing recipe or component source)`);
+          continue;
+        }
+        const outDir = resolve(DOCS_DIR, c);
+        mkdirSync(outDir, { recursive: true });
+        writeFileSync(resolve(outDir, "installation.gen.mdx"), content, "utf-8");
+        count++;
+      }
+      // Use console.log for informational messages during build,
+      // since this.warn is reserved for actual warnings.
+      console.log(`[iw] ✓ regenerated ${count} installation files`);
+    },
+
+    closeBundle() {
+      // Clean up watchers and debounce timers
+      for (const w of state.watchers) w.close();
+      state.watchers = [];
+      for (const [component, timer] of state.debounceTimers) {
+        clearTimeout(timer);
+      }
+      state.debounceTimers.clear();
     },
   };
 }
