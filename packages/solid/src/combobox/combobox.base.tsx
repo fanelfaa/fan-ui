@@ -85,6 +85,9 @@ const Content: Component<ArkCombobox.ContentProps> = (props) => {
   return <ArkCombobox.Content class={styles.content({ class: local.class })} {...others} />;
 };
 
+const ItemGroup = ArkCombobox.ItemGroup;
+const ItemGroupLabel = ArkCombobox.ItemGroupLabel;
+
 export const Combobox = {
   Root,
   RootProvider,
@@ -100,4 +103,6 @@ export const Combobox = {
   Control,
   ClearTrigger,
   Content,
+  ItemGroup,
+  ItemGroupLabel,
 };

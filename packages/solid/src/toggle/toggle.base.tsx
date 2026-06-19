@@ -16,4 +16,6 @@ const Indicator: Component<ArkToggle.IndicatorProps> = (props) => {
   return <ArkToggle.Indicator class={styles.indicator({ class: local.class })} {...others} />;
 };
 
-export const Toggle = { Root, Indicator };
+const Context = ArkToggle.Context;
+
+export const Toggle = { Root, Indicator, Context };

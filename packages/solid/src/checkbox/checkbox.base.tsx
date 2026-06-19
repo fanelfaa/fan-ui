@@ -30,6 +30,8 @@ const CheckboxIndicator: Component<ArkCheckbox.IndicatorProps> = (props) => {
 };
 
 const CheckboxHiddenInput = ArkCheckbox.HiddenInput;
+const CheckboxGroup = ArkCheckbox.Group;
+const CheckboxGroupProvider = ArkCheckbox.GroupProvider;
 
 export const Checkbox = {
   Root: CheckboxRoot,
@@ -38,4 +40,6 @@ export const Checkbox = {
   Label: CheckboxLabel,
   Indicator: CheckboxIndicator,
   HiddenInput: CheckboxHiddenInput,
+  Group: CheckboxGroup,
+  GroupProvider: CheckboxGroupProvider,
 };

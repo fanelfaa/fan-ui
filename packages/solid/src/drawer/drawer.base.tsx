@@ -63,6 +63,10 @@ const GrabberIndicator: Component<ArkDrawer.GrabberIndicatorProps> = (props) => 
 
 const Context = ArkDrawer.Context;
 
+const Indent = ArkDrawer.Indent;
+const IndentBackground = ArkDrawer.IndentBackground;
+const SwipeArea = ArkDrawer.SwipeArea;
+
 export const Drawer = {
   Root,
   RootProvider,
@@ -76,4 +80,7 @@ export const Drawer = {
   Grabber,
   GrabberIndicator,
   Context,
+  Indent,
+  IndentBackground,
+  SwipeArea,
 };

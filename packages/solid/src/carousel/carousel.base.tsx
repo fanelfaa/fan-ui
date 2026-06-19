@@ -68,6 +68,8 @@ const ProgressText: Component<ArkCarousel.ProgressTextProps> = (props) => {
   );
 };
 
+const AutoplayIndicator = ArkCarousel.AutoplayIndicator;
+
 export const Carousel = {
   Root,
   RootProvider,
@@ -80,4 +82,5 @@ export const Carousel = {
   Indicator,
   AutoplayTrigger,
   ProgressText,
+  AutoplayIndicator,
 };

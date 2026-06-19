@@ -63,6 +63,10 @@ const Positioner: Component<ArkPopover.PositionerProps> = (props) => {
   return <ArkPopover.Positioner class={styles.positioner({ class: local.class })} {...others} />;
 };
 
+const Anchor = ArkPopover.Anchor;
+const ArrowTip = ArkPopover.ArrowTip;
+const Context = ArkPopover.Context;
+
 export const Popover = {
   Root,
   RootProvider,
@@ -74,4 +78,7 @@ export const Popover = {
   Arrow,
   Indicator,
   Positioner,
+  Anchor,
+  ArrowTip,
+  Context,
 };

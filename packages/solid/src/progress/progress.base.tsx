@@ -39,4 +39,8 @@ const View: Component<ArkProgress.ViewProps> = (props) => {
   return <ArkProgress.View class={styles.view({ class: local.class })} {...others} />;
 };
 
-export const Progress = { Root, RootProvider, Label, Track, Range, ValueText, View };
+const Circle = ArkProgress.Circle;
+const CircleRange = ArkProgress.CircleRange;
+const CircleTrack = ArkProgress.CircleTrack;
+
+export const Progress = { Root, RootProvider, Label, Track, Range, ValueText, View, Circle, CircleRange, CircleTrack };
