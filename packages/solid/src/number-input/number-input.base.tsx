@@ -50,6 +50,8 @@ const NumberInputScrubber: Component<ArkNumberInput.ScrubberProps> = (props) => 
   return <ArkNumberInput.Scrubber class={styles.scrubber({ class: local.class })} {...others} />;
 };
 
+const NumberInputRootProvider = ArkNumberInput.RootProvider;
+
 const NumberInputTriggerGroup: Component<HTMLProps<"div">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return <div class={styles.triggerGroup({ class: local.class })} {...others} />;
@@ -68,6 +70,7 @@ export const NumberInput = {
   IncrementTrigger: NumberInputIncrementTrigger,
   DecrementTrigger: NumberInputDecrementTrigger,
   Scrubber: NumberInputScrubber,
+  RootProvider: NumberInputRootProvider,
   TriggerGroup: NumberInputTriggerGroup,
   ValueText: NumberInputValueText,
 };

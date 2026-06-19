@@ -42,8 +42,11 @@ const ScrollAreaCorner: Component<ArkScrollArea.CornerProps> = (props) => {
   return <ArkScrollArea.Corner class={styles.corner({ class: local.class })} {...others} />;
 };
 
+const ScrollAreaRootProvider = ArkScrollArea.RootProvider;
+
 export const ScrollArea = {
   Root: ScrollAreaRoot,
+  RootProvider: ScrollAreaRootProvider,
   Viewport: ScrollAreaViewport,
   Content: ScrollAreaContent,
   Scrollbar: ScrollAreaScrollbar,

@@ -78,6 +78,11 @@ const Content: Component<ArkSelect.ContentProps> = (props) => {
   return <ArkSelect.Content class={styles.content({ class: local.class })} {...others} />;
 };
 
+const HiddenSelect = ArkSelect.HiddenSelect;
+const ItemGroup = ArkSelect.ItemGroup;
+const ItemGroupLabel = ArkSelect.ItemGroupLabel;
+const List = ArkSelect.List;
+
 export const Select = {
   Root,
   RootProvider,
@@ -92,4 +97,8 @@ export const Select = {
   Indicator,
   Content,
   ClearTrigger,
+  HiddenSelect,
+  ItemGroup,
+  ItemGroupLabel,
+  List,
 };

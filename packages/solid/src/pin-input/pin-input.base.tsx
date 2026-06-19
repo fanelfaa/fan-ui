@@ -29,4 +29,6 @@ const Label: Component<ArkPinInput.LabelProps> = (props) => {
   return <ArkPinInput.Label class={labelVariants({ class: local.class })} {...others} />;
 };
 
-export const PinInput = { Root, RootProvider, Control, Input, Label };
+const HiddenInput = ArkPinInput.HiddenInput;
+
+export const PinInput = { Root, RootProvider, Control, Input, Label, HiddenInput };
