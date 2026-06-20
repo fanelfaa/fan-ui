@@ -133,6 +133,36 @@ npx @ark-preset/cli add button
 npx @ark-preset/cli add card -o ./src/components/ui
 ```
 
+#### MCP Server
+
+The CLI also includes a [MCP](https://modelcontextprotocol.io) stdio server for AI agent integration.
+AI coding agents can discover, inspect, and generate components
+via 7 dedicated MCP tools — no CLI output parsing needed.
+
+```bash
+ark-preset mcp
+```
+
+Configure in your MCP client:
+
+```json
+{
+  "mcpServers": {
+    "ark-preset": {
+      "command": "ark-preset",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+**Tools:** `list_components`, `get_component`, `search_components`, `add_component`,
+`get_recipe`, `get_dependency_graph`, `get_manifest`.
+
+> Complementary to [Ark UI's MCP server](https://github.com/chakra-ui/ark) —
+> Ark UI MCP covers upstream component props/examples, while Ark Preset MCP
+> covers preset-specific information and code generation.
+
 ---
 
 ## Commands
