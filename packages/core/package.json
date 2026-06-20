@@ -1,6 +1,6 @@
 {
   "name": "@ark-preset/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tailwind-variants styling recipes for Ark UI primitives",
   "keywords": [
     "tailwind-variants",
@@ -43,7 +43,7 @@
   },
   "scripts": {
     "prepublishOnly": "pnpm run build",
-    "build": "tsup 2>&1 | grep -E '⚡️|error'",
+    "build": "tsup 2>&1 | grep -E '\u26a1\ufe0f|error'",
     "dev": "tsup --watch",
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit"
