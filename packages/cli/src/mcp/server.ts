@@ -71,6 +71,21 @@ function readFileSafe(filePath: string): string | null {
   }
 }
 
+function getPackageVersion(): string {
+  const candidates = [
+    path.join(PACKAGE_ROOT, "package.json"),
+    path.resolve(PACKAGE_ROOT, "..", "package.json"),
+  ];
+  for (const p of candidates) {
+    try {
+      return JSON.parse(fs.readFileSync(p, "utf-8")).version || "0.1.0";
+    } catch {
+      // continue
+    }
+  }
+  return "0.1.0";
+}
+
 // ── Data Building ─────────────────────────────────────────────────
 
 interface ComponentInfo {
@@ -115,10 +130,11 @@ function getComponentByName(name: string): ComponentInfo | null {
 // ── MCP Server ────────────────────────────────────────────────────
 
 export async function createServer(): Promise<McpServer> {
+  const version = getPackageVersion();
   const server = new McpServer(
     {
       name: "ark-preset",
-      version: "0.1.0",
+      version,
     },
     {
       capabilities: {
@@ -415,7 +431,10 @@ The files are generated with import paths rewritten from \`@ark-preset/core\` to
         };
       }
 
-      const entry = fwManifest[componentName];
+      // Narrow for closure (TypeScript can't narrow across function boundaries)
+      const safeManifest = fwManifest;
+
+      const entry = safeManifest[componentName];
       if (!entry) {
         const available = Object.keys(fwManifest).sort();
         return {
@@ -430,15 +449,16 @@ The files are generated with import paths rewritten from \`@ark-preset/core\` to
       }
 
       // Resolve dependencies recursively
-      const resolved = new Set<string>();
+      const visitedComponents = new Set<string>();
+      const visitedRecipes = new Set<string>();
       const allFiles: string[] = [];
       const allRecipes: string[] = [];
 
       function resolveDeps(comp: string) {
-        if (resolved.has(comp)) return;
-        resolved.add(comp);
+        if (visitedComponents.has(comp)) return;
+        visitedComponents.add(comp);
 
-        const compEntry = fwManifest[comp];
+        const compEntry = safeManifest[comp];
         if (!compEntry) return;
 
         allFiles.push(...compEntry.files);
@@ -448,9 +468,9 @@ The files are generated with import paths rewritten from \`@ark-preset/core\` to
           resolveDeps(dep);
         }
         for (const dep of compEntry.recipeDependencies) {
-          if (!resolved.has(`${dep}-recipe`)) {
-            resolved.add(`${dep}-recipe`);
-            const depEntry = fwManifest[dep];
+          if (!visitedRecipes.has(dep)) {
+            visitedRecipes.add(dep);
+            const depEntry = safeManifest[dep];
             if (depEntry) {
               allRecipes.push(...depEntry.recipes);
             } else {
@@ -727,8 +747,9 @@ export async function runServer(): Promise<void> {
   await server.connect(transport);
 }
 
-// Allow direct invocation
-const isMain = process.argv[1]?.includes("mcp");
+// Allow direct invocation (dev convenience when running server.ts directly)
+const scriptFile = process.argv[1] ?? "";
+const isMain = scriptFile.endsWith("server.ts") || scriptFile.endsWith("server.js");
 if (isMain) {
   runServer().catch((err) => {
     console.error("MCP server error:", err);

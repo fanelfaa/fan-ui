@@ -136,8 +136,8 @@ npx @ark-preset/cli add card -o ./src/components/ui
 #### MCP Server
 
 The CLI also includes a [MCP](https://modelcontextprotocol.io) stdio server for AI agent integration.
-AI coding agents can discover components, inspect recipes, and generate files
-via 7 MCP tools instead of parsing CLI output.
+AI coding agents can discover, inspect, and generate components
+via 7 dedicated MCP tools — no CLI output parsing needed.
 
 ```bash
 ark-preset mcp
