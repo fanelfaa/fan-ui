@@ -44,7 +44,7 @@ Run a [Model Context Protocol](https://modelcontextprotocol.io) server so AI cod
 can discover components, inspect recipes, and generate files directly.
 
 ```bash
-ark-preset mcp
+npx @ark-preset/cli@latest mcp
 ```
 
 Configure in your MCP client (`claude.json`, `cursor.json`, etc.):
@@ -53,8 +53,8 @@ Configure in your MCP client (`claude.json`, `cursor.json`, etc.):
 {
   "mcpServers": {
     "ark-preset": {
-      "command": "ark-preset",
-      "args": ["mcp"]
+      "command": "npx",
+      "args": ["@ark-preset/cli@latest", "mcp"]
     }
   }
 }

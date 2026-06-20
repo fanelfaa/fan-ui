@@ -4,7 +4,7 @@
  * Provides MCP tools for AI agents to interact with the ark-preset component library.
  * Serves as a bridge between AI coding agents and the component scaffolding system.
  *
- * Can be invoked via: ark-preset mcp
+ * Can be invoked via: npx @ark-preset/cli@latest mcp
  * Or configured directly as an MCP server in client configs.
  */
 

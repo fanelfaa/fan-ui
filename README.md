@@ -140,7 +140,7 @@ AI coding agents can discover, inspect, and generate components
 via 7 dedicated MCP tools — no CLI output parsing needed.
 
 ```bash
-ark-preset mcp
+npx @ark-preset/cli@latest mcp
 ```
 
 Configure in your MCP client:
@@ -149,8 +149,8 @@ Configure in your MCP client:
 {
   "mcpServers": {
     "ark-preset": {
-      "command": "ark-preset",
-      "args": ["mcp"]
+      "command": "npx",
+      "args": ["@ark-preset/cli@latest", "mcp"]
     }
   }
 }

@@ -6,8 +6,8 @@
  * inspect recipes, add components to projects, and more.
  *
  * Usage:
- *   ark-preset mcp                    # Start MCP server (stdio)
- *   ark-preset mcp --transport http   # Start MCP server (HTTP)  [future]
+ *   npx @ark-preset/cli@latest mcp                    # Start MCP server (stdio)
+ *   npx @ark-preset/cli@latest mcp --transport http   # Start MCP server (HTTP)  [future]
  */
 
 import { runServer } from "../mcp/server.js";
