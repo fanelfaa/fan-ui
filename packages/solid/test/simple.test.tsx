@@ -1,4 +1,4 @@
-import { render } from "@solidjs/testing-library";
+import { render, fireEvent } from "@solidjs/testing-library";
 import { Badge, badgeVariants } from "../src/badge";
 import { Spinner, spinnerVariants } from "../src/spinner";
 import { Separator, separatorVariants } from "../src/separator";
@@ -19,13 +19,28 @@ describe("Badge", () => {
     expect(container.firstChild).toBeInTheDocument();
   });
 
-  it("applies variant styles", () => {
+  it("renders with variant styles", () => {
     const { container } = render(() => <Badge variant="secondary">Badge</Badge>);
     expect(container.firstChild).toBeInTheDocument();
   });
 
   it("renders with outline variant", () => {
     const { container } = render(() => <Badge variant="outline">Badge</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with destructive variant", () => {
+    const { container } = render(() => <Badge variant="destructive">Badge</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with ghost variant", () => {
+    const { container } = render(() => <Badge variant="ghost">Badge</Badge>);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with link variant", () => {
+    const { container } = render(() => <Badge variant="link">Badge</Badge>);
     expect(container.firstChild).toBeInTheDocument();
   });
 
@@ -37,6 +52,18 @@ describe("Badge", () => {
   it("forwards additional props", () => {
     const { container } = render(() => <Badge data-testid="badge-1">Badge</Badge>);
     expect(container.firstChild).toHaveAttribute("data-testid", "badge-1");
+  });
+
+  it("forwards onClick handler", () => {
+    const handleClick = vi.fn();
+    const { container } = render(() => <Badge onClick={handleClick}>Clickable</Badge>);
+    fireEvent.click(container.firstChild!);
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("renders as span element", () => {
+    const { container } = render(() => <Badge>Badge</Badge>);
+    expect(container.firstChild?.nodeName).toBe("SPAN");
   });
 
   it("exports badgeVariants", () => {
@@ -56,10 +83,30 @@ describe("Spinner", () => {
     expect(spinner).toHaveAttribute("aria-label", "Loading");
   });
 
-  it("renders with size variant", () => {
-    const { container } = render(() => <Spinner size="lg" />);
-    // JSDOM / happy-dom can render SVG inside
+  it("renders with size sm", () => {
+    const { container } = render(() => <Spinner size="sm" />);
     expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with size md", () => {
+    const { container } = render(() => <Spinner size="md" />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with size lg", () => {
+    const { container } = render(() => <Spinner size="lg" />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with size xl", () => {
+    const { container } = render(() => <Spinner size="xl" />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders SVG inside", () => {
+    const { container } = render(() => <Spinner />);
+    const svg = container.querySelector("svg");
+    expect(svg).toBeInTheDocument();
   });
 
   it("merges custom class", () => {
@@ -70,6 +117,11 @@ describe("Spinner", () => {
   it("forwards additional props", () => {
     const { container } = render(() => <Spinner id="loading-1" />);
     expect(container.firstChild).toHaveAttribute("id", "loading-1");
+  });
+
+  it("renders as span element", () => {
+    const { container } = render(() => <Spinner />);
+    expect(container.firstChild?.nodeName).toBe("SPAN");
   });
 
   it("exports spinnerVariants", () => {
@@ -85,6 +137,26 @@ describe("Separator", () => {
   it("renders", () => {
     const { container } = render(() => <Separator />);
     expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("has role separator", () => {
+    const { container } = render(() => <Separator />);
+    expect(container.firstChild).toHaveAttribute("role", "separator");
+  });
+
+  it("renders with horizontal orientation by default", () => {
+    const { container } = render(() => <Separator />);
+    expect(container.firstChild).toHaveAttribute("aria-orientation", "horizontal");
+  });
+
+  it("renders with vertical orientation", () => {
+    const { container } = render(() => <Separator orientation="vertical" />);
+    expect(container.firstChild).toHaveAttribute("aria-orientation", "vertical");
+  });
+
+  it("renders as div element", () => {
+    const { container } = render(() => <Separator />);
+    expect(container.firstChild?.nodeName).toBe("DIV");
   });
 
   it("merges custom class", () => {
@@ -112,6 +184,11 @@ describe("Skeleton", () => {
     expect(container.firstChild).toBeInTheDocument();
   });
 
+  it("renders as div element", () => {
+    const { container } = render(() => <Skeleton />);
+    expect(container.firstChild?.nodeName).toBe("DIV");
+  });
+
   it("merges custom class", () => {
     const { container } = render(() => <Skeleton class="my-sk" />);
     expect(container.firstChild).toHaveClass("my-sk");
@@ -125,6 +202,13 @@ describe("Skeleton", () => {
   it("renders with width and height", () => {
     const { container } = render(() => <Skeleton class="h-8 w-32" />);
     expect(container.firstChild).toHaveClass("h-8", "w-32");
+  });
+
+  it("forwards onClick handler", () => {
+    const handleClick = vi.fn();
+    const { container } = render(() => <Skeleton onClick={handleClick} />);
+    fireEvent.click(container.firstChild!);
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -148,5 +232,36 @@ describe("AspectRatio", () => {
       </AspectRatio>
     ));
     expect(container.firstChild).toHaveClass("my-ar");
+  });
+
+  it("renders as div element", () => {
+    const { container } = render(() => (
+      <AspectRatio ratio={16 / 9}>
+        <div>Content</div>
+      </AspectRatio>
+    ));
+    expect(container.firstChild?.nodeName).toBe("DIV");
+  });
+
+  it("applies padding-bottom based on ratio", () => {
+    const { container } = render(() => (
+      <AspectRatio ratio={4 / 3}>
+        <div>Content</div>
+      </AspectRatio>
+    ));
+    const el = container.firstChild as HTMLElement;
+    // 1 / (4/3) = 0.75 = 75%
+    expect(el.style.paddingBottom).toBe("75%");
+  });
+
+  it("uses default 16/9 ratio when none provided", () => {
+    const { container } = render(() => (
+      <AspectRatio>
+        <div>Content</div>
+      </AspectRatio>
+    ));
+    const el = container.firstChild as HTMLElement;
+    // 1 / (16/9) = 0.5625 = 56.25%
+    expect(el.style.paddingBottom).toBe("56.25%");
   });
 });

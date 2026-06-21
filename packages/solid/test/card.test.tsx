@@ -63,6 +63,11 @@ describe("CardTitle", () => {
     const { container } = render(() => <CardTitle>Title</CardTitle>);
     expect(container.firstChild?.nodeName).toBe("H3");
   });
+
+  it("merges custom class", () => {
+    const { container } = render(() => <CardTitle class="my-title">Title</CardTitle>);
+    expect(container.firstChild).toHaveClass("my-title");
+  });
 });
 
 describe("CardDescription", () => {
@@ -74,6 +79,11 @@ describe("CardDescription", () => {
   it("renders as p element", () => {
     const { container } = render(() => <CardDescription>Desc</CardDescription>);
     expect(container.firstChild?.nodeName).toBe("P");
+  });
+
+  it("merges custom class", () => {
+    const { container } = render(() => <CardDescription class="my-desc">Desc</CardDescription>);
+    expect(container.firstChild).toHaveClass("my-desc");
   });
 });
 
@@ -87,6 +97,11 @@ describe("CardContent", () => {
     const { container } = render(() => <CardContent>Content</CardContent>);
     expect(container.firstChild?.nodeName).toBe("DIV");
   });
+
+  it("merges custom class", () => {
+    const { container } = render(() => <CardContent class="my-content">Content</CardContent>);
+    expect(container.firstChild).toHaveClass("my-content");
+  });
 });
 
 describe("CardFooter", () => {
@@ -98,5 +113,29 @@ describe("CardFooter", () => {
   it("renders as div element", () => {
     const { container } = render(() => <CardFooter>Footer</CardFooter>);
     expect(container.firstChild?.nodeName).toBe("DIV");
+  });
+
+  it("merges custom class", () => {
+    const { container } = render(() => <CardFooter class="my-footer">Footer</CardFooter>);
+    expect(container.firstChild).toHaveClass("my-footer");
+  });
+});
+
+describe("Card nested structure", () => {
+  it("renders all sub-components together", () => {
+    const { getByText } = render(() => (
+      <Card>
+        <CardHeader>
+          <CardTitle>Title</CardTitle>
+          <CardDescription>Description</CardDescription>
+        </CardHeader>
+        <CardContent>Content</CardContent>
+        <CardFooter>Footer</CardFooter>
+      </Card>
+    ));
+    expect(getByText("Title")).toBeInTheDocument();
+    expect(getByText("Description")).toBeInTheDocument();
+    expect(getByText("Content")).toBeInTheDocument();
+    expect(getByText("Footer")).toBeInTheDocument();
   });
 });

@@ -1,8 +1,9 @@
-import { render } from "@solidjs/testing-library";
+import { render, screen } from "@solidjs/testing-library";
 import {
   ToastBase,
   createToaster,
   toastVariants,
+  Toaster,
 } from "../src/toast";
 
 describe("ToastBase", () => {
@@ -33,6 +34,27 @@ describe("createToaster", () => {
     expect(typeof toaster.dismiss).toBe("function");
     expect(typeof toaster.pause).toBe("function");
     expect(typeof toaster.resume).toBe("function");
+  });
+});
+
+describe("Toaster", () => {
+  it("renders and creates a toast with title and description", () => {
+    const toaster = createToaster({ placement: "bottom-end" });
+    render(() => <Toaster toaster={toaster} />);
+
+    toaster.create({ title: "Success", description: "Operation completed" });
+
+    expect(screen.getByText("Success")).toBeInTheDocument();
+    expect(screen.getByText("Operation completed")).toBeInTheDocument();
+  });
+
+  it("renders toast with close trigger", () => {
+    const toaster = createToaster({ placement: "bottom-end" });
+    render(() => <Toaster toaster={toaster} />);
+
+    toaster.create({ title: "Title" });
+
+    expect(screen.getByText("✕")).toBeInTheDocument();
   });
 });
 
