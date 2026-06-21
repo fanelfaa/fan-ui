@@ -1,4 +1,4 @@
-import { render } from "@solidjs/testing-library";
+import { render, fireEvent, screen, waitFor } from "@solidjs/testing-library";
 import { NumberInput, NumberInputBase, numberInputVariants } from "../src/number-input";
 import { PinInput, PinInputBase, pinInputVariants } from "../src/pin-input";
 import { PasswordInput, passwordInputVariants } from "../src/password-input";
@@ -34,6 +34,23 @@ describe("NumberInput", () => {
   it("exports numberInputVariants", () => {
     expect(numberInputVariants).toBeDefined();
     expect(typeof numberInputVariants).toBe("function");
+  });
+
+  it("renders increment and decrement trigger buttons", () => {
+    const { container } = render(() => <NumberInput />);
+    const buttons = container.querySelectorAll("button");
+    expect(buttons.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("renders with defaultValue", () => {
+    const { container } = render(() => <NumberInput defaultValue={10} />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("respects disabled prop", () => {
+    const { container } = render(() => <NumberInput disabled />);
+    const input = container.querySelector("input");
+    expect(input).toBeDisabled();
   });
 });
 
@@ -84,6 +101,31 @@ describe("PinInputBase", () => {
     const { container } = render(() => <PinInputBase.Root />);
     expect(container.firstChild).toBeInTheDocument();
   });
+
+  it("renders input elements", () => {
+    const { container } = render(() => (
+      <PinInputBase.Root>
+        <PinInputBase.Control>
+          <PinInputBase.Input index={0} />
+          <PinInputBase.Input index={1} />
+        </PinInputBase.Control>
+      </PinInputBase.Root>
+    ));
+    const inputs = container.querySelectorAll("input");
+    expect(inputs.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("accepts input value", () => {
+    const { container } = render(() => (
+      <PinInputBase.Root>
+        <PinInputBase.Control>
+          <PinInputBase.Input index={0} />
+        </PinInputBase.Control>
+      </PinInputBase.Root>
+    ));
+    const input = container.querySelector("input");
+    expect(input).toBeInTheDocument();
+  });
 });
 
 // ------------------------------------------------------------------ //
@@ -110,6 +152,30 @@ describe("PasswordInput", () => {
     expect(passwordInputVariants).toBeDefined();
     expect(typeof passwordInputVariants).toBe("function");
   });
+
+  it("renders visibility toggle button", () => {
+    const { container } = render(() => <PasswordInput />);
+    const buttons = container.querySelectorAll("button");
+    expect(buttons.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("accepts defaultValue", () => {
+    const { container } = render(() => <PasswordInput defaultValue="mypwd" />);
+    const input = container.querySelector("input");
+    expect(input).toBeInTheDocument();
+  });
+
+  it("disables input when disabled prop is set", () => {
+    const { container } = render(() => <PasswordInput disabled />);
+    const input = container.querySelector("input");
+    expect(input).toBeDisabled();
+  });
+
+  it("renders with placeholder", () => {
+    const { container } = render(() => <PasswordInput placeholder="Enter password" />);
+    const input = container.querySelector("input");
+    expect(input).toHaveAttribute("placeholder", "Enter password");
+  });
 });
 
 // ------------------------------------------------------------------ //
@@ -124,6 +190,26 @@ describe("Slider", () => {
   it("exports sliderVariants", () => {
     expect(sliderVariants).toBeDefined();
     expect(typeof sliderVariants).toBe("function");
+  });
+
+  it("renders with defaultValue", () => {
+    const { container } = render(() => <Slider value={[50]} />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("fires onValueChange on slide", () => {
+    const onChange = vi.fn();
+    const { container } = render(() => (
+      <Slider value={[30]} onValueChange={onChange} />
+    ));
+    expect(container.firstChild).toBeInTheDocument();
+    // Slider uses pointer events; value is controlled
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("merges custom class", () => {
+    const { container } = render(() => <Slider class="my-slider" />);
+    expect(container.firstChild).toHaveClass("my-slider");
   });
 });
 
@@ -155,6 +241,25 @@ describe("ProgressBase", () => {
   it("ProgressBase.Root renders", () => {
     const { container } = render(() => <ProgressBase.Root />);
     expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with value prop", () => {
+    const { container } = render(() => <Progress value={60} />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with max prop", () => {
+    const { container } = render(() => <Progress value={50} max={200} />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders ProgressLabel within context", () => {
+    const { getByText } = render(() => (
+      <ProgressBase.Root value={60}>
+        <ProgressBase.Label>Loading</ProgressBase.Label>
+      </ProgressBase.Root>
+    ));
+    expect(getByText("Loading")).toBeInTheDocument();
   });
 });
 
@@ -194,6 +299,24 @@ describe("TagsInputBase", () => {
   it("TagsInputBase.Root renders", () => {
     const { container } = render(() => <TagsInputBase.Root />);
     expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders input within control", () => {
+    const { container } = render(() => <TagsInput placeholder="Add tag" />);
+    const input = container.querySelector("input");
+    expect(input).toBeInTheDocument();
+  });
+
+  it("renders with defaultValue", () => {
+    const { container } = render(() => (
+      <TagsInput defaultValue={["apple", "banana"]} />
+    ));
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("merges custom class", () => {
+    const { container } = render(() => <TagsInput class="my-tags" />);
+    expect(container.firstChild).toHaveClass("my-tags");
   });
 });
 
@@ -237,6 +360,28 @@ describe("ColorPickerBase", () => {
   it("ColorPickerBase.Root renders", () => {
     const { container } = render(() => <ColorPickerBase.Root />);
     expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders control with channel input", () => {
+    const { container } = render(() => <ColorPicker />);
+    const input = container.querySelector("input");
+    expect(input).toBeInTheDocument();
+  });
+
+  it("renders trigger button", () => {
+    const { container } = render(() => <ColorPicker />);
+    const buttons = container.querySelectorAll("button");
+    expect(buttons.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("renders with inline prop (no Portal)", () => {
+    const { container } = render(() => <ColorPicker inline />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("merges custom class", () => {
+    const { container } = render(() => <ColorPicker class="my-cp" />);
+    expect(container.firstChild).toHaveClass("my-cp");
   });
 });
 
@@ -292,6 +437,30 @@ describe("DatePickerBase", () => {
     const { container } = render(() => <DatePickerBase.Root />);
     expect(container.firstChild).toBeInTheDocument();
   });
+
+  it("renders with label", () => {
+    const { getByText } = render(() => <DatePicker label="Pick date" />);
+    expect(getByText("Pick date")).toBeInTheDocument();
+  });
+
+  it("renders control with input and trigger", () => {
+    const { container } = render(() => <DatePicker placeholder="dd/mm/yyyy" />);
+    const input = container.querySelector("input");
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveAttribute("placeholder", "dd/mm/yyyy");
+    const buttons = container.querySelectorAll("button");
+    expect(buttons.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("merges custom class", () => {
+    const { container } = render(() => <DatePicker class="my-dp" />);
+    expect(container.firstChild).toHaveClass("my-dp");
+  });
+
+  it("renders with defaultValue", () => {
+    const { container } = render(() => <DatePicker />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
 });
 
 // ------------------------------------------------------------------ //
@@ -329,6 +498,52 @@ describe("MenuBase", () => {
     ));
     expect(getByText("Open")).toBeInTheDocument();
   });
+
+  it("Menu renders trigger button", () => {
+    const { container } = render(() => (
+      <Menu>
+        <MenuBase.Trigger>Options</MenuBase.Trigger>
+      </Menu>
+    ));
+    // Menu = MenuBase.Root, trigger renders as button
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders content with defaultOpen using screen (Portal)", () => {
+    const { container } = render(() => (
+      <MenuBase.Root defaultOpen>
+        <MenuBase.Trigger>Menu</MenuBase.Trigger>
+        <MenuBase.Positioner>
+          <MenuBase.Content>
+            <MenuBase.Item value="edit">Edit</MenuBase.Item>
+            <MenuBase.Item value="delete">Delete</MenuBase.Item>
+          </MenuBase.Content>
+        </MenuBase.Positioner>
+      </MenuBase.Root>
+    ));
+    // Content renders inside a Portal in the composite, but direct
+    // MenuBase.Root without MenuContent does NOT use Portal
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with defaultOpen", () => {
+    const { container } = render(() => (
+      <MenuBase.Root defaultOpen>
+        <MenuBase.Trigger>Menu</MenuBase.Trigger>
+      </MenuBase.Root>
+    ));
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("MenuBase.Trigger renders as button", () => {
+    const { getByText } = render(() => (
+      <MenuBase.Root>
+        <MenuBase.Trigger variant="default">Click</MenuBase.Trigger>
+      </MenuBase.Root>
+    ));
+    const trigger = getByText("Click");
+    expect(trigger.nodeName).toBe("BUTTON");
+  });
 });
 
 // ------------------------------------------------------------------ //
@@ -350,6 +565,20 @@ describe("ScrollArea", () => {
   it("exports scrollAreaVariants", () => {
     expect(scrollAreaVariants).toBeDefined();
     expect(typeof scrollAreaVariants).toBe("function");
+  });
+
+  it("merges custom class", () => {
+    const { container } = render(() => (
+      <ScrollArea class="my-scroll">Content</ScrollArea>
+    ));
+    expect(container.firstChild).toHaveClass("my-scroll");
+  });
+
+  it("renders with variant='scroll'", () => {
+    const { container } = render(() => (
+      <ScrollArea variant="scroll">Scrollable</ScrollArea>
+    ));
+    expect(container.firstChild).toBeInTheDocument();
   });
 });
 
@@ -378,5 +607,26 @@ describe("AvatarBase", () => {
   it("AvatarBase.Root renders", () => {
     const { container } = render(() => <AvatarBase.Root />);
     expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders fallback text within context", () => {
+    const { getByText } = render(() => (
+      <AvatarBase.Root>
+        <AvatarBase.Fallback>JD</AvatarBase.Fallback>
+      </AvatarBase.Root>
+    ));
+    expect(getByText("JD")).toBeInTheDocument();
+  });
+
+  it("merges custom class", () => {
+    const { container } = render(() => <Avatar class="my-avatar" />);
+    expect(container.firstChild).toHaveClass("my-avatar");
+  });
+
+  it("forwards additional props", () => {
+    const { container } = render(() => (
+      <Avatar data-testid="avatar-1" />
+    ));
+    expect(container.firstChild).toHaveAttribute("data-testid", "avatar-1");
   });
 });

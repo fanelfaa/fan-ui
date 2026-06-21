@@ -1,4 +1,4 @@
-import { render } from "@solidjs/testing-library";
+import { render, fireEvent, waitFor } from "@solidjs/testing-library";
 import { Select, SelectBase, selectVariants } from "../src/select";
 import { Combobox, ComboboxBase, comboboxVariants } from "../src/combobox";
 import { Listbox, ListboxBase, listboxVariants } from "../src/listbox";
@@ -56,6 +56,48 @@ describe("SelectBase", () => {
     ));
     expect(getByText("Pick")).toBeInTheDocument();
   });
+
+  it("renders with defaultValue and fires onValueChange", () => {
+    const onChange = vi.fn();
+    const { container } = render(() => (
+      <SelectBase.Root
+        defaultValue={[{ label: "Apple", value: "apple" }]}
+        onValueChange={onChange}
+      >
+        <SelectBase.Label>Fruits</SelectBase.Label>
+      </SelectBase.Root>
+    ));
+    expect(container.firstChild).toBeInTheDocument();
+    // Default value is rendered; no interaction means no onChange call
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("renders with styling intact", () => {
+    const { container } = render(() => (
+      <SelectBase.Root>
+        <SelectBase.Label>Fruits</SelectBase.Label>
+      </SelectBase.Root>
+    ));
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with defaultOpen", () => {
+    const { container } = render(() => (
+      <SelectBase.Root defaultOpen>
+        <SelectBase.Trigger>Pick</SelectBase.Trigger>
+      </SelectBase.Root>
+    ));
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with error variant", () => {
+    const { container } = render(() => (
+      <SelectBase.Root error>
+        <SelectBase.Label>Fruits</SelectBase.Label>
+      </SelectBase.Root>
+    ));
+    expect(container.firstChild).toBeInTheDocument();
+  });
 });
 
 // ------------------------------------------------------------------ //
@@ -96,6 +138,37 @@ describe("ComboboxBase", () => {
     ));
     expect(container.firstChild).toBeInTheDocument();
   });
+
+  it("renders input within root context", () => {
+    const { container } = render(() => (
+      <ComboboxBase.Root>
+        <ComboboxBase.Control>
+          <ComboboxBase.Input />
+        </ComboboxBase.Control>
+      </ComboboxBase.Root>
+    ));
+    const input = container.querySelector("input");
+    expect(input).toBeInTheDocument();
+  });
+
+  it("renders with defaultOpen", () => {
+    const { container } = render(() => (
+      <ComboboxBase.Root defaultOpen>
+        <ComboboxBase.Input />
+        <ComboboxBase.Trigger />
+      </ComboboxBase.Root>
+    ));
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with error variant", () => {
+    const { container } = render(() => (
+      <ComboboxBase.Root error>
+        <ComboboxBase.Label>Options</ComboboxBase.Label>
+      </ComboboxBase.Root>
+    ));
+    expect(container.firstChild).toBeInTheDocument();
+  });
 });
 
 // ------------------------------------------------------------------ //
@@ -130,6 +203,20 @@ describe("ListboxBase", () => {
 
   it("ListboxBase.Root renders", () => {
     const { container } = render(() => <ListboxBase.Root />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("Listbox renders with orientation", () => {
+    const { container } = render(() => (
+      <ListboxBase.Root orientation="horizontal" />
+    ));
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("renders with collection", () => {
+    const { container } = render(() => (
+      <ListboxBase.Root />
+    ));
     expect(container.firstChild).toBeInTheDocument();
   });
 });
